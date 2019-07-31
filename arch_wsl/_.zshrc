@@ -136,6 +136,9 @@ alias vizsh="micro ~/.zshrc"
 alias ohmyzsh="micro ~/.oh-my-zsh"
 alias rezsh="source ~/.zshrc"
 alias e.="explorer.exe ."
+alias cdtmp='cd `mktemp -d /tmp/artin-XXXXXX`'
+alias bakzsh="cp ~/.zshrc ~/dotfiles/arch_wsl/_.zshrc"
+
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
