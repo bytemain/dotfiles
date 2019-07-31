@@ -201,10 +201,6 @@ install-nali() {
     cd ..
 }
 
-install-ctop() {
-    sudo wget https://github.com/bcicen/ctop/releases/download/v0.7.2/ctop-0.7.2-linux-amd64 -O /usr/local/bin/ctop
-    sudo chmod +x /usr/local/bin/ctop
-}
 
 thefuck() {
     echo "==========================================================="
@@ -215,18 +211,13 @@ thefuck() {
 }
 
 
-ci_editor() {
+micro_editor() {
     echo "==========================================================="
-    echo "                Install Google ci_editor"
-    echo ""
-    echo "* Cloning google/ci_edit from GitHub.com"
+    echo "                Install micro_editor"
     echo "-----------------------------------------------------------"
 
+    cd /usr/local/bin; curl https://getmic.ro | sudo bash
     cd $HOME
-    git clone https://github.com/google/ci_edit.git --depth=50
-
-    echo "-----------------------------------------------------------"
-    echo "> You can run 'ci-edit-update' later to finish install."
 
     sleep 3
     cd dotfiles
@@ -256,7 +247,6 @@ finish() {
     echo "- chsh -s /usr/bin/zsh"
     echo "- ci-edit-update"
     echo "- git-config"
-    echo "- we .netrc"
     echo "==========================================================="
 }
 
@@ -267,9 +257,8 @@ clone-repo
 setup-omz
 install-nodejs
 install-nali
-install-ctop
 thefuck
-ci_editor
+micro_editor
 zshrc
 chmod
 upgrade-packages

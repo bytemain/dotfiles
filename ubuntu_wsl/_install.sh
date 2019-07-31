@@ -255,19 +255,14 @@ thefuck() {
 }
 
 
-ci_editor() {
+micro_editor() {
     echo "==========================================================="
-    echo "                Install Google ci_editor"
-    echo ""
-    echo "* Cloning google/ci_edit from GitHub.com"
+    echo "                Install micro_editor"
     echo "-----------------------------------------------------------"
 
+    cd /usr/local/bin; curl https://getmic.ro | sudo bash
     cd $HOME
-    git clone https://github.com/google/ci_edit.git --depth=50
-
-    echo "-----------------------------------------------------------"
-    echo "> You can run 'ci-edit-update' later to finish install."
-
+    sudo apt-get install -y xclip
     sleep 3
     cd dotfiles
 }
@@ -320,7 +315,7 @@ install-nali
 install-ctop
 thefuck
 keybase
-ci_editor
+micro_editor
 zshrc
 chmod
 upgrade-packages
