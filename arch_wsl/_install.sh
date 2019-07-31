@@ -22,6 +22,7 @@ start() {
 
     cd $HOME
 }
+
 set-mirror() {
     sudo sed -i -e '1a\Server = http://mirrors.163.com/archlinux/$repo/os/$arch' /etc/pacman.d/mirrorlist
     sudo sed -i -e '1a\Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch' /etc/pacman.d/mirrorlist
@@ -29,8 +30,8 @@ set-mirror() {
     sudo pacman-key --init
     sudo pacman-key --populate
     sudo pacman -Syy && pacman -S archlinuxcn-keyring
-
 }
+
 install-linux-packages() {
     echo "==========================================================="
     echo "* Install following packages:"
@@ -46,24 +47,21 @@ install-linux-packages() {
     echo "  - iproute2"
     echo "  - base-devel"
     echo "  - httpie"
-    echo "  - python3-pip"
-    echo "  - python3-setuptools"
     echo "  - whois"
     echo "  - axel"
     echo "  - wslu"
     echo "  - ncdu"
-    echo "  - glances"
     echo "  - glances"
     echo "  - iputils-tracepath"
     echo "-----------------------------------------------------------"
 
     sudo pacman -Syy yay
     yay --save --aururl https://aur.tuna.tsinghua.edu.cn
-    yay -P -g
     yay
-    sudo pacman -Syy zsh curl git tree python2.7 python3-pip python3-setuptools whois axel iputils-tracepath dnsutils
-    sudo pacman -Syy net-tools dnsutils inetutils iproute2
+
     sudo pacman -Syy base-devel
+    sudo pacman -Syy zsh curl git tree whois axel iputils-tracepath
+    sudo pacman -Syy net-tools dnsutils inetutils iproute2
     sudo pacman -Syy httpie
     
     yay -S wslu
@@ -181,8 +179,6 @@ install-nodejs() {
     yarn-global-add
 }
 
-
-
 install-nali() {
     echo "==========================================================="
     echo "                   Installing Nali                         "
@@ -215,7 +211,7 @@ thefuck() {
     echo "                      Install thefuck                      "
     echo "-----------------------------------------------------------"
 
-    sudo pip3 install thefuck
+    sudo pip install thefuck
 }
 
 
