@@ -216,6 +216,8 @@ micro_editor() {
     echo "                Install micro_editor"
     echo "-----------------------------------------------------------"
 
+    yay -S xclip
+    yay -S xsel
     cd /usr/local/bin; curl https://getmic.ro | sudo bash
     cd $HOME
 

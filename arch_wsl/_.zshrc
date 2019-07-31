@@ -108,6 +108,17 @@ git-config() {
     git config --global user.email "${email}"  
 }
 
+mc-update() {
+	echo -n "Please input download url!"
+	read _url
+	curl -L "${_url}" > micro.tar.gz
+	mkdir microd
+	tar -xvzf micro.tar.gz -C microd --strip-components 1
+	mv microd/micro /usr/local/bin/micro  
+	rm micro.tar.gz 
+	rm -rf microd
+}
+
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -128,17 +139,19 @@ git-config() {
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias cls=clear
+
+alias top=glances
+alias ct=cheat
+
+
 alias vizsh="micro ~/.zshrc"
 alias ohmyzsh="micro ~/.oh-my-zsh"
 alias rezsh="source ~/.zshrc"
 alias e.="explorer.exe ."
 alias cdtmp='cd `mktemp -d /tmp/artin-XXXXXX`'
 alias bakzsh="cp ~/.zshrc ~/dotfiles/arch_wsl/_.zshrc"
-
+alias mc=micro
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
