@@ -82,8 +82,10 @@ source $ZSH/oh-my-zsh.sh
 setopt no_nomatch
 
 proxy () {
-    export ALL_PROXY="http://127.0.0.1:7890"
-    export all_proxy="http://127.0.0.1:7890"
+	url_=$(cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }')
+	echo "Windows Server IP: ${url_}"
+    export ALL_PROXY="http://${url_}:7890"
+    export all_proxy="http://${url_}:7890"
     http --follow -b https://api.ip.sb/geoip
 }
 
@@ -122,16 +124,6 @@ mc-update() {
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -143,7 +135,7 @@ alias cls=clear
 
 alias top=glances
 alias ct=cheat
-
+alias ws="cd ~/0Workspace"
 
 alias vizsh="micro ~/.zshrc"
 alias ohmyzsh="micro ~/.oh-my-zsh"
