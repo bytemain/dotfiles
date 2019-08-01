@@ -82,8 +82,10 @@ source $ZSH/oh-my-zsh.sh
 setopt no_nomatch
 
 proxy () {
-    export ALL_PROXY="http://127.0.0.1:7890"
-    export all_proxy="http://127.0.0.1:7890"
+	url_=$(cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }')
+	echo "Windows Server IP: ${url_}"
+    export ALL_PROXY="http://${url_}:7890"
+    export all_proxy="http://${url_}:7890"
     http --follow -b https://api.ip.sb/geoip
 }
 
@@ -94,10 +96,9 @@ unpro () {
 }
 
 
-ip_() {
+ip_ () {
     http --follow -b https://api.ip.sb/geoip
 }
-
 
 git-config() {
     echo -n "Please input Git Username: "      
@@ -135,7 +136,6 @@ alias cls=clear
 alias top=glances
 alias ct=cheat
 alias ws="cd ~/0Workspace"
-alias mc=micro
 
 alias vizsh="micro ~/.zshrc"
 alias ohmyzsh="micro ~/.oh-my-zsh"
@@ -143,6 +143,7 @@ alias rezsh="source ~/.zshrc"
 alias e.="explorer.exe ."
 alias cdtmp='cd `mktemp -d /tmp/artin-XXXXXX`'
 alias bakzsh="cp ~/.zshrc ~/dotfiles/arch_wsl/_.zshrc"
+alias mc=micro
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
