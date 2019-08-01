@@ -73,7 +73,14 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git npm node history)
+plugins=(
+	git
+	npm
+	node
+	history
+	zsh-autosuggestions
+	zsh-syntax-highlighting
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -130,8 +137,8 @@ mc-update() {
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-alias cls=clear
 
+alias cls=clear
 alias top=glances
 alias ct=cheat
 alias ws="cd ~/0Workspace"
@@ -142,7 +149,7 @@ alias ohmyzsh="micro ~/.oh-my-zsh"
 alias rezsh="source ~/.zshrc"
 alias e.="explorer.exe ."
 alias cdtmp='cd `mktemp -d /tmp/artin-XXXXXX`'
-alias bakzsh="cp ~/.zshrc ~/dotfiles/arch_wsl/_.zshrc"
+alias bakzsh="cp ~/.zshrc ~/dotfiles/arch_wsl/wsl1.zshrc"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

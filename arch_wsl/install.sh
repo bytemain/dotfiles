@@ -4,8 +4,11 @@ EnvVersion="Arch WSL"
 
 start() {
     clear
-    export ALL_PROXY="http://127.0.0.1:7890"
-    export all_proxy="http://127.0.0.1:7890"
+
+    winip="127.0.0.1"
+    #winip=$(cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }')
+    export ALL_PROXY="http://${winip}:7890"
+    export all_proxy="http://${winip}:7890"
     echo -n "Set Proxy: ${ALL_PROXY}"
 
     echo "==========================================================="
@@ -71,16 +74,6 @@ install-linux-packages() {
     sudo pip install cheat
 }
 
-clone-repo() {
-    echo "-----------------------------------------------------------"
-    echo "* Cloning dotfiles Repo from GitHub.com"
-    echo "-----------------------------------------------------------"
-
-    git clone https://github.com/lengthmin/dotfiles.git
-
-    cd ./dotfiles
-}
-
 setup-omz() {
     echo "==========================================================="
     echo "                      Shells Enviroment"
@@ -100,14 +93,13 @@ setup-omz() {
     echo "==========================================================="
     echo "                  Import env zshrc                   "
     echo "-----------------------------------------------------------"
-
-    cat ./arch_wsl/_.zshrc > $HOME/.zshrc
+	cd ~/dotfiles
+    cat ./arch_wsl/wsl1.zshrc > $HOME/.zshrc
 
     source ~/.zshrc
 
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-    git clone https://github.com/sukkaw/zsh-proxy.git ~/.oh-my-zsh/custom/plugins/zsh-proxy
 }
 
 
@@ -165,7 +157,7 @@ install-nodejs() {
         echo "  - hexo-cli"
         echo "  - now"
         echo "-----------------------------------------------------------"
-
+		npm install -g mirror-config-china --registry=http://registry.npm.taobao.org
         yarn global add npm-check-updates http-server serve hexo-cli now 
     }
 
@@ -255,7 +247,6 @@ finish() {
 start
 set-mirror
 install-linux-packages
-clone-repo
 setup-omz
 install-nodejs
 install-nali
