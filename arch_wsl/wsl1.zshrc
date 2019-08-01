@@ -6,6 +6,8 @@ export PATH="/mnt/c/Program Files/Microsoft VS Code/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/artin/.oh-my-zsh"
+export CHEAT_USER_DIR="$HOME/dotfiles/cheat"
+
 
 export EDITOR=micro
 
@@ -138,18 +140,34 @@ mc-update() {
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 
-alias cls=clear
-alias top=glances
-alias ct=cheat
-alias ws="cd ~/0Workspace"
-alias mc=micro
-
-alias vizsh="micro ~/.zshrc"
 alias ohmyzsh="micro ~/.oh-my-zsh"
+alias vizsh="micro ~/.zshrc"
 alias rezsh="source ~/.zshrc"
+alias bkzsh="cp ~/.zshrc ~/dotfiles/arch_wsl/wsl1.zshrc"
+
 alias e.="explorer.exe ."
 alias cdtmp='cd `mktemp -d /tmp/artin-XXXXXX`'
-alias bakzsh="cp ~/.zshrc ~/dotfiles/arch_wsl/wsl1.zshrc"
+alias ws="cd ~/0Workspace"
+alias cls=clear
+
+alias rmrf="rm -rf"
+
+alias gitcm="git commit -m"
+alias gitp="git push"
+alias gita="git add -a"
+alias gitall="git add ."
+
+alias ping="nali-ping"
+alias dig="nali-dig"
+alias traceroute="nali-traceroute"
+alias tracepath="nali-tracepath"
+alias dig="nali-dig"
+alias nslookup="nali-nslookup"
+alias nali-update="sudo nali-update"
+
+alias top=glances
+alias ct=cheat
+alias mc=micro
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
