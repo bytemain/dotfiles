@@ -77,11 +77,12 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 	git
-	npm
-	node
 	history
+	archlinux
+	sudo
 	zsh-autosuggestions
 	zsh-syntax-highlighting
+	cp
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -90,13 +91,43 @@ source $ZSH/oh-my-zsh.sh
 
 setopt no_nomatch
 
+PROXY_HTTP="http://127.0.0.1:7890"
+PROXY_SOCKS5="socks5://127.0.0.1:7891"
+NO_PROXY="localhost,127.0.0.1,localaddress,.localdomain.com"
+
+
 proxy () {
-    export ALL_PROXY="http://127.0.0.1:7890"
-    export all_proxy="http://127.0.0.1:7890"
+	# pip can read http_proxy & https_proxy
+	# git can read all_proxy
+
+	# http_proxy
+    export http_proxy="${PROXY_HTTP}"
+    export HTTP_PROXY="${PROXY_HTTP}"
+    # https_proxy
+    export https_proxy="${PROXY_HTTP}"
+    export HTTPS_proxy="${PROXY_HTTP}"
+    # ftp_proxy
+    export ftp_proxy="${PROXY_HTTP}"
+    export FTP_PROXY="${PROXY_HTTP}"
+    # rsync_proxy
+    export rsync_proxy="${PROXY_HTTP}"
+    export RSYNC_PROXY="${PROXY_HTTP}"
+    # all_proxy
+    export ALL_PROXY="${PROXY_SOCKS5}"
+    export all_proxy="${PROXY_SOCKS5}"    
+    export no_proxy="${NO_PROXY}"
     http --follow -b https://api.ip.sb/geoip
 }
 
 unpro () {
+    unset http_proxy
+    unset HTTP_PROXY
+    unset https_proxy
+    unset HTTPS_PROXY
+    unset ftp_proxy
+    unset FTP_PROXY
+    unset rsync_proxy
+    unset RSYNC_PROXY
     unset ALL_PROXY
     unset all_proxy
     http --follow -b https://api.ip.sb/geoip
@@ -104,7 +135,7 @@ unpro () {
 
 
 ip_() {
-    http --follow -b https://api.ip.sb/geoip
+    http --follow -b https://api.ip.sb/geoip/$1
 }
 
 
@@ -129,11 +160,18 @@ mc-update() {
 	rm -rf microd
 }
 
+cdlast() {
+  cd -
+  ls -lrth --color=auto | tail
+  zle reset-prompt
+}
+zle -N cdlast
+bindkey '^Q' cdlast
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+transfer() {
+	curl --progress-bar --upload-file "$1" https://transfer.sh/$(basename "$1") | tee /dev/null;
+    echo
+}
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -156,6 +194,7 @@ alias gitcm="git commit -m"
 alias gitp="git push"
 alias gita="git add -a"
 alias gitall="git add ."
+alias lg='lazygit'
 
 alias ping="nali-ping"
 alias dig="nali-dig"
@@ -168,9 +207,24 @@ alias nali-update="sudo nali-update"
 alias top=glances
 alias ct=cheat
 alias mc=micro
+alias vi=vim
+
+
+alias -s gz='tar -xzvf'
+alias -s tgz='tar -xzvf'
+alias -s zip='unzip'
+alias -s bz2='tar -xjvf'
+alias -s php=mc
+alias -s py=mc
+alias -s rb=mc
+alias -s html=mc
+alias gcid="git log | head -1 | awk '{print substr(\$2,1,7)}' | clip.exe"
+
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+eval $(thefuck --alias)
