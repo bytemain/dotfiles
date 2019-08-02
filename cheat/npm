@@ -20,3 +20,6 @@ npm install -g npm
 
 # Uninstall a package
 npm uninstall <package>
+
+# install china-mirror
+npm install -g mirror-config-china --registry=http://registry.npm.taobao.org

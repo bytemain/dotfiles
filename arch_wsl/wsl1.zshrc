@@ -98,8 +98,7 @@ NO_PROXY="localhost,127.0.0.1,localaddress,.localdomain.com"
 
 proxy () {
 	# pip can read http_proxy & https_proxy
-	# git can read all_proxy
-
+	
 	# http_proxy
     export http_proxy="${PROXY_HTTP}"
     export HTTP_PROXY="${PROXY_HTTP}"
@@ -228,3 +227,15 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 eval $(thefuck --alias)
+
+# Created by mirror-config-china
+export IOJS_ORG_MIRROR=https://npm.taobao.org/mirrors/iojs
+export NODIST_IOJS_MIRROR=https://npm.taobao.org/mirrors/iojs
+export NVM_IOJS_ORG_MIRROR=https://npm.taobao.org/mirrors/iojs
+export NVMW_IOJS_ORG_MIRROR=https://npm.taobao.org/mirrors/iojs
+export NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
+export NODIST_NODE_MIRROR=https://npm.taobao.org/mirrors/node
+export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
+export NVMW_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
+export NVMW_NPM_MIRROR=https://npm.taobao.org/mirrors/npm
+# End of mirror-config-china
