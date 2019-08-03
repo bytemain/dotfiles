@@ -56,19 +56,9 @@ install-linux-packages() {
     echo "-----------------------------------------------------------"
 
     sudo apt-get update
+    sudo apt-get install -y neovim
     sudo apt-get install -y zsh curl git tree android-tools-adb android-tools-fastboot python2.7 python3-dev python3-pip python3-setuptools whois axel iputils-tracepath dnsutils
 }
-
-clone-repo() {
-    echo "-----------------------------------------------------------"
-    echo "* Cloning Sukka/dotfiles Repo from GitHub.com"
-    echo "-----------------------------------------------------------"
-
-    git clone https://github.com/lengthmin/dotfiles.git
-
-    cd ./dotfiles
-}
-
 
 setup-omz() {
     echo "==========================================================="
@@ -262,7 +252,6 @@ finish() {
 
 start
 install-linux-packages
-clone-repo
 setup-omz
 install-nodejs
 lazygit
