@@ -8,14 +8,13 @@ sukkaEnvRequired=$(echo -n "
 
 start() {
     clear
-    chmod +x ./ubuntu_set_mirror.sh
-    sh ./ubuntu_set_mirror.sh
     #winip="127.0.0.1"
     winip=$(cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }')
     export ALL_PROXY="http://${winip}:7890"
     export all_proxy="http://${winip}:7890"
+    curl ip.gs
     echo -n "Set Proxy: ${ALL_PROXY}"
-
+    echo ""
     echo "==========================================================="
     echo "   _____       _    _            ______                    "
     echo "  / ____|     | |  | |          |  ____|                   "
@@ -44,26 +43,11 @@ start() {
 install-linux-packages() {
     echo "==========================================================="
     echo "* Install following packages:"
-    echo ""
-    echo "  - zsh"
-    echo "  - curl"
-    echo "  - git"
-    echo "  - tree"
-    echo "  - android-tools-adb"
-    echo "  - android-tools-fastboot"
-    echo "  - python2.7"
-    echo "  - python3-dev"
-    echo "  - python3-pip"
-    echo "  - python3-setuptools"
-    echo "  - whois"
-    echo "  - axel"
-    echo "  - iputils-tracepath"
-    echo "  - dnsutils"
     echo "-----------------------------------------------------------"
 
     sudo apt-get update
-    sudo apt-get install -y neovim
-    sudo apt-get install -y zsh curl git tree android-tools-adb android-tools-fastboot python2.7 python3-dev python3-pip python3-setuptools whois axel iputils-tracepath dnsutils
+    sudo apt-get install -y neovim build-essential
+    sudo apt-get install -y zsh curl git tree android-tools-adb android-tools-fastboot python2.7 python3-dev python3-pip python3-setuptools whois iputils-tracepath dnsutils
 }
 
 setup-omz() {
@@ -80,9 +64,6 @@ setup-omz() {
     echo ""
     echo "  - zsh-autosuggestions"
     echo "  - zsh-syntax-highlighting"
-    echo "  - sukka.zsh-theme"
-    echo "  - zsh-proxy.zsh-plugin"
-    echo "  - openload.zsh-plugin"
     echo "-----------------------------------------------------------"
 
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -113,7 +94,6 @@ install-nodejs() {
         echo "-----------------------------------------------------------"
 
         nvm install node
-
         nvm use node
         
         echo "-----------------------------------------------------------"
@@ -147,8 +127,9 @@ install-nodejs() {
         echo "  - openload-cli"
         echo "  - now"
         echo "-----------------------------------------------------------"
-
-        yarn global add http-server serve hexo-cli openload-cli now
+	npm install -g mirror-config-china --registry=http://registry.npm.taobao.org
+        yarn global add npm-check-updates
+        yarn global add http-server serve
     }
 
 
@@ -201,18 +182,14 @@ install-nali() {
     cd ..
 }
 
-install-ctop() {
-    sudo wget https://github.com/bcicen/ctop/releases/download/v0.7.2/ctop-0.7.2-linux-amd64 -O /usr/local/bin/ctop
-    sudo chmod +x /usr/local/bin/ctop
-}
-
-
-thefuck() {
+other-package() {
     echo "==========================================================="
-    echo "                      Install thefuck                      "
+    echo "                Install other package                      "
     echo "-----------------------------------------------------------"
 
     sudo pip3 install thefuck
+    sudo pip3 install cheat
+    sudo pip3 install glances
 }
 
 
@@ -233,7 +210,7 @@ zshrc() {
     echo "                  Import sukka env zshrc                   "
     echo "-----------------------------------------------------------"
 	
-    cat ./ubuntu_wsl/wsl-ubuntu.zshrc > $HOME/.zshrc
+    cat ./debian_wsl/debian.zshrc > $HOME/.zshrc
 }
 
 upgrade-packages() {
@@ -242,8 +219,6 @@ upgrade-packages() {
     echo "-----------------------------------------------------------"
 
     sudo apt-get update && sudo apt-get upgrade -y
-    pip install --upgrade pip
-    npm i -g npm
 }
 
 finish() {
@@ -260,10 +235,10 @@ start
 install-linux-packages
 setup-omz
 install-nodejs
-lazygit
 install-nali
 install-ctop
 thefuck
+lazygit
 micro_editor
 zshrc
 upgrade-packages
