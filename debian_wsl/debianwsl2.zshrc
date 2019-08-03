@@ -51,6 +51,7 @@ PROXY_HTTP="http://${winip}:7890"
 PROXY_SOCKS5="socks5://${winip}:7891"
 
 __enable_proxy_npm() {
+	echo "${winip}"
 	npm config set proxy ${PROXY_HTTP}
 	npm config set https-proxy ${PROXY_HTTP}
 	yarn config set proxy ${PROXY_HTTP}
@@ -86,9 +87,8 @@ proxy () {
     # all_proxy
     export ALL_PROXY="${PROXY_SOCKS5}"
 	export all_proxy="${PROXY_SOCKS5}"
-	
-	#	__enable_proxy_npm
-	http --follow -b https://api.ip.sb/geoip	
+
+	ip_
 }
 
 unpro () {
@@ -103,12 +103,13 @@ unpro () {
     unset ALL_PROXY
     unset all_proxy
     # __disable_proxy_npm
-    
-    http --follow -b https://api.ip.sb/geoip
-
+    ip_
 }
 
 ip_() {
+	curl https://myip.ipip.net
+	curl https://ip.cn
+	curl https://ip.gs
     http --follow -b https://api.ip.sb/geoip/$1
 }
 
@@ -174,7 +175,8 @@ alias nali-update="sudo nali-update"
 
 alias ct=cheat
 alias mc=micro
-alias vi=vim
+alias vi=nvim
+alias vim=nvim
 alias lg=lazygit
 alias pc4=proxychains4
 
