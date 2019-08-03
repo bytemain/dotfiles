@@ -93,12 +93,23 @@ setopt no_nomatch
 
 PROXY_HTTP="http://127.0.0.1:7890"
 PROXY_SOCKS5="socks5://127.0.0.1:7891"
-NO_PROXY="localhost,127.0.0.1,localaddress,.localdomain.com"
 
+__enable_proxy_npm() {
+    npm config set proxy ${PROXY_HTTP}
+    npm config set https-proxy ${PROXY_HTTP}
+    yarn config set proxy ${PROXY_HTTP}
+    yarn config set https-proxy ${PROXY_HTTP}
+}
+
+__disable_proxy_npm() {
+    npm config delete proxy
+    npm config delete https-proxy
+    yarn config delete proxy
+    yarn config delete https-proxy
+}
 
 proxy () {
 	# pip can read http_proxy & https_proxy
-	
 	# http_proxy
     export http_proxy="${PROXY_HTTP}"
     export HTTP_PROXY="${PROXY_HTTP}"
@@ -114,7 +125,9 @@ proxy () {
     # all_proxy
     export ALL_PROXY="${PROXY_SOCKS5}"
     export all_proxy="${PROXY_SOCKS5}"    
-    export no_proxy="${NO_PROXY}"
+
+    __enable_proxy_npm
+
     http --follow -b https://api.ip.sb/geoip
 }
 
@@ -129,6 +142,9 @@ unpro () {
     unset RSYNC_PROXY
     unset ALL_PROXY
     unset all_proxy
+    
+    __disable_proxy_npm
+
     http --follow -b https://api.ip.sb/geoip
 }
 
@@ -182,6 +198,7 @@ alias vizsh="micro ~/.zshrc"
 alias rezsh="source ~/.zshrc"
 alias bkzsh="cp ~/.zshrc ~/dotfiles/arch_wsl/wsl1.zshrc"
 
+alias pc4=proxychains4
 alias e.="explorer.exe ."
 alias cdtmp='cd `mktemp -d /tmp/artin-XXXXXX`'
 alias ws="cd ~/0Workspace"
