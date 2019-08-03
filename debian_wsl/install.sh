@@ -184,11 +184,10 @@ other-package() {
 
     sudo pip3 install thefuck
     sudo pip3 install cheat
-    sudo pip3 install glances
 }
 
 
-micro_editor() {
+micro-editor() {
     echo "==========================================================="
     echo "                Install micro_editor"
     echo "-----------------------------------------------------------"
@@ -206,7 +205,12 @@ zshrc() {
     echo "                  Import zshrc                   "
     echo "-----------------------------------------------------------"
 
-    cat ./debian_wsl/debian.zshrc > $HOME/.zshrc
+    cat ./debian_wsl/debianwsl2.zshrc > $HOME/.zshrc
+}
+
+install-ctop() {
+	sudo wget https://github.com/bcicen/ctop/releases/download/v0.7.2/ctop-0.7.2-linux-amd64 -O /usr/local/bin/ctop
+	sudo chmod +x /usr/local/bin/ctop 
 }
 
 upgrade-packages() {
@@ -235,7 +239,7 @@ install-nali
 install-ctop
 other-package
 lazygit
-micro_editor
+micro-editor
 zshrc
 upgrade-packages
 finish
