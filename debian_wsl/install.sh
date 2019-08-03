@@ -12,8 +12,8 @@ start() {
     winip=$(cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }')
     export ALL_PROXY="http://${winip}:7890"
     export all_proxy="http://${winip}:7890"
-    curl ip.gs
     echo -n "Set Proxy: ${ALL_PROXY}"
+    curl ip.gs
     echo ""
     echo "==========================================================="
     echo "   _____       _    _            ______                    "
@@ -121,14 +121,8 @@ install-nodejs() {
     yarn-global-add() {
         echo "-----------------------------------------------------------"
         echo "* Yarn Global Add those packages:"
-        echo ""
-        echo "  - http-server"
-        echo "  - serve"
-        echo "  - hexo-cli"
-        echo "  - openload-cli"
-        echo "  - now"
         echo "-----------------------------------------------------------"
-	npm install -g mirror-config-china --registry=http://registry.npm.taobao.org
+		npm install -g mirror-config-china --registry=http://registry.npm.taobao.org
         yarn global add npm-check-updates
         yarn global add http-server serve
     }
@@ -202,15 +196,16 @@ micro_editor() {
     cd /usr/local/bin; curl https://getmic.ro | sudo bash
     cd $HOME
     sudo apt-get install -y xclip
+	sudo apt-get install -y xsel
     sleep 3
     cd dotfiles
 }
 
 zshrc() {
     echo "==========================================================="
-    echo "                  Import sukka env zshrc                   "
+    echo "                  Import zshrc                   "
     echo "-----------------------------------------------------------"
-	
+
     cat ./debian_wsl/debian.zshrc > $HOME/.zshrc
 }
 
@@ -238,7 +233,7 @@ setup-omz
 install-nodejs
 install-nali
 install-ctop
-thefuck
+other-package
 lazygit
 micro_editor
 zshrc
