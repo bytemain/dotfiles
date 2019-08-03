@@ -60,7 +60,6 @@ ZSH_DISABLE_COMPFIX=true
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   zsh-proxy
-  openload
   zsh-autosuggestions
   git
   zsh-syntax-highlighting
@@ -70,23 +69,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # =================================================== #
 #   _____       _    _            ______              #
@@ -100,32 +83,6 @@ source $ZSH/oh-my-zsh.sh
 
 # ------------------------------ NVM
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-# Calling nvm use automatically in a directory with a .nvmrc file
-# place this after nvm initialization!
-autoload -U add-zsh-hook
-load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
-
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
-
 nvm-update() {
     (
         cd "$NVM_DIR"
@@ -136,19 +93,129 @@ nvm-update() {
 
 export PATH="$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-export PATH=$PATH:/usr/local/go/bin
-export GOPATH=$HOME/go
-export PATH=$PATH:$HOME/go/bin
-export PATH=$PATH:$HOME/bin
+# User configuration
 
-alias rezsh="source $HOME/.zshrc"
+setopt no_nomatch
+
+PROXY_HTTP="http://127.0.0.1:7890"
+PROXY_SOCKS5="socks5://127.0.0.1:7891"
+
+__enable_proxy_npm() {
+    npm config set proxy ${PROXY_HTTP}
+    npm config set https-proxy ${PROXY_HTTP}
+    yarn config set proxy ${PROXY_HTTP}
+    yarn config set https-proxy ${PROXY_HTTP}
+}
+
+__disable_proxy_npm() {
+    npm config delete proxy
+    npm config delete https-proxy
+    yarn config delete proxy
+    yarn config delete https-proxy
+}
+
+proxy () {
+	# pip can read http_proxy & https_proxy
+	# http_proxy
+    export http_proxy="${PROXY_HTTP}"
+    export HTTP_PROXY="${PROXY_HTTP}"
+    # https_proxy
+    export https_proxy="${PROXY_HTTP}"
+    export HTTPS_proxy="${PROXY_HTTP}"
+    # ftp_proxy
+    export ftp_proxy="${PROXY_HTTP}"
+    export FTP_PROXY="${PROXY_HTTP}"
+    # rsync_proxy
+    export rsync_proxy="${PROXY_HTTP}"
+    export RSYNC_PROXY="${PROXY_HTTP}"
+    # all_proxy
+    export ALL_PROXY="${PROXY_SOCKS5}"
+    export all_proxy="${PROXY_SOCKS5}"    
+
+    __enable_proxy_npm
+
+    http --follow -b https://api.ip.sb/geoip
+}
+
+unpro () {
+    unset http_proxy
+    unset HTTP_PROXY
+    unset https_proxy
+    unset HTTPS_PROXY
+    unset ftp_proxy
+    unset FTP_PROXY
+    unset rsync_proxy
+    unset RSYNC_PROXY
+    unset ALL_PROXY
+    unset all_proxy
+    
+    __disable_proxy_npm
+
+    http --follow -b https://api.ip.sb/geoip
+}
+
+
+ip_() {
+    http --follow -b https://api.ip.sb/geoip/$1
+}
+
+
+git-config() {
+    echo -n "Please input Git Username: "      
+    read username      
+    echo -n "Please input Git Email: "
+    read email      
+    echo -n "Done!"
+    git config --global user.name "${username}"
+    git config --global user.email "${email}"  
+}
+
+mc-update() {
+	echo -n "Please input download url!"
+	read _url
+	curl -L "${_url}" > micro.tar.gz
+	mkdir microd
+	tar -xvzf micro.tar.gz -C microd --strip-components 1
+	mv microd/micro /usr/local/bin/micro  
+	rm micro.tar.gz 
+	rm -rf microd
+}
+
+cdlast() {
+  cd -
+  ls -lrth --color=auto | tail
+  zle reset-prompt
+}
+zle -N cdlast
+bindkey '^Q' cdlast
+
+transfer() {
+	curl --progress-bar --upload-file "$1" https://transfer.sh/$(basename "$1") | tee /dev/null;
+    echo
+}
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+
+alias ohmyzsh="micro ~/.oh-my-zsh"
+alias vizsh="micro ~/.zshrc"
+alias rezsh="source ~/.zshrc"
+alias bkzsh="cp ~/.zshrc ~/dotfiles/arch_wsl/wsl1.zshrc"
+
+alias c.="code ."
+alias e.="explorer.exe ."
+alias cdtmp='cd `mktemp -d /tmp/artin-XXXXXX`'
+alias ws="cd ~/0Workspace"
+alias cls=clear
 
 alias rmrf="rm -rf"
+
 alias gitcm="git commit -m"
 alias gitp="git push"
 alias gita="git add -a"
 alias gitall="git add ."
-alias lg='lazygit'
 
 alias ping="nali-ping"
 alias dig="nali-dig"
@@ -158,135 +225,41 @@ alias dig="nali-dig"
 alias nslookup="nali-nslookup"
 alias nali-update="sudo nali-update"
 
-eval $(thefuck --alias)
+alias top=glances
+alias ct=cheat
+alias mc=micro
+alias vi=vim
+alias lg=lazygit
+alias pc4=proxychains4
+alias aria2cd="aria2c --conf-path=/home/artin/dotfiles/aria2.conf -D"
 
-ci-edit-update() {
-    (
-        cd "$HOME/ci_edit"
-        git pull
-    ) && sudo "$HOME/ci_edit/install.sh"
-}
+alias -s gz='tar -xzvf'
+alias -s tgz='tar -xzvf'
+alias -s zip='unzip'
+alias -s bz2='tar -xjvf'
+alias -s php=mc
+alias -s py=mc
+alias -s rb=mc
+alias -s html=mc
+alias gcid="git log | head -1 | awk '{print substr(\$2,1,7)}' | clip.exe"
 
-git-config() {
-    echo -n "
-===================================
-      * Git Configuration *
------------------------------------
-Please input Git Username: "
 
-    read username
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-    echo -n "
------------------------------------
-Please input Git Email: "
-
-    read email
-
-    echo -n "
------------------------------------
-Done!
-===================================
-"
-
-    git config --global user.name "${username}"
-    git config --global user.email "${email}"
-
-}
-
-aptupd () {
-    echo -n "
-===================================
-* Execute: sudo apt update
------------------------------------
-"
-
-    sudo apt update
-
-    echo -n "
------------------------------------
-* Execute: sudo apt list --upgradable
------------------------------------
-"
-
-    sudo apt list --upgradable
-
-    echo -n "
-===================================
-"
-
-}
-
-alias aptupg='sudo apt upgrade -y'
-alias apti='sudo apt install'
-alias apts='sudo apt search'
-
-aptcn () {
-  echo -n "
-===================================
-Use the mirror hosted in China:
-
-- Ubuntu Package: https://mirrors.shu.edu.cn
-- PPA: https://launchpad.proxy.ustclug.org
------------------------------------
-Modifying sources list files... "
-    # Ubuntu Packages
-    sudo sed -i "s|https://ubuntu.mirror.noc.one|https://mirrors.shu.edu.cn|g" /etc/apt/sources.list
-    sudo sed -i "s|https://ubuntu.mirror.noc.one|https://mirrors.shu.edu.cn|g" /etc/apt/sources.list.d/*.list
-    # PPA Proxy
-    sudo sed -i "s|http://ppa.launchpad.net|https://launchpad.proxy.ustclug.org|g" /etc/apt/sources.list
-    sudo sed -i "s|http://ppa.launchpad.net|https://launchpad.proxy.ustclug.org|g" /etc/apt/sources.list.d/*.list
-    sudo sed -i "s|https://launchpad.proxy.noc.one|https://launchpad.proxy.ustclug.org|g" /etc/apt/sources.list
-    sudo sed -i "s|https://launchpad.proxy.noc.one|https://launchpad.proxy.ustclug.org|g" /etc/apt/sources.list.d/*.list
-
-    echo -n "Done!
-"
-}
-
-aptcf () {
-  echo -n "
-===================================
-Use the mirror hosted by NOC.ONE:
-
-- Ubuntu Package: https://ubuntu.mirror.noc.one
-- PPA: https://launchpad.proxy.noc.one
------------------------------------
-Modifying sources list files... "
-
-    # Ubuntu Packages
-    sudo sed -i "s|https://mirrors.shu.edu.cn|https://ubuntu.mirror.noc.one|g" /etc/apt/sources.list
-    sudo sed -i "s|https://mirrors.shu.edu.cn|https://ubuntu.mirror.noc.one|g" /etc/apt/sources.list.d/*.list
-    # PPA Proxy
-    sudo sed -i "s|http://ppa.launchpad.net|https://launchpad.proxy.noc.one|g" /etc/apt/sources.list
-    sudo sed -i "s|http://ppa.launchpad.net|https://launchpad.proxy.noc.one|g" /etc/apt/sources.list.d/*.list
-    sudo sed -i "s|https://launchpad.proxy.ustclug.org|https://launchpad.proxy.noc.one|g" /etc/apt/sources.list
-    sudo sed -i "s|https://launchpad.proxy.ustclug.org|https://launchpad.proxy.noc.one|g" /etc/apt/sources.list.d/*.list
-}
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 eval $(thefuck --alias)
 
-goclean() {
-  local pkg=$1; shift || return 1
-  local ost
-  local cnt
-  local scr
-
-  # Clean removes object files from package source directories (ignore error)
-  go clean -i $pkg &>/dev/null
-
-  # Set local variables
-  [[ "$(uname -m)" == "x86_64" ]] \
-  && ost="$(uname)" && ost="${ost,,}_amd64" \
-  && cnt="${pkg//[^\/]}"
-
-  # Delete the source directory and compiled package directory(ies)
-  if (("${#cnt}" == "2")); then
-    rm -rf "${GOPATH%%:*}/src/${pkg%/*}"
-    rm -rf "${GOPATH%%:*}/pkg/${ost}/${pkg%/*}"
-  elif (("${#cnt}" > "2")); then
-    rm -rf "${GOPATH%%:*}/src/${pkg%/*/*}"
-    rm -rf "${GOPATH%%:*}/pkg/${ost}/${pkg%/*/*}"
-  fi
-
-  # Reload the current shell
-  source ~/.zshrc
-}
+# Created by mirror-config-china
+export IOJS_ORG_MIRROR=https://npm.taobao.org/mirrors/iojs
+export NODIST_IOJS_MIRROR=https://npm.taobao.org/mirrors/iojs
+export NVM_IOJS_ORG_MIRROR=https://npm.taobao.org/mirrors/iojs
+export NVMW_IOJS_ORG_MIRROR=https://npm.taobao.org/mirrors/iojs
+export NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
+export NODIST_NODE_MIRROR=https://npm.taobao.org/mirrors/node
+export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
+export NVMW_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
+export NVMW_NPM_MIRROR=https://npm.taobao.org/mirrors/npm
+# End of mirror-config-china
