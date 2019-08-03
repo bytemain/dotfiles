@@ -15,7 +15,7 @@ export EDITOR=micro
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="af-magic"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -67,22 +67,15 @@ ZSH_THEME="robbyrussell"
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(
 	git
 	history
-	archlinux
 	sudo
 	zsh-autosuggestions
 	zsh-syntax-highlighting
-	cp
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -192,13 +185,14 @@ transfer() {
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
+alias uparia2="wget -N https://git.io/aria2.sh && chmod +x aria2.sh && bash aria2.sh"
 
 alias ohmyzsh="micro ~/.oh-my-zsh"
 alias vizsh="micro ~/.zshrc"
 alias rezsh="source ~/.zshrc"
 alias bkzsh="cp ~/.zshrc ~/dotfiles/arch_wsl/wsl1.zshrc"
 
-alias pc4=proxychains4
+alias c.="code ."
 alias e.="explorer.exe ."
 alias cdtmp='cd `mktemp -d /tmp/artin-XXXXXX`'
 alias ws="cd ~/0Workspace"
@@ -210,7 +204,6 @@ alias gitcm="git commit -m"
 alias gitp="git push"
 alias gita="git add -a"
 alias gitall="git add ."
-alias lg='lazygit'
 
 alias ping="nali-ping"
 alias dig="nali-dig"
@@ -224,7 +217,9 @@ alias top=glances
 alias ct=cheat
 alias mc=micro
 alias vi=vim
-
+alias lg=lazygit
+alias pc4=proxychains4
+alias aria2cd="aria2c --conf-path=/home/artin/dotfiles/aria2.conf -D"
 
 alias -s gz='tar -xzvf'
 alias -s tgz='tar -xzvf'
