@@ -1,0 +1,4 @@
+netstat –anp | grep 8080
+
+lsof -i tcp:8080 | grep LISTEN | awk '{print $2}'| awk -F"/" '{ print $1 }' | xargs kill -9
+lsof -i:端口号

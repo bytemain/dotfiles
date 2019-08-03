@@ -18,7 +18,6 @@ HIST_STAMPS="yyyy-mm-dd"
 ZSH_DISABLE_COMPFIX=true
 
 plugins=(
-  zsh-proxy
   zsh-autosuggestions
   git
   zsh-syntax-highlighting
@@ -44,6 +43,70 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # User configuration
 setopt no_nomatch
+
+#winip="127.0.0.1"
+winip=$(cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }')
+
+PROXY_HTTP="http://${winip}:7890"
+PROXY_SOCKS5="socks5://${winip}:7891"
+
+__enable_proxy_npm() {
+	npm config set proxy ${PROXY_HTTP}
+	npm config set https-proxy ${PROXY_HTTP}
+	yarn config set proxy ${PROXY_HTTP}
+	yarn config set https-proxy ${PROXY_HTTP}
+}
+
+__disable_proxy_npm() {
+    npm config delete proxy
+    npm config delete https-proxy
+    yarn config delete proxy
+    yarn config delete https-proxy
+}
+
+proxy () {
+	# pip can read http_proxy & https_proxy
+
+	# http_proxy
+    export http_proxy="${PROXY_HTTP}"
+    export HTTP_PROXY="${PROXY_HTTP}"
+
+    # https_proxy
+    export https_proxy="${PROXY_HTTP}"
+    export HTTPS_proxy="${PROXY_HTTP}"
+
+    # ftp_proxy
+    export ftp_proxy="${PROXY_HTTP}"
+    export FTP_PROXY="${PROXY_HTTP}"
+    
+    # rsync_proxy
+    export rsync_proxy="${PROXY_HTTP}"
+    export RSYNC_PROXY="${PROXY_HTTP}"
+
+    # all_proxy
+    export ALL_PROXY="${PROXY_SOCKS5}"
+	export all_proxy="${PROXY_SOCKS5}"
+	
+	#	__enable_proxy_npm
+	http --follow -b https://api.ip.sb/geoip	
+}
+
+unpro () {
+    unset http_proxy
+    unset HTTP_PROXY
+    unset https_proxy
+    unset HTTPS_PROXY
+    unset ftp_proxy
+    unset FTP_PROXY
+    unset rsync_proxy
+    unset RSYNC_PROXY
+    unset ALL_PROXY
+    unset all_proxy
+    # __disable_proxy_npm
+    
+    http --follow -b https://api.ip.sb/geoip
+
+}
 
 ip_() {
     http --follow -b https://api.ip.sb/geoip/$1

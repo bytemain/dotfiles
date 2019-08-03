@@ -46,7 +46,7 @@ install-linux-packages() {
     echo "-----------------------------------------------------------"
 
     sudo apt-get update
-    sudo apt-get install -y neovim build-essential
+    sudo apt-get install -y neovim build-essential httpie
     sudo apt-get install -y zsh curl git tree android-tools-adb android-tools-fastboot python2.7 python3-dev python3-pip python3-setuptools whois iputils-tracepath dnsutils
 }
 
