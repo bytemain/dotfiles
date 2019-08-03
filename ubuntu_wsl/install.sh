@@ -10,6 +10,12 @@ start() {
     clear
     chmod +x ./ubuntu_set_mirror.sh
     sh ./ubuntu_set_mirror.sh
+    #winip="127.0.0.1"
+    winip=$(cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }')
+    export ALL_PROXY="http://${winip}:7890"
+    export all_proxy="http://${winip}:7890"
+    echo -n "Set Proxy: ${ALL_PROXY}"
+
     echo "==========================================================="
     echo "   _____       _    _            ______                    "
     echo "  / ____|     | |  | |          |  ____|                   "
