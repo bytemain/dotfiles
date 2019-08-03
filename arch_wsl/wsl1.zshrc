@@ -1,13 +1,27 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export PATH="/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$PATH"
+export PATH="/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:$PATH"
+export PATH="/mnt/c/Program Files/Microsoft VS Code/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+export ZSH="/home/artin/.oh-my-zsh"
 export CHEAT_USER_DIR="$HOME/dotfiles/cheat"
 
+
 export EDITOR=micro
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="af-magic"
 
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -19,8 +33,14 @@ ZSH_THEME="af-magic"
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
 
+# Uncomment the following line to automatically update without prompting.
+# DISABLE_UPDATE_PROMPT="true"
+
 # Uncomment the following line to change how often to auto-update (in days).
-export UPDATE_ZSH_DAYS=13
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS=true
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -37,7 +57,7 @@ export UPDATE_ZSH_DAYS=13
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-DISABLE_UNTRACKED_FILES_DIRTY="true"
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -45,59 +65,87 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-HIST_STAMPS="yyyy-mm-dd"
-
-ZSH_DISABLE_COMPFIX=true
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+# HIST_STAMPS="mm/dd/yyyy"
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  zsh-proxy
-  zsh-autosuggestions
-  git
-  zsh-syntax-highlighting
+	git
+	history
+	sudo
+	zsh-autosuggestions
+	zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
 
-# =================================================== #
-#   _____       _    _            ______              #
-#  / ____|     | |  | |          |  ____|             #
-# | (___  _   _| | _| | ____ _   | |__   ______   __  #
-#  \___ \| | | | |/ / |/ / _\`|  |  __| |  _ \ \ / /  #
-#  ____) | |_| |   <|   < (_| |  | |____| | | \ V /   #
-# |_____/ \__,_|_|\_\_|\_\__,_|  |______|_| |_|\_/    #
-#                                                     #
-# =================================================== #
-
-# ------------------------------ NVM
-
-nvm-update() {
-    (
-        cd "$NVM_DIR"
-        git fetch --tags origin
-        git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
-    ) && \. "$NVM_DIR/nvm.sh"
-}
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
 # User configuration
 
 setopt no_nomatch
+
+PROXY_HTTP="http://127.0.0.1:7890"
+PROXY_SOCKS5="socks5://127.0.0.1:7891"
+
+__enable_proxy_npm() {
+    npm config set proxy ${PROXY_HTTP}
+    npm config set https-proxy ${PROXY_HTTP}
+    yarn config set proxy ${PROXY_HTTP}
+    yarn config set https-proxy ${PROXY_HTTP}
+}
+
+__disable_proxy_npm() {
+    npm config delete proxy
+    npm config delete https-proxy
+    yarn config delete proxy
+    yarn config delete https-proxy
+}
+
+proxy () {
+	# pip can read http_proxy & https_proxy
+	# http_proxy
+    export http_proxy="${PROXY_HTTP}"
+    export HTTP_PROXY="${PROXY_HTTP}"
+    # https_proxy
+    export https_proxy="${PROXY_HTTP}"
+    export HTTPS_proxy="${PROXY_HTTP}"
+    # ftp_proxy
+    export ftp_proxy="${PROXY_HTTP}"
+    export FTP_PROXY="${PROXY_HTTP}"
+    # rsync_proxy
+    export rsync_proxy="${PROXY_HTTP}"
+    export RSYNC_PROXY="${PROXY_HTTP}"
+    # all_proxy
+    export ALL_PROXY="${PROXY_SOCKS5}"
+    export all_proxy="${PROXY_SOCKS5}"    
+
+    __enable_proxy_npm
+
+    http --follow -b https://api.ip.sb/geoip
+}
+
+unpro () {
+    unset http_proxy
+    unset HTTP_PROXY
+    unset https_proxy
+    unset HTTPS_PROXY
+    unset ftp_proxy
+    unset FTP_PROXY
+    unset rsync_proxy
+    unset RSYNC_PROXY
+    unset ALL_PROXY
+    unset all_proxy
+    
+    __disable_proxy_npm
+
+    http --follow -b https://api.ip.sb/geoip
+}
+
+
 ip_() {
     http --follow -b https://api.ip.sb/geoip/$1
 }
+
 
 git-config() {
     echo -n "Please input Git Username: "      
@@ -137,6 +185,7 @@ transfer() {
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
+alias uparia2="wget -N https://git.io/aria2.sh && chmod +x aria2.sh && bash aria2.sh"
 
 alias ohmyzsh="micro ~/.oh-my-zsh"
 alias vizsh="micro ~/.zshrc"
@@ -170,6 +219,7 @@ alias mc=micro
 alias vi=vim
 alias lg=lazygit
 alias pc4=proxychains4
+alias aria2cd="aria2c --conf-path=/home/artin/dotfiles/aria2.conf -D"
 
 alias -s gz='tar -xzvf'
 alias -s tgz='tar -xzvf'
@@ -182,6 +232,11 @@ alias -s html=mc
 alias gcid="git log | head -1 | awk '{print substr(\$2,1,7)}' | clip.exe"
 
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 eval $(thefuck --alias)
 
