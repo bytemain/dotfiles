@@ -91,10 +91,6 @@ setup-omz() {
 
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-    git clone https://github.com/sukkaw/zsh-proxy.git ~/.oh-my-zsh/custom/plugins/zsh-proxy
-
-    cp -r ./zsh-theme/. $HOME/.oh-my-zsh/custom/themes/
-    cp -r ./zsh-plugins/. $HOME/.oh-my-zsh/custom/plugins/
 }
 
 
@@ -104,7 +100,7 @@ install-nodejs() {
         echo "* Installing NVM..."
         echo "-----------------------------------------------------------"
 
-        curl -o- https://cdn.jsdelivr.net/gh/creationix/nvm@v0.33.11/install.sh | bash
+        curl -o- https://cdn.jsdelivr.net/gh/creationix/nvm@v0.34.0/install.sh | bash
 
         export NVM_DIR="$HOME/.nvm"
         [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -117,18 +113,13 @@ install-nodejs() {
 
     install-node() {
         echo "-----------------------------------------------------------"
-        echo "* Installing NodeJS 10..."
+        echo "* Installing NodeJS..."
         echo "-----------------------------------------------------------"
 
-        nvm install 10
+        nvm install node
 
-        echo "-----------------------------------------------------------"
-        echo "* Set NodeJS 10 as default..."
-        echo "-----------------------------------------------------------"
-
-        nvm use v10
-        nvm alias default v10
-
+        nvm use node
+        
         echo "-----------------------------------------------------------"
         echo -n "* NodeJS Version: "
 
@@ -157,13 +148,11 @@ install-nodejs() {
         echo "  - http-server"
         echo "  - serve"
         echo "  - hexo-cli"
-        echo "  - gulp-cli"
-        echo "  - docsify-cli"
         echo "  - openload-cli"
         echo "  - now"
         echo "-----------------------------------------------------------"
 
-        yarn global add http-server serve hexo-cli gulp-cli docsify-cli openload-cli now
+        yarn global add http-server serve hexo-cli openload-cli now
     }
 
 
@@ -221,30 +210,6 @@ install-ctop() {
     sudo chmod +x /usr/local/bin/ctop
 }
 
-keybase() {
-    echo "==========================================================="
-    echo "                      Install keybase                      "
-    echo ""
-    echo "* Download keybase package..."
-    echo "-----------------------------------------------------------"
-
-    curl -O https://prerelease.keybase.io/keybase_amd64.deb
-
-    echo "-----------------------------------------------------------"
-    echo "* Install keybase package..."
-    echo "-----------------------------------------------------------"
-
-    sudo dpkg -i keybase_amd64.deb && sudo apt-get install -f
-    sudo apt-get -f install
-
-    echo "-----------------------------------------------------------"
-    echo -n "* Clean up... "
-
-    rm -rf keybase_amd64.deb
-
-    echo -n "Done!"
-    echo ""
-}
 
 thefuck() {
     echo "==========================================================="
@@ -271,8 +236,8 @@ zshrc() {
     echo "==========================================================="
     echo "                  Import sukka env zshrc                   "
     echo "-----------------------------------------------------------"
-
-    cat ./wsl-ubuntu.zshrc > $HOME/.zshrc
+	
+    cat ./ubuntu_wsl/wsl-ubuntu.zshrc > $HOME/.zshrc
 }
 
 upgrade-packages() {
@@ -285,23 +250,13 @@ upgrade-packages() {
     npm i -g npm
 }
 
-chmod() {
-    sudo chmod u+s /bin/ping
-    sudo chmod u+s /usr/sbin/traceroute
-}
-
 finish() {
     echo "==========================================================="
     echo "> Sukka Enviroment Setup finished!"
     echo "> Do not forget run those things:"
     echo ""
     echo "- chsh -s /usr/bin/zsh"
-    echo "- npm login"
-    echo "- run_keybase"
-    echo "- ci-edit-update"
-    echo "- oload-config"
     echo "- git-config"
-    echo "- we .netrc"
     echo "==========================================================="
 }
 
@@ -314,9 +269,7 @@ lazygit
 install-nali
 install-ctop
 thefuck
-keybase
 micro_editor
 zshrc
-chmod
 upgrade-packages
 finish

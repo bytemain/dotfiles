@@ -31,7 +31,7 @@ set-mirror() {
     sudo sed -i -e '1a\Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch' /etc/pacman.d/mirrorlist
     sudo sed -i -e '1a\[archlinuxcn]\Server = https://mirrors.cloud.tencent.com/archlinuxcn/$arch' /etc/pacman.conf
     sudo pacman-key --init
-    sudo pacman-key --populate
+    sudo pacman-key --populate archlinux
     sudo pacman -Syy && pacman -S archlinuxcn-keyring
 }
 
@@ -63,12 +63,11 @@ install-linux-packages() {
     yay
 
     sudo pacman -Syy base-devel
-    sudo pacman -Syy zsh curl git tree whois axel iputils-tracepath
-    sudo pacman -Syy net-tools dnsutils inetutils iproute2
+    sudo pacman -Syy zsh curl git tree whois 
+    sudo pacman -Syy net-tools dnsutils inetutils iproute2 iputils-tracepath
     sudo pacman -Syy httpie
-    
-    yay -S wslu
-    yay -S ncdu
+
+	yay -S hub wslu ncdu
 
     curl -L https://bit.ly/glances | /bin/bash
     sudo pip install cheat
@@ -83,7 +82,6 @@ setup-omz() {
     echo "  - Oh My ZSH"
     echo "  - zsh-autosuggestions"
     echo "  - zsh-syntax-highlighting"
-    echo "  - proxy.zsh-plugin"
     echo "-----------------------------------------------------------"
 
     chsh -l
@@ -122,7 +120,7 @@ install-nodejs() {
 
     install-node() {
         echo "-----------------------------------------------------------"
-        echo "* Installing NodeJS node..."
+        echo "* Installing NodeJS..."
         echo "-----------------------------------------------------------"
 
         nvm install node
