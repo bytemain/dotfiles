@@ -141,7 +141,7 @@ transfer() {
 alias ohmyzsh="micro ~/.oh-my-zsh"
 alias vizsh="micro ~/.zshrc"
 alias rezsh="source ~/.zshrc"
-alias bkzsh="cp ~/.zshrc ~/dotfiles/arch_wsl/wsl1.zshrc"
+alias bkzsh="cp ~/.zshrc ~/dotfiles/debian_wsl/debianwsl1.zshrc"
 
 alias c.="code ."
 alias e.="explorer.exe ."
