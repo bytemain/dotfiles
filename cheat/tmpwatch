@@ -1,0 +1,13 @@
+tmpwatch [参数] [过期时间] [指定目录]
+
+tmpwatch 24 /tmp/    
+#删除/tmp目录下超过24小时未使用的文件，最小为1小时。
+
+tmpwatch --test 3 /tmp/ 
+#测试删除/tmp目录中超过3小时未使用的文件
+
+tmpwatch -afv 24 /tmp/ 
+#删除/tmp目录中超过一天未使用的文件
+
+tmpwatch -afv 3 /tmp/ 
+#删除/tmp目录中超过3小时未使用的文件

@@ -44,6 +44,8 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # User configuration
 setopt no_nomatch
 
+alias winip_="cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }'"
+
 #winip="127.0.0.1"
 winip=$(cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }')
 
@@ -51,7 +53,6 @@ PROXY_HTTP="http://${winip}:7890"
 PROXY_SOCKS5="socks5://${winip}:7891"
 
 __enable_proxy_npm() {
-	echo "${winip}"
 	npm config set proxy ${PROXY_HTTP}
 	npm config set https-proxy ${PROXY_HTTP}
 	yarn config set proxy ${PROXY_HTTP}
@@ -66,8 +67,8 @@ __disable_proxy_npm() {
 }
 
 proxy () {
+	echo "${winip}"
 	# pip can read http_proxy & https_proxy
-
 	# http_proxy
     export http_proxy="${PROXY_HTTP}"
     export HTTP_PROXY="${PROXY_HTTP}"
@@ -173,12 +174,14 @@ alias dig="nali-dig"
 alias nslookup="nali-nslookup"
 alias nali-update="sudo nali-update"
 
+
 alias ct=cheat
 alias mc=micro
 alias vi=nvim
 alias vim=nvim
 alias lg=lazygit
 alias pc4=proxychains4
+alias top=glances
 
 alias -s gz='tar -xzvf'
 alias -s tgz='tar -xzvf'
