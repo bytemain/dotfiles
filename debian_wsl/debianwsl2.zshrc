@@ -1,3 +1,7 @@
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf > /dev/null 2>&1
+sudo sysctl -p  > /dev/null 2>&1
+sudo sysctl --system > /dev/null 2>&1
+
 # If you come from bash you might have to change your $PATH. 
 # echo "$PATH"
 export PATH="$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
@@ -40,31 +44,37 @@ export NVM_DIR="$HOME/.nvm"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
+
 # User configuration
 setopt no_nomatch
-ip_() {
-	curl https://myip.ipip.net
-	curl https://ip.cn
-	curl https://ip.gs
-    http --follow -b https://api.ip.sb/geoip/$1
-}
 
-alias winip_="cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }'"
 
+# Proxy configuration
 #winip="127.0.0.1"
-winip=$(cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }')
+winip=$(cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }' | cut -d/ -f1)
+wslip=$(ip addr show eth0 | grep 'inet\b' | awk '{print $2}' | cut -d/ -f1)
 
 PROXY_HTTP="http://${winip}:7890"
 PROXY_SOCKS5="socks5://${winip}:7891"
 
-__enable_proxy_npm() {
+alias winip_="echo ${winip}"
+alias wslip_="echo ${wslip}"
+
+ip_() {
+	curl https://ip.cn/$1
+    http --follow -b https://api.ip.sb/geoip/$1
+	echo "WIN ip: ${winip}"
+	echo "WSL ip: ${wslip}"
+}
+
+proxy_npm() {
 	npm config set proxy ${PROXY_HTTP}
 	npm config set https-proxy ${PROXY_HTTP}
 	yarn config set proxy ${PROXY_HTTP}
 	yarn config set https-proxy ${PROXY_HTTP}
 }
 
-__disable_proxy_npm() {
+unpro_npm() {
     npm config delete proxy
     npm config delete https-proxy
     yarn config delete proxy
@@ -72,7 +82,6 @@ __disable_proxy_npm() {
 }
 
 proxy () {
-	echo "${winip}"
 	# pip can read http_proxy & https_proxy
 	# http_proxy
     export http_proxy="${PROXY_HTTP}"
@@ -93,8 +102,8 @@ proxy () {
     # all_proxy
     export ALL_PROXY="${PROXY_SOCKS5}"
 	export all_proxy="${PROXY_SOCKS5}"
-	
-	__enable_proxy_npm
+
+	sh /home/artin/dotfiles/debian_wsl/git_proxy.sh
 	ip_
 }
 
@@ -109,8 +118,6 @@ unpro () {
     unset RSYNC_PROXY
     unset ALL_PROXY
     unset all_proxy
-
-    __disable_proxy_npm
     ip_
 }
 

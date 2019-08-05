@@ -1,8 +1,8 @@
 #!/bin/bash
 
-sukkaEnvVersion="WSL Ubuntu"
+sukkaEnvVersion="WSL Debian"
 sukkaEnvRequired=$(echo -n "
-* Using ubuntu on wsl
+* Using debian on wsl
 * Have your /etc/apt/sources.list modified
 ")
 
@@ -46,8 +46,14 @@ install-linux-packages() {
     echo "-----------------------------------------------------------"
 
     sudo apt-get update
-    sudo apt-get install -y neovim build-essential httpie
-    sudo apt-get install -y zsh curl git tree android-tools-adb android-tools-fastboot python2.7 python3-dev python3-pip python3-setuptools whois iputils-tracepath dnsutils
+    sudo apt-get install -y python2.7 python3-dev python3-pip python3-setuptools
+    sudo apt-get install -y build-essential apt-file
+    sudo apt-get install -y zsh curl wget git tree whois httpie 
+    sudo apt-get install -y wamerican nvim
+    sudo apt-get install -y neofetch screenfetch
+    sudo apt-get install -y android-tools-adb android-tools-fastboot
+    sudo apt-get install -y lsof netstat 
+    sudo apt-get install -y net-tools iputils-tracepath dnsutils
 }
 
 setup-omz() {
@@ -121,7 +127,7 @@ install-nodejs() {
         echo "-----------------------------------------------------------"
         echo "* Yarn Global Add those packages:"
         echo "-----------------------------------------------------------"
-		npm install -g mirror-config-china --registry=http://registry.npm.taobao.org
+        npm install -g mirror-config-china --registry=http://registry.npm.taobao.org
         yarn global add npm-check-updates
         yarn global add http-server serve
     }
@@ -183,6 +189,7 @@ other-package() {
 
     sudo pip3 install thefuck
     sudo pip3 install cheat
+    curl -sLf https://spacevim.org/install.sh | bash
 }
 
 
@@ -194,7 +201,7 @@ micro-editor() {
     cd /usr/local/bin; curl https://getmic.ro | sudo bash
     cd $HOME
     sudo apt-get install -y xclip
-	sudo apt-get install -y xsel
+    sudo apt-get install -y xsel
     sleep 3
     cd dotfiles
 }
@@ -208,8 +215,8 @@ zshrc() {
 }
 
 install-ctop() {
-	sudo wget https://github.com/bcicen/ctop/releases/download/v0.7.2/ctop-0.7.2-linux-amd64 -O /usr/local/bin/ctop
-	sudo chmod +x /usr/local/bin/ctop 
+    sudo wget https://github.com/bcicen/ctop/releases/download/v0.7.2/ctop-0.7.2-linux-amd64 -O /usr/local/bin/ctop
+    sudo chmod +x /usr/local/bin/ctop 
 }
 
 upgrade-packages() {
