@@ -155,8 +155,8 @@ ssh_start() {
 
 bk() {
     cp ~/.zshrc ~/dotfiles/debian_wsl/debianwsl2.zshrc
-    cp ~/.SpaceVim.d/init.toml ~/dotfiles/Space.Vim.toml
-    cp ~/.config/micro/settings.json ~/dotfiles/micro.settings.json
+    cp ~/.SpaceVim.d/init.toml ~/dotfiles/_rc/Space.Vim.toml
+    cp ~/.config/micro/settings.json ~/dotfiles/_rc/micro.settings.json
 }
 
 cdlast() {
