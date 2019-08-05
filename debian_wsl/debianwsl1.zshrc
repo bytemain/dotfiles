@@ -5,7 +5,7 @@ export PATH="/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem
 export PATH="/mnt/c/Program Files/Microsoft VS Code/bin:$PATH"                                                                 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-export CHEAT_USER_DIR="$HOME/dotfiles/cheat"
+export CHEAT_USER_DIR="$HOME/dotfiles/_cheat"
 
 export EDITOR=micro
 ZSH_THEME="af-magic"

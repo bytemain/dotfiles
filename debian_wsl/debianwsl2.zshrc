@@ -2,21 +2,16 @@ echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf > /dev/nu
 sudo sysctl -p  > /dev/null 2>&1
 sudo sysctl --system > /dev/null 2>&1
 
-# If you come from bash you might have to change your $PATH. 
-# echo "$PATH"
 export PATH="$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 export PATH="/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$PATH"
 export PATH="/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:$PATH"
 export PATH="/mnt/c/Program Files/Microsoft VS Code/bin:$PATH"
-# Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-export CHEAT_USER_DIR="$HOME/dotfiles/cheat"
+export CHEAT_USER_DIR="$HOME/dotfiles/_cheat"
 export EDITOR=micro
-
-ZSH_THEME="af-magic"
-
 export UPDATE_ZSH_DAYS=13
 
+ZSH_THEME="af-magic"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 HIST_STAMPS="yyyy-mm-dd"
 ZSH_DISABLE_COMPFIX=true

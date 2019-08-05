@@ -6,7 +6,7 @@ export PATH="/mnt/c/Program Files/Microsoft VS Code/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/artin/.oh-my-zsh"
-export CHEAT_USER_DIR="$HOME/dotfiles/cheat"
+export CHEAT_USER_DIR="$HOME/dotfiles/_cheat"
 
 
 export EDITOR=micro
