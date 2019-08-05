@@ -10,19 +10,21 @@ export ZSH="$HOME/.oh-my-zsh"
 export CHEAT_USER_DIR="$HOME/dotfiles/_cheat"
 export EDITOR=micro
 export UPDATE_ZSH_DAYS=13
+export FZF_BASE=/usr/bin
 
-ZSH_THEME="af-magic"
+ZSH_THEME="sukka"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 HIST_STAMPS="yyyy-mm-dd"
 ZSH_DISABLE_COMPFIX=true
 
 plugins=(
-  zsh-syntax-highlighting
-  zsh-autosuggestions
-  git
-  history
-  last-working-dir
-  autojump
+    zsh-syntax-highlighting
+    zsh-autosuggestions
+    git
+    history
+    last-working-dir
+    autojump
+    sudo
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -154,6 +156,24 @@ bk() {
     cp ~/.config/micro/settings.json ~/dotfiles/_rc/micro.settings.json
 }
 
+install-bat() {
+
+    
+}
+
+v2() {
+  declare q="$*";
+  curl --user-agent curl "https://v2en.co/${q// /%20}";
+}
+
+v2-sh() {
+  while echo -n "v2en> ";
+  read -r input;
+    [[ -n "$input" ]];
+    do v2 "$input";
+    done;
+}
+
 cdlast() {
   cd -
   ls -lrth --color=auto | tail
@@ -170,8 +190,8 @@ alias c.="code ."
 alias e.="explorer.exe ."
 alias cdtmp='cd `mktemp -d /tmp/artin-XXXXXX`'
 alias ws="cd ~/0Workspace"
+alias udtheme="cp -r ~/dotfiles/zsh-theme/. ~/.oh-my-zsh/custom/themes/ && source ~/.zshrc"
 alias cls=clear
-
 alias rmrf="rm -rf"
 
 alias gitcm="git commit -m"
@@ -187,13 +207,15 @@ alias dig="nali-dig"
 alias nslookup="nali-nslookup"
 alias nali-update="sudo nali-update"
 
-
+alias ncdux="ncdu -X /home/artin/dotfiles/_rc/.ncduignorerc"
 alias ct=cheat
 alias mc=micro
 alias vi=nvim
+alias vim=nvim
 alias lg=lazygit
 alias pc4=proxychains4
 alias top=htop
+alias fd=fdfind
 
 alias -s gz='tar -xzvf'
 alias -s tgz='tar -xzvf'
@@ -203,8 +225,6 @@ alias -s py=micro
 alias -s html=micro
 
 alias gcid="git log | head -1 | awk '{print substr(\$2,1,7)}' | clip.exe"
-
-
 
 eval $(thefuck --alias)
 

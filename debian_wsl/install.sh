@@ -48,11 +48,11 @@ install-linux-packages() {
     sudo apt-get update
     sudo apt-get install -y python2.7 python3-dev python3-pip python3-setuptools
     sudo apt-get install -y build-essential libreadline-dev apt-file
-    sudo apt-get install -y zsh curl wget git tree whois httpie 
+    sudo apt-get install -y zsh curl wget git tree ncdu fzf tmux fd-find
     sudo apt-get install -y wamerican nvim lua5.3 ctags
     sudo apt-get install -y neofetch screenfetch autojump
     sudo apt-get install -y android-tools-adb android-tools-fastboot
-    sudo apt-get install -y lsof netstat 
+    sudo apt-get install -y lsof netstat whois httpie
     sudo apt-get install -y net-tools iputils-tracepath dnsutils
 }
 
