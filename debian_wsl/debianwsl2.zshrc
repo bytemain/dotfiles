@@ -1,7 +1,3 @@
-echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf > /dev/null 2>&1
-sudo sysctl -p  > /dev/null 2>&1
-sudo sysctl --system > /dev/null 2>&1
-
 export PATH="$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 export PATH="/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$PATH"
 export PATH="/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:$PATH"
@@ -9,11 +5,11 @@ export PATH="/mnt/c/Program Files/Microsoft VS Code/bin:$PATH"
 export ZSH="$HOME/.oh-my-zsh"
 export CHEAT_USER_DIR="$HOME/dotfiles/_cheat"
 export EDITOR=micro
-export UPDATE_ZSH_DAYS=13
-export FZF_BASE=/usr/bin
 
 ZSH_THEME="sukka"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
+ENABLE_CORRECTION="true"
+
 HIST_STAMPS="yyyy-mm-dd"
 ZSH_DISABLE_COMPFIX=true
 
@@ -150,15 +146,15 @@ ssh_start() {
   fi
 }
 
-bk() {
-    cp ~/.zshrc ~/dotfiles/debian_wsl/debianwsl2.zshrc
-    cp ~/.SpaceVim.d/init.toml ~/dotfiles/_rc/Space.Vim.toml
-    cp ~/.config/micro/settings.json ~/dotfiles/_rc/micro.settings.json
+set_max_user_watches() {
+    echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf > /dev/null 2>&1
+    sudo sysctl -p  > /dev/null 2>&1
+    sudo sysctl --system > /dev/null 2>&1
 }
 
-install-bat() {
-
-    
+bk() {
+    cp ~/.zshrc ~/dotfiles/debian_wsl/debianwsl2.zshrc
+    cp ~/.config/micro/settings.json ~/dotfiles/_rc/micro.settings.json
 }
 
 v2() {

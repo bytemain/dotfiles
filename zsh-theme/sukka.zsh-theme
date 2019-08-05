@@ -27,11 +27,11 @@ ${git_info}
 %{$terminfo[bold]$fg[red]%}$ %{$reset_color%}"
 
 if [[ "$USER" == "root" ]]; then
-PROMPT="
-%{$fg[red]%}[%*] \
-%{$fg[yellow]%}%n@$(box_name) \
+PROMPT="\
+%{$fg[white]%}[%*] \
+%{$fg[cyan]%}%n@$(box_name) \
 %{$fg[white]%}in \
-%{$terminfo[bold]$fg[cyan]%}${current_dir}%{$reset_color%}\
+%{$terminfo[bold]$fg[yellow]%}${current_dir}%{$reset_color%} \
 ${git_info}
 %{$fg[red]%}# %{$reset_color%}"
 fi
