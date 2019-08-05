@@ -1,9 +1,8 @@
 # dotfiles
 
-一系列配置文件~
 
-> A repo contained my `.files`, for setting up my development environment.
-> I think it is my best practices.
+> A repo contained my `.files`, for setting up my development environment.  
+> 一系列配置文件~
 
 ### Some settings real path
 
