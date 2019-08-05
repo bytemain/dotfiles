@@ -12,9 +12,9 @@ local current_dir='${PWD/#$HOME/~}'
 local git_info='$(git_prompt_info)'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[white]%}on%{$reset_color%} git:%{$terminfo[bold]$fg[blue]%}"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[white]%}(%{$fg[red]%}✗%{$fg[white]%})"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[white]%}(%{$fg[green]%}✓%{$fg[white]%})"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[white]%}(%{$fg[red]%}x%{$fg[white]%})"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[white]%}(%{$fg[green]%}o%{$fg[white]%})"
 
 
 # Prompt format: \n # TIME USER at MACHINE in [DIRECTORY] on git:BRANCH \n $
