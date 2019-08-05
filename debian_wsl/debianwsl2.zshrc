@@ -25,7 +25,9 @@ plugins=(
   zsh-syntax-highlighting
   zsh-autosuggestions
   git
+  history
   last-working-dir
+  autojump
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -122,7 +124,7 @@ unpro () {
     ip_
 }
 
-
+# functions
 git-config() {
     echo -n "Please input Git Username: "      
     read username      
@@ -142,6 +144,13 @@ mc-update() {
 	mv microd/micro /usr/local/bin/micro  
 	rm micro.tar.gz 
 	rm -rf microd
+}
+
+ssh_start() {
+  sshd_status=$(service ssh status)
+  if [[ $sshd_status = *"is not running"* ]]; then
+  sudo service ssh --full-restart
+  fi
 }
 
 bk() {
