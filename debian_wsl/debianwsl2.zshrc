@@ -25,6 +25,7 @@ plugins=(
   zsh-syntax-highlighting
   zsh-autosuggestions
   git
+  last-working-dir
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -144,8 +145,9 @@ mc-update() {
 }
 
 bk() {
-	cp ~/.zshrc ~/dotfiles/debian_wsl/debianwsl2.zshrc
-	cp ~/.SpaceVim.d/init.toml ~/dotfiles/Space.Vim.toml
+    cp ~/.zshrc ~/dotfiles/debian_wsl/debianwsl2.zshrc
+    cp ~/.SpaceVim.d/init.toml ~/dotfiles/Space.Vim.toml
+    cp ~/.config/micro/settings.json ~/dotfiles/micro.settings.json
 }
 
 cdlast() {
