@@ -143,6 +143,11 @@ mc-update() {
 	rm -rf microd
 }
 
+bk() {
+	cp ~/.zshrc ~/dotfiles/debian_wsl/debianwsl2.zshrc
+	cp ~/.SpaceVim.d/init.toml ~/dotfiles/Space.Vim.toml
+}
+
 cdlast() {
   cd -
   ls -lrth --color=auto | tail
@@ -154,8 +159,7 @@ bindkey '^Q' cdlast
 alias ohmyzsh="micro ~/.oh-my-zsh"
 alias vizsh="micro ~/.zshrc"
 alias rezsh="source ~/.zshrc"
-alias bkzsh="cp ~/.zshrc ~/dotfiles/debian_wsl/debianwsl2.zshrc"
-
+alias rezshc="source ~/.zshrc && cls"
 alias c.="code ."
 alias e.="explorer.exe ."
 alias cdtmp='cd `mktemp -d /tmp/artin-XXXXXX`'
@@ -181,7 +185,6 @@ alias nali-update="sudo nali-update"
 alias ct=cheat
 alias mc=micro
 alias vi=nvim
-alias vim=nvim
 alias lg=lazygit
 alias pc4=proxychains4
 alias top=htop
