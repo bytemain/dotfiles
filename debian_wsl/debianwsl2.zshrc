@@ -1,6 +1,7 @@
 export PATH="$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 export PATH="/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$PATH"
 export PATH="/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 export PATH="/mnt/c/Program Files/Microsoft VS Code/bin:$PATH"
 export ZSH="$HOME/.oh-my-zsh"
 export CHEAT_USER_DIR="$HOME/dotfiles/_cheat"
@@ -8,8 +9,6 @@ export EDITOR=micro
 
 ZSH_THEME="sukka"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
-ENABLE_CORRECTION="true"
-
 HIST_STAMPS="yyyy-mm-dd"
 ZSH_DISABLE_COMPFIX=true
 
@@ -24,6 +23,10 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+
+if [ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]; then
+    source /usr/share/doc/fzf/examples/key-bindings.zsh
+fi
 
 # ------------------------------ NVM
 nvm-update() {
@@ -129,7 +132,7 @@ git-config() {
 }
 
 mc-update() {
-	echo -n "Please input download url!"
+	echo -n "Please input download url:"
 	read _url
 	curl -L "${_url}" > micro.tar.gz
 	mkdir microd
@@ -139,17 +142,30 @@ mc-update() {
 	rm -rf microd
 }
 
+exa-update() {
+	echo -n "Please input download url: "
+	read _url
+	curl -L "${_url}" > exa.zip
+    unzip -o exa.zip
+    chmod +x exa-linux-x86_64
+	sudo mv exa-linux-x86_64 /usr/local/bin/exa  
+	rm exa.zip 
+	rm exa-linux-x86_64
+}
+
 ssh_start() {
   sshd_status=$(service ssh status)
   if [[ $sshd_status = *"is not running"* ]]; then
-  sudo service ssh --full-restart
+    sudo service ssh --full-restart
   fi
 }
 
 set_max_user_watches() {
-    echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf > /dev/null 2>&1
-    sudo sysctl -p  > /dev/null 2>&1
-    sudo sysctl --system > /dev/null 2>&1
+    if ! grep -qF "fs.inotify.max_user_watches" /etc/sysctl.conf; then
+        echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf
+    fi
+    sudo sysctl -p
+    sudo sysctl --system
 }
 
 bk() {
@@ -177,6 +193,9 @@ cdlast() {
 }
 zle -N cdlast
 bindkey '^Q' cdlast
+
+alias py="python"
+alias ipy="ipython"
 
 alias ohmyzsh="micro ~/.oh-my-zsh"
 alias vizsh="micro ~/.zshrc"
@@ -212,6 +231,9 @@ alias lg=lazygit
 alias pc4=proxychains4
 alias top=htop
 alias fd=fdfind
+
+alias ls="exa"
+alias l="exa -la"
 
 alias -s gz='tar -xzvf'
 alias -s tgz='tar -xzvf'

@@ -30,7 +30,7 @@
     "savecursor": true,
     "savehistory": true,
     "saveundo": false,
-    "scrollbar": false,
+    "scrollbar": true,
     "scrollmargin": 3,
     "scrollspeed": 2,
     "softwrap": false,

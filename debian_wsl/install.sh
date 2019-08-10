@@ -48,9 +48,11 @@ install-linux-packages() {
     sudo apt-get update
     sudo apt-get install -y python2.7 python3-dev python3-pip python3-setuptools
     sudo apt-get install -y build-essential libreadline-dev apt-file
-    sudo apt-get install -y zsh curl wget git tree ncdu fzf tmux fd-find
+    sudo apt-get install -y zsh curl wget git tree unzip ncdu fzf tmux fd-find
+    sudo apt-get install -y w3m lynx w3m-img zhcon
+    sudo apt-get install -y festival festvox-kallpc16k 
     sudo apt-get install -y wamerican nvim lua5.3 ctags
-    sudo apt-get install -y neofetch screenfetch autojump
+    sudo apt-get install -y neofetch screenfetch autojump ripgrep
     sudo apt-get install -y android-tools-adb android-tools-fastboot
     sudo apt-get install -y lsof netstat whois httpie
     sudo apt-get install -y net-tools iputils-tracepath dnsutils
@@ -131,6 +133,7 @@ install-nodejs() {
         npm install -g mirror-config-china --registry=http://registry.npm.taobao.org
         yarn global add npm-check-updates
         yarn global add http-server serve
+        yarn global add fanyi liyu
     }
 
 
