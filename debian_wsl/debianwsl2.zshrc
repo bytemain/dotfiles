@@ -50,6 +50,7 @@ setopt no_nomatch
 
 # Proxy configuration
 #winip="127.0.0.1"
+# grep -oP "(?<=nameserver ).+" /etc/resolv.conf 
 winip=$(cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }' | cut -d/ -f1)
 wslip=$(ip addr show eth0 | grep 'inet\b' | awk '{print $2}' | cut -d/ -f1)
 
@@ -58,6 +59,16 @@ PROXY_SOCKS5="socks5://${winip}:7891"
 
 alias winip_="echo ${winip}"
 alias wslip_="echo ${wslip}"
+
+x11() {
+    if [ ! $1 ]; then
+        # null
+        export DISPLAY=${winip}:0.0
+    else
+        export DISPLAY=${winip}:$1.0
+    fi
+    echo $DISPLAY
+}
 
 ip_() {
 	curl https://ip.cn/$1
@@ -161,11 +172,18 @@ ssh_start() {
 }
 
 set_max_user_watches() {
-    if ! grep -qF "fs.inotify.max_user_watches" /etc/sysctl.conf; then
-        echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf
+    if ! grep -qF "max_user_watches" /etc/sysctl.d/local.conf ; then
+        echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.d/local.conf 
     fi
     sudo sysctl -p
     sudo sysctl --system
+}
+
+put_win_fonts() {
+    # 将windows的字体放入ubuntu里
+    sudo mkdir /usr/share/fonts/windows
+    sudo cp -r /mnt/c/Windows/Fonts/*.ttf /usr/share/fonts/windows/
+    fc-cache
 }
 
 bk() {
@@ -243,6 +261,8 @@ alias -s py=micro
 alias -s html=micro
 
 alias gcid="git log | head -1 | awk '{print substr(\$2,1,7)}' | clip.exe"
+
+alias sc="x11 && startxfce4"
 
 eval $(thefuck --alias)
 

@@ -18,7 +18,7 @@ ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
 
 
 # Prompt format: \n # TIME USER at MACHINE in [DIRECTORY] on git:BRANCH \n $
-PROMPT="
+PROMPT="\
 %{$fg[white]%}[%*] \
 %{$fg[cyan]%}%n@$(box_name) \
 %{$fg[white]%}in \
