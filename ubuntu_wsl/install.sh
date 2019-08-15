@@ -1,8 +1,8 @@
 #!/bin/bash
 
-sukkaEnvVersion="WSL Debian"
+sukkaEnvVersion="WSL Ubuntu"
 sukkaEnvRequired=$(echo -n "
-* Using debian on wsl
+* Using ubuntu on wsl
 * Have your /etc/apt/sources.list modified
 ")
 
@@ -48,13 +48,13 @@ install-linux-packages() {
     sudo apt-get update
     sudo apt-get install -y python2.7 python3-dev python3-pip python3-setuptools
     sudo apt-get install -y build-essential libreadline-dev apt-file
-    sudo apt-get install -y zsh curl wget git tree unzip ncdu fzf tmux fd-find
+    sudo apt-get install -y zsh curl wget git tree unzip ncdu tmux
     sudo apt-get install -y w3m lynx w3m-img zhcon
     sudo apt-get install -y festival festvox-kallpc16k 
-    sudo apt-get install -y wamerican nvim lua5.3 ctags
-    sudo apt-get install -y neofetch screenfetch autojump ripgrep
+    sudo apt-get install -y wamerican lua5.3 ctags
+    sudo apt-get install -y neofetch screenfetch autojump
     sudo apt-get install -y android-tools-adb android-tools-fastboot
-    sudo apt-get install -y lsof netstat whois httpie
+    sudo apt-get install -y lsof whois httpie
     sudo apt-get install -y net-tools iputils-tracepath dnsutils
 }
 
@@ -76,7 +76,7 @@ setup-omz() {
 
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-    cp -r ../zsh-theme/. $HOME/.oh-my-zsh/custom/themes/
+    cp -r ../zsh-theme/** ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/
 }
 
 
@@ -154,7 +154,7 @@ lazygit() {
     echo "-----------------------------------------------------------"
 
     sudo add-apt-repository ppa:lazygit-team/release
-    sudo sed -i "s|http://ppa.launchpad.net|https://launchpad.proxy.noc.one|g" /etc/apt/sources.list.d/*.list
+    sudo sed -i "s|http://ppa.launchpad.net|http://launchpad.proxy.ustclug.org|g" /etc/apt/sources.list.d/*.list
     sudo apt-get update
 
     echo "-----------------------------------------------------------"
@@ -179,10 +179,6 @@ install-nali() {
     echo "-----------------------------------------------------------"
     ./configure
     make && sudo make install
-    echo "-----------------------------------------------------------"
-    echo "* Updating Nali IP Database..."
-    echo "-----------------------------------------------------------"
-    sudo nali-update
     cd ..
 }
 
@@ -214,8 +210,8 @@ zshrc() {
     echo "==========================================================="
     echo "                  Import zshrc                   "
     echo "-----------------------------------------------------------"
-
-    cat ./debian_wsl/debianwsl2.zshrc > $HOME/.zshrc
+    cd $HOME/dotfiles
+    cat ./ubuntu_wsl/ubuntuwsl2.zshrc > $HOME/.zshrc
 }
 
 install-ctop() {
@@ -238,6 +234,7 @@ finish() {
     echo ""
     echo "- chsh -s /usr/bin/zsh"
     echo "- git-config"
+	  echo "- sudo nali-update"
     echo "==========================================================="
 }
 
