@@ -154,7 +154,6 @@ lazygit() {
     echo "-----------------------------------------------------------"
 
     sudo add-apt-repository ppa:lazygit-team/release
-    sudo sed -i "s|http://ppa.launchpad.net|http://launchpad.proxy.ustclug.org|g" /etc/apt/sources.list.d/*.list
     sudo apt-get update
 
     echo "-----------------------------------------------------------"
@@ -163,7 +162,15 @@ lazygit() {
 
     sudo apt-get install lazygit -y
 }
-
+install-nvim() {
+    echo "=========================================================="
+    echo "                   Installing nvim                        "
+    echo ""
+    sudo add-apt-repository ppa:neovim-ppa/stable
+    sudo apt-get update
+    sudo apt-get install -y neovim
+    sudo apt-get install -y python-dev python-pip python3-dev python3-pip
+}
 install-nali() {
     echo "==========================================================="
     echo "                   Installing Nali                         "
@@ -189,7 +196,6 @@ other-package() {
 
     sudo pip3 install thefuck
     sudo pip3 install cheat
-    curl -sLf https://spacevim.org/install.sh | bash
 }
 
 
@@ -242,6 +248,7 @@ start
 install-linux-packages
 setup-omz
 install-nodejs
+install-nvim
 install-nali
 install-ctop
 other-package

@@ -113,7 +113,7 @@ proxy () {
     export ALL_PROXY="${PROXY_SOCKS5}"
 	export all_proxy="${PROXY_SOCKS5}"
 
-	sh /home/artin/dotfiles/debian_wsl/git_proxy.sh
+	sh $HOME/dotfiles/ubuntu_wsl/git_proxy.sh
 	ip_
 }
 
@@ -187,7 +187,7 @@ put_win_fonts() {
 }
 
 bk() {
-    cp ~/.zshrc ~/dotfiles/debian_wsl/debianwsl2.zshrc
+    cp ~/.zshrc ~/dotfiles/ubuntu_wsl/ubuntuwsl2.zshrc
     cp ~/.config/micro/settings.json ~/dotfiles/_rc/micro.settings.json
 }
 
