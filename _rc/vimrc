@@ -1,0 +1,31 @@
+filetype on
+filetype indent on
+syntax on
+
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
+set listchars=tab:>-,trail:~,extends:>,precedes:<,nbsp:-
+set list
+
+set nocompatible
+set number
+set nospell
+set hlsearch
+
+set smartcase
+set encoding=utf-8
+set paste
+set noswapfile
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+set copyindent
+set autoindent
+set cursorline
+set shortmess+=filmnrxoOtT
+
+set showmatch
+set showmode
+set showcmd
+
+set mouse=a

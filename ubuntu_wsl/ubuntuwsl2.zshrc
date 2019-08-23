@@ -17,7 +17,6 @@ plugins=(
     zsh-autosuggestions
     git
     history
-    last-working-dir
     autojump
     sudo
 )
@@ -43,10 +42,8 @@ export NVM_DIR="$HOME/.nvm"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-
 # User configuration
 setopt no_nomatch
-
 
 # Proxy configuration
 #winip="127.0.0.1"
@@ -113,7 +110,7 @@ proxy () {
     export ALL_PROXY="${PROXY_SOCKS5}"
 	export all_proxy="${PROXY_SOCKS5}"
 
-	sh /home/artin/dotfiles/debian_wsl/git_proxy.sh
+	sh $HOME/dotfiles/ubuntu_wsl/git_proxy.sh
 	ip_
 }
 
@@ -172,11 +169,12 @@ ssh_start() {
 }
 
 set_max_user_watches() {
-    if ! grep -qF "max_user_watches" /etc/sysctl.d/local.conf ; then
-        echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.d/local.conf 
+    if ! grep -qF "max_user_watches" /etc/sysctl.conf ; then
+        echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf
     fi
     sudo sysctl -p
     sudo sysctl --system
+    cat /proc/sys/fs/inotify/max_user_watches
 }
 
 put_win_fonts() {
@@ -187,8 +185,9 @@ put_win_fonts() {
 }
 
 bk() {
-    cp ~/.zshrc ~/dotfiles/debian_wsl/debianwsl2.zshrc
+    cp ~/.zshrc ~/dotfiles/ubuntu_wsl/ubuntuwsl2.zshrc
     cp ~/.config/micro/settings.json ~/dotfiles/_rc/micro.settings.json
+    cp ~/.vimrc ~/dotfiles/_rc/vimrc
 }
 
 v2() {
