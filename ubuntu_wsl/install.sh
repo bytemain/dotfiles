@@ -133,7 +133,7 @@ install-nodejs() {
         npm install -g mirror-config-china --registry=http://registry.npm.taobao.org
         yarn global add npm-check-updates
         yarn global add http-server serve
-        yarn global add fanyi liyu
+        yarn global add fanyi liyu wtf
     }
 
 
