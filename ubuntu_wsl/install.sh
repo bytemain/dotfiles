@@ -78,6 +78,13 @@ setup-omz() {
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
     cp -r ../zsh-theme/** ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/
 }
+install-linuxbrew(){
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+    echo 'eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)' >>~/.zprofile
+    eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+    brew install denisidoro/tools/navi
+}
 
 
 install-nodejs() {
@@ -104,7 +111,6 @@ install-nodejs() {
 
         nvm install node
         nvm use node
-        
         echo "-----------------------------------------------------------"
         echo -n "* NodeJS Version: "
 
@@ -198,20 +204,6 @@ other-package() {
     sudo pip3 install cheat
 }
 
-
-micro-editor() {
-    echo "==========================================================="
-    echo "                Install micro_editor"
-    echo "-----------------------------------------------------------"
-
-    cd /usr/local/bin; curl https://getmic.ro | sudo bash
-    cd $HOME
-    sudo apt-get install -y xclip
-    sudo apt-get install -y xsel
-    sleep 3
-    cd dotfiles
-}
-
 zshrc() {
     echo "==========================================================="
     echo "                  Import zshrc                   "
@@ -235,12 +227,12 @@ upgrade-packages() {
 
 finish() {
     echo "==========================================================="
-    echo "> Sukka Enviroment Setup finished!"
     echo "> Do not forget run those things:"
     echo ""
     echo "- chsh -s /usr/bin/zsh"
     echo "- git-config"
-	  echo "- sudo nali-update"
+    echo "- sudo nali-update"
+    echo "- install linuxbrew: "
     echo "==========================================================="
 }
 
@@ -250,10 +242,10 @@ setup-omz
 install-nodejs
 install-nvim
 install-nali
+install-linuxbrew
 install-ctop
 other-package
 lazygit
-micro-editor
 zshrc
 upgrade-packages
 finish
