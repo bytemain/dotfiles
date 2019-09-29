@@ -1,11 +1,11 @@
 export PATH="$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 export PATH="/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$PATH"
 export PATH="/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="/home/linuxbrew/.linuxbrew/bin:$HOME/.local/bin:$PATH"
 export PATH="/mnt/c/Program Files/Microsoft VS Code/bin:$PATH"
 export ZSH="$HOME/.oh-my-zsh"
 export CHEAT_USER_DIR="$HOME/dotfiles/_cheat"
-export EDITOR=micro
+export EDITOR=vim
 
 ZSH_THEME="sukka"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
@@ -42,6 +42,22 @@ export NVM_DIR="$HOME/.nvm"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/artin/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/artin/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/artin/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/artin/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<< 
+
+complete -W "$(echo `cat ~/.ssh/config | grep 'Host '| cut -f 2 -d ' '|uniq`;)" ssh
 # User configuration
 setopt no_nomatch
 
@@ -174,7 +190,6 @@ set_max_user_watches() {
     fi
     sudo sysctl -p
     sudo sysctl --system
-    cat /proc/sys/fs/inotify/max_user_watches
 }
 
 put_win_fonts() {
@@ -188,6 +203,7 @@ bk() {
     cp ~/.zshrc ~/dotfiles/ubuntu_wsl/ubuntuwsl2.zshrc
     cp ~/.config/micro/settings.json ~/dotfiles/_rc/micro.settings.json
     cp ~/.vimrc ~/dotfiles/_rc/vimrc
+    cp ~/.condarc ~/dotfiles/_rc/condarc
 }
 
 v2() {
@@ -208,9 +224,32 @@ cdlast() {
   ls -lrth --color=auto | tail
   zle reset-prompt
 }
+
+anki() {
+    export ANKI_SYNC_DATA_DIR=~/anki-sync-server-docker-data
+    docker run -it \
+       --mount type=bind,source="$ANKI_SYNC_DATA_DIR",target=/app/data \
+       -p 27701:27701 \
+       --name anki-container \
+       --rm \
+       kuklinistvan/anki-sync-server:latest
+}
+
+coolq() {
+    docker run -ti --rm --name "cqhttp-test" \
+        -v $(pwd)/coolq:/home/user/coolq \  # 将宿主目录挂载到容器内用于持久化 酷Q 的程序文件              
+        -p 9000:9000 \  # noVNC 端口，用于从浏览器控制 酷Q
+        -p 5700:5700 \  # HTTP API 插件开放的端口
+        -e COOLQ_ACCOUNT=123456 \ # 要登录的 QQ 账号，可选但建议填    
+        -e CQHTTP_POST_URL=http://example.com:8080 \  # 事件上报地址     
+        -e CQHTTP_SERVE_DATA_FILES=yes \  # 允许通过 HTTP 接口访问 酷Q 数据文件
+        richardchien/cqhttp:latest   
+}
+
 zle -N cdlast
 bindkey '^Q' cdlast
 
+alias y=yarn
 alias py="python"
 alias ipy="ipython"
 
@@ -276,3 +315,5 @@ export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
 export NVMW_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
 export NVMW_NPM_MIRROR=https://npm.taobao.org/mirrors/npm
 # End of mirror-config-china
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
