@@ -85,7 +85,7 @@ x11() {
 
 ip_() {
 	curl https://ip.cn/$1
-    http --follow -b https://api.ip.sb/geoip/$1
+    # http --follow -b https://api.ip.sb/geoip/$1
 	echo "WIN ip: ${winip}"
 	echo "WSL ip: ${wslip}"
 }
@@ -153,6 +153,17 @@ git-config() {
     echo -n "Done!"
     git config --global user.name "${username}"
     git config --global user.email "${email}"  
+    git config --global alias.s status
+    git config --global alias.d diff
+    git config --global alias.co checkout
+    git config --global alias.br branch
+    git config --global alias.last "log -1 HEAD"
+    git config --global alias.cane "commit --amend --no-edit"
+    git config --global alias.pr "pull --rebase"
+    git config --global alias.lo "log --oneline -n 10"
+    git config --global alias.a "add ."
+    git config --global alias.cm "commit -m"
+    git config --global alias.rh "reset --hard"
 }
 
 mc-update() {
@@ -253,8 +264,8 @@ alias y=yarn
 alias py="python"
 alias ipy="ipython"
 
-alias ohmyzsh="micro ~/.oh-my-zsh"
-alias vizsh="micro ~/.zshrc"
+alias ohmyzsh="vim ~/.oh-my-zsh"
+alias vizsh="vim ~/.zshrc"
 alias rezsh="source ~/.zshrc"
 alias rezshc="source ~/.zshrc && cls"
 alias c.="code ."
@@ -265,6 +276,7 @@ alias udtheme="cp -r ~/dotfiles/zsh-theme/. ~/.oh-my-zsh/custom/themes/ && sourc
 alias cls=clear
 alias rmrf="rm -rf"
 
+alias g=git
 alias gitcm="git commit -m"
 alias gitp="git push"
 alias gita="git add -a"
