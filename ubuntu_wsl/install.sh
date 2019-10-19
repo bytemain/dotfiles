@@ -8,7 +8,7 @@ sukkaEnvRequired=$(echo -n "
 
 start() {
     clear
-    #winip="127.0.0.1"
+    # winip="127.0.0.1"
     winip=$(cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }')
     export ALL_PROXY="http://${winip}:7890"
     export all_proxy="http://${winip}:7890"
@@ -78,6 +78,7 @@ setup-omz() {
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
     cp -r ../zsh-theme/** ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/
 }
+
 install-linuxbrew(){
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
     echo 'eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)' >>~/.zprofile

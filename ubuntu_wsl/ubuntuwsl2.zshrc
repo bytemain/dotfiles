@@ -23,10 +23,6 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-if [ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]; then
-    source /usr/share/doc/fzf/examples/key-bindings.zsh
-fi
-
 # ------------------------------ NVM
 nvm-update() {
     (
@@ -57,13 +53,17 @@ fi
 unset __conda_setup
 # <<< conda initialize <<< 
 
+# ssh server auto-complete
 complete -W "$(echo `cat ~/.ssh/config | grep 'Host '| cut -f 2 -d ' '|uniq`;)" ssh
+
 # User configuration
+
+# using *
 setopt no_nomatch
 
 # Proxy configuration
-#winip="127.0.0.1"
-# grep -oP "(?<=nameserver ).+" /etc/resolv.conf 
+
+# wsl2: grep -oP "(?<=nameserver ).+" /etc/resolv.conf
 winip=$(cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }' | cut -d/ -f1)
 wslip=$(ip addr show eth0 | grep 'inet\b' | awk '{print $2}' | cut -d/ -f1)
 
@@ -84,17 +84,17 @@ x11() {
 }
 
 ip_() {
-	curl https://ip.cn/$1
+    curl https://ip.cn/$1
     # http --follow -b https://api.ip.sb/geoip/$1
-	echo "WIN ip: ${winip}"
-	echo "WSL ip: ${wslip}"
+    echo "WIN ip: ${winip}"
+    echo "WSL ip: ${wslip}"
 }
 
 proxy_npm() {
-	npm config set proxy ${PROXY_HTTP}
-	npm config set https-proxy ${PROXY_HTTP}
-	yarn config set proxy ${PROXY_HTTP}
-	yarn config set https-proxy ${PROXY_HTTP}
+    npm config set proxy ${PROXY_HTTP}
+    npm config set https-proxy ${PROXY_HTTP}
+    yarn config set proxy ${PROXY_HTTP}
+    yarn config set https-proxy ${PROXY_HTTP}
 }
 
 unpro_npm() {
@@ -105,8 +105,8 @@ unpro_npm() {
 }
 
 proxy () {
-	# pip can read http_proxy & https_proxy
-	# http_proxy
+    # pip can read http_proxy & https_proxy
+    # http_proxy
     export http_proxy="${PROXY_HTTP}"
     export HTTP_PROXY="${PROXY_HTTP}"
 
@@ -117,17 +117,17 @@ proxy () {
     # ftp_proxy
     export ftp_proxy="${PROXY_HTTP}"
     export FTP_PROXY="${PROXY_HTTP}"
-    
+
     # rsync_proxy
     export rsync_proxy="${PROXY_HTTP}"
     export RSYNC_PROXY="${PROXY_HTTP}"
 
     # all_proxy
     export ALL_PROXY="${PROXY_SOCKS5}"
-	export all_proxy="${PROXY_SOCKS5}"
+    export all_proxy="${PROXY_SOCKS5}"
 
-	sh $HOME/dotfiles/ubuntu_wsl/git_proxy.sh
-	ip_
+    sh $HOME/dotfiles/ubuntu_wsl/git_proxy.sh
+    ip_
 }
 
 unpro () {
@@ -146,13 +146,13 @@ unpro () {
 
 # functions
 git-config() {
-    echo -n "Please input Git Username: "      
-    read username      
+    echo -n "Please input Git Username: "
+    read username
     echo -n "Please input Git Email: "
-    read email      
+    read email
     echo -n "Done!"
     git config --global user.name "${username}"
-    git config --global user.email "${email}"  
+    git config --global user.email "${email}"
     git config --global alias.s status
     git config --global alias.d diff
     git config --global alias.co checkout
@@ -166,26 +166,15 @@ git-config() {
     git config --global alias.rh "reset --hard"
 }
 
-mc-update() {
-	echo -n "Please input download url:"
-	read _url
-	curl -L "${_url}" > micro.tar.gz
-	mkdir microd
-	tar -xvzf micro.tar.gz -C microd --strip-components 1
-	mv microd/micro /usr/local/bin/micro  
-	rm micro.tar.gz 
-	rm -rf microd
-}
-
 exa-update() {
-	echo -n "Please input download url: "
-	read _url
-	curl -L "${_url}" > exa.zip
+    echo -n "Please input download url: "
+    read _url
+    curl -L "${_url}" > exa.zip
     unzip -o exa.zip
     chmod +x exa-linux-x86_64
-	sudo mv exa-linux-x86_64 /usr/local/bin/exa  
-	rm exa.zip 
-	rm exa-linux-x86_64
+    sudo mv exa-linux-x86_64 /usr/local/bin/exa
+    rm exa.zip
+    rm exa-linux-x86_64
 }
 
 ssh_start() {
@@ -276,12 +265,6 @@ alias udtheme="cp -r ~/dotfiles/zsh-theme/. ~/.oh-my-zsh/custom/themes/ && sourc
 alias cls=clear
 alias rmrf="rm -rf"
 
-alias g=git
-alias gitcm="git commit -m"
-alias gitp="git push"
-alias gita="git add -a"
-alias gitall="git add ."
-
 alias ping="nali-ping"
 alias dig="nali-dig"
 alias traceroute="nali-traceroute"
@@ -292,13 +275,13 @@ alias nali-update="sudo nali-update"
 
 alias ncdux="ncdu -X /home/artin/dotfiles/_rc/.ncduignorerc"
 alias ct=cheat
-alias mc=micro
 alias vi=nvim
 alias vim=nvim
 alias lg=lazygit
 alias pc4=proxychains4
 alias top=htop
 alias fd=fdfind
+alias g=git
 
 alias ls="exa"
 alias l="exa -la"
@@ -307,8 +290,7 @@ alias -s gz='tar -xzvf'
 alias -s tgz='tar -xzvf'
 alias -s zip='unzip'
 alias -s bz2='tar -xjvf'
-alias -s py=micro
-alias -s html=micro
+
 
 alias gcid="git log | head -1 | awk '{print substr(\$2,1,7)}' | clip.exe"
 
