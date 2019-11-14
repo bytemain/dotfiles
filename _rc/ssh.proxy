@@ -1,3 +1,3 @@
 Host github.com
 	User git
-	ProxyCommand nc -X 5 -x _winip_:7891 %h %p
+	ProxyCommand nc -X 5 -x _winip_:47891 %h %p
