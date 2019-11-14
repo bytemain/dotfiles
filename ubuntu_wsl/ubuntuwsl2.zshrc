@@ -6,6 +6,12 @@ export PATH="/mnt/c/Program Files/Microsoft VS Code/bin:$PATH"
 export ZSH="$HOME/.oh-my-zsh"
 export CHEAT_USER_DIR="$HOME/dotfiles/_cheat"
 export EDITOR=vim
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+export JRE_HOME=$JAVA_HOME/jre
+export JAVA_BIN=$JAVA_HOME/bin
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib
+export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
+
 
 ZSH_THEME="sukka"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
@@ -67,8 +73,8 @@ setopt no_nomatch
 winip=$(cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }' | cut -d/ -f1)
 wslip=$(ip addr show eth0 | grep 'inet\b' | awk '{print $2}' | cut -d/ -f1)
 
-PROXY_HTTP="http://${winip}:7890"
-PROXY_SOCKS5="socks5://${winip}:7891"
+PROXY_HTTP="http://${winip}:47890"
+PROXY_SOCKS5="socks5://${winip}:47891"
 
 alias winip_="echo ${winip}"
 alias wslip_="echo ${wslip}"

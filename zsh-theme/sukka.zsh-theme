@@ -17,9 +17,8 @@ ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[white]%}(%{$fg[green]%}✓%{$fg[white]%})"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
 
 
-# Prompt format: \n # TIME USER at MACHINE in [DIRECTORY] on git:BRANCH \n $
+# Prompt format: \n # USER@MACHINE in [DIRECTORY] on git:BRANCH \n $
 PROMPT="\
-%{$fg[white]%}[%*] \
 %{$fg[cyan]%}%n@$(box_name) \
 %{$fg[white]%}in \
 %{$terminfo[bold]$fg[yellow]%}${current_dir}%{$reset_color%} \
@@ -28,7 +27,6 @@ ${git_info}
 
 if [[ "$USER" == "root" ]]; then
 PROMPT="\
-%{$fg[white]%}[%*] \
 %{$fg[cyan]%}%n@$(box_name) \
 %{$fg[white]%}in \
 %{$terminfo[bold]$fg[yellow]%}${current_dir}%{$reset_color%} \
