@@ -6,11 +6,18 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
+augroup numbertoggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave * set rnu
+    autocmd BufLeave,FocusLost,InsertEnter   * set nornu
+augroup END
+set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
+
 set listchars=tab:>-,trail:~,extends:>,precedes:<,nbsp:-
 set list
 
 set nocompatible
-set number
+set nu
 set nospell
 set hlsearch
 

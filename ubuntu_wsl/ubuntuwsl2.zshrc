@@ -11,7 +11,9 @@ export JRE_HOME=$JAVA_HOME/jre
 export JAVA_BIN=$JAVA_HOME/bin
 export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib
 export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
+export PATH=$PATH:$HOME/.poetry/bin
 
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 ZSH_THEME="sukka"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
@@ -25,6 +27,8 @@ plugins=(
     history
     autojump
     sudo
+    docker
+    poetry
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -73,8 +77,8 @@ setopt no_nomatch
 winip=$(cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }' | cut -d/ -f1)
 wslip=$(ip addr show eth0 | grep 'inet\b' | awk '{print $2}' | cut -d/ -f1)
 
-PROXY_HTTP="http://${winip}:47890"
-PROXY_SOCKS5="socks5://${winip}:47891"
+PROXY_HTTP="http://${winip}:7890"
+PROXY_SOCKS5="socks5://${winip}:7891"
 
 alias winip_="echo ${winip}"
 alias wslip_="echo ${wslip}"
@@ -239,17 +243,6 @@ anki() {
        --name anki-container \
        --rm \
        kuklinistvan/anki-sync-server:latest
-}
-
-coolq() {
-    docker run -ti --rm --name "cqhttp-test" \
-        -v $(pwd)/coolq:/home/user/coolq \  # 将宿主目录挂载到容器内用于持久化 酷Q 的程序文件              
-        -p 9000:9000 \  # noVNC 端口，用于从浏览器控制 酷Q
-        -p 5700:5700 \  # HTTP API 插件开放的端口
-        -e COOLQ_ACCOUNT=123456 \ # 要登录的 QQ 账号，可选但建议填    
-        -e CQHTTP_POST_URL=http://example.com:8080 \  # 事件上报地址     
-        -e CQHTTP_SERVE_DATA_FILES=yes \  # 允许通过 HTTP 接口访问 酷Q 数据文件
-        richardchien/cqhttp:latest   
 }
 
 zle -N cdlast
