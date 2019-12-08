@@ -212,7 +212,8 @@ put_win_fonts() {
 bk() {
     cp ~/.zshrc ~/dotfiles/ubuntu_wsl/ubuntuwsl2.zshrc
     cp ~/.config/micro/settings.json ~/dotfiles/_rc/micro.settings.json
-    cp ~/.vimrc ~/dotfiles/_rc/vimrc
+    # cp ~/.vimrc 
+    cp ~/.config/nvim/init.vim ~/dotfiles/_rc/init.vim
     cp ~/.condarc ~/dotfiles/_rc/condarc
 }
 
@@ -249,7 +250,7 @@ zle -N cdlast
 bindkey '^Q' cdlast
 
 alias y=yarn
-alias py="python"
+alias py="python3"
 alias ipy="ipython"
 
 alias ohmyzsh="vim ~/.oh-my-zsh"
