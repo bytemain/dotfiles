@@ -12,9 +12,10 @@ export JAVA_BIN=$JAVA_HOME/bin
 export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib
 export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
 export PATH=$PATH:$HOME/.poetry/bin
-
+LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/llvm/lib -Wl,-rpath,/home/linuxbrew/.linuxbrew/opt/llvm/lib"
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
+NEOVIM_WIN_DIR="/mnt/c/Users/withw/scoop/apps/neovim/current"
 ZSH_THEME="sukka"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 HIST_STAMPS="yyyy-mm-dd"
@@ -74,7 +75,8 @@ setopt no_nomatch
 # Proxy configuration
 
 # wsl2: grep -oP "(?<=nameserver ).+" /etc/resolv.conf
-winip=$(cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }' | cut -d/ -f1)
+winip=$(grep -oP "(?<=nameserver ).+" /etc/resolv.conf)
+# $(cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }' | cut -d/ -f1)
 wslip=$(ip addr show eth0 | grep 'inet\b' | awk '{print $2}' | cut -d/ -f1)
 
 PROXY_HTTP="http://${winip}:7890"
@@ -91,8 +93,12 @@ x11() {
         export DISPLAY=${winip}:$1.0
     fi
     echo $DISPLAY
+    export XDG_SESSION_TYPE=x11
+    export XDG_RUNTIME_DIR=/tmp/runtime-root
+    export XDG_CURRENT_DESKTOP=Pantheon
+    export PULSE_SERVER=tcp:$winip
 }
-
+alias pan="gala --x11& plank& wingpanel"
 ip_() {
     curl https://ip.cn/$1
     # http --follow -b https://api.ip.sb/geoip/$1
@@ -176,17 +182,6 @@ git-config() {
     git config --global alias.rh "reset --hard"
 }
 
-exa-update() {
-    echo -n "Please input download url: "
-    read _url
-    curl -L "${_url}" > exa.zip
-    unzip -o exa.zip
-    chmod +x exa-linux-x86_64
-    sudo mv exa-linux-x86_64 /usr/local/bin/exa
-    rm exa.zip
-    rm exa-linux-x86_64
-}
-
 ssh_start() {
   sshd_status=$(service ssh status)
   if [[ $sshd_status = *"is not running"* ]]; then
@@ -264,7 +259,7 @@ alias ws="cd ~/0Workspace"
 alias udtheme="cp -r ~/dotfiles/zsh-theme/. ~/.oh-my-zsh/custom/themes/ && source ~/.zshrc"
 alias cls=clear
 alias rmrf="rm -rf"
-
+alias vimrc="vim ~/.config/nvim/init.vim"
 alias ping="nali-ping"
 alias dig="nali-dig"
 alias traceroute="nali-traceroute"
@@ -272,7 +267,7 @@ alias tracepath="nali-tracepath"
 alias dig="nali-dig"
 alias nslookup="nali-nslookup"
 alias nali-update="sudo nali-update"
-
+alias apt-update="sudo apt-get update && sudo apt-get upgrade"
 alias ncdux="ncdu -X /home/artin/dotfiles/_rc/.ncduignorerc"
 alias ct=cheat
 alias vi=nvim
@@ -285,6 +280,7 @@ alias g=git
 
 alias ls="exa"
 alias l="exa -la"
+alias sdocker=" sudo service docker start"
 
 alias -s gz='tar -xzvf'
 alias -s tgz='tar -xzvf'
