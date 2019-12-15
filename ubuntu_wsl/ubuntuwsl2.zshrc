@@ -1,8 +1,3 @@
-export PATH="$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
-export PATH="/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$PATH"
-export PATH="/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:$PATH"
-export PATH="/home/linuxbrew/.linuxbrew/bin:$HOME/.local/bin:$PATH"
-export PATH="/mnt/c/Program Files/Microsoft VS Code/bin:$PATH"
 export ZSH="$HOME/.oh-my-zsh"
 export CHEAT_USER_DIR="$HOME/dotfiles/_cheat"
 export EDITOR=vim
@@ -11,9 +6,7 @@ export JRE_HOME=$JAVA_HOME/jre
 export JAVA_BIN=$JAVA_HOME/bin
 export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib
 export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
-export PATH=$PATH:$HOME/.poetry/bin
 LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/llvm/lib -Wl,-rpath,/home/linuxbrew/.linuxbrew/opt/llvm/lib"
-eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 NEOVIM_WIN_DIR="/mnt/c/Users/withw/scoop/apps/neovim/current"
 ZSH_THEME="sukka"
@@ -47,7 +40,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -64,20 +56,14 @@ fi
 unset __conda_setup
 # <<< conda initialize <<< 
 
-# ssh server auto-complete
-complete -W "$(echo `cat ~/.ssh/config | grep 'Host '| cut -f 2 -d ' '|uniq`;)" ssh
-
 # User configuration
 
 # using *
 setopt no_nomatch
 
 # Proxy configuration
-
-# wsl2: grep -oP "(?<=nameserver ).+" /etc/resolv.conf
-winip=$(grep -oP "(?<=nameserver ).+" /etc/resolv.conf)
-# $(cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }' | cut -d/ -f1)
-wslip=$(ip addr show eth0 | grep 'inet\b' | awk '{print $2}' | cut -d/ -f1)
+winip=$(ip route | grep default | awk '{print $3}')
+wslip=$(hostname -I | awk '{print $1}')
 
 PROXY_HTTP="http://${winip}:7890"
 PROXY_SOCKS5="socks5://${winip}:7891"
@@ -143,9 +129,11 @@ proxy () {
     export all_proxy="${PROXY_SOCKS5}"
 
     sh $HOME/dotfiles/ubuntu_wsl/git_proxy.sh
-    ip_
+    if [ ! $1 ]; then
+        ip_
+    fi
 }
-
+proxy 1
 unpro () {
     unset http_proxy
     unset HTTP_PROXY
@@ -206,10 +194,9 @@ put_win_fonts() {
 
 bk() {
     cp ~/.zshrc ~/dotfiles/ubuntu_wsl/ubuntuwsl2.zshrc
-    cp ~/.config/micro/settings.json ~/dotfiles/_rc/micro.settings.json
-    # cp ~/.vimrc 
     cp ~/.config/nvim/init.vim ~/dotfiles/_rc/init.vim
     cp ~/.condarc ~/dotfiles/_rc/condarc
+    cp ~/.zprofile ~/dotfiles/_rc/zprofile
 }
 
 v2() {
@@ -241,22 +228,24 @@ anki() {
        kuklinistvan/anki-sync-server:latest
 }
 
+rezsh() {
+    source ~/.zshrc
+    source ~/.zprofile
+}
+
 zle -N cdlast
 bindkey '^Q' cdlast
 
 alias y=yarn
 alias py="python3"
 alias ipy="ipython"
-
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias vizsh="vim ~/.zshrc"
-alias rezsh="source ~/.zshrc"
-alias rezshc="source ~/.zshrc && cls"
 alias c.="code ."
 alias e.="explorer.exe ."
 alias cdtmp='cd `mktemp -d /tmp/artin-XXXXXX`'
 alias ws="cd ~/0Workspace"
-alias udtheme="cp -r ~/dotfiles/zsh-theme/. ~/.oh-my-zsh/custom/themes/ && source ~/.zshrc"
+alias udtheme="cp -r ~/dotfiles/zsh-theme/. ~/.oh-my-zsh/custom/themes/ && rezsh"
 alias cls=clear
 alias rmrf="rm -rf"
 alias vimrc="vim ~/.config/nvim/init.vim"
@@ -280,19 +269,14 @@ alias g=git
 
 alias ls="exa"
 alias l="exa -la"
-alias sdocker=" sudo service docker start"
+alias sdocker="sudo service docker start"
 
 alias -s gz='tar -xzvf'
 alias -s tgz='tar -xzvf'
 alias -s zip='unzip'
 alias -s bz2='tar -xjvf'
 
-
 alias gcid="git log | head -1 | awk '{print substr(\$2,1,7)}' | clip.exe"
-
-alias sc="x11 && startxfce4"
-
-eval $(thefuck --alias)
 
 # Created by mirror-config-china
 export IOJS_ORG_MIRROR=https://npm.taobao.org/mirrors/iojs
@@ -306,4 +290,4 @@ export NVMW_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
 export NVMW_NPM_MIRROR=https://npm.taobao.org/mirrors/npm
 # End of mirror-config-china
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
