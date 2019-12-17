@@ -69,8 +69,7 @@ setup-omz() {
     echo "  - zsh-syntax-highlighting"
     echo "-----------------------------------------------------------"
 
-    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+    cd ~/dotfiles/ubuntu_wsl/zsh_plugins.txt ~/.zsh_plugins.txt
     cp -r ../zsh-theme/** ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/
 }
 
@@ -82,6 +81,7 @@ install-linuxbrew(){
     brew install denisidoro/tools/navi
     brew install gcc git-quick-stats tldr cheat grv
     brew install ripgrep bat exa neovim
+    brew install getantibody/tap/antibody
 }
 
 

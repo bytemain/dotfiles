@@ -13,10 +13,10 @@ ZSH_THEME="sukka"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 HIST_STAMPS="yyyy-mm-dd"
 ZSH_DISABLE_COMPFIX=true
+source <(antibody init)
+antibody bundle < ~/.zsh_plugins.txt
 
 plugins=(
-    zsh-syntax-highlighting
-    zsh-autosuggestions
     git
     history
     autojump
@@ -194,6 +194,7 @@ put_win_fonts() {
 
 bk() {
     cp ~/.zshrc ~/dotfiles/ubuntu_wsl/ubuntuwsl2.zshrc
+    cp ~/.zsh_plugins.txt ~/dotfiles/ubuntu_wsl/zsh_plugins.txt
     cp ~/.config/nvim/init.vim ~/dotfiles/_rc/init.vim
     cp ~/.condarc ~/dotfiles/_rc/condarc
     cp ~/.zprofile ~/dotfiles/_rc/zprofile
