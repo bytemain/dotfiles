@@ -212,12 +212,6 @@ v2-sh() {
     done;
 }
 
-cdlast() {
-  cd -
-  ls -lrth --color=auto | tail
-  zle reset-prompt
-}
-
 anki() {
     export ANKI_SYNC_DATA_DIR=~/anki-sync-server-docker-data
     docker run -it \
@@ -233,9 +227,22 @@ rezsh() {
     source ~/.zprofile
 }
 
+u-update() {
+    sudo nali-update
+    sudo apt-get update && sudo apt-get -y upgrade
+    brew upgrade --verbose
+}
+
+cdlast() {
+  cd -
+  ls -lrth --color=auto | tail
+  zle reset-prompt
+}
 zle -N cdlast
 bindkey '^Q' cdlast
 
+# alias
+unalias grv
 alias y=yarn
 alias py="python3"
 alias ipy="ipython"
@@ -256,7 +263,7 @@ alias tracepath="nali-tracepath"
 alias dig="nali-dig"
 alias nslookup="nali-nslookup"
 alias nali-update="sudo nali-update"
-alias apt-update="sudo apt-get update && sudo apt-get upgrade"
+alias apt-update="sudo apt-get update && sudo apt-get -y upgrade"
 alias ncdux="ncdu -X /home/artin/dotfiles/_rc/.ncduignorerc"
 alias ct=cheat
 alias vi=nvim
@@ -266,17 +273,16 @@ alias pc4=proxychains4
 alias top=htop
 alias fd=fdfind
 alias g=git
-
 alias ls="exa"
 alias l="exa -la"
 alias sdocker="sudo service docker start"
+alias gcid="git log | head -1 | awk '{print substr(\$2,1,7)}' | clip.exe"
 
 alias -s gz='tar -xzvf'
 alias -s tgz='tar -xzvf'
 alias -s zip='unzip'
 alias -s bz2='tar -xjvf'
 
-alias gcid="git log | head -1 | awk '{print substr(\$2,1,7)}' | clip.exe"
 
 # Created by mirror-config-china
 export IOJS_ORG_MIRROR=https://npm.taobao.org/mirrors/iojs

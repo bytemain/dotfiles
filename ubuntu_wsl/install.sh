@@ -9,7 +9,7 @@ sukkaEnvRequired=$(echo -n "
 start() {
     clear
     # winip="127.0.0.1"
-    winip=$(cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }')
+    winip=$(ip route | grep default | awk '{print $3}')
     export ALL_PROXY="http://${winip}:7890"
     export all_proxy="http://${winip}:7890"
     echo "Set Proxy: ${ALL_PROXY}"
@@ -31,9 +31,7 @@ start() {
     echo "==========================================================="
     echo ""
     echo -n "* The setup will begin in 5 seconds... "
-
     sleep 5
-
     echo -n "Times up! Here we start!"
     echo ""
 
@@ -49,11 +47,8 @@ install-linux-packages() {
     sudo apt-get install -y python2.7 python3-dev python3-pip python3-setuptools
     sudo apt-get install -y build-essential libreadline-dev apt-file
     sudo apt-get install -y zsh curl wget git tree unzip ncdu tmux
-    sudo apt-get install -y w3m lynx w3m-img zhcon
     sudo apt-get install -y festival festvox-kallpc16k 
-    sudo apt-get install -y wamerican lua5.3 ctags
     sudo apt-get install -y neofetch screenfetch autojump
-    sudo apt-get install -y android-tools-adb android-tools-fastboot
     sudo apt-get install -y lsof whois httpie
     sudo apt-get install -y net-tools iputils-tracepath dnsutils
 }
@@ -85,6 +80,8 @@ install-linuxbrew(){
     eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
     brew install denisidoro/tools/navi
+    brew install gcc git-quick-stats tldr cheat grv
+    brew install ripgrep bat exa neovim
 }
 
 
@@ -94,7 +91,7 @@ install-nodejs() {
         echo "* Installing NVM..."
         echo "-----------------------------------------------------------"
 
-        curl -o- https://cdn.jsdelivr.net/gh/creationix/nvm@v0.34.0/install.sh | bash
+        curl -o- https://cdn.jsdelivr.net/gh/creationix/nvm/install.sh | bash
 
         export NVM_DIR="$HOME/.nvm"
         [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -169,15 +166,6 @@ lazygit() {
 
     sudo apt-get install lazygit -y
 }
-install-nvim() {
-    echo "=========================================================="
-    echo "                   Installing nvim                        "
-    echo ""
-    sudo add-apt-repository ppa:neovim-ppa/stable
-    sudo apt-get update
-    sudo apt-get install -y neovim
-    sudo apt-get install -y python-dev python-pip python3-dev python3-pip
-}
 install-nali() {
     echo "==========================================================="
     echo "                   Installing Nali                         "
@@ -194,15 +182,6 @@ install-nali() {
     ./configure
     make && sudo make install
     cd ..
-}
-
-other-package() {
-    echo "==========================================================="
-    echo "                Install other package                      "
-    echo "-----------------------------------------------------------"
-
-    sudo pip3 install thefuck
-    sudo pip3 install cheat
 }
 
 zshrc() {
@@ -241,11 +220,9 @@ start
 install-linux-packages
 setup-omz
 install-nodejs
-install-nvim
 install-nali
 install-linuxbrew
 install-ctop
-other-package
 lazygit
 zshrc
 upgrade-packages
