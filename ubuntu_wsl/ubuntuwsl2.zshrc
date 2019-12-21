@@ -6,6 +6,7 @@ export JRE_HOME=$JAVA_HOME/jre
 export JAVA_BIN=$JAVA_HOME/bin
 export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib
 export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
+export NVM_DIR="$HOME/.nvm"
 LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/llvm/lib -Wl,-rpath,/home/linuxbrew/.linuxbrew/opt/llvm/lib"
 
 NEOVIM_WIN_DIR="/mnt/c/Users/withw/scoop/apps/neovim/current"
@@ -13,8 +14,8 @@ ZSH_THEME="sukka"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 HIST_STAMPS="yyyy-mm-dd"
 ZSH_DISABLE_COMPFIX=true
-
 source ~/.zsh_plugins.sh
+
 plugins=(
     git
     history
@@ -35,7 +36,6 @@ nvm-update() {
     ) && \. "$NVM_DIR/nvm.sh"
 }
 
-export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
