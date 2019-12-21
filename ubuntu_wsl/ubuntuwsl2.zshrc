@@ -13,9 +13,8 @@ ZSH_THEME="sukka"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 HIST_STAMPS="yyyy-mm-dd"
 ZSH_DISABLE_COMPFIX=true
-source <(antibody init)
-antibody bundle < ~/.zsh_plugins.txt
 
+source ~/.zsh_plugins.sh
 plugins=(
     git
     history
@@ -84,7 +83,6 @@ x11() {
     export XDG_CURRENT_DESKTOP=Pantheon
     export PULSE_SERVER=tcp:$winip
 }
-alias pan="gala --x11& plank& wingpanel"
 ip_() {
     curl https://ip.cn/$1
     # http --follow -b https://api.ip.sb/geoip/$1
@@ -229,9 +227,9 @@ rezsh() {
 }
 
 u-update() {
-    sudo nali-update
     sudo apt-get update && sudo apt-get -y upgrade
     brew upgrade --verbose
+    antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
 }
 
 cdlast() {
@@ -249,6 +247,7 @@ alias py="python3"
 alias ipy="ipython"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias vizsh="vim ~/.zshrc"
+
 alias c.="code ."
 alias e.="explorer.exe ."
 alias cdtmp='cd `mktemp -d /tmp/artin-XXXXXX`'
@@ -257,12 +256,14 @@ alias udtheme="cp -r ~/dotfiles/zsh-theme/. ~/.oh-my-zsh/custom/themes/ && rezsh
 alias cls=clear
 alias rmrf="rm -rf"
 alias vimrc="vim ~/.config/nvim/init.vim"
+
 alias ping="nali-ping"
 alias dig="nali-dig"
 alias traceroute="nali-traceroute"
 alias tracepath="nali-tracepath"
 alias dig="nali-dig"
 alias nslookup="nali-nslookup"
+
 alias nali-update="sudo nali-update"
 alias apt-update="sudo apt-get update && sudo apt-get -y upgrade"
 alias ncdux="ncdu -X /home/artin/dotfiles/_rc/.ncduignorerc"
@@ -278,12 +279,12 @@ alias ls="exa"
 alias l="exa -la"
 alias sdocker="sudo service docker start"
 alias gcid="git log | head -1 | awk '{print substr(\$2,1,7)}' | clip.exe"
+alias wshutdown="wsl.exe --shutdown"
 
 alias -s gz='tar -xzvf'
 alias -s tgz='tar -xzvf'
 alias -s zip='unzip'
 alias -s bz2='tar -xjvf'
-
 
 # Created by mirror-config-china
 export IOJS_ORG_MIRROR=https://npm.taobao.org/mirrors/iojs
