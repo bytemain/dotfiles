@@ -82,6 +82,7 @@ install-linuxbrew(){
     brew install gcc git-quick-stats tldr cheat grv
     brew install ripgrep bat exa neovim
     brew install getantibody/tap/antibody
+    brew install ctop
 }
 
 
@@ -137,7 +138,7 @@ install-nodejs() {
         npm install -g mirror-config-china --registry=http://registry.npm.taobao.org
         yarn global add npm-check-updates
         yarn global add http-server serve
-        yarn global add fanyi liyu wtf
+        yarn global add what-is-x liyu wtf
     }
 
 
@@ -192,11 +193,6 @@ zshrc() {
     cat ./ubuntu_wsl/ubuntuwsl2.zshrc > $HOME/.zshrc
 }
 
-install-ctop() {
-    sudo wget https://github.com/bcicen/ctop/releases/download/v0.7.2/ctop-0.7.2-linux-amd64 -O /usr/local/bin/ctop
-    sudo chmod +x /usr/local/bin/ctop 
-}
-
 upgrade-packages() {
     echo "==========================================================="
     echo "                      Upgrade packages                     "
@@ -222,7 +218,6 @@ setup-omz
 install-nodejs
 install-nali
 install-linuxbrew
-install-ctop
 lazygit
 zshrc
 upgrade-packages
