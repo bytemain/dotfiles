@@ -16,8 +16,8 @@ local current_dir='${PWD/#$HOME/~}'
 YS_VCS_PROMPT_PREFIX1="%{$fg[white]%}on%{$reset_color%} "
 YS_VCS_PROMPT_PREFIX2=":%{$fg[cyan]%}"
 YS_VCS_PROMPT_SUFFIX="%{$reset_color%} "
-YS_VCS_PROMPT_DIRTY="%{$fg[white]%}(%{$fg[red]%}x%{$fg[white]%})"
-YS_VCS_PROMPT_CLEAN="%{$fg[white]%}(%{$fg[green]%}o%{$fg[white]%})"
+YS_VCS_PROMPT_DIRTY="%{$fg[white]%}(%{$fg[red]%}✗%{$fg[white]%})"
+YS_VCS_PROMPT_CLEAN="%{$fg[white]%}(%{$fg[green]%}✓%{$fg[white]%})"
 
 # Git info.
 local git_info='$(git_prompt_info)'
