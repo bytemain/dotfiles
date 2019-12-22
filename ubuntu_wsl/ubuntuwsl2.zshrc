@@ -80,7 +80,6 @@ x11() {
     echo $DISPLAY
     export XDG_SESSION_TYPE=x11
     export XDG_RUNTIME_DIR=/tmp/runtime-root
-    export XDG_CURRENT_DESKTOP=Pantheon
     export PULSE_SERVER=tcp:$winip
 }
 ip_() {

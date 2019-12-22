@@ -69,6 +69,9 @@ set cmdheight=2
 set updatetime=300
 set signcolumn=yes
 
+map  <silent>  <S-Insert>  "+p
+imap <silent>  <S-Insert>  <Esc>"+pa
+
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
