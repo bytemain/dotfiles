@@ -80,11 +80,10 @@ install-linuxbrew(){
     echo 'eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)' >>~/.zprofile
     eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
-    brew install denisidoro/tools/navi
     brew install gcc git-quick-stats tldr cheat grv
     brew install ripgrep bat exa neovim
     brew install getantibody/tap/antibody
-    brew install ctop
+    brew install ctop hub
 }
 
 
