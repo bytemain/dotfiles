@@ -178,8 +178,13 @@ set_max_user_watches() {
     if ! grep -qF "max_user_watches" /etc/sysctl.conf ; then
         echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf
     fi
-    sudo sysctl -p
-    sudo sysctl --system
+    sudo sysctl -p >/dev/null 2>&1
+    sudo sysctl --system >/dev/null 2>&1
+}
+
+expose_local(){
+    sudo sysctl -w net.ipv4.conf.all.route_localnet=1 >/dev/null 2>&1
+    sudo iptables -t nat -I PREROUTING -p tcp -j DNAT --to-destination 127.0.0.1
 }
 
 put_win_fonts() {
