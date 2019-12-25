@@ -1,6 +1,8 @@
+typeset -U PATH
 export ZSH="$HOME/.oh-my-zsh"
-export CHEAT_USER_DIR="$HOME/dotfiles/_cheat"
 export EDITOR=vim
+export CHEAT_USER_DIR="$HOME/dotfiles/cheat"
+export CHEAT_CONFIG_PATH="~/dotfiles/cheat/conf.yml"
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 export JRE_HOME=$JAVA_HOME/jre
 export JAVA_BIN=$JAVA_HOME/bin
@@ -234,6 +236,13 @@ u-update() {
     sudo apt-get update && sudo apt-get -y upgrade
     brew upgrade --verbose
     antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
+}
+
+zsh_history_fix() {
+    mv ~/.zsh_history ~/.zsh_history_bad
+    strings ~/.zsh_history_bad > ~/.zsh_history
+    fc -R ~/.zsh_history
+    rm ~/.zsh_history_bad
 }
 
 cdlast() {
