@@ -311,4 +311,5 @@ export NVMW_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
 export NVMW_NPM_MIRROR=https://npm.taobao.org/mirrors/npm
 # End of mirror-config-china
 
+eval $(thefuck --alias --enable-experimental-instant-mode)
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
