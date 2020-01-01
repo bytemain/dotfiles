@@ -65,7 +65,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jackguo380/vim-lsp-cxx-highlight'
-Plug 'iCyMind/NeoSolarized'
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 call plug#end()
@@ -79,10 +79,8 @@ let g:UltiSnipsEditSplit="vertical"
 map <C-b> :NERDTreeToggle<CR>
 
 set termguicolors
-colorscheme NeoSolarized
-let g:solarized_termcolors=256
+colorscheme dracula
 set background=dark
-let g:neosolarized_contrast = "high"
 
 map  <silent> <S-Insert> "+p
 imap <silent> <S-Insert> <Esc>"+pa

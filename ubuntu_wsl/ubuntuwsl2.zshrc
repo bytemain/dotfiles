@@ -311,5 +311,22 @@ export NVMW_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
 export NVMW_NPM_MIRROR=https://npm.taobao.org/mirrors/npm
 # End of mirror-config-china
 
-eval $(thefuck --alias --enable-experimental-instant-mode)
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if [ -d "$HOME/bin" ] ; then
+    export PATH="$HOME/bin:$PATH"
+fi
+
+if [ -d "$HOME/.local/bin" ] ; then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
+
+
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+export PATH="~/.npm-global/bin:$PATH"
+export PATH="$HOME/.poetry/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+eval $(thefuck --alias --enable-experimental-instant-mode)
+
