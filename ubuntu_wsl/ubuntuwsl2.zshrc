@@ -281,6 +281,7 @@ alias nali-update="sudo nali-update"
 alias apt-update="sudo apt-get update && sudo apt-get -y upgrade"
 alias ncdux="ncdu -X /home/artin/dotfiles/_rc/.ncduignorerc"
 alias ct=cheat
+alias tl=tldr
 alias vi=nvim
 alias vim=nvim
 alias lg=lazygit
