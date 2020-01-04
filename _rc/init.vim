@@ -27,8 +27,7 @@ set showcmd
 set mouse=a
 set clipboard=unnamedplus
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-au VimLeave * set guicursor=a:bar
+set guicursor=n-v-c:block,i-ci-ve:ver10,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175
 
 " make tab do tabs at beginning and spaces elsewhere
 function RetabIndents()
