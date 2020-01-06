@@ -8,6 +8,7 @@ export JRE_HOME=$JAVA_HOME/jre
 export JAVA_BIN=$JAVA_HOME/bin
 export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib
 export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
+export PATH="$PATH:/mnt/c/Program Files/Microsoft VS Code/bin"
 export NVM_DIR="$HOME/.nvm"
 LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/llvm/lib -Wl,-rpath,/home/linuxbrew/.linuxbrew/opt/llvm/lib"
 
@@ -329,5 +330,4 @@ export PATH="$HOME/.poetry/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-eval $(thefuck --alias --enable-experimental-instant-mode)
 

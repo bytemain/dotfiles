@@ -83,7 +83,7 @@ install-linuxbrew(){
     brew install gcc git-quick-stats tldr cheat
     brew install ripgrep bat exa neovim
     brew install getantibody/tap/antibody
-    brew install ctop hub thefuck
+    brew install ctop hub onefetch
 }
 
 
