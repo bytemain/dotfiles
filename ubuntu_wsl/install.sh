@@ -84,6 +84,7 @@ install-linuxbrew(){
     brew install ripgrep bat exa neovim
     brew install getantibody/tap/antibody
     brew install ctop hub onefetch
+    brew install jesseduffield/lazygit/lazygit
 }
 
 
@@ -152,22 +153,6 @@ install-nodejs() {
     yarn-global-add
 }
 
-lazygit() {
-    echo "==========================================================="
-    echo "                  Installing lazygit                       "
-    echo ""
-    echo "* Adding lazygit PPA..."
-    echo "-----------------------------------------------------------"
-
-    sudo add-apt-repository ppa:lazygit-team/release
-    sudo apt-get update
-
-    echo "-----------------------------------------------------------"
-    echo "* Installing lazygit..."
-    echo "-----------------------------------------------------------"
-
-    sudo apt-get install lazygit -y
-}
 install-nali() {
     echo "==========================================================="
     echo "                   Installing Nali                         "
@@ -219,7 +204,6 @@ setup-omz
 install-nodejs
 install-nali
 install-linuxbrew
-lazygit
 zshrc
 upgrade-packages
 finish

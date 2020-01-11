@@ -1,14 +1,16 @@
+export PATH=`echo $PATH | tr ':' '\n' | grep -v /mnt/ | tr '\n' ':'`
+export PATH="/mnt/c/Program Files/Microsoft VS Code Insiders/bin:$PATH"
+export PATH="/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:$PATH"
 typeset -U PATH
 export ZSH="$HOME/.oh-my-zsh"
 export EDITOR=vim
 export CHEAT_USER_DIR="$HOME/dotfiles/cheat"
 export CHEAT_CONFIG_PATH="~/dotfiles/cheat/conf.yml"
-export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
-export JRE_HOME=$JAVA_HOME/jre
-export JAVA_BIN=$JAVA_HOME/bin
-export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib
-export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
-export PATH="$PATH:/mnt/c/Program Files/Microsoft VS Code/bin"
+export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
+export JRE_HOME="$JAVA_HOME/jre"
+export JAVA_BIN="$JAVA_HOME/bin"
+export CLASSPATH=".:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib"
+export PATH="$PATH:$JAVA_HOME/bin:$JRE_HOME/bin"
 export NVM_DIR="$HOME/.nvm"
 LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/llvm/lib -Wl,-rpath,/home/linuxbrew/.linuxbrew/opt/llvm/lib"
 
@@ -66,7 +68,7 @@ setopt no_nomatch
 # Proxy configuration
 winip=$(ip route | grep default | awk '{print $3}')
 wslip=$(hostname -I | awk '{print $1}')
-
+sudo -S sed -i "/win.local/c $winip win.local" /etc/hosts
 PROXY_HTTP="http://${winip}:7890"
 PROXY_SOCKS5="socks5://${winip}:7891"
 
@@ -262,7 +264,7 @@ alias ipy="ipython"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias vizsh="vim ~/.zshrc"
 
-alias c.="code ."
+alias c.="code-insiders ."
 alias e.="explorer.exe ."
 alias cdtmp='cd `mktemp -d /tmp/artin-XXXXXX`'
 alias ws="cd ~/0Workspace"
@@ -277,7 +279,7 @@ alias traceroute="nali-traceroute"
 alias tracepath="nali-tracepath"
 alias dig="nali-dig"
 alias nslookup="nali-nslookup"
-
+alias shutdown="wsl.exe --shutdown"
 alias nali-update="sudo nali-update"
 alias apt-update="sudo apt-get update && sudo apt-get -y upgrade"
 alias ncdux="ncdu -X /home/artin/dotfiles/_rc/.ncduignorerc"
@@ -294,7 +296,6 @@ alias ls="exa"
 alias l="exa -la"
 alias sdocker="sudo service docker start"
 alias gcid="git log | head -1 | awk '{print substr(\$2,1,7)}' | clip.exe"
-alias wshutdown="wsl.exe --shutdown"
 
 alias -s gz='tar -xzvf'
 alias -s tgz='tar -xzvf'
@@ -329,5 +330,3 @@ export PATH="~/.npm-global/bin:$PATH"
 export PATH="$HOME/.poetry/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-
