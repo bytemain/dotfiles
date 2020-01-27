@@ -3,7 +3,7 @@ filetype indent on
 syntax on
 set nobackup
 set nowritebackup
-set cmdheight=2
+set cmdheight=1
 set updatetime=300
 set signcolumn=yes
 " set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
