@@ -1,0 +1,1 @@
+ dism /online /Disable-Feature /FeatureName:Microsoft-Hyper-V-All

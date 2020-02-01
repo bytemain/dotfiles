@@ -1,0 +1,5 @@
+﻿在powershell管理员中运行
+set-ExecutionPolicy RemoteSigned
+
+开启ps1文件右键管理员运行
+https://jingyan.baidu.com/article/8cdccae9521a33315513cd63.html

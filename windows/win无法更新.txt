@@ -1,0 +1,25 @@
+net stop wuauserv
+
+net stop cryptSvc
+
+net stop bits
+
+net stop msiserver
+
+
+
+关闭一些Windows服务项，全部运行完毕后，继续在命令提示符中，输入下面这两条：
+
+ren C:\Windows\SoftwareDistribution SoftwareDistribution.old
+
+ren C:\Windows\System32\catroot2 Catroot2.old
+
+注销当前用户或重启电脑后，再次运行命令提示符 （管理员） ，用下面的命令开启之前关闭的系统服务
+
+net start wuauserv
+
+net start cryptSvc
+
+net start bits
+
+net start msiserver

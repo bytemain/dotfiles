@@ -11,6 +11,8 @@ Set-Alias g git
 Set-Alias e explorer
 Set-Alias vim nvim
 Set-Alias vi nvim
+Set-Alias lg lazygit
+Set-Alias which get-command
 
 function vimrc { vim ~\AppData\Local\nvim\init.vim }
 function ws {cd "D:\0Workspace"}
@@ -30,7 +32,6 @@ function bk {
 function vitmp { nvim ~\0Workspace\tmpfile }
 function udwsl { sudo powershell -ExecutionPolicy ByPass -File "~\OneDrive\bin\wsl2.ps1" }
 
-set-Alias which get-command
 
 $env:TERM='xterm-256color'
 

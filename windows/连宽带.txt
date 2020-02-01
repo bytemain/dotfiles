@@ -1,0 +1,4 @@
+TIMEOUT /T 1
+rasdial ljc /DISCONNECT
+rasdial ljc xxxx xxxx
+echo "ojbk"

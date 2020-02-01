@@ -1,0 +1,15 @@
+Windows Registry Editor Version 5.00
+
+;文件
+[HKEY_CLASSES_ROOT\*\shell\copypath]
+@="复制文件路径"
+
+[HKEY_CLASSES_ROOT\*\shell\copypath\command]
+@="mshta vbscript:clipboarddata.setdata(\"text\",\"%1\")(close)"
+
+;文件夹
+[HKEY_CLASSES_ROOT\Directory\shell\copypath]
+@="复制文件夹路径"
+
+[HKEY_CLASSES_ROOT\Directory\shell\copypath\command]
+@="mshta vbscript:clipboarddata.setdata(\"text\",\"%1\")(close)"
