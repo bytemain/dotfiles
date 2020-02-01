@@ -202,9 +202,8 @@ put_win_fonts() {
 bk() {
     cp ~/.zshrc ~/dotfiles/ubuntu_wsl/ubuntuwsl2.zshrc
     cp ~/.zsh_plugins.txt ~/dotfiles/ubuntu_wsl/zsh_plugins.txt
-    cp ~/.config/nvim/init.vim ~/dotfiles/_rc/init.vim
-    cp ~/.condarc ~/dotfiles/_rc/condarc
-    cp ~/.zprofile ~/dotfiles/_rc/zprofile
+    cp ~/.config/nvim/init.vim ~/dotfiles/ubuntu_wsl/init.vim
+    cp ~/.condarc ~/dotfiles/ubuntu_wsl/condarc
 }
 
 v2() {
