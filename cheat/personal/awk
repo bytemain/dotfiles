@@ -2,3 +2,8 @@ cat /etc/passwd |awk -F ':' '{print $1}'
 通过awk命令我们可以筛选出符合要求的行或者列数据
 
 以:为分隔符，将password分为多列，并且提取出第一列的内容
+---
+
+$(awk '/Host github.com/{print NR}'  ~/.ssh/config)
+
+查找内容出现在第几行

@@ -232,12 +232,11 @@ anki() {
 
 rezsh() {
     source ~/.zshrc
-    source ~/.zprofile
 }
 
 u-update() {
     sudo apt-get update && sudo apt-get -y upgrade
-    brew upgrade --verbose
+    brew upgrade
     antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
 }
 
@@ -271,6 +270,8 @@ alias ws="cd ~/0Workspace"
 alias udtheme="cp -r ~/dotfiles/zsh-theme/. ~/.oh-my-zsh/custom/themes/ && rezsh"
 alias cls=clear
 alias rmrf="rm -rf"
+alias srmrf="sudo rm -rf"
+
 alias vimrc="vim ~/.config/nvim/init.vim"
 
 alias ping="nali-ping"
