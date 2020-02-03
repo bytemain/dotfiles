@@ -36,6 +36,6 @@ for( $i = 0; $i -lt $ports.length; $i++ ){
   iex "netsh interface portproxy add v4tov4 listenport=$port listenaddress=$addr connectport=$port connectaddress=$wslip"  | Out-Null
 }
 
-(Get-Content -Path $HOSTS_PATH | Select-String -Pattern '# w(sl)|(in)_hosts' -NotMatch) + "$wslip $wsl_hosts # wsl_hosts`n$winip $win_hosts # win_hosts" | Out-File -FilePath $HOSTS_PATH -encoding ascii;
+((Get-Content -Path $HOSTS_PATH | Select-String -Pattern '# w(sl)|(in)_hosts' -NotMatch | Out-String) + "$wslip $wsl_hosts # wsl_hosts`n$winip $win_hosts # win_hosts").Trim() | Out-File -FilePath $HOSTS_PATH -encoding ascii;
 
 ipconfig /flushdns | Out-Null
