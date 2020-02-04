@@ -1,8 +1,23 @@
 filetype on
 filetype indent on
 syntax on
+" Protect changes between writes. Default values of
+" updatecount (200 keystrokes) and updatetime
+" (4 seconds) are fine
+set swapfile
+set directory^=~/.vim/swap//
+
+" protect against crash-during-write
+set writebackup
+" but do not persist backup after successful write
 set nobackup
-set nowritebackup
+" use rename-and-write-new method whenever safe
+set backupcopy=auto
+" patch required to honor double slash at end
+set backupdir^=~/.vim/backup//
+" persist the undo tree for each file
+set undofile
+set undodir^=~/.vim/undo//
 set cmdheight=1
 set updatetime=300
 set signcolumn=yes
@@ -13,7 +28,6 @@ set nospell
 set hlsearch
 set smartcase
 set encoding=utf-8
-set noswapfile
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 set copyindent
 set autoindent
