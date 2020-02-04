@@ -14,7 +14,7 @@ export PATH="$PATH:$JAVA_HOME/bin:$JRE_HOME/bin"
 export NVM_DIR="$HOME/.nvm"
 LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/llvm/lib -Wl,-rpath,/home/linuxbrew/.linuxbrew/opt/llvm/lib"
 
-NEOVIM_WIN_DIR="/mnt/c/Users/withw/scoop/apps/neovim/current"
+NEOVIM_WIN_DIR="/mnt/c/Users/withw/scoop/apps/neovim-nightly/current"
 ZSH_THEME="sukka"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 HIST_STAMPS="yyyy-mm-dd"
@@ -257,6 +257,7 @@ bindkey '^Q' cdlast
 # alias
 unalias grv
 alias y=yarn
+alias code="code-insiders"
 alias py="python3"
 alias ipy="ipython"
 alias ohmyzsh="vim ~/.oh-my-zsh"
@@ -330,3 +331,7 @@ export PATH="~/.npm-global/bin:$PATH"
 export PATH="$HOME/.poetry/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="/home/linuxbrew/.linuxbrew/opt/python@3.8/bin:$PATH"
+export PKG_CONFIG_PATH="/home/linuxbrew/.linuxbrew/opt/python@3.8/lib/pkgconfig"
+export LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/python@3.8/lib"
+export CPPFLAGS="-I/home/linuxbrew/.linuxbrew/opt/python@3.8/include"
