@@ -6,7 +6,6 @@ set nowritebackup
 set cmdheight=1
 set updatetime=300
 set signcolumn=yes
-" set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
 set listchars=tab:>-,trail:~,extends:>,precedes:<,nbsp:-
 set list
 set number
@@ -25,7 +24,7 @@ set showmatch
 set showmode
 set showcmd
 set mouse=a
-set clipboard=unnamedplus
+set clipboard+=unnamedplus
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 set guicursor=n-v-c:block,i-ci-ve:ver10,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175
 
@@ -69,7 +68,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
-let g:python3_host_prog = '/home/linuxbrew/.linuxbrew/bin/python3'
+let g:python3_host_prog = '/home/linuxbrew/.linuxbrew/opt/python@3.8/bin/python3'
 let g:UltiSnipsExpandTrigger="<c-u><c-n>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
