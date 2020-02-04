@@ -12,14 +12,12 @@ export JAVA_BIN="$JAVA_HOME/bin"
 export CLASSPATH=".:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib"
 export PATH="$PATH:$JAVA_HOME/bin:$JRE_HOME/bin"
 export NVM_DIR="$HOME/.nvm"
-LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/llvm/lib -Wl,-rpath,/home/linuxbrew/.linuxbrew/opt/llvm/lib"
-
-NEOVIM_WIN_DIR="/mnt/c/Users/withw/scoop/apps/neovim-nightly/current"
+export LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/llvm/lib -Wl,-rpath,/home/linuxbrew/.linuxbrew/opt/llvm/lib,-L/home/linuxbrew/.linuxbrew/opt/python@3.8/lib"
+export NEOVIM_WIN_DIR="/mnt/c/Users/withw/scoop/apps/neovim-nightly/current"
 ZSH_THEME="sukka"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 HIST_STAMPS="yyyy-mm-dd"
 ZSH_DISABLE_COMPFIX=true
-source ~/.zsh_plugins.sh
 
 plugins=(
     git
@@ -28,39 +26,91 @@ plugins=(
     sudo
     docker
     poetry
+    safe-paste
 )
 
-source $ZSH/oh-my-zsh.sh
-
-# ------------------------------ NVM
-nvm-update() {
-    (
-        cd "$NVM_DIR"
-        git fetch --tags origin
-        git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
-    ) && \. "$NVM_DIR/nvm.sh"
-}
-
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/artin/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/artin/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/artin/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/artin/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
 # User configuration
+source $ZSH/oh-my-zsh.sh
+source ~/.zsh_plugins.sh
+
+# alias
+unalias grv
+alias y=yarn
+alias code="code-insiders"
+alias py="python3"
+alias ipy="ipython"
+alias ohmyzsh="vim ~/.oh-my-zsh"
+alias vizsh="vim ~/.zshrc"
+
+alias c.="code-insiders ."
+alias e.="explorer.exe ."
+alias cdtmp='cd `mktemp -d /tmp/artin-XXXXXX`'
+alias ws="cd ~/0Workspace"
+alias udtheme="cp -r ~/dotfiles/zsh-theme/. ~/.oh-my-zsh/custom/themes/ && rezsh"
+alias cls=clear
+alias rmrf="rm -rf"
+alias srmrf="sudo rm -rf"
+alias vimrc="vim ~/.config/nvim/init.vim"
+alias ping="nali-ping"
+alias dig="nali-dig"
+alias traceroute="nali-traceroute"
+alias tracepath="nali-tracepath"
+alias dig="nali-dig"
+alias nslookup="nali-nslookup"
+alias shutdown="wsl.exe --shutdown"
+alias nali-update="sudo nali-update"
+alias apt-update="sudo apt-get update && sudo apt-get -y upgrade"
+alias ncdux="ncdu -X /home/artin/dotfiles/_rc/.ncduignorerc"
+alias ct=cheat
+alias tl=tldr
+alias vi=nvim
+alias vim=nvim
+alias lg=lazygit
+alias pc4=proxychains4
+alias top=htop
+alias fd=fdfind
+alias g=git
+alias ls="exa"
+alias l="exa -la"
+alias sdocker="sudo service docker start"
+alias gcid="git log | head -1 | awk '{print substr(\$2,1,7)}' | clip.exe"
+
+alias -s gz='tar -xzvf'
+alias -s tgz='tar -xzvf'
+alias -s zip='unzip'
+alias -s bz2='tar -xjvf'
+
+# Created by mirror-config-china
+export IOJS_ORG_MIRROR=https://npm.taobao.org/mirrors/iojs
+export NODIST_IOJS_MIRROR=https://npm.taobao.org/mirrors/iojs
+export NVM_IOJS_ORG_MIRROR=https://npm.taobao.org/mirrors/iojs
+export NVMW_IOJS_ORG_MIRROR=https://npm.taobao.org/mirrors/iojs
+export NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
+export NODIST_NODE_MIRROR=https://npm.taobao.org/mirrors/node
+export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
+export NVMW_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
+export NVMW_NPM_MIRROR=https://npm.taobao.org/mirrors/npm
+# End of mirror-config-china
+
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if [ -d "$HOME/bin" ] ; then
+    export PATH="$HOME/bin:$PATH"
+fi
+
+if [ -d "$HOME/.local/bin" ] ; then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
+
+
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+export PATH="~/.npm-global/bin:$PATH"
+export PATH="$HOME/.poetry/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="/home/linuxbrew/.linuxbrew/opt/python@3.8/bin:$PATH"
+export PKG_CONFIG_PATH="/home/linuxbrew/.linuxbrew/opt/python@3.8/lib/pkgconfig"
+export CPPFLAGS="-I/home/linuxbrew/.linuxbrew/opt/python@3.8/include"
 
 # using *
 setopt no_nomatch
@@ -235,7 +285,7 @@ rezsh() {
 
 u-update() {
     sudo apt-get update && sudo apt-get -y upgrade
-    brew upgrade
+    brew upgrade --verbose
     antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
 }
 
@@ -254,84 +304,19 @@ cdlast() {
 zle -N cdlast
 bindkey '^Q' cdlast
 
-# alias
-unalias grv
-alias y=yarn
-alias code="code-insiders"
-alias py="python3"
-alias ipy="ipython"
-alias ohmyzsh="vim ~/.oh-my-zsh"
-alias vizsh="vim ~/.zshrc"
 
-alias c.="code-insiders ."
-alias e.="explorer.exe ."
-alias cdtmp='cd `mktemp -d /tmp/artin-XXXXXX`'
-alias ws="cd ~/0Workspace"
-alias udtheme="cp -r ~/dotfiles/zsh-theme/. ~/.oh-my-zsh/custom/themes/ && rezsh"
-alias cls=clear
-alias rmrf="rm -rf"
-alias srmrf="sudo rm -rf"
-
-alias vimrc="vim ~/.config/nvim/init.vim"
-
-alias ping="nali-ping"
-alias dig="nali-dig"
-alias traceroute="nali-traceroute"
-alias tracepath="nali-tracepath"
-alias dig="nali-dig"
-alias nslookup="nali-nslookup"
-alias shutdown="wsl.exe --shutdown"
-alias nali-update="sudo nali-update"
-alias apt-update="sudo apt-get update && sudo apt-get -y upgrade"
-alias ncdux="ncdu -X /home/artin/dotfiles/_rc/.ncduignorerc"
-alias ct=cheat
-alias tl=tldr
-alias vi=nvim
-alias vim=nvim
-alias lg=lazygit
-alias pc4=proxychains4
-alias top=htop
-alias fd=fdfind
-alias g=git
-alias ls="exa"
-alias l="exa -la"
-alias sdocker="sudo service docker start"
-alias gcid="git log | head -1 | awk '{print substr(\$2,1,7)}' | clip.exe"
-
-alias -s gz='tar -xzvf'
-alias -s tgz='tar -xzvf'
-alias -s zip='unzip'
-alias -s bz2='tar -xjvf'
-
-# Created by mirror-config-china
-export IOJS_ORG_MIRROR=https://npm.taobao.org/mirrors/iojs
-export NODIST_IOJS_MIRROR=https://npm.taobao.org/mirrors/iojs
-export NVM_IOJS_ORG_MIRROR=https://npm.taobao.org/mirrors/iojs
-export NVMW_IOJS_ORG_MIRROR=https://npm.taobao.org/mirrors/iojs
-export NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
-export NODIST_NODE_MIRROR=https://npm.taobao.org/mirrors/node
-export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
-export NVMW_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
-export NVMW_NPM_MIRROR=https://npm.taobao.org/mirrors/npm
-# End of mirror-config-china
-
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-if [ -d "$HOME/bin" ] ; then
-    export PATH="$HOME/bin:$PATH"
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/artin/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/artin/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/artin/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/artin/miniconda3/bin:$PATH"
+    fi
 fi
+unset __conda_setup
+# <<< conda initialize <<<
 
-if [ -d "$HOME/.local/bin" ] ; then
-    export PATH="$HOME/.local/bin:$PATH"
-fi
-
-
-eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-
-export PATH="~/.npm-global/bin:$PATH"
-export PATH="$HOME/.poetry/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-export PATH="/home/linuxbrew/.linuxbrew/opt/python@3.8/bin:$PATH"
-export PKG_CONFIG_PATH="/home/linuxbrew/.linuxbrew/opt/python@3.8/lib/pkgconfig"
-export LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/python@3.8/lib"
-export CPPFLAGS="-I/home/linuxbrew/.linuxbrew/opt/python@3.8/include"
