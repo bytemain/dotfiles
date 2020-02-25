@@ -24,10 +24,12 @@ plugins=(
     history
     autojump
     sudo
-    docker
     poetry
     safe-paste
 )
+if type brew &>/dev/null; then
+      FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+fi
 
 # User configuration
 source $ZSH/oh-my-zsh.sh
@@ -35,6 +37,9 @@ source ~/.zsh_plugins.sh
 
 # alias
 unalias grv
+alias l="exa -la"
+alias ls="exa"
+alias la="exa -lah"
 alias y=yarn
 alias code="code-insiders"
 alias py="python3"
@@ -46,7 +51,8 @@ alias c.="code-insiders ."
 alias e.="explorer.exe ."
 alias cdtmp='cd `mktemp -d /tmp/artin-XXXXXX`'
 alias ws="cd ~/0Workspace"
-alias udtheme="cp -r ~/dotfiles/zsh-theme/. ~/.oh-my-zsh/custom/themes/ && rezsh"
+alias udtheme="cp -r ~/dotfiles/zsh-theme/. ~/.oh-my-zsh/custom/themes/"
+alias udwsl='powershell.exe "sudo powershell -ExecutionPolicy ByPass -File C:\Users\withw\dotfiles\windows\wsl2.ps1"'
 alias cls=clear
 alias rmrf="rm -rf"
 alias srmrf="sudo rm -rf"
@@ -70,8 +76,6 @@ alias pc4=proxychains4
 alias top=htop
 alias fd=fdfind
 alias g=git
-alias ls="exa"
-alias l="exa -la"
 alias sdocker="sudo service docker start"
 alias gcid="git log | head -1 | awk '{print substr(\$2,1,7)}' | clip.exe"
 
@@ -116,16 +120,26 @@ export CPPFLAGS="-I/home/linuxbrew/.linuxbrew/opt/python@3.8/include"
 setopt no_nomatch
 
 # Proxy configuration
-winip=$(ip route | grep default | awk '{print $3}')
-wslip=$(hostname -I | awk '{print $1}')
-sudo -S sed -i "/win.local/c $winip win.local" /etc/hosts
-PROXY_HTTP="http://${winip}:7890"
-PROXY_SOCKS5="socks5://${winip}:7891"
+getIp() {
+    export winip=$(ip route | grep default | awk '{print $3}')
+    # export winip="WIN-OMEN"
+    export wslip=$(hostname -I | awk '{print $1}')
+    export PROXY_SOCKS5="socks5://${winip}:7891"
+    export PROXY_HTTP="http://${winip}:7890"
+}
 
-alias winip_="echo ${winip}"
-alias wslip_="echo ${wslip}"
+winip_() {
+    getIp
+    echo ${winip}
+}
+
+wslip_() {
+    getIp
+    echo ${wslip}
+}
 
 x11() {
+    getIp
     if [ ! $1 ]; then
         # null
         export DISPLAY=${winip}:0.0
@@ -135,9 +149,14 @@ x11() {
     echo $DISPLAY
     export XDG_SESSION_TYPE=x11
     export XDG_RUNTIME_DIR=/tmp/runtime-root
+    export LIBGL_ALWAYS_INDIRECT=1
     export PULSE_SERVER=tcp:$winip
 }
+export XMODIFIERS=@im=fcitx
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
 ip_() {
+    getIp
     curl https://ip.cn/$1
     # http --follow -b https://api.ip.sb/geoip/$1
     echo "WIN ip: ${winip}"
@@ -145,6 +164,7 @@ ip_() {
 }
 
 proxy_npm() {
+    getIp
     npm config set proxy ${PROXY_HTTP}
     npm config set https-proxy ${PROXY_HTTP}
     yarn config set proxy ${PROXY_HTTP}
@@ -159,6 +179,8 @@ unpro_npm() {
 }
 
 proxy () {
+    getIp
+
     # pip can read http_proxy & https_proxy
     # http_proxy
     export http_proxy="${PROXY_HTTP}"
@@ -185,7 +207,7 @@ proxy () {
         ip_
     fi
 }
-proxy 1
+
 unpro () {
     unset http_proxy
     unset HTTP_PROXY
@@ -279,10 +301,6 @@ anki() {
        kuklinistvan/anki-sync-server:latest
 }
 
-rezsh() {
-    source ~/.zshrc
-}
-
 u-update() {
     sudo apt-get update && sudo apt-get -y upgrade
     brew upgrade --verbose
@@ -304,6 +322,7 @@ cdlast() {
 zle -N cdlast
 bindkey '^Q' cdlast
 
+proxy 1
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
