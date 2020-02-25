@@ -18,7 +18,7 @@ ZSH_THEME="sukka"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 HIST_STAMPS="yyyy-mm-dd"
 ZSH_DISABLE_COMPFIX=true
-
+DISABLE_CORRECTION=true
 plugins=(
     git
     history
@@ -46,7 +46,11 @@ alias py="python3"
 alias ipy="ipython"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias vizsh="vim ~/.zshrc"
-
+alias tli="train-list"
+alias trm="trash-rm"
+alias tre="trash-restore"
+alias tem="trash-empty"
+alias tp="trash-put"
 alias c.="code-insiders ."
 alias e.="explorer.exe ."
 alias cdtmp='cd `mktemp -d /tmp/artin-XXXXXX`'
@@ -68,7 +72,6 @@ alias nali-update="sudo nali-update"
 alias apt-update="sudo apt-get update && sudo apt-get -y upgrade"
 alias ncdux="ncdu -X /home/artin/dotfiles/_rc/.ncduignorerc"
 alias ct=cheat
-alias tl=tldr
 alias vi=nvim
 alias vim=nvim
 alias lg=lazygit
@@ -182,26 +185,16 @@ proxy () {
     getIp
 
     # pip can read http_proxy & https_proxy
-    # http_proxy
     export http_proxy="${PROXY_HTTP}"
     export HTTP_PROXY="${PROXY_HTTP}"
-
-    # https_proxy
     export https_proxy="${PROXY_HTTP}"
     export HTTPS_proxy="${PROXY_HTTP}"
-
-    # ftp_proxy
     export ftp_proxy="${PROXY_HTTP}"
     export FTP_PROXY="${PROXY_HTTP}"
-
-    # rsync_proxy
     export rsync_proxy="${PROXY_HTTP}"
     export RSYNC_PROXY="${PROXY_HTTP}"
-
-    # all_proxy
     export ALL_PROXY="${PROXY_SOCKS5}"
     export all_proxy="${PROXY_SOCKS5}"
-
     sh $HOME/dotfiles/ubuntu_wsl/git_proxy.sh
     if [ ! $1 ]; then
         ip_
@@ -305,6 +298,8 @@ u-update() {
     sudo apt-get update && sudo apt-get -y upgrade
     brew upgrade --verbose
     antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
+    nali-update
+    nvm upgrade
 }
 
 zsh_history_fix() {

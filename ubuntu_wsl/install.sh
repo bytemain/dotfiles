@@ -44,14 +44,14 @@ install-linux-packages() {
     echo "-----------------------------------------------------------"
 
     sudo apt-get update
-    sudo apt-get install -y python2.7 python3-dev python3-pip python3-setuptools
+    sudo apt-get install -y python3-dev python3-pip python3-setuptools
     sudo apt-get install -y build-essential libreadline-dev apt-file
-    sudo apt-get install -y zsh curl wget git tree unzip ncdu tmux
+    sudo apt-get install -y zsh curl wget git tree unzip ncdu tmux trash-cli
     sudo apt-get install -y festival festvox-kallpc16k
     sudo apt-get install -y neofetch screenfetch autojump
     sudo apt-get install -y lsof whois httpie
     sudo apt-get install -y net-tools iputils-tracepath dnsutils
-    sudo apt-get install -y netcat-openbsd
+    sudo apt-get install -y netcat-openbsd fonts-noto fonts-noto-hinted fonts-noto-cjk
 
 }
 
@@ -80,8 +80,8 @@ install-linuxbrew(){
     echo 'eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)' >>~/.zprofile
     eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
-    brew install gcc git-quick-stats tldr cheat
-    brew install ripgrep bat exa neovim
+    brew install gcc git-quick-stats cheat
+    brew install ripgrep bat exa neovim git fzf
     brew install getantibody/tap/antibody
     brew install ctop hub onefetch
     brew install jesseduffield/lazygit/lazygit
@@ -138,9 +138,11 @@ install-nodejs() {
         echo "* Yarn Global Add those packages:"
         echo "-----------------------------------------------------------"
         npm install -g mirror-config-china --registry=http://registry.npm.taobao.org
+        yarn config set registry https://registry.npm.taobao.org/
         yarn global add npm-check-updates
         yarn global add http-server serve
         yarn global add what-is-x liyu wtf
+        yarn global add typescript ts-node
     }
 
 
