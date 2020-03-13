@@ -7,13 +7,13 @@ export EDITOR=vim
 export CHEAT_USER_DIR="$HOME/dotfiles/cheat"
 export CHEAT_CONFIG_PATH="~/dotfiles/cheat/conf.yml"
 export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
-export JRE_HOME="$JAVA_HOME/jre"
-export JAVA_BIN="$JAVA_HOME/bin"
-export CLASSPATH=".:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib"
 export PATH="$PATH:$JAVA_HOME/bin:$JRE_HOME/bin"
 export NVM_DIR="$HOME/.nvm"
 export LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/llvm/lib -Wl,-rpath,/home/linuxbrew/.linuxbrew/opt/llvm/lib,-L/home/linuxbrew/.linuxbrew/opt/python@3.8/lib"
 export NEOVIM_WIN_DIR="/mnt/c/Users/withw/scoop/apps/neovim-nightly/current"
+export XMODIFIERS=@im=fcitx
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
 ZSH_THEME="sukka"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 HIST_STAMPS="yyyy-mm-dd"
@@ -51,6 +51,8 @@ alias trm="trash-rm"
 alias tre="trash-restore"
 alias tem="trash-empty"
 alias tp="trash-put"
+alias c=code-insiders
+alias e="explorer.exe"
 alias c.="code-insiders ."
 alias e.="explorer.exe ."
 alias cdtmp='cd `mktemp -d /tmp/artin-XXXXXX`'
@@ -79,7 +81,6 @@ alias pc4=proxychains4
 alias top=htop
 alias fd=fdfind
 alias g=git
-alias sdocker="sudo service docker start"
 alias gcid="git log | head -1 | awk '{print substr(\$2,1,7)}' | clip.exe"
 
 alias -s gz='tar -xzvf'
@@ -155,9 +156,7 @@ x11() {
     export LIBGL_ALWAYS_INDIRECT=1
     export PULSE_SERVER=tcp:$winip
 }
-export XMODIFIERS=@im=fcitx
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
+
 ip_() {
     getIp
     curl https://ip.cn/$1
@@ -183,7 +182,6 @@ unpro_npm() {
 
 proxy () {
     getIp
-
     # pip can read http_proxy & https_proxy
     export http_proxy="${PROXY_HTTP}"
     export HTTP_PROXY="${PROXY_HTTP}"
@@ -271,27 +269,14 @@ bk() {
     cp ~/.condarc ~/dotfiles/ubuntu_wsl/condarc
 }
 
-v2() {
-  declare q="$*";
-  curl --user-agent curl "https://v2en.co/${q// /%20}";
-}
-
-v2-sh() {
-  while echo -n "v2en> ";
-  read -r input;
-    [[ -n "$input" ]];
-    do v2 "$input";
-    done;
-}
-
-anki() {
-    export ANKI_SYNC_DATA_DIR=~/anki-sync-server-docker-data
-    docker run -it \
-       --mount type=bind,source="$ANKI_SYNC_DATA_DIR",target=/app/data \
-       -p 27701:27701 \
-       --name anki-container \
-       --rm \
-       kuklinistvan/anki-sync-server:latest
+u-clean() {
+    sudo apt-get clean
+    sudo apt-get autoclean
+    sudo apt-get autoremove
+    deborphan | xargs sudo apt-get purge
+    deborphan
+    sudo aptitude search ?obsolete
+    sudo aptitude purge ~o
 }
 
 u-update() {
