@@ -1,18 +1,22 @@
+Import-Module oh-my-posh
 Import-Module posh-git
 Import-Module posh-docker
-Import-Module oh-my-posh
 Install-GuiCompletion -Key Tab
-(& "D:\Miniconda3\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | Invoke-Expression
+Import-Module DockerCompletion
 
 Set-Theme artin-theme
 
 Set-Alias c code-insiders
 Set-Alias g git
+Set-Alias y yarn
 Set-Alias e explorer
 Set-Alias vim nvim
+Set-Alias vimq nvim-qt
 Set-Alias vi nvim
+Set-Alias viq nvim-qt
 Set-Alias which get-command
-
+Set-Alias dco docker-compose
+Set-Alias dc docker
 function vimrc { vim ~\AppData\Local\nvim\init.vim }
 function ws {cd "D:\0Workspace"}
 function vipro { nvim $PROFILE }
@@ -30,6 +34,4 @@ function bk {
 function vitmp { nvim ~\0Workspace\tmpfile }
 
 
-$env:TERM='xterm-256color'
-
-
+$env:term='xterm-256color'
