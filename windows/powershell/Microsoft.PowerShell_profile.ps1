@@ -11,14 +11,13 @@ Set-Alias g git
 Set-Alias y yarn
 Set-Alias e explorer
 Set-Alias p poetry
+Set-Alias s scoop
+Set-Alias d docker
+Set-Alias dc docker-compose
 Set-Alias py python
 Set-Alias vim nvim
-Set-Alias vimq nvim-qt
-Set-Alias vi nvim
 Set-Alias viq nvim-qt
 Set-Alias which get-command
-Set-Alias dco docker-compose
-Set-Alias dc docker
 Set-Alias lg lazygit
 Set-Alias ipy ipython
 function vimrc { vim ~\AppData\Local\nvim\init.vim }
@@ -36,6 +35,8 @@ function bk {
     Copy-Item $PROFILE\..\PoshThemes ~\dotfiles\windows\powershell -Recurse -Force
 }
 function vitmp { nvim ~\0Workspace\tmpfile }
-
-
+function rmrf { rm -Recurse -Force $args[0] }
+function u-nvim {
+    scoop update neovim-nightly --force
+}
 $env:term='xterm-256color'
