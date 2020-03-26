@@ -49,7 +49,7 @@ install-linux-packages() {
     sudo apt-get install -y zsh curl wget git tree unzip ncdu tmux trash-cli
     sudo apt-get install -y festival festvox-kallpc16k
     sudo apt-get install -y neofetch screenfetch autojump
-    sudo apt-get install -y lsof whois httpie
+    sudo apt-get install -y lsof whois traceroute
     sudo apt-get install -y net-tools iputils-tracepath dnsutils
     sudo apt-get install -y netcat-openbsd fonts-noto fonts-noto-hinted fonts-noto-cjk
 
@@ -83,7 +83,7 @@ install-linuxbrew(){
     brew install gcc git-quick-stats cheat
     brew install ripgrep bat exa neovim git fzf
     brew install getantibody/tap/antibody
-    brew install ctop hub onefetch
+    brew install ctop hub onefetch yarn httpie
     brew install jesseduffield/lazygit/lazygit
 }
 
@@ -119,17 +119,6 @@ install-nodejs() {
     }
 
     install-yarn() {
-        echo "-----------------------------------------------------------"
-        echo "* Installing Yarn..."
-        echo "-----------------------------------------------------------"
-
-        curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-        echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-        sudo apt-get update && sudo apt-get install --no-install-recommends yarn
-
-        echo "-----------------------------------------------------------"
-        echo -n "* Yarn Version: "
-
         yarn --version
     }
 
@@ -202,10 +191,10 @@ finish() {
 
 start
 install-linux-packages
+install-linuxbrew
 setup-omz
 install-nodejs
 install-nali
-install-linuxbrew
 zshrc
 upgrade-packages
 finish

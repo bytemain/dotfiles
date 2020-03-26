@@ -159,8 +159,7 @@ x11() {
 
 ip_() {
     getIp
-    curl https://ip.cn/$1
-    # http --follow -b https://api.ip.sb/geoip/$1
+    https --follow -b https://api.ip.sb/geoip/$1
     echo "WIN ip: ${winip}"
     echo "WSL ip: ${wslip}"
 }
@@ -233,6 +232,7 @@ git-config() {
     git config --global alias.a "add ."
     git config --global alias.cm "commit -m"
     git config --global alias.rh "reset --hard"
+    git config --global alias.f "fetch"
 }
 
 ssh_start() {
