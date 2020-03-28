@@ -1,0 +1,29 @@
+{
+	"files.associations": {
+		"*.config": "json",
+		".eslintrc": "jsonc",
+		"ostream": "cpp",
+		"queue": "cpp",
+		"iostream": "cpp",
+		"ctime": "cpp",
+		"vector": "cpp",
+		"cmath": "cpp",
+		"cstdlib": "cpp",
+		"random": "cpp",
+		"xstring": "cpp",
+		"array": "cpp",
+		"deque": "cpp",
+		"filesystem": "cpp",
+		"forward_list": "cpp",
+		"list": "cpp",
+		"regex": "cpp",
+		"stack": "cpp",
+		"xhash": "cpp",
+		"xtree": "cpp",
+		"xutility": "cpp",
+		"xlocmon": "cpp",
+		"chrono": "cpp",
+		"limits": "cpp",
+		"valarray": "cpp"
+	}
+}
