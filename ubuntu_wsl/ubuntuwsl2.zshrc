@@ -40,6 +40,8 @@ unalias grv
 alias l="exa -la"
 alias ls="exa"
 alias la="exa -lah"
+alias vi="vim"
+alias vim="nvim"
 alias y=yarn
 alias code="code-insiders"
 alias py="python3"
@@ -74,8 +76,6 @@ alias nali-update="sudo nali-update"
 alias apt-update="sudo apt-get update && sudo apt-get -y upgrade"
 alias ncdux="ncdu -X /home/artin/dotfiles/_rc/.ncduignorerc"
 alias ct=cheat
-alias vi=nvim
-alias vim=nvim
 alias lg=lazygit
 alias pc4=proxychains4
 alias top=htop
@@ -285,6 +285,7 @@ u-update() {
     antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
     nali-update
     nvm upgrade
+    git -C ~/dotfiles/cheat/community/ pull
 }
 
 zsh_history_fix() {
