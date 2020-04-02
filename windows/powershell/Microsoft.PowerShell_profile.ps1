@@ -1,7 +1,8 @@
 Import-Module oh-my-posh
 Import-Module posh-git
-Import-Module posh-docker
 Install-GuiCompletion -Key Tab
+Import-Module ZLocation
+Import-Module posh-docker
 Import-Module DockerCompletion
 
 Set-Theme artin-theme
@@ -20,7 +21,7 @@ Set-Alias py python
 Set-Alias which get-command
 Set-Alias lg lazygit
 Set-Alias ipy ipython
-function vimrc { vim ~\AppData\Local\nvim\init.vim }
+function vimrc { vim C:\Users\withw\AppData\Local\nvim\init.vim }
 function ws {cd "D:\0Workspace"}
 function vipro { nvim $PROFILE }
 function cdtmp {
@@ -31,7 +32,7 @@ function cdtmp {
 }
 function wshutdown { wsl.exe --shutdown }
 function bk {
-    Copy-Item ~\AppData\Local\nvim\init.vim ~\dotfiles\windows
+    Copy-Item ~\AppData\Local\nvim ~\dotfiles\windows -Recurse -Force
     Copy-Item $PROFILE ~\dotfiles\windows\powershell
     Copy-Item $PROFILE\..\PoshThemes ~\dotfiles\windows\powershell -Recurse -Force
 }
