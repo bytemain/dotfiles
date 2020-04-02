@@ -32,7 +32,7 @@ function cdtmp {
 }
 function wshutdown { wsl.exe --shutdown }
 function bk {
-    Copy-Item ~\AppData\Local\nvim ~\dotfiles\windows -Recurse -Force
+    Copy-Item ~\AppData\Local\nvim\init.vim ~\dotfiles\windows\nvim
     Copy-Item $PROFILE ~\dotfiles\windows\powershell
     Copy-Item $PROFILE\..\PoshThemes ~\dotfiles\windows\powershell -Recurse -Force
 }
