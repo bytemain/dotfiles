@@ -82,6 +82,7 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'joshdick/onedark.vim'
 call plug#end()
 
 let g:python3_host_prog = '/home/linuxbrew/.linuxbrew/opt/python@3.8/bin/python3'
@@ -93,7 +94,8 @@ let g:UltiSnipsEditSplit="vertical"
 map <C-b> :NERDTreeToggle<CR>
 
 set termguicolors
-colorscheme dracula
+" colorscheme dracula
+colorscheme onedark
 set background=dark
 
 map  <silent> <S-Insert> "+p
