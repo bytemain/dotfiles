@@ -208,6 +208,8 @@ proxy () {
     if [ ! $1 ]; then
         ip_
     fi
+    sudo echo "Acquire::http::Proxy \"${PROXY_HTTP}\";" > /etc/apt/apt.conf.d/proxy.conf
+    sudo echo "Acquire::https::Proxy \"${PROXY_HTTP}\";" >> /etc/apt/apt.conf.d/proxy.conf
 }
 
 unpro () {
