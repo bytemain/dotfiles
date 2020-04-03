@@ -128,7 +128,7 @@ install-nodejs() {
         echo "-----------------------------------------------------------"
         npm install -g mirror-config-china --registry=http://registry.npm.taobao.org
         yarn config set registry https://registry.npm.taobao.org/
-        yarn global add npm-check-updates
+        yarn global add npm-check-updates nali-cli
         yarn global add http-server serve
         yarn global add what-is-x liyu wtf
         yarn global add typescript ts-node

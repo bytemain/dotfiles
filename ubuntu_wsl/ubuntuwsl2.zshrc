@@ -40,6 +40,7 @@ unalias grv
 alias l="exa -la"
 alias ls="exa"
 alias la="exa -lah"
+alias b=brew
 alias vi="vim"
 alias vim="nvim"
 alias y=yarn
@@ -132,6 +133,17 @@ getIp() {
     export PROXY_HTTP="http://${winip}:7890"
 }
 
+proxy_git() {
+    ssh_proxy="${winip}:7891"
+    git config --global http.https://github.com.proxy ${PROXY_HTTP}
+    if ! grep -qF "Host github.com" ~/.ssh/config ; then
+        cat ~/dotfiles/_rc/ssh.proxy | sed "s/_ssh_proxy_/$ssh_proxy/g"  >> ~/.ssh/config
+    else
+        lino=$(($(awk '/Host github.com/{print NR}'  ~/.ssh/config)+2))
+        sed -i "${lino}c\    ProxyCommand nc -X 5 -x $ssh_proxy %h %p" ~/.ssh/config
+    fi
+}
+
 winip_() {
     getIp
     echo ${winip}
@@ -192,7 +204,7 @@ proxy () {
     export RSYNC_PROXY="${PROXY_HTTP}"
     export ALL_PROXY="${PROXY_SOCKS5}"
     export all_proxy="${PROXY_SOCKS5}"
-    sh $HOME/dotfiles/ubuntu_wsl/git_proxy.sh
+    proxy_git
     if [ ! $1 ]; then
         ip_
     fi
@@ -283,7 +295,7 @@ u-update() {
     sudo apt-get update && sudo apt-get -y upgrade
     brew upgrade --verbose
     antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
-    nali-update
+    nali update
     nvm upgrade
     git -C ~/dotfiles/cheat/community/ pull
 }
