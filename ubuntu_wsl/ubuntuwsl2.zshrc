@@ -208,8 +208,8 @@ proxy () {
     if [ ! $1 ]; then
         ip_
     fi
-    sudo echo "Acquire::http::Proxy \"${PROXY_HTTP}\";" > /etc/apt/apt.conf.d/proxy.conf
-    sudo echo "Acquire::https::Proxy \"${PROXY_HTTP}\";" >> /etc/apt/apt.conf.d/proxy.conf
+    echo "Acquire::http::Proxy \"${PROXY_HTTP}\";" | sudo tee /etc/apt/apt.conf.d/proxy.conf >/dev/null 2>&1
+    echo "Acquire::https::Proxy \"${PROXY_HTTP}\";" | sudo tee -a /etc/apt/apt.conf.d/proxy.conf >/dev/null 2>&1
 }
 
 unpro () {
@@ -223,10 +223,11 @@ unpro () {
     unset RSYNC_PROXY
     unset ALL_PROXY
     unset all_proxy
+    sudo rm /etc/apt/apt.conf.d/proxy.conf
+    git config --global --unset http.https://github.com.proxy
     ip_
 }
 
-# functions
 git-config() {
     echo -n "Please input Git Username: "
     read username
