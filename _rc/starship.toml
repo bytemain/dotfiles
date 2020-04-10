@@ -14,7 +14,6 @@ renamed_count.enabled = true
 deleted_count.enabled = true
 show_sync_count = true
 staged_count.enabled = true
-staged_count.style = "green"
 
 [username]
 show_always = true
