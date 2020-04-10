@@ -14,7 +14,7 @@ export NEOVIM_WIN_DIR="/mnt/c/Users/withw/scoop/apps/neovim-nightly/current"
 export XMODIFIERS=@im=fcitx
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
-ZSH_THEME="sukka"
+# ZSH_THEME="sukka"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 HIST_STAMPS="yyyy-mm-dd"
 ZSH_DISABLE_COMPFIX=true
@@ -49,6 +49,7 @@ alias py="python3"
 alias ipy="ipython"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias vizsh="vim ~/.zshrc"
+alias vish="vim ~/.config/starship.toml"
 alias tli="train-list"
 alias trm="trash-rm"
 alias tre="trash-restore"
@@ -197,7 +198,7 @@ proxy () {
     export http_proxy="${PROXY_HTTP}"
     export HTTP_PROXY="${PROXY_HTTP}"
     export https_proxy="${PROXY_HTTP}"
-    export HTTPS_proxy="${PROXY_HTTP}"
+    export HTTPS_PROXY="${PROXY_HTTP}"
     export ftp_proxy="${PROXY_HTTP}"
     export FTP_PROXY="${PROXY_HTTP}"
     export rsync_proxy="${PROXY_HTTP}"
@@ -281,6 +282,7 @@ bk() {
     cp ~/.zshrc ~/dotfiles/ubuntu_wsl/ubuntuwsl2.zshrc
     cp ~/.zsh_plugins.txt ~/dotfiles/ubuntu_wsl/zsh_plugins.txt
     cp ~/.config/nvim/init.vim ~/dotfiles/ubuntu_wsl/init.vim
+    cp ~/.config/starship.toml ~/dotfiles/ubuntu_wsl/starship.toml
     cp ~/.condarc ~/dotfiles/ubuntu_wsl/condarc
 }
 
@@ -334,4 +336,4 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
+eval "$(starship init zsh)"
