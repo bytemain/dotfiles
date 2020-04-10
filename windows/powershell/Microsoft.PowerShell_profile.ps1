@@ -34,7 +34,7 @@ function cdtmp {
 function wshutdown { wsl.exe --shutdown }
 function bk {
     Copy-Item ~\AppData\Local\nvim\init.vim ~\dotfiles\windows\nvim
-    Copy-Item ~\.config\starship.toml ~\dotfiles\windows 
+    Copy-Item ~\.config\starship.toml ~\dotfiles\_rc
     Copy-Item $PROFILE ~\dotfiles\windows\powershell
     Copy-Item $PROFILE\..\PoshThemes ~\dotfiles\windows\powershell -Recurse -Force
 }
@@ -42,6 +42,9 @@ function vitmp { nvim ~\0Workspace\tmpfile }
 function rmrf { rm -Recurse -Force $args[0] }
 function u-nvim {
     scoop update neovim-nightly --force
+}
+function r-sh {
+    Copy-Item ~\dotfiles\_rc\starship.toml ~\.config
 }
 $env:term='xterm-256color'
 
