@@ -282,8 +282,12 @@ bk() {
     cp ~/.zshrc ~/dotfiles/ubuntu_wsl/ubuntuwsl2.zshrc
     cp ~/.zsh_plugins.txt ~/dotfiles/ubuntu_wsl/zsh_plugins.txt
     cp ~/.config/nvim/init.vim ~/dotfiles/ubuntu_wsl/init.vim
-    cp ~/.config/starship.toml ~/dotfiles/ubuntu_wsl/starship.toml
+    cp ~/.config/starship.toml ~/dotfiles/_rc/starship.toml
     cp ~/.condarc ~/dotfiles/ubuntu_wsl/condarc
+}
+
+r-sh() {
+    cp ~/dotfiles/_rc/starship.toml ~/.config/starship.toml
 }
 
 u-clean() {
