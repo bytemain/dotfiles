@@ -1,13 +1,11 @@
-Import-Module oh-my-posh
+# Import-Module oh-my-posh
 Import-Module posh-git
 Import-Module ZLocation
-Import-Module posh-docker
-Import-Module DockerCompletion
 Import-Module PSReadLine
 
 Install-GuiCompletion -Key Tab
 
-Set-Theme artin-theme
+# Set-Theme artin-theme
 
 Set-Alias c code-insiders
 Set-Alias g git
@@ -26,6 +24,7 @@ Set-Alias ipy ipython
 function vimrc { vim C:\Users\withw\AppData\Local\nvim\init.vim }
 function ws {cd "D:\0Workspace"}
 function vipro { nvim $PROFILE }
+function vish { nvim C:\Users\withw\.config\starship.toml }
 function cdtmp {
     $parent = [System.IO.Path]::GetTempPath()
     $name = 'artin-' + [System.IO.Path]::GetRandomFileName()
@@ -35,6 +34,7 @@ function cdtmp {
 function wshutdown { wsl.exe --shutdown }
 function bk {
     Copy-Item ~\AppData\Local\nvim\init.vim ~\dotfiles\windows\nvim
+    Copy-Item ~\.config\starship.toml ~\dotfiles\windows 
     Copy-Item $PROFILE ~\dotfiles\windows\powershell
     Copy-Item $PROFILE\..\PoshThemes ~\dotfiles\windows\powershell -Recurse -Force
 }
@@ -99,4 +99,4 @@ Set-PSReadLineKeyHandler -Key F7 `
         [Microsoft.PowerShell.PSConsoleReadLine]::Insert(($command -join "`n"))
     }
 }
-
+Invoke-Expression (&starship init powershell)
