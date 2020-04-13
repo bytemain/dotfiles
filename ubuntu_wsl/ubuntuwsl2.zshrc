@@ -305,7 +305,7 @@ u-update() {
     sudo apt-get update && sudo apt-get -y upgrade
     brew upgrade --verbose
     antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
-    nali update
+    nali update -y
     nvm upgrade
     git -C ~/dotfiles/cheat/community/ pull
 }
@@ -342,3 +342,5 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 eval "$(starship init zsh)"
+
+eval $(thefuck --alias)
