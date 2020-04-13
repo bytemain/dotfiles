@@ -84,7 +84,7 @@ install-linuxbrew(){
     brew install ripgrep bat exa neovim git fzf
     brew install getantibody/tap/antibody
     brew install ctop hub onefetch yarn httpie
-    brew install jesseduffield/lazygit/lazygit
+    brew install jesseduffield/lazygit/lazygit lazydocker
 }
 
 
