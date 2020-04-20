@@ -7,7 +7,7 @@ Install-GuiCompletion -Key Tab
 
 # Set-Theme artin-theme
 
-Set-Alias c code-insiders
+Set-Alias c code
 Set-Alias g git
 Set-Alias y yarn
 Set-Alias e explorer
@@ -20,6 +20,7 @@ Set-Alias dc docker-compose
 Set-Alias py python
 Set-Alias which get-command
 Set-Alias lg lazygit
+Set-Alias lzd lazydocker
 Set-Alias ipy ipython
 function vimrc { vim C:\Users\withw\AppData\Local\nvim\init.vim }
 function ws {cd "D:\0Workspace"}
