@@ -1,3 +1,5 @@
+add_newline = false
+
 [character]
 symbol = "➜"
 use_symbol_for_status = true
@@ -15,5 +17,8 @@ deleted_count.enabled = true
 show_sync_count = true
 staged_count.enabled = true
 
+[conda]
+style = "dimmed green"
+symbol = "conda:"
 [username]
-show_always = true
+show_always = false

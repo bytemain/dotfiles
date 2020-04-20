@@ -1,5 +1,6 @@
 export PATH=`echo $PATH | tr ':' '\n' | grep -v /mnt/ | tr '\n' ':'`
 export PATH="/mnt/c/Program Files/Microsoft VS Code Insiders/bin:$PATH"
+export PATH="/mnt/c/Program Files/Microsoft VS Code/bin:$PATH"
 export PATH="/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:$PATH"
 typeset -U PATH
 export ZSH="$HOME/.oh-my-zsh"
@@ -22,8 +23,8 @@ DISABLE_CORRECTION=true
 plugins=(
     git
     history
-    autojump
     sudo
+    z
     poetry
     safe-paste
 )
@@ -44,7 +45,6 @@ alias b=brew
 alias vi="vim"
 alias vim="nvim"
 alias y=yarn
-alias code="code-insiders"
 alias py="python3"
 alias ipy="ipython"
 alias ohmyzsh="vim ~/.oh-my-zsh"
@@ -55,7 +55,8 @@ alias trm="trash-rm"
 alias tre="trash-restore"
 alias tem="trash-empty"
 alias tp="trash-put"
-alias c=code-insiders
+alias c=code
+alias ci="code-insiders"
 alias e="explorer.exe"
 alias c.="code-insiders ."
 alias e.="explorer.exe ."
