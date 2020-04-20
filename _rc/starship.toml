@@ -2,6 +2,7 @@ add_newline = false
 
 [character]
 symbol = "➜"
+error_symbol = "✗"
 use_symbol_for_status = true
 
 [git_branch]
