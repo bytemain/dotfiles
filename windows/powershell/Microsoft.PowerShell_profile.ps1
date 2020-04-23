@@ -16,12 +16,17 @@ Set-Alias s scoop
 Set-Alias d docker
 Set-Alias vim nvim
 Set-Alias viq nvim-qt
-Set-Alias dc docker-compose
+Set-Alias dco docker-compose
 Set-Alias py python
 Set-Alias which get-command
 Set-Alias lg lazygit
 Set-Alias lzd lazydocker
 Set-Alias ipy ipython
+Set-Alias dig nali-dig
+Set-Alias ping nali-ping
+Set-Alias nslookup nali-nslookup
+Set-Alias traceroute nali-traceroute
+Set-Alias tracepath nali-tracepath
 function vimrc { vim C:\Users\withw\AppData\Local\nvim\init.vim }
 function ws {cd "D:\0Workspace"}
 function vipro { nvim $PROFILE }
