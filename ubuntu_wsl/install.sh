@@ -167,7 +167,7 @@ zshrc() {
     echo "                  Import zshrc                   "
     echo "-----------------------------------------------------------"
     cd $HOME/dotfiles
-    cat ./ubuntu_wsl/ubuntuwsl2.zshrc > $HOME/.zshrc
+    cat ./ubuntu_wsl/zshrc > $HOME/.zshrc
 }
 
 upgrade-packages() {

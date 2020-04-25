@@ -71,11 +71,11 @@ alias vimrc="vim ~/.config/nvim/init.vim"
 alias ping="nali-ping"
 alias dig="nali-dig"
 alias lzd=lazydocker
+alias dco="docker-compose"
 alias traceroute="nali-traceroute"
 alias tracepath="nali-tracepath"
 alias nslookup="nali-nslookup"
 alias shutdown="wsl.exe --shutdown"
-alias nali-update="sudo nali-update"
 alias apt-update="sudo apt-get update && sudo apt-get -y upgrade"
 alias ncdux="ncdu -X /home/artin/dotfiles/_rc/.ncduignorerc"
 alias ct=cheat
@@ -129,7 +129,6 @@ setopt no_nomatch
 # Proxy configuration
 getIp() {
     export winip=$(ip route | grep default | awk '{print $3}')
-    # export winip="WIN-OMEN"
     export wslip=$(hostname -I | awk '{print $1}')
     export PROXY_SOCKS5="socks5://${winip}:7891"
     export PROXY_HTTP="http://${winip}:7890"
@@ -139,10 +138,12 @@ proxy_git() {
     ssh_proxy="${winip}:7891"
     git config --global http.https://github.com.proxy ${PROXY_HTTP}
     if ! grep -qF "Host github.com" ~/.ssh/config ; then
-        cat ~/dotfiles/_rc/ssh.proxy | sed "s/_ssh_proxy_/$ssh_proxy/g"  >> ~/.ssh/config
+        echo "Host github.com" >> ~/.ssh/config
+        echo "    User git" >> ~/.ssh/config
+        echo "    ProxyCommand nc -X 5 -x ${ssh_proxy} %h %p" >> ~/.ssh/config
     else
         lino=$(($(awk '/Host github.com/{print NR}'  ~/.ssh/config)+2))
-        sed -i "${lino}c\    ProxyCommand nc -X 5 -x $ssh_proxy %h %p" ~/.ssh/config
+        sed -i "${lino}c\    ProxyCommand nc -X 5 -x ${ssh_proxy} %h %p" ~/.ssh/config
     fi
 }
 
@@ -281,7 +282,7 @@ put_win_fonts() {
 }
 
 bk() {
-    cp ~/.zshrc ~/dotfiles/ubuntu_wsl/ubuntuwsl2.zshrc
+    cp ~/.zshrc ~/dotfiles/ubuntu_wsl/zshrc
     cp ~/.zsh_plugins.txt ~/dotfiles/ubuntu_wsl/zsh_plugins.txt
     cp ~/.config/nvim/init.vim ~/dotfiles/ubuntu_wsl/init.vim
     cp ~/.config/starship.toml ~/dotfiles/_rc/starship.toml
