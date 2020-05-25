@@ -8,7 +8,6 @@ sukkaEnvRequired=$(echo -n "
 
 start() {
     clear
-    # winip="127.0.0.1"
     winip=$(ip route | grep default | awk '{print $3}')
     export ALL_PROXY="http://${winip}:7890"
     export all_proxy="http://${winip}:7890"
@@ -144,24 +143,6 @@ install-nodejs() {
     yarn-global-add
 }
 
-install-nali() {
-    echo "==========================================================="
-    echo "                   Installing Nali                         "
-    echo ""
-    echo "* Cloning SukkaW/Nali"
-    echo "-----------------------------------------------------------"
-
-    git clone https://github.com/sukkaw/nali.git --depth=10
-    cd ./nali
-
-    echo "-----------------------------------------------------------"
-    echo "* Install Nali..."
-    echo "-----------------------------------------------------------"
-    ./configure
-    make && sudo make install
-    cd ..
-}
-
 zshrc() {
     echo "==========================================================="
     echo "                  Import zshrc                   "
@@ -184,7 +165,6 @@ finish() {
     echo ""
     echo "- chsh -s /usr/bin/zsh"
     echo "- git-config"
-    echo "- sudo nali-update"
     echo "- install linuxbrew: "
     echo "==========================================================="
 }
@@ -194,7 +174,6 @@ install-linux-packages
 install-linuxbrew
 setup-omz
 install-nodejs
-install-nali
 zshrc
 upgrade-packages
 finish

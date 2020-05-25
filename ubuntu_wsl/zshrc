@@ -1,10 +1,9 @@
 export PATH=`echo $PATH | tr ':' '\n' | grep -v /mnt/ | tr '\n' ':'`
-export PATH="/mnt/c/Program Files/Microsoft VS Code Insiders/bin:$PATH"
 export PATH="/mnt/c/Program Files/Microsoft VS Code/bin:$PATH"
 export PATH="/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:$PATH"
 typeset -U PATH
 export ZSH="$HOME/.oh-my-zsh"
-export EDITOR=vim
+export EDITOR=nvim
 export CHEAT_USER_DIR="$HOME/dotfiles/cheat"
 export CHEAT_CONFIG_PATH="~/dotfiles/cheat/conf.yml"
 export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
@@ -15,7 +14,7 @@ export NEOVIM_WIN_DIR="/mnt/c/Users/withw/scoop/apps/neovim-nightly/current"
 export XMODIFIERS=@im=fcitx
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
-# ZSH_THEME="sukka"
+ZSH_THEME="sukka"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 HIST_STAMPS="yyyy-mm-dd"
 ZSH_DISABLE_COMPFIX=true
@@ -56,9 +55,8 @@ alias tre="trash-restore"
 alias tem="trash-empty"
 alias tp="trash-put"
 alias c=code
-alias ci="code-insiders"
 alias e="explorer.exe"
-alias c.="code-insiders ."
+alias c.="c ."
 alias e.="explorer.exe ."
 alias cdtmp='cd `mktemp -d /tmp/artin-XXXXXX`'
 alias ws="cd ~/0Workspace"
@@ -295,8 +293,8 @@ r-sh() {
 
 u-clean() {
     sudo apt-get clean
-    sudo apt-get autoclean
-    sudo apt-get autoremove
+    sudo apt-get autoclean -y
+    sudo apt-get autoremove -y
     deborphan | xargs sudo apt-get purge
     deborphan
     sudo aptitude search ?obsolete
@@ -343,6 +341,6 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
 
 eval $(thefuck --alias)
