@@ -33,7 +33,7 @@ PROMPT="%{$fg[cyan]%}[%*] \
 %{$fg[green]%}%n@$(box_name) \
 %{$fg[white]%}in \
 %{$terminfo[bold]$fg[blue]%}${current_dir}%{$reset_color%}\
-${git_info}
+ ${git_info}
 %{$terminfo[bold]$fg[red]%}$ %{$reset_color%}"
 
 if [[ "$USER" == "root" ]]; then
@@ -41,6 +41,6 @@ PROMPT="%{$fg[red]%}[%*] \
 %{$fg[yellow]%}%n@$(box_name) \
 %{$fg[white]%}in \
 %{$terminfo[bold]$fg[cyan]%}${current_dir}%{$reset_color%}\
-${git_info}
+ ${git_info}
 %{$terminfo[bold]$fg[red]%}# %{$reset_color%}"
 fi
