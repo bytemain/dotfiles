@@ -172,6 +172,7 @@ finish() {
     echo ""
     echo "- chsh -s /usr/bin/zsh"
     echo "- git-config"
+    echo "- set up neovim"
     echo "- u-update"
     echo "==========================================================="
 }

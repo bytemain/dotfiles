@@ -159,7 +159,8 @@ finish() {
     echo ""
     echo "- chsh -s /usr/bin/zsh"
     echo "- git-config"
-    echo "- install linuxbrew: "
+    echo "- set up neovim"
+    echo "- u-update"
     echo "==========================================================="
 }
 
