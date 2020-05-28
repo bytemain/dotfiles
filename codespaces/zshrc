@@ -1,21 +1,10 @@
-export PATH=`echo $PATH | tr ':' '\n' | grep -v /mnt/ | tr '\n' ':'`
-export PATH="/mnt/c/Program Files/Microsoft VS Code Insiders/bin:$PATH"
-export PATH="/mnt/c/Program Files/Microsoft VS Code/bin:$PATH"
-export PATH="/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:$PATH"
-typeset -U PATH
 export ZSH="$HOME/.oh-my-zsh"
 export EDITOR=vim
 export CHEAT_USER_DIR="$HOME/dotfiles/cheat"
 export CHEAT_CONFIG_PATH="~/dotfiles/cheat/conf.yml"
-export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
-export PATH="$PATH:$JAVA_HOME/bin:$JRE_HOME/bin"
 export NVM_DIR="$HOME/.nvm"
 export LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/llvm/lib -Wl,-rpath,/home/linuxbrew/.linuxbrew/opt/llvm/lib,-L/home/linuxbrew/.linuxbrew/opt/python@3.8/lib"
-export NEOVIM_WIN_DIR="/mnt/c/Users/withw/scoop/apps/neovim-nightly/current"
-export XMODIFIERS=@im=fcitx
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-# ZSH_THEME="sukka"
+ZSH_THEME="sukka"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 HIST_STAMPS="yyyy-mm-dd"
 ZSH_DISABLE_COMPFIX=true
@@ -63,7 +52,6 @@ alias e.="explorer.exe ."
 alias cdtmp='cd `mktemp -d /tmp/artin-XXXXXX`'
 alias ws="cd ~/0Workspace"
 alias udtheme="cp -r ~/dotfiles/zsh-theme/. ~/.oh-my-zsh/custom/themes/"
-alias udwsl='powershell.exe "sudo powershell -ExecutionPolicy ByPass -File C:\Users\withw\dotfiles\windows\wsl2.ps1"'
 alias cls=clear
 alias rmrf="rm -rf"
 alias srmrf="sudo rm -rf"
@@ -75,33 +63,19 @@ alias dco="docker-compose"
 alias traceroute="nali-traceroute"
 alias tracepath="nali-tracepath"
 alias nslookup="nali-nslookup"
-alias shutdown="wsl.exe --shutdown"
 alias apt-update="sudo apt-get update && sudo apt-get -y upgrade"
-alias ncdux="ncdu -X /home/artin/dotfiles/_rc/.ncduignorerc"
+alias ncdux="ncdu -X ~/dotfiles/_rc/.ncduignorerc"
 alias ct=cheat
 alias lg=lazygit
 alias pc4=proxychains4
 alias top=htop
 alias fd=fdfind
 alias g=git
-alias gcid="git log | head -1 | awk '{print substr(\$2,1,7)}' | clip.exe"
 
 alias -s gz='tar -xzvf'
 alias -s tgz='tar -xzvf'
 alias -s zip='unzip'
 alias -s bz2='tar -xjvf'
-
-# Created by mirror-config-china
-export IOJS_ORG_MIRROR=https://npm.taobao.org/mirrors/iojs
-export NODIST_IOJS_MIRROR=https://npm.taobao.org/mirrors/iojs
-export NVM_IOJS_ORG_MIRROR=https://npm.taobao.org/mirrors/iojs
-export NVMW_IOJS_ORG_MIRROR=https://npm.taobao.org/mirrors/iojs
-export NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
-export NODIST_NODE_MIRROR=https://npm.taobao.org/mirrors/node
-export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
-export NVMW_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
-export NVMW_NPM_MIRROR=https://npm.taobao.org/mirrors/npm
-# End of mirror-config-china
 
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 if [ -d "$HOME/bin" ] ; then
@@ -126,109 +100,8 @@ export CPPFLAGS="-I/home/linuxbrew/.linuxbrew/opt/python@3.8/include"
 # using *
 setopt no_nomatch
 
-# Proxy configuration
-getIp() {
-    export winip=$(ip route | grep default | awk '{print $3}')
-    export wslip=$(hostname -I | awk '{print $1}')
-    export PROXY_SOCKS5="socks5://${winip}:7891"
-    export PROXY_HTTP="http://${winip}:7890"
-}
-
-proxy_git() {
-    ssh_proxy="${winip}:7891"
-    git config --global http.https://github.com.proxy ${PROXY_HTTP}
-    if ! grep -qF "Host github.com" ~/.ssh/config ; then
-        echo "Host github.com" >> ~/.ssh/config
-        echo "    User git" >> ~/.ssh/config
-        echo "    ProxyCommand nc -X 5 -x ${ssh_proxy} %h %p" >> ~/.ssh/config
-    else
-        lino=$(($(awk '/Host github.com/{print NR}'  ~/.ssh/config)+2))
-        sed -i "${lino}c\    ProxyCommand nc -X 5 -x ${ssh_proxy} %h %p" ~/.ssh/config
-    fi
-}
-
-winip_() {
-    getIp
-    echo ${winip}
-}
-
-wslip_() {
-    getIp
-    echo ${wslip}
-}
-
-x11() {
-    getIp
-    if [ ! $1 ]; then
-        # null
-        export DISPLAY=${winip}:0.0
-    else
-        export DISPLAY=${winip}:$1.0
-    fi
-    echo $DISPLAY
-    export XDG_SESSION_TYPE=x11
-    export XDG_RUNTIME_DIR=/tmp/runtime-root
-    export LIBGL_ALWAYS_INDIRECT=1
-    export PULSE_SERVER=tcp:$winip
-}
-
 ip_() {
-    getIp
     https --follow -b https://api.ip.sb/geoip/$1
-    echo "WIN ip: ${winip}"
-    echo "WSL ip: ${wslip}"
-}
-
-proxy_npm() {
-    getIp
-    npm config set proxy ${PROXY_HTTP}
-    npm config set https-proxy ${PROXY_HTTP}
-    yarn config set proxy ${PROXY_HTTP}
-    yarn config set https-proxy ${PROXY_HTTP}
-}
-
-unpro_npm() {
-    npm config delete proxy
-    npm config delete https-proxy
-    yarn config delete proxy
-    yarn config delete https-proxy
-}
-
-proxy () {
-    getIp
-    # pip can read http_proxy & https_proxy
-    export http_proxy="${PROXY_HTTP}"
-    export HTTP_PROXY="${PROXY_HTTP}"
-    export https_proxy="${PROXY_HTTP}"
-    export HTTPS_PROXY="${PROXY_HTTP}"
-    export ftp_proxy="${PROXY_HTTP}"
-    export FTP_PROXY="${PROXY_HTTP}"
-    export rsync_proxy="${PROXY_HTTP}"
-    export RSYNC_PROXY="${PROXY_HTTP}"
-    export ALL_PROXY="${PROXY_SOCKS5}"
-    export all_proxy="${PROXY_SOCKS5}"
-    proxy_git
-    if [ ! $1 ]; then
-        ip_
-    fi
-    echo "Acquire::http::Proxy \"${PROXY_HTTP}\";" | sudo tee /etc/apt/apt.conf.d/proxy.conf >/dev/null 2>&1
-    echo "Acquire::https::Proxy \"${PROXY_HTTP}\";" | sudo tee -a /etc/apt/apt.conf.d/proxy.conf >/dev/null 2>&1
-}
-
-unpro () {
-    unset http_proxy
-    unset HTTP_PROXY
-    unset https_proxy
-    unset HTTPS_PROXY
-    unset ftp_proxy
-    unset FTP_PROXY
-    unset rsync_proxy
-    unset RSYNC_PROXY
-    unset ALL_PROXY
-    unset all_proxy
-    sudo rm /etc/apt/apt.conf.d/proxy.conf
-    git config --global --unset http.https://github.com.proxy
-    ip_
 }
 
 git-config() {
@@ -269,10 +142,6 @@ set_max_user_watches() {
     sudo sysctl --system >/dev/null 2>&1
 }
 
-expose_local(){
-    sudo sysctl -w net.ipv4.conf.all.route_localnet=1 >/dev/null 2>&1
-    sudo iptables -t nat -I PREROUTING -p tcp -j DNAT --to-destination 127.0.0.1
-}
 
 put_win_fonts() {
     # 将windows的字体放入ubuntu里
@@ -282,15 +151,10 @@ put_win_fonts() {
 }
 
 bk() {
-    cp ~/.zshrc ~/dotfiles/ubuntu_wsl/zshrc
-    cp ~/.zsh_plugins.txt ~/dotfiles/ubuntu_wsl/zsh_plugins.txt
-    cp ~/.config/nvim/init.vim ~/dotfiles/ubuntu_wsl/init.vim
-    cp ~/.config/starship.toml ~/dotfiles/_rc/starship.toml
-    cp ~/.condarc ~/dotfiles/ubuntu_wsl/condarc
-}
-
-r-sh() {
-    cp ~/dotfiles/_rc/starship.toml ~/.config/starship.toml
+    cp ~/.zshrc ~/dotfiles/codespaces/zshrc
+    cp ~/.zsh_plugins.txt ~/dotfiles/codespaces/zsh_plugins.txt
+    cp ~/.config/nvim/init.vim ~/dotfiles/codespaces/init.vim
+    cp ~/.condarc ~/dotfiles/codespaces/condarc
 }
 
 u-clean() {
@@ -326,23 +190,3 @@ cdlast() {
 }
 zle -N cdlast
 bindkey '^Q' cdlast
-
-proxy 1
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/artin/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/artin/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/artin/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/artin/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-eval "$(starship init zsh)"
-
-eval $(thefuck --alias)
