@@ -43,8 +43,9 @@ install-linux-packages() {
     echo "-----------------------------------------------------------"
 
     sudo apt-get update
+    sudo apt-get install -y deborphan aptitude apt-file
     sudo apt-get install -y python3-dev python3-pip python3-setuptools
-    sudo apt-get install -y build-essential libreadline-dev apt-file
+    sudo apt-get install -y build-essential libreadline-dev
     sudo apt-get install -y zsh curl wget git tree unzip ncdu tmux trash-cli
     sudo apt-get install -y festival festvox-kallpc16k
     sudo apt-get install -y neofetch screenfetch autojump
@@ -82,10 +83,16 @@ install-linuxbrew(){
     brew install gcc git-quick-stats cheat
     brew install ripgrep bat exa neovim git fzf
     brew install getantibody/tap/antibody
-    brew install ctop hub onefetch yarn httpie
+    brew install ctop hub onefetch httpie
     brew install jesseduffield/lazygit/lazygit lazydocker
 }
 
+install-nvim(){
+    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    mkdir ~/.config/nvim/
+    cp ~/dotfiles/ubuntu_wsl/init.vim ~/.config/nvim/
+}
 
 install-nodejs() {
     install-nvm() {
@@ -165,7 +172,7 @@ finish() {
     echo ""
     echo "- chsh -s /usr/bin/zsh"
     echo "- git-config"
-    echo "- install linuxbrew: "
+    echo "- u-update"
     echo "==========================================================="
 }
 
@@ -173,6 +180,7 @@ start
 install-linux-packages
 install-linuxbrew
 setup-omz
+install-nvim
 install-nodejs
 zshrc
 upgrade-packages
