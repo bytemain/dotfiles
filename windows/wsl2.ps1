@@ -1,6 +1,6 @@
 # [Config]
-$wsl_hosts = "artin.wsl"
-$win_hosts = "artin.win"
+$wsl_hosts = "wsl.local"
+$win_hosts = "win.local"
 $HOSTS_PATH = "$env:windir\System32\drivers\etc\hosts"
 
 # [Start]
