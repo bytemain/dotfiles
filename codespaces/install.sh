@@ -34,14 +34,14 @@ install-linux-packages() {
 
     sudo apt-get update
     sudo apt-get install -y python3-dev python3-pip python3-setuptools
-    sudo apt-get install -y build-essential libreadline-dev apt-file
+    sudo apt-get install -y apt-file aptitude deborphan
+    sudo apt-get install -y build-essential libreadline-dev
     sudo apt-get install -y zsh curl wget git tree unzip ncdu tmux trash-cli
     sudo apt-get install -y festival festvox-kallpc16k
     sudo apt-get install -y neofetch screenfetch autojump
     sudo apt-get install -y lsof whois traceroute
     sudo apt-get install -y net-tools iputils-tracepath dnsutils
     sudo apt-get install -y netcat-openbsd
-
 }
 
 setup-omz() {
@@ -76,6 +76,12 @@ install-linuxbrew(){
     brew install jesseduffield/lazygit/lazygit lazydocker
 }
 
+install-nvim(){
+    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    mkdir ~/.config/nvim/
+    cp ~/dotfiles/codespaces/init.vim ~/.config/nvim/
+}
 
 install-nodejs() {
     install-nvm() {
@@ -161,6 +167,7 @@ start
 install-linux-packages
 install-linuxbrew
 setup-omz
+install-nvim
 install-nodejs
 zshrc
 upgrade-packages

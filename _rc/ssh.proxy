@@ -1,3 +1,0 @@
-Host github.com
-    User git
-    ProxyCommand nc -X 5 -x _ssh_proxy_ %h %p
