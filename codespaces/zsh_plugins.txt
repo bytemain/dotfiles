@@ -1,0 +1,6 @@
+zsh-users/zsh-completions
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-syntax-highlighting
+sukkaw/zsh-ipip
+lukechilds/zsh-nvm
+wfxr/forgit
