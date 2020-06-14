@@ -48,7 +48,4 @@ function rmrf { rm -Recurse -Force $args[0] }
 function u-nvim {
     scoop update neovim-nightly --force
 }
-function r-sh {
-    Copy-Item ~\dotfiles\_rc\starship.toml ~\.config
-}
 $env:term='xterm-256color'

@@ -7,7 +7,7 @@
 // For documentation on these settings, see: https://aka.ms/terminal-documentation
 {
   "$schema": "https://aka.ms/terminal-profiles-schema",
-
+  "confirmCloseAllTabs": true,
   "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
 
   // You can add more global application settings here.
@@ -27,7 +27,7 @@
     "defaults": {
       // Put settings here that you want to apply to all profiles.
       "fontFace": "JetBrains Mono",
-      "fontSize": 12,
+      "fontSize": 13,
       "colorScheme": "Dracula-iTerm2",
       "cursorShape": "bar",
       "historySize": 9001
