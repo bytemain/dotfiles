@@ -128,12 +128,12 @@ setopt no_nomatch
 getIp() {
     export winip=$(ip route | grep default | awk '{print $3}')
     export wslip=$(hostname -I | awk '{print $1}')
-    export PROXY_SOCKS5="socks5://${winip}:7891"
+    export PROXY_SOCKS5="socks5://${winip}:7890"
     export PROXY_HTTP="http://${winip}:7890"
 }
 
 proxy_git() {
-    ssh_proxy="${winip}:7891"
+    ssh_proxy="${winip}:7890"
     git config --global http.https://github.com.proxy ${PROXY_HTTP}
     if ! grep -qF "Host github.com" ~/.ssh/config ; then
         echo "Host github.com" >> ~/.ssh/config
