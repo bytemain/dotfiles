@@ -36,7 +36,7 @@ PROMPT="%{$fg[cyan]%}[%*] \
 %{$fg[green]%}%n@$(box_name) \
 %{$fg[white]%}in \
 %{$terminfo[bold]$fg[blue]%}${current_dir}%{$reset_color%}\
- $(git_prompt_info)
+ ${git_info}
 %{$terminfo[bold]$fg[red]%}$ %{$reset_color%}"
 
 if [[ "$USER" == "root" ]]; then
