@@ -46,21 +46,29 @@ if has("autocmd")
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
+set guicursor=n-v-c:block,i-ci-ve:ver10,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175
 
-call plug#begin(stdpath('data') . '/plugged')
-" Plug 'junegunn/vim-easy-align'
-" Plug 'SirVer/ultisnips'
-" Plug 'honza/vim-snippets'
-" Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeTabsToggle' }
-" Plug 'preservim/nerdcommenter'
-" Plug 'Chiel92/vim-autoformat'
-" Plug 'dracula/vim', { 'as': 'dracula' }
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
-" Plug 'joshdick/onedark.vim'
+augroup numbertoggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave * set rnu
+    autocmd BufLeave,FocusLost,InsertEnter   * set nornu
+augroup END
+
+call plug#begin('~/AppData/Local/nvim/plugged')
+Plug 'junegunn/vim-easy-align'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'preservim/nerdcommenter'
+Plug 'Chiel92/vim-autoformat'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 
 source $VIMRUNTIME/mswin.vim
 set termguicolors
-let g:python3_host_prog='D:\Miniconda3\python.exe'
+colorscheme dracula
+
+map <C-b> :NERDTreeToggle<CR>

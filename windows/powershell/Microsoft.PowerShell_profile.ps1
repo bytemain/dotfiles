@@ -26,10 +26,9 @@ Set-Alias ipy ipython
 # Set-Alias nslookup nali-nslookup
 # Set-Alias traceroute nali-traceroute
 # Set-Alias tracepath nali-tracepath
-function vimrc { vim C:\Users\withw\AppData\Local\nvim\init.vim }
+function vimrc { vim ~\AppData\Local\nvim\init.vim }
 function ws {cd "D:\0Workspace"}
 function vipro { nvim $PROFILE }
-function vish { nvim C:\Users\withw\.config\starship.toml }
 function cdtmp {
     $parent = [System.IO.Path]::GetTempPath()
     $name = 'artin-' + [System.IO.Path]::GetRandomFileName()
@@ -41,7 +40,7 @@ function bk {
     Copy-Item ~\AppData\Local\nvim\init.vim ~\dotfiles\windows\nvim
     Copy-Item $PROFILE ~\dotfiles\windows\powershell
     Copy-Item $PROFILE\..\PoshThemes ~\dotfiles\windows\powershell -Recurse -Force
-    Copy-Item C:\Users\withw\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json ~\dotfiles\windows\wt_settings.json
+    Copy-Item ~\AppData\Local\Packages\Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe\LocalState\settings.json ~\dotfiles\windows\wt_settings.json
 }
 function vitmp { nvim ~\0Workspace\tmpfile }
 function rmrf { rm -Recurse -Force $args[0] }
