@@ -46,9 +46,8 @@ alias vim="nvim"
 alias y=yarn
 alias py="python3"
 alias ipy="ipython"
-alias ohmyzsh="vim ~/.oh-my-zsh"
+alias ohmyzsh="cd ~/.oh-my-zsh"
 alias vizsh="vim ~/.zshrc"
-alias vish="vim ~/.config/starship.toml"
 alias tli="train-list"
 alias trm="trash-rm"
 alias tre="trash-restore"
@@ -61,7 +60,7 @@ alias e.="explorer.exe ."
 alias cdtmp='cd `mktemp -d /tmp/artin-XXXXXX`'
 alias ws="cd ~/0Workspace"
 alias udtheme="cp -r ~/dotfiles/zsh-theme/. ~/.oh-my-zsh/custom/themes/"
-alias udwsl='powershell.exe "sudo powershell -ExecutionPolicy ByPass -File C:\Users\withw\dotfiles\windows\wsl2.ps1"'
+alias udwsl='powershell.exe "sudo powershell -ExecutionPolicy ByPass -File ~\dotfiles\windows\wsl2.ps1"'
 alias cls=clear
 alias rmrf="rm -rf"
 alias srmrf="sudo rm -rf"
@@ -75,7 +74,7 @@ alias tracepath="nali-tracepath"
 alias nslookup="nali-nslookup"
 alias shutdown="wsl.exe --shutdown"
 alias apt-update="sudo apt-get update && sudo apt-get -y upgrade"
-alias ncdux="ncdu -X /home/artin/dotfiles/_rc/.ncduignorerc"
+alias ncdux="ncdu -X ~/dotfiles/_rc/.ncduignorerc"
 alias ct=cheat
 alias lg=lazygit
 alias pc4=proxychains4
@@ -283,21 +282,21 @@ bk() {
     cp ~/.zshrc ~/dotfiles/ubuntu_wsl/zshrc
     cp ~/.zsh_plugins.txt ~/dotfiles/ubuntu_wsl/zsh_plugins.txt
     cp ~/.config/nvim/init.vim ~/dotfiles/ubuntu_wsl/init.vim
-    cp ~/.config/starship.toml ~/dotfiles/_rc/starship.toml
     cp ~/.condarc ~/dotfiles/ubuntu_wsl/condarc
 }
 
-r-sh() {
-    cp ~/dotfiles/_rc/starship.toml ~/.config/starship.toml
-}
-
 u-clean() {
+    echo "clean"
     sudo apt-get clean
+    echo "auto clean"
     sudo apt-get autoclean -y
+    echo "auto remove"
     sudo apt-get autoremove -y
-    deborphan | xargs sudo apt-get purge
+    echo "purge deborphan"
+    deborphan | xargs sudo apt-get purge -y
     deborphan
     sudo aptitude search ?obsolete
+    echo "aptitude purge"
     sudo aptitude purge ~o
 }
 
