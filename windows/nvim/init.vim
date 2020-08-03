@@ -48,6 +48,8 @@ endif
 
 set guicursor=n-v-c:block,i-ci-ve:ver10,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175
 
+let g:python3_host_prog = "C:/ProgramData/Miniconda3/python.EXE"
+
 augroup numbertoggle
     autocmd!
     autocmd BufEnter,FocusGained,InsertLeave * set rnu
@@ -56,11 +58,9 @@ augroup END
 
 call plug#begin('~/AppData/Local/nvim/plugged')
 Plug 'junegunn/vim-easy-align'
-Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'preservim/nerdcommenter'
-Plug 'Chiel92/vim-autoformat'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'

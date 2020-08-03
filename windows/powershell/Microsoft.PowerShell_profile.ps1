@@ -26,7 +26,7 @@ Set-Alias ipy ipython
 # Set-Alias nslookup nali-nslookup
 # Set-Alias traceroute nali-traceroute
 # Set-Alias tracepath nali-tracepath
-function vimrc { vim ~\AppData\Local\nvim\init.vim }
+function vimrc { vim "$HOME\AppData\Local\nvim\init.vim" }
 function ws {cd "D:\0Workspace"}
 function vipro { nvim $PROFILE }
 function cdtmp {
@@ -35,14 +35,14 @@ function cdtmp {
     New-Item -ItemType Directory -Path (Join-Path $parent $name)
     cd (Join-Path $parent $name)
 }
+function shizuku { adb shell sh /data/user_de/0/moe.shizuku.privileged.api/start.sh }
 function wshutdown { wsl.exe --shutdown }
 function bk {
-    Copy-Item ~\AppData\Local\nvim\init.vim ~\dotfiles\windows\nvim
-    Copy-Item $PROFILE ~\dotfiles\windows\powershell
-    Copy-Item $PROFILE\..\PoshThemes ~\dotfiles\windows\powershell -Recurse -Force
-    Copy-Item ~\AppData\Local\Packages\Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe\LocalState\settings.json ~\dotfiles\windows\wt_settings.json
+    Copy-Item $HOME\AppData\Local\nvim\init.vim $HOME\dotfiles\windows\nvim
+    Copy-Item $PROFILE $HOME\dotfiles\windows\powershell
+    Copy-Item $PROFILE\..\PoshThemes $HOME\dotfiles\windows\powershell -Recurse -Force
+    Copy-Item $HOME\AppData\Local\Packages\Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe\LocalState\settings.json $HOME\dotfiles\windows\wt_settings.json
 }
-function vitmp { nvim ~\0Workspace\tmpfile }
 function rmrf { rm -Recurse -Force $args[0] }
 function u-nvim {
     scoop update neovim-nightly --force
