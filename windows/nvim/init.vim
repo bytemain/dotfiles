@@ -1,3 +1,30 @@
+set runtimepath+=C:\Users\withw\.cache\dein\repos\github.com\Shougo\dein.vim
+
+if dein#load_state('C:\Users\withw\.cache\dein')
+  call dein#begin('C:\Users\withw\.cache\dein')
+
+  " Let dein manage dein
+  call dein#add('C:\Users\withw\.cache\dein\repos\github.com\Shougo\dein.vim')
+
+  " Add or remove your plugins here like this:
+  call dein#add('Shougo/neosnippet.vim')
+  call dein#add('junegunn/vim-easy-align')
+  call dein#add('honza/vim-snippets')
+  call dein#add('scrooloose/nerdtree', { 'on_cmd': 'NERDTreeToggle' })
+  call dein#add('preservim/nerdcommenter')
+  call dein#add('dracula/vim', { 'name': 'dracula' })
+  call dein#add('vim-airline/vim-airline')
+  call dein#add('vim-airline/vim-airline-themes')
+
+  call dein#end()
+  call dein#save_state()
+endif
+
+filetype plugin indent on
+
+syntax on
+syntax enable
+
 set number
 set autoindent
 set smartindent
@@ -36,12 +63,6 @@ set shellredir=\|\ Out-File\ -Encoding\ UTF8
 set autoread
 set hlsearch
 
-filetype on
-filetype indent on
-
-syntax on
-syntax enable
-
 if has("autocmd")
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
@@ -55,16 +76,6 @@ augroup numbertoggle
     autocmd BufEnter,FocusGained,InsertLeave * set rnu
     autocmd BufLeave,FocusLost,InsertEnter   * set nornu
 augroup END
-
-call plug#begin('~/AppData/Local/nvim/plugged')
-Plug 'junegunn/vim-easy-align'
-Plug 'honza/vim-snippets'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'preservim/nerdcommenter'
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-call plug#end()
 
 
 source $VIMRUNTIME/mswin.vim
