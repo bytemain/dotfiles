@@ -27,11 +27,6 @@ formatter: terminal256
 # commands. So, if you want to view the 'tar' cheatsheet that is tagged as
 # 'community' rather than your own, you can use: cheat tar -t community
 cheatpaths:
-  - name: community
-    path: ~/dotfiles/cheat/community
-    tags: [ community ]
-    readonly: true
-
   - name: personal
     path: ~/dotfiles/cheat/personal
     tags: [ personal ]
