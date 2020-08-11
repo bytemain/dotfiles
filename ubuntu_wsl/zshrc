@@ -285,6 +285,15 @@ bk() {
     cp ~/.condarc ~/dotfiles/ubuntu_wsl/condarc
 }
 
+ln_never_wrong() {
+    ln -s "$1" "$2"
+    symlinks -d $(dirname "$2")
+    if [ ! -f "$2" ]; then
+        echo "bloody hell… I got it wrong again"
+        ln -s "$2" "$1"
+    fi
+}
+
 u-clean() {
     echo "clean"
     sudo apt-get clean
@@ -306,7 +315,7 @@ u-update() {
     antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
     nali update -y
     nvm upgrade
-    git -C ~/dotfiles/cheat/community/ pull
+    tldr --update
 }
 
 zsh_history_fix() {
@@ -341,5 +350,3 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 # eval "$(starship init zsh)"
-
-eval $(thefuck --alias)
