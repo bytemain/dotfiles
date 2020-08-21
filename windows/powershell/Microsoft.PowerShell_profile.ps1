@@ -1,6 +1,5 @@
-Import-Module posh-git
-Import-Module oh-my-posh
-Import-Module ZLocation
+# Import-Module posh-git
+# Import-Module oh-my-posh
 
 Install-GuiCompletion -Key Tab
 
@@ -31,7 +30,7 @@ function ws {cd "D:\0Workspace"}
 function vipro { nvim $PROFILE }
 function cdtmp {
     $parent = [System.IO.Path]::GetTempPath()
-    $name = 'artin-' + [System.IO.Path]::GetRandomFileName()
+    $name = 'artin-' + $([System.IO.Path]::GetRandomFileName()).Split(".")[0]
     New-Item -ItemType Directory -Path (Join-Path $parent $name)
     cd (Join-Path $parent $name)
 }
