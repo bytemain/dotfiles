@@ -1,6 +1,3 @@
-# Import-Module posh-git
-# Import-Module oh-my-posh
-
 Install-GuiCompletion -Key Tab
 
 Set-Theme artin-theme

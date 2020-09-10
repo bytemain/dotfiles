@@ -15,7 +15,9 @@ if dein#load_state('C:\Users\withw\.cache\dein')
   call dein#add('dracula/vim', { 'name': 'dracula' })
   call dein#add('vim-airline/vim-airline')
   call dein#add('vim-airline/vim-airline-themes')
-
+  call dein#add('wakatime/vim-wakatime')
+  call dein#add('neoclide/coc.nvim')
+  call dein#add('Raimondi/delimitMate')
   call dein#end()
   call dein#save_state()
 endif
