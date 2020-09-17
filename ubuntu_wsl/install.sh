@@ -81,7 +81,7 @@ install-linuxbrew(){
     eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
     brew install gcc git-quick-stats cheat
-    brew install ripgrep bat exa neovim git fzf
+    brew install ripgrep bat exa git neovim fzf
     brew install getantibody/tap/antibody
     brew install ctop hub onefetch httpie
     brew install jesseduffield/lazygit/lazygit lazydocker

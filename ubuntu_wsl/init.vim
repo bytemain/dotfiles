@@ -1,4 +1,5 @@
 filetype on
+filetype plugin on
 filetype indent on
 syntax on
 " Protect changes between writes. Default values of
@@ -26,7 +27,7 @@ set list
 set number
 set nospell
 set hlsearch
-set smartcase
+set ignorecase smartcase
 set encoding=utf-8
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 set copyindent
@@ -43,6 +44,16 @@ set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
     \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
     \,sm:block-blinkwait175-blinkoff150-blinkon175
 
+imap <C-c> <ESC>
+" 空格键向上滚屏 光标不变
+nnoremap <SPACE> 2<C-e>
+noremap <C-j> 3<C-e>
+noremap <C-k> 3<C-y>
+
+" ctrl+h l 分别在插入模式下左右移动
+imap <C-h> <ESC>i
+imap <C-l> <ESC>la
+
 " make tab do tabs at beginning and spaces elsewhere
 function RetabIndents()
   let l:saved_view = winsaveview()
@@ -58,7 +69,7 @@ function StripTrailingWhite()
 endfunction
 
 autocmd BufWritePre,FileAppendPre,FileWritePre,FilterWritePre * :call StripTrailingWhite()
-autocmd BufWritePre,FileAppendPre,FileWritePre,FilterWritePre * :call RetabIndents()
+" autocmd BufWritePre,FileAppendPre,FileWritePre,FilterWritePre * :call RetabIndents()
 
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -83,9 +94,11 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'Raimondi/delimitMate'
+Plug 'wakatime/vim-wakatime'
 call plug#end()
-
-let g:python3_host_prog = '/home/linuxbrew/.linuxbrew/opt/python@3.8/bin/python3'
+let g:NERDSpaceDelims=1
+let g:python3_host_prog = '/home/artin/miniconda3/bin/python'
 let g:UltiSnipsExpandTrigger="<c-u><c-n>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
@@ -98,6 +111,11 @@ colorscheme dracula
 
 map  <silent> <S-Insert> "+p
 imap <silent> <S-Insert> <Esc>"+pa
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :
@@ -149,3 +167,26 @@ command! -nargs=0 OR     :call CocAction('runCommand', 'editor.action.organizeIm
 au BufRead,BufNewFile *.cpp,*.c nnoremap <F5>   <Esc>:w<CR>:!g++ -std=c++11 % -o /tmp/a.out && /tmp/a.out<CR>
 au BufRead,BufNewFile *.cpp,*.c nnoremap <F7>   <Esc>:w<CR>:!g++ -std=c++11 %<CR>
 au BufRead,BufNewFile *.cpp,*.c nnoremap <C-F5> <Esc>:w<CR>:!g++ -std=c++11 -g % -o /tmp/a.out && gdb /tmp/a.out<CR>
+au BufRead,BufNewFile *.py nnoremap <F5> <Esc>:w<CR>:!python %<CR>
+au BufRead,BufNewFile *.rs nnoremap <F5> <Esc>:w<CR>:!cargo run %<CR>
+
+" for C-like  programming where comments have explicit end
+" characters, if starting a new line in the middle of a comment automatically
+" insert the comment leader characters:
+autocmd FileType c,cpp,java set formatoptions+=ro
+
+" fixed indentation should be OK for XML and CSS. People have fast internet
+" anyway. Indentation set to 2.
+autocmd FileType html,xhtml,css,xml,xslt set shiftwidth=2 softtabstop=2
+
+" two space indentation for some files
+autocmd FileType vim,lua,nginx set shiftwidth=2 softtabstop=2
+
+" in makefiles, don't expand tabs to spaces, since actual tab characters are
+" needed, and have indentation at 8 chars to be sure that all indents are tabs
+" (despite the mappings later):
+autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
+
+" ensure normal tabs in assembly files
+" and set to NASM syntax highlighting
+autocmd FileType asm set noexpandtab shiftwidth=8 softtabstop=0 syntax=nasm
