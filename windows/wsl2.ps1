@@ -4,8 +4,8 @@ $win_hosts = "win.local"
 $HOSTS_PATH = "$env:windir\System32\drivers\etc\hosts"
 
 # [Start]
-$winip = wsl.exe -c "ip route | grep default | awk '{print \`$3}'"
-$wslip = wsl.exe -c "hostname -I | awk '{print \`$1}'"
+$winip = (bash.exe -c "ip route | grep default | awk '{print \`$3}'")
+$wslip = (bash.exe -c "hostname -I | awk '{print \`$1}'")
 $found1 = $winip -match '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}';
 $found2 = $wslip -match '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}';
 
@@ -44,7 +44,6 @@ if ($redirect_port) {
 # [Hosts]
 # Get hosts file Content
 $HOSTS_CONTENT = (Get-Content -Path $HOSTS_PATH) | ? {$_.trim() -ne "" } | Select-String -Pattern '# w(sl)|(in)_hosts' -NotMatch
-$HOSTS_CONTENT = $HOSTS_CONTENT.Trim()
 # add custom hosts into hosts content
 $HOSTS_CONTENT = $HOSTS_CONTENT + "`n$wslip $wsl_hosts # wsl_hosts`n$winip $win_hosts # win_hosts"
 # write file
