@@ -1,10 +1,14 @@
-set runtimepath+=C:\Users\withw\.cache\dein\repos\github.com\Shougo\dein.vim
+if &compatible
+  set nocompatible
+endif
 
-if dein#load_state('C:\Users\withw\.cache\dein')
-  call dein#begin('C:\Users\withw\.cache\dein')
+set runtimepath+=~\.cache\dein\repos\github.com\Shougo\dein.vim
+
+if dein#load_state('~\.cache\dein')
+  call dein#begin('~\.cache\dein')
 
   " Let dein manage dein
-  call dein#add('C:\Users\withw\.cache\dein\repos\github.com\Shougo\dein.vim')
+  call dein#add('~\.cache\dein\repos\github.com\Shougo\dein.vim')
 
   " Add or remove your plugins here like this:
   call dein#add('Shougo/neosnippet.vim')
