@@ -227,6 +227,7 @@ git-config() {
     echo -n "Done!"
     git config --global user.name "${username}"
     git config --global user.email "${email}"
+    git config --global credential.helper store
     git config --global alias.s status
     git config --global alias.sb "status -sb"
     git config --global alias.d diff
@@ -273,6 +274,7 @@ bk() {
     cp ~/.zshrc ~/dotfiles/ubuntu_wsl/zshrc
     cp ~/.zsh_plugins.txt ~/dotfiles/ubuntu_wsl/zsh_plugins.txt
     cp ~/.config/nvim/init.vim ~/dotfiles/ubuntu_wsl/init.vim
+    brew bundle dump --describe --force --file="~/dotfiles/ubuntu_wsl/Brewfile"
 }
 
 ln_never_wrong() {
