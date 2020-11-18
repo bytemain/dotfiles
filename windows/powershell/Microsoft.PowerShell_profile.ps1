@@ -50,5 +50,20 @@ function rmrf { rm -Recurse -Force $args[0] }
 function u-nvim {
     scoop update neovim-nightly --force
 }
+Function Set-Ownership($file)
+{
+	# The takeown.exe file should already exist in Win7 - Win10 
+	try { & takeown /f $file }
+	catch { Write-Output "Failed to take ownership of $file" }
+}
+
+Function Set-Permissions($file)
+{
+	$ACL = Get-Acl $file
+	$AccessRule= New-Object System.Security.AccessControl.FileSystemAccessRule("Everyone", "FullControl", "Allow")
+	$ACL.SetAccessRule($AccessRule)
+	$ACL | Set-Acl $file
+}
+
 $env:term='xterm-256color'
 Invoke-Expression (&starship init powershell)
