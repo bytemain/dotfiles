@@ -52,18 +52,9 @@ install-linux-packages() {
     sudo apt-get install -y lsof whois traceroute
     sudo apt-get install -y net-tools iputils-tracepath dnsutils
     sudo apt-get install -y netcat-openbsd fonts-noto fonts-noto-hinted fonts-noto-cjk
-
 }
 
 setup-omz() {
-    echo "==========================================================="
-    echo "                      Shells Enviroment"
-    echo "-----------------------------------------------------------"
-    echo "* Installing Oh-My-Zsh..."
-    echo "-----------------------------------------------------------"
-
-    curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | bash
-
     echo "-----------------------------------------------------------"
     echo "* Installing ZSH Custom Plugins & Themes:"
     echo ""
@@ -71,15 +62,11 @@ setup-omz() {
     echo "  - zsh-syntax-highlighting"
     echo "-----------------------------------------------------------"
 
-    cd ~/dotfiles/ubuntu_wsl/zsh_plugins.txt ~/.zsh_plugins.txt
-    cp -r ../zsh-theme/** ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/
+    cp ~/dotfiles/ubuntu_wsl/zsh_plugins.txt ~/.zsh_plugins.txt
+    cp -r $HOME/dotfiles/zsh-theme/** ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/
 }
 
 install-linuxbrew(){
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
-    echo 'eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)' >>~/.zprofile
-    eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-
     brew install gcc git-quick-stats cheat
     brew install ripgrep bat exa git neovim fzf
     brew install getantibody/tap/antibody
@@ -154,8 +141,7 @@ zshrc() {
     echo "==========================================================="
     echo "                  Import zshrc                   "
     echo "-----------------------------------------------------------"
-    cd $HOME/dotfiles
-    cat ./ubuntu_wsl/zshrc > $HOME/.zshrc
+    cat $HOME/dotfiles/ubuntu_wsl/zshrc > $HOME/.zshrc
 }
 
 upgrade-packages() {
@@ -179,7 +165,6 @@ finish() {
 
 start
 install-linux-packages
-install-linuxbrew
 setup-omz
 install-nvim
 install-nodejs

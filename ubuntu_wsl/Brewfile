@@ -1,0 +1,24 @@
+tap "getantibody/tap"
+tap "homebrew/bundle"
+tap "homebrew/core"
+tap "jesseduffield/lazygit"
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
+# Create and view interactive cheat sheets for *nix commands
+brew "cheat"
+# Modern replacement for 'ls'
+brew "exa"
+# GitHub command-line tool
+brew "gh"
+# User-friendly cURL replacement (command-line HTTP client)
+brew "httpie"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
+# Emulator for x86 and PowerPC
+brew "qemu"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
+# Rust toolchain installer
+brew "rustup-init"
+# The fastest shell plugin manager
+brew "getantibody/tap/antibody"
