@@ -1,7 +1,7 @@
 # Install-GuiCompletion -Key Tab
 
 # Set-Theme artin-theme
-
+Import-Module "$($(Get-Item $(Get-Command scoop).Path).Directory.Parent.FullName)\modules\scoop-completion"
 Set-Alias c code-insiders
 Set-Alias g git
 Set-Alias y yarn

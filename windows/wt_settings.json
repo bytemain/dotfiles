@@ -30,7 +30,6 @@
       "fontSize": 12,
       "fontFace": "Jetbrains Mono",
       "colorScheme": "Dracula-iTerm2",
-      "cursorShape": "bar",
       "historySize": 9001
     },
     "list": [
@@ -52,7 +51,7 @@
         "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
         "name": "Windows PowerShell",
         "commandline": "powershell.exe -NoLogo",
-        "hidden": false
+        "hidden": true
       },
       {
         // Make changes here to the cmd.exe profile.
