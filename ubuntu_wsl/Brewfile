@@ -2,6 +2,7 @@ tap "getantibody/tap"
 tap "homebrew/bundle"
 tap "homebrew/core"
 tap "jesseduffield/lazygit"
+tap "linuxbrew/xorg"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Create and view interactive cheat sheets for *nix commands
@@ -22,3 +23,5 @@ brew "ripgrep"
 brew "rustup-init"
 # The fastest shell plugin manager
 brew "getantibody/tap/antibody"
+# A simple terminal UI for git commands, written in Go
+brew "jesseduffield/lazygit/lazygit"

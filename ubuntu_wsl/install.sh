@@ -63,7 +63,7 @@ setup-omz() {
     echo "-----------------------------------------------------------"
 
     cp ~/dotfiles/ubuntu_wsl/zsh_plugins.txt ~/.zsh_plugins.txt
-    cp -r $HOME/dotfiles/zsh-theme/** ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 }
 
 install-linuxbrew(){
