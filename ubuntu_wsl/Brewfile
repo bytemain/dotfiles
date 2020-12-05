@@ -5,12 +5,18 @@ tap "jesseduffield/lazygit"
 tap "linuxbrew/xorg"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# C/C++/ObjC language server
+brew "ccls"
 # Create and view interactive cheat sheets for *nix commands
 brew "cheat"
 # Modern replacement for 'ls'
 brew "exa"
+# GNU debugger
+brew "gdb"
 # GitHub command-line tool
 brew "gh"
+# Validating, recursive, caching DNS resolver
+brew "unbound"
 # User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
 # Ambitious Vim-fork focused on extensibility and agility

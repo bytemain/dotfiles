@@ -43,7 +43,6 @@ alias l="exa -la"
 alias ls="exa"
 alias la="exa -lah"
 alias b=brew
-alias vi="vim"
 alias vim="nvim"
 alias y=yarn
 alias py="python3"
@@ -55,6 +54,7 @@ alias e="explorer.exe"
 alias q="cd $HOME && clear"
 alias cdtmp='cd `mktemp -d /tmp/artin-XXXXXX`'
 alias ws="cd ~/0Workspace"
+alias le="cd ~/0learn-everything"
 alias udtheme="cp -r ~/dotfiles/zsh-theme/. ~/.oh-my-zsh/custom/themes/"
 alias udwsl='powershell.exe "sudo powershell -ExecutionPolicy ByPass -File ~\dotfiles\windows\wsl2.ps1"'
 alias cls=clear
@@ -120,7 +120,6 @@ if [ -d "$HOME/.local/bin" ] ; then
     export PATH="$HOME/.local/bin:$PATH"
 fi
 
-
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 export PATH="~/.npm-global/bin:$PATH"
@@ -128,7 +127,6 @@ export PATH="$HOME/.poetry/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-# using *
 setopt no_nomatch
 
 # Proxy configuration
@@ -292,7 +290,8 @@ bk() {
     cp ~/.zshrc ~/dotfiles/ubuntu_wsl/zshrc
     cp ~/.zsh_plugins.txt ~/dotfiles/ubuntu_wsl/zsh_plugins.txt
     cp ~/.config/nvim/init.vim ~/dotfiles/ubuntu_wsl/init.vim
-    brew bundle dump --describe --force --file="~/dotfiles/ubuntu_wsl/Brewfile"
+    cp ~/.config/nvim/coc-settings.json ~/dotfiles/ubuntu_wsl/coc-settings.json
+    brew bundle dump --describe --force --no-upgrade --file="~/dotfiles/ubuntu_wsl/Brewfile"
 }
 
 ln_never_wrong() {
@@ -343,8 +342,6 @@ cdlast() {
 zle -N cdlast
 bindkey '^Q' cdlast
 
-# proxy 1
-
 # Kills a process running on a specified tcp port
 killport() {
   echo "Killing process on port: $1"
@@ -353,7 +350,7 @@ killport() {
 
 # MVP
 # Move and make parent directories
-mvp () {
+mvp() {
     source="$1"
     target="$2"
     target_dir="$(dirname "$target")"
