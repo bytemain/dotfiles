@@ -18,11 +18,8 @@ Set-Alias which get-command
 Set-Alias lg lazygit
 Set-Alias lzd lazydocker
 Set-Alias ipy ipython
-# Set-Alias dig nali-dig
-# Set-Alias ping nali-ping
-# Set-Alias nslookup nali-nslookup
-# Set-Alias traceroute nali-traceroute
-# Set-Alias tracepath nali-tracepath
+Set-Alias touch New-Item
+
 function vimrc { vim "$HOME\AppData\Local\nvim\init.vim" }
 function ws {cd "D:\0Workspace"}
 function vipro { nvim $PROFILE }
@@ -50,8 +47,9 @@ function rmrf { rm -Recurse -Force $args[0] }
 function u-nvim {
     scoop update neovim-nightly --force
 }
-Function Set-Ownership($file)
+Function Set-Ownership()
 {
+    $file = $args[0]
 	# The takeown.exe file should already exist in Win7 - Win10 
 	try { & takeown /f $file }
 	catch { Write-Output "Failed to take ownership of $file" }
@@ -59,10 +57,23 @@ Function Set-Ownership($file)
 
 Function Set-Permissions($file)
 {
+    $file = $args[0]
 	$ACL = Get-Acl $file
 	$AccessRule= New-Object System.Security.AccessControl.FileSystemAccessRule("Everyone", "FullControl", "Allow")
 	$ACL.SetAccessRule($AccessRule)
 	$ACL | Set-Acl $file
+}
+
+function ding() {
+    $port = $args[0]
+    $DingPath = "D:\0Workspace\pierced\windows_64"
+    & "$DingPath\ding.exe" -config="$DingPath\ding.cfg" -subdomain=artin $port
+}
+
+function mcd() {
+    $path = $args[0]
+    mkdir "$path"
+    cd "$path"
 }
 
 $env:term='xterm-256color'
