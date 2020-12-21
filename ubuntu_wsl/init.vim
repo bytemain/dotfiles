@@ -46,8 +46,6 @@ set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
     \,sm:block-blinkwait175-blinkoff150-blinkon175
 
 imap <C-c> <ESC>
-" 空格键向上滚屏 光标不变
-nnoremap <SPACE> 2<C-e>
 noremap <C-j> 3<C-e>
 noremap <C-k> 3<C-y>
 
