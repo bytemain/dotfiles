@@ -10,6 +10,7 @@ Set-Alias p poetry
 Set-Alias s scoop
 Set-Alias d docker
 Set-Alias w winget
+Set-Alias u ubuntu
 Set-Alias vim nvim
 Set-Alias viq nvim-qt
 Set-Alias dco docker-compose
@@ -22,12 +23,12 @@ Set-Alias touch New-Item
 
 function vimrc { vim "$HOME\AppData\Local\nvim\init.vim" }
 function ws {cd "D:\0Workspace"}
+function le {cd "D:\0learn-everything"}
 function vipro { nvim $PROFILE }
 # Open Git Kraken
 function krak() {
   $curpath = (get-location).ProviderPath
-  $logf = "$env:temp\krakstart.log"
-  start-process gitkraken.exe -ArgumentList "--new-window --path $curpath" -redirectstandardoutput $logf
+  & gitkraken.exe --new-window --path $curpath
 }
 function cdtmp {
     $parent = [System.IO.Path]::GetTempPath()
