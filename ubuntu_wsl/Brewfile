@@ -21,6 +21,8 @@ brew "unbound"
 brew "httpie"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
+# Python version management
+brew "pyenv"
 # Emulator for x86 and PowerPC
 brew "qemu"
 # Search tool like grep and The Silver Searcher
