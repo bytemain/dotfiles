@@ -1,4 +1,0 @@
-ps -aux | grep java
-
-# 以内存使用量排序，显示出消耗内存最多的10个运行中的进程
-ps aux | sort -nk +4 | tail

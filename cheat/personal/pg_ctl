@@ -1,4 +1,0 @@
-register as service
-```
-pg_ctl register -N PostgreSQL
-```

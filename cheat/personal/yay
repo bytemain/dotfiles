@@ -1,8 +1,0 @@
-# install
-yay -S packname
-
-# remove
-yay -P packname
-
-# search
-pacman -Ss abc
