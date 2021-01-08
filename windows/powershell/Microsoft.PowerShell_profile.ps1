@@ -1,7 +1,3 @@
-# Install-GuiCompletion -Key Tab
-
-# Set-Theme artin-theme
-Import-Module "$($(Get-Item $(Get-Command scoop).Path).Directory.Parent.FullName)\modules\scoop-completion"
 Set-Alias c code-insiders
 Set-Alias g git
 Set-Alias y yarn
@@ -42,12 +38,10 @@ function bk {
     Copy-Item $HOME\AppData\Local\nvim\init.vim $HOME\dotfiles\windows\nvim
     Copy-Item $PROFILE $HOME\dotfiles\windows\powershell
     Copy-Item $HOME\AppData\Local\Packages\Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe\LocalState\settings.json $HOME\dotfiles\windows\wt_settings.json
+    Copy-Item $HOME\.config\starship.toml $HOME\dotfiles\_rc\starship.toml
     scoop export > $HOME\dotfiles\windows\scoop.list
 }
 function rmrf { rm -Recurse -Force $args[0] }
-function u-nvim {
-    scoop update neovim-nightly --force
-}
 Function Set-Ownership()
 {
     $file = $args[0]

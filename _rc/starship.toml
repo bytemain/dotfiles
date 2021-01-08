@@ -1,12 +1,11 @@
+# Don't print a new line at the start of the prompt
 add_newline = false
 
-[character]
-symbol = "➜"
-error_symbol = "✗"
+# Replace the "❯" symbol in the prompt with "➜"
+[character]                            # The name of the module we are configuring is "character"
+success_symbol = "[➜](bold green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
+error_symbol = "[➜](bold red) "
 use_symbol_for_status = true
-
-[git_branch]
-symbol = "🌱 "
 
 [git_status]
 conflicted_count.enabled = true
@@ -18,8 +17,5 @@ deleted_count.enabled = true
 show_sync_count = true
 staged_count.enabled = true
 
-[conda]
-style = "dimmed green"
-symbol = "conda:"
-[username]
-show_always = false
+[python]
+format = 'via [${symbol}${pyenv_prefix}${version}( \($virtualenv\))]($style) '
