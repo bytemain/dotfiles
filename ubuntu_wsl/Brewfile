@@ -3,6 +3,8 @@ tap "homebrew/bundle"
 tap "homebrew/core"
 tap "jesseduffield/lazygit"
 tap "linuxbrew/xorg"
+# Extendable version manager with support for Ruby, Node.js, Erlang & more
+brew "asdf"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # C/C++/ObjC language server
@@ -33,8 +35,12 @@ brew "qemu"
 brew "ripgrep"
 # Rust toolchain installer
 brew "rustup-init"
+# Cross-shell prompt for astronauts
+brew "starship"
 # Simplified and community-driven man pages
 brew "tldr"
+# HTTP benchmarking tool
+brew "wrk"
 # The fastest shell plugin manager
 brew "getantibody/tap/antibody"
 # A simple terminal UI for git commands, written in Go
