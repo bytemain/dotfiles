@@ -4,8 +4,8 @@ $win_hosts = "win.local"
 $HOSTS_PATH = "$env:windir\System32\drivers\etc\hosts"
 
 # [Start]
-$winip = (bash.exe -c "ip route | grep default | awk '{print \`$3}'")
-$wslip = (bash.exe -c "hostname -I | awk '{print \`$1}'")
+$winip = (bash.exe -c "ip route | grep default | awk '{print `$3}'")
+$wslip = (bash.exe -c "hostname -I | awk '{print `$1}'")
 $found1 = $winip -match '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}';
 $found2 = $wslip -match '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}';
 
