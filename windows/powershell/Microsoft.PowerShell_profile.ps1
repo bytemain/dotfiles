@@ -20,6 +20,7 @@ Set-Alias touch New-Item
 function vimrc { vim "$HOME\AppData\Local\nvim\init.vim" }
 function ws {cd "D:\0Workspace"}
 function le {cd "D:\0learn-everything"}
+function qbot {cd "cd D:\0ArtinD\qbot"}
 function vipro { nvim $PROFILE }
 # Open Git Kraken
 function krak() {

@@ -15,7 +15,7 @@
   "profiles": {
     "defaults": {
       "fontSize": 12,
-      "fontFace": "Jetbrains Mono",
+      "fontFace": "JetBrains Mono",
       "colorScheme": "Dracula-iTerm2",
       "historySize": 9001
     },
@@ -49,7 +49,6 @@
       },
       {
         "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
-        "hidden": true,
         "name": "Azure Cloud Shell",
         "source": "Windows.Terminal.Azure"
       }
@@ -85,6 +84,10 @@
   // To unbind a key combination from your defaults.json, set the command to "unbound".
   // To learn more about actions and keybindings, visit https://aka.ms/terminal-keybindings
   "actions": [
+    {
+      "command": { "action": "openSettings", "target": "settingsUI" },
+      "keys": "ctrl+shift+,"
+    },
     // Copy and paste are bound to Ctrl+Shift+C and Ctrl+Shift+V in your defaults.json.
     // These two lines additionally bind them to Ctrl+C and Ctrl+V.
     // To learn more about selection, visit https://aka.ms/terminal-selection
