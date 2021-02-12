@@ -10,7 +10,6 @@
   "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
   "copyOnSelect": true,
   "copyFormatting": false,
-  "startOnUserLogin": true,
   // To learn more about profiles, visit https://aka.ms/terminal-profile-settings
   "profiles": {
     "defaults": {
