@@ -53,14 +53,15 @@ alias traceroute="nali-traceroute"
 alias tracepath="nali-tracepath"
 alias nslookup="nali-nslookup"
 alias shutdown="wsl.exe --shutdown"
+alias clip="clip.exe"
 alias apt-update="sudo apt-get update && sudo apt-get -y upgrade"
-alias ncdux="ncdu -X ~/dotfiles/_rc/.ncduignorerc"
-alias ct=cheat
+alias ncdux="ncdu -X ~/dotfiles/_rc/ncduignore"
 alias lg=lazygit
-alias pc4=proxychains4
 alias top=htop
 alias fd=fdfind
 alias g=git
+alias tk=take
+alias cg=cargo
 alias gcid="git log | head -1 | awk '{print substr(\$2,1,7)}'"
 alias src="source ~/.zshrc"
 
@@ -327,8 +328,11 @@ bindkey '^Q' cdlast
 
 # Kills a process running on a specified tcp port
 killport() {
-  echo "Killing process on port: $1"
-  fuser -n tcp -k $1;
+  for port in "$@"
+  do
+    echo "Killing process on port: $port"
+    fuser -n tcp -k $port;
+  done
 }
 
 # MVP
@@ -361,6 +365,9 @@ extract() {
     fi
 }
 
+cleantmp() {
+    sudo find /tmp -type f -atime +10 -delete
+}
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

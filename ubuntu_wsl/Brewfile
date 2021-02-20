@@ -3,20 +3,24 @@ tap "homebrew/bundle"
 tap "homebrew/core"
 tap "jesseduffield/lazygit"
 tap "linuxbrew/xorg"
-# Extendable version manager with support for Ruby, Node.js, Erlang & more
-brew "asdf"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # C/C++/ObjC language server
 brew "ccls"
 # Create and view interactive cheat sheets for *nix commands
 brew "cheat"
+# Get a file from an HTTP, HTTPS or FTP server
+brew "curl"
 # Modern replacement for 'ls'
 brew "exa"
 # GNU debugger
 brew "gdb"
 # GitHub command-line tool
 brew "gh"
+# Distributed revision control system
+brew "git"
+# Core application library for C
+brew "glib"
 # Validating, recursive, caching DNS resolver
 brew "unbound"
 # User-friendly cURL replacement (command-line HTTP client)
@@ -29,8 +33,6 @@ brew "pyenv"
 brew "pyenv-pip-migrate"
 # Pyenv plugin to manage virtualenv
 brew "pyenv-virtualenv"
-# Emulator for x86 and PowerPC
-brew "qemu"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Rust toolchain installer
@@ -41,6 +43,8 @@ brew "starship"
 brew "tldr"
 # HTTP benchmarking tool
 brew "wrk"
+# Yet another HTTPie clone
+brew "xh"
 # The fastest shell plugin manager
 brew "getantibody/tap/antibody"
 # A simple terminal UI for git commands, written in Go
