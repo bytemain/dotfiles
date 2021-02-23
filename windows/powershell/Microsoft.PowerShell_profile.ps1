@@ -1,21 +1,22 @@
-Set-Alias c code-insiders
-Set-Alias g git
-Set-Alias y yarn
-Set-Alias e explorer
-Set-Alias p poetry
-Set-Alias s scoop
-Set-Alias d docker
-Set-Alias w winget
-Set-Alias u ubuntu
-Set-Alias vim nvim
-Set-Alias viq nvim-qt
-Set-Alias dco docker-compose
-Set-Alias py python
-Set-Alias which get-command
-Set-Alias lg lazygit
-Set-Alias lzd lazydocker
-Set-Alias ipy ipython
-Set-Alias touch New-Item
+sal c code-insiders
+sal g git
+sal y yarn
+sal e explorer
+sal p poetry
+sal s scoop
+sal d docker
+sal w winget
+sal u ubuntu
+sal vim nvim
+sal viq nvim-qt
+sal dco docker-compose
+sal py python
+sal which get-command
+sal lg lazygit
+sal lzd lazydocker
+sal ipy ipython
+sal touch New-Item
+sal gpg (join-path (scoop prefix git) 'usr\bin\gpg.exe')
 
 function vimrc { vim "$HOME\AppData\Local\nvim\init.vim" }
 function ws {cd "D:\0Workspace"}
@@ -74,3 +75,4 @@ function mcd() {
 
 $env:term='xterm-256color'
 Invoke-Expression (&starship init powershell)
+Import-Module ZLocation
