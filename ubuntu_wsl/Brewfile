@@ -45,7 +45,5 @@ brew "tldr"
 brew "wrk"
 # Yet another HTTPie clone
 brew "xh"
-# The fastest shell plugin manager
-brew "getantibody/tap/antibody"
 # A simple terminal UI for git commands, written in Go
 brew "jesseduffield/lazygit/lazygit"
