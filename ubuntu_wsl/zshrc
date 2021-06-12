@@ -59,7 +59,7 @@ alias -s bz2='tar -xjvf'
 
 # Enable aliases to be sudo’ed
 # http://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo
-alias sudo='sudo '
+alias _='sudo '
 
 # Avoid stupidity with trash-cli:
 # https://github.com/sindresorhus/trash-cli
@@ -324,47 +324,11 @@ mvp() {
     mkdir --parents $target_dir; mv $source $target
 }
 
-extract() {
-    if [[ -f $1 ]]; then
-        case $1 in
-        *.tar.bz2) tar xjf $1 ;;
-        *.tar.gz) tar xzf $1 ;;
-        *.bz2) bunzip2 $1 ;;
-        *.rar) unrar e $1 ;;
-        *.gz) gunzip $1 ;;
-        *.tar) tar xf $1 ;;
-        *.tbz2) tar xjf $1 ;;
-        *.tgz) tar xzf $1 ;;
-        *.zip) unzip "$1" ;;
-        *.Z) uncompress $1 ;;
-        *.7z) 7z x $1 ;;
-        *) echo "'$1' cannot be extracted via extract()" ;;
-        esac
-    else
-        echo "'$1' is not a valid file"
-    fi
-}
-
 cleantmp() {
     sudo find /tmp -type f -atime +10 -delete
 }
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/artin/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/artin/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/artin/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/artin/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-eval"$(pyenv init -)"
+eval "$(pyenv init -)"
 eval "$(starship init zsh)"
 
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
@@ -380,13 +344,11 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 zinit snippet OMZP::sudo
+zinit snippet OMZ::lib/history.zsh
+zinit snippet OMZP::extract
 
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
-zinit light zdharma/fast-syntax-highlighting
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light sukkaw/zsh-ipip
 zinit light agkozak/zsh-z
-
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"

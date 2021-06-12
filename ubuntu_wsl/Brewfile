@@ -3,6 +3,8 @@ tap "homebrew/bundle"
 tap "homebrew/core"
 tap "jesseduffield/lazygit"
 tap "linuxbrew/xorg"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.9"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # C/C++/ObjC language server
@@ -27,14 +29,14 @@ brew "unbound"
 brew "go"
 # User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
+# OpenResty's Branch of LuaJIT 2
+brew "luajit-openresty"
+# Small build system for use with gyp or CMake
+brew "ninja"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Python version management
 brew "pyenv"
-# Migrate pip packages from one Python version to another
-brew "pyenv-pip-migrate"
-# Pyenv plugin to manage virtualenv
-brew "pyenv-virtualenv"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Rust toolchain installer
