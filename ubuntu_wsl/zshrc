@@ -1,6 +1,5 @@
 typeset -U PATH
 export EDITOR=nvim
-export NVM_DIR="$HOME/.nvm"
 export TIME_STYLE='long-iso'
 export CC=gcc-9
 export GPG_TTY=$(tty)
@@ -71,19 +70,6 @@ else
   alias rm='rm -i'
 fi
 
-# Created by mirror-config-china
-export IOJS_ORG_MIRROR=https://npm.taobao.org/mirrors/iojs
-export NODIST_IOJS_MIRROR=https://npm.taobao.org/mirrors/iojs
-export NVM_IOJS_ORG_MIRROR=https://npm.taobao.org/mirrors/iojs
-export NVMW_IOJS_ORG_MIRROR=https://npm.taobao.org/mirrors/iojs
-export NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
-export NODIST_NODE_MIRROR=https://npm.taobao.org/mirrors/node
-export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
-export NVMW_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
-export NVMW_NPM_MIRROR=https://npm.taobao.org/mirrors/npm
-# End of mirror-config-china
-
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 if [ -d "$HOME/bin" ] ; then
     export PATH="$HOME/bin:$PATH"
 fi
@@ -274,6 +260,15 @@ ln_never_wrong() {
     fi
 }
 
+gpg-login() {
+    export GPG_TTY=$TTY
+    echo "test" | gpg --clearsign > /dev/null 2>&1
+}
+
+gpg-logout() {
+    echo RELOADAGENT | gpg-connect-agent
+}
+
 u-clean() {
     echo "clean"
     sudo apt-get clean
@@ -293,7 +288,6 @@ u-update() {
     sudo apt-get update && sudo apt-get -y upgrade
     brew upgrade --verbose
     nali update -y
-    nvm upgrade
     tldr --update
 }
 
@@ -370,12 +364,7 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-
+eval"$(pyenv init -)"
 eval "$(starship init zsh)"
 
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
@@ -397,6 +386,7 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma/fast-syntax-highlighting
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light sukkaw/zsh-ipip
-# zinit light lukechilds/zsh-nvm
 zinit light agkozak/zsh-z
 
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"

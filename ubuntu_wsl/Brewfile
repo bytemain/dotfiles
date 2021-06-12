@@ -23,6 +23,8 @@ brew "git"
 brew "glib"
 # Validating, recursive, caching DNS resolver
 brew "unbound"
+# Open source programming language to build simple/reliable/efficient software
+brew "go"
 # User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
 # Ambitious Vim-fork focused on extensibility and agility
@@ -43,7 +45,7 @@ brew "starship"
 brew "tldr"
 # HTTP benchmarking tool
 brew "wrk"
-# Yet another HTTPie clone
+# Friendly and fast tool for sending HTTP requests
 brew "xh"
 # A simple terminal UI for git commands, written in Go
 brew "jesseduffield/lazygit/lazygit"
