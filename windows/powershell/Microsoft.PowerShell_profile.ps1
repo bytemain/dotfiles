@@ -1,4 +1,4 @@
-sal c code-insiders
+sal c code
 sal g git
 sal y yarn
 sal e explorer
@@ -21,21 +21,25 @@ sal gpg (join-path (scoop prefix git) 'usr\bin\gpg.exe')
 function vimrc { vim "$HOME\AppData\Local\nvim\init.vim" }
 function ws {cd "D:\0Workspace"}
 function le {cd "D:\0learn-everything"}
-function qbot {cd "D:\0ArtinD\qbot"}
 function vipro { nvim $PROFILE }
+
 # Open Git Kraken
 function krak() {
   $curpath = (get-location).ProviderPath
   & gitkraken.exe --new-window --path $curpath
 }
+
 function cdtmp {
     $parent = [System.IO.Path]::GetTempPath()
     $name = 'artin-' + $([System.IO.Path]::GetRandomFileName()).Split(".")[0]
     New-Item -ItemType Directory -Path (Join-Path $parent $name)
     cd (Join-Path $parent $name)
 }
+
 function shizuku { adb shell sh /data/user_de/0/moe.shizuku.privileged.api/start.sh }
+
 function wshutdown { wsl.exe --shutdown }
+
 function bk {
     Copy-Item $HOME\AppData\Local\nvim\init.vim $HOME\dotfiles\windows\nvim
     Copy-Item $PROFILE $HOME\dotfiles\windows\powershell
@@ -43,7 +47,9 @@ function bk {
     Copy-Item $HOME\.config\starship.toml $HOME\dotfiles\_rc\starship.toml
     scoop export > $HOME\dotfiles\windows\scoop.list
 }
+
 function rmrf { rm -Recurse -Force $args[0] }
+
 Function Set-Ownership()
 {
     $file = $args[0]
