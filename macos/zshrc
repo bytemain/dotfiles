@@ -1,0 +1,285 @@
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+export GOENV_ROOT="$HOME/.goenv"
+export GOPATH="$HOME/go"
+export TIME_STYLE=iso
+
+export PATH=$NPM_CONFIG_PREFIX/bin:$PATH
+export PATH="$HOME/.poetry/bin:$PATH"
+export PATH=$PATH:/opt/local/bin
+export PATH=$PATH:$GOPATH/bin
+export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
+export PATH=$JAVA_HOME/bin:$PATH
+export PATH=$HOME/depot_tools:$PATH
+export CPLUS_INCLUDE_PATH=/opt/homebrew/include
+export GEM_HOME=$HOME/.gem
+export PATH=$GEM_HOME/ruby/3.0.0/bin:$PATH
+
+# alias
+alias ls="exa"
+alias ll='ls -lh'
+alias la='ls -lah'
+
+alias -- -='cd -'
+
+alias o=open
+alias md='mkdir -p'
+alias b=brew
+alias nv="nvim"
+alias y=yarn
+alias t=tnpm
+alias p=projj
+alias py="python3"
+alias ipy="ipython"
+alias vizsh="nv ~/.zshrc"
+alias c="code"
+alias cdtmp='cd `mktemp -d /tmp/artin-XXXXXX`'
+alias ws="cd ~/0Workspace"
+alias an="cd ~/0Ant"
+alias cls=clear
+alias rmrf="rm -rf"
+alias rmt="trash"
+alias vimrc="nv ~/.config/nvim/init.vim"
+alias d=docker
+alias dco="docker-compose"
+alias ping="nali-ping"
+alias dig="nali-dig"
+alias traceroute="nali-traceroute"
+alias tracepath="nali-tracepath"
+alias nslookup="nali-nslookup"
+alias top=htop
+alias g=git
+alias tk=take
+alias cg=cargo
+alias gcid="git log | head -1 | awk '{print substr(\$2,1,7)}'"
+alias src="source ~/.zshrc"
+alias cpwd="pwd | pbcopy"
+alias bru="bun run"
+
+alias tl="tmux list-sessions"
+alias tks="tmux kill-session -t"
+alias ta="tmux attach -t"
+alias ts="tmux new-session -s"
+
+alias ct=cheat
+alias _='sudo '
+
+alias -g dps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}"'
+alias -g o='open'
+alias -g ow='open -a'
+
+alias gl="git log --pretty=format:\"%C(auto)%h %C(magenta)<%ad> %C(green)[%an] %C(blue normal bold)| %Creset%s%C(auto)%d\" --graph --date=short"
+
+gig() { curl -L -s https://www.gitignore.io/api/$@;}
+
+take() {
+  mkdir -p $@ && cd ${@:$#}
+}
+
+ding() {
+    DING_PATH="$HOME/0Workspace/pierced/mac_64"
+    command="$DING_PATH/ding -config=$DING_PATH/ding.cfg -subdomain=artin $1"
+    eval "$command"
+}
+
+add_path() {
+    export PATH=$1:$PATH
+}
+
+init_npm() {
+    npm install --registry=https://registry.npm.alibaba-inc.com -g tnpm
+    tnpm install -g nali-cli trash-cli zx yarn
+
+}
+
+zsh_history_fix() {
+    mv ~/.zsh_history ~/.zsh_history_bad
+    strings ~/.zsh_history_bad > ~/.zsh_history
+    fc -R ~/.zsh_history
+    rm ~/.zsh_history_bad
+}
+
+ss() {
+    set -a # automatically export all variables
+    source $1
+    set +a
+}
+
+# Kills a process running on a specified tcp port
+killport() {
+  for port in "$@"
+  do
+    lsof -i tcp:$port | awk 'NR!=1 {print $2}' | xargs kill -9
+  done
+}
+
+# Move and make parent directories
+mvp() {
+    source="$1"
+    target="$2"
+    target_dir="$(dirname "$target")"
+    mkdir --parents $target_dir; mv $source $target
+}
+
+cleantmp() {
+    sudo find /tmp -type f -atime +10 -delete
+}
+
+# Proxy configuration
+getIp() {
+    export PROXY_SOCKS5="socks5://127.0.0.1:7891"
+    export PROXY_HTTP="http://127.0.0.1:7890"
+}
+
+ip_() {
+    getIp
+    https --follow -b https://api.ip.sb/geoip/$1
+}
+
+proxy_npm() {
+    getIp
+    npm config set proxy ${PROXY_HTTP}
+    npm config set https-proxy ${PROXY_HTTP}
+    yarn config set proxy ${PROXY_HTTP}
+    yarn config set https-proxy ${PROXY_HTTP}
+}
+
+unpro_npm() {
+    npm config delete proxy
+    npm config delete https-proxy
+    yarn config delete proxy
+    yarn config delete https-proxy
+}
+
+proxy() {
+    getIp
+    export_proxy
+    ip_
+}
+
+export_proxy() {
+    export https_proxy=${PROXY_HTTP}
+    export http_proxy=${PROXY_HTTP}
+    export all_proxy=${PROXY_SOCKS5}
+}
+
+unpro() {
+    unset https_proxy
+    unset http_proxy
+    unset all_proxy
+    ip_
+}
+
+flushdns() {
+    sudo dscacheutil -flushcache
+    sudo killall -HUP mDNSResponder
+    sudo killall mDNSResponderHelper
+}
+
+add-wt() {
+    git worktree add -b $1 ../$1
+}
+
+docker_deep_clean() {
+    echo "Removing exited containers..."
+    echo "============================="
+    docker ps --filter status=dead --filter status=exited -aq | xargs docker rm -v
+    echo ""
+    echo "Removing unused images..."
+    echo "========================="
+    docker images --no-trunc | grep '<none>' | awk '{ print $3 }' | xargs docker rmi
+    echo ""
+    echo "Removing unused volumes..."
+    echo "=========================="
+    docker volume ls -qf dangling=true | xargs docker volume rm
+    echo ""
+    echo "Done."
+}
+
+git-bk() {
+  br=$(git symbolic-ref --short -q HEAD)
+  git branch -c "$br" "backup/$br"
+}
+
+docker_clean() {
+    docker rmi $(docker images --format '{{.Repository}}:{{.Tag}}' | grep $1)
+}
+
+ar() {
+    mv -i "$@" "$HOME/0Archive/"
+}
+
+xattr-cfw() {
+  sudo xattr -d com.apple.quarantine /Applications/Clash\ for\ Windows.app
+}
+
+git-rsh() {
+  git reset --soft HEAD^
+}
+
+bk() {
+    cp ~/.zshrc ~/dotfiles/macos/zshrc
+    cp ~/.config/nvim/init.vim ~/dotfiles/macos/init.vim
+    cp ~/.config/nvim/coc-settings.json ~/dotfiles/macos/coc-settings.json
+    brew bundle dump --describe --force --no-upgrade --file="~/dotfiles/macos/Brewfile"
+}
+
+
+eval "$(pyenv init -)"
+eval "$(goenv init -)"
+
+autoload -U compinit && compinit
+
+source "$HOME/.zinit/bin/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+zinit light-mode for \
+    zinit-zsh/z-a-rust \
+    zinit-zsh/z-a-as-monitor \
+    zinit-zsh/z-a-patch-dl \
+    zinit-zsh/z-a-bin-gem-node
+
+zinit snippet OMZ::lib/history.zsh
+zinit snippet OMZP::sudo
+zinit snippet OMZP::extract
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light agkozak/zsh-z
+zinit light paulirish/git-open
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
+export PATH="/usr/local/sbin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+
+source $HOME/.config/broot/launcher/bash/br
+eval "$(mcfly init zsh)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Bun completions
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+# Bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+export PATH="$HOME/.bin:$PATH"
+
+function zshaddhistory() {
+	echo "${1%%$'\n'}⋮${PWD}   " >> ~/.zsh_history_ext
+}

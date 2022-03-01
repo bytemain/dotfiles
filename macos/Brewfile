@@ -1,0 +1,90 @@
+tap "cantino/mcfly"
+tap "clojure/tools"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
+tap "homebrew/core"
+tap "homebrew/services"
+# Tool for generating GNU Standards-compliant Makefiles
+brew "automake"
+# Manage compile and link flags for libraries
+brew "pkg-config"
+# New way to see and navigate directory trees
+brew "broot"
+# Powerful, enterprise-ready, open source web server with automatic HTTPS
+brew "caddy"
+# Library for manipulating PNG images
+brew "libpng"
+# Vector graphics library with cross-device output support
+brew "cairo"
+# Create and view interactive cheat sheets for *nix commands
+brew "cheat"
+# Statistics utility to count lines of code
+brew "cloc"
+# Cross-platform make
+brew "cmake"
+# GNU File, Shell, and Text utilities
+brew "coreutils"
+# Secure runtime for JavaScript and TypeScript
+brew "deno"
+# Lightweight DNS forwarder and DHCP server
+brew "dnsmasq"
+# Modern replacement for 'ls'
+brew "exa"
+# GNU compiler collection
+brew "gcc"
+# Library and utilities for processing GIFs
+brew "giflib"
+# Image manipulation library
+brew "jpeg"
+# Distributed revision control system
+brew "git"
+# Go version management
+brew "goenv", args: ["HEAD"]
+# Framework for layout and rendering of i18n text
+brew "pango"
+# Library to render SVG files using Cairo
+brew "librsvg"
+# Graph visualization software from AT&T and Bell Labs
+brew "graphviz"
+# User-friendly cURL replacement (command-line HTTP client)
+brew "httpie"
+# NCurses Disk Usage
+brew "ncdu"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
+# Platform built on V8 to build network applications
+brew "node"
+# Python version management
+brew "pyenv"
+# Powerful, clean, object-oriented scripting language
+brew "ruby"
+# Rust toolchain installer
+brew "rustup-init"
+# Simplified and community-driven man pages
+brew "tldr"
+# Internet file retriever
+brew "wget"
+# McFly
+brew "cantino/mcfly/mcfly"
+# The Clojure Programming Language
+brew "clojure/tools/clojure"
+# JDK from the Java User Group (JUG)
+cask "adoptopenjdk"
+# Android SDK component
+cask "android-platform-tools"
+# Free and open-source web browser
+cask "chromium"
+# Free and open-source media player
+cask "iina"
+# QuickLook plug-in that renders source code with syntax highlighting
+cask "qlcolorcode"
+# QuickLook generator for Markdown files
+cask "qlmarkdown"
+cask "qlstephen"
+# View Spaces / Virtual Desktops in the menu bar
+cask "spaceman"
+# JDK from the Eclipse Foundation (Adoptium)
+cask "temurin"
+# Open-source version of the X.Org X Window System
+cask "xquartz"
