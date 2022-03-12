@@ -5,6 +5,12 @@ tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/core"
 tap "homebrew/services"
+# Library and utilities for processing GIFs
+brew "giflib"
+# Image manipulation library
+brew "jpeg"
+# Library for manipulating PNG images
+brew "libpng"
 # Tool for generating GNU Standards-compliant Makefiles
 brew "automake"
 # Manage compile and link flags for libraries
@@ -13,8 +19,6 @@ brew "pkg-config"
 brew "broot"
 # Powerful, enterprise-ready, open source web server with automatic HTTPS
 brew "caddy"
-# Library for manipulating PNG images
-brew "libpng"
 # Vector graphics library with cross-device output support
 brew "cairo"
 # Create and view interactive cheat sheets for *nix commands
@@ -33,10 +37,6 @@ brew "dnsmasq"
 brew "exa"
 # GNU compiler collection
 brew "gcc"
-# Library and utilities for processing GIFs
-brew "giflib"
-# Image manipulation library
-brew "jpeg"
 # Distributed revision control system
 brew "git"
 # Go version management
