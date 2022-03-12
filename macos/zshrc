@@ -91,7 +91,6 @@ add_path() {
 init_npm() {
     npm install --registry=https://registry.npm.alibaba-inc.com -g tnpm
     tnpm install -g nali-cli trash-cli zx yarn
-
 }
 
 zsh_history_fix() {
@@ -178,10 +177,6 @@ flushdns() {
     sudo killall mDNSResponderHelper
 }
 
-add-wt() {
-    git worktree add -b $1 ../$1
-}
-
 docker_deep_clean() {
     echo "Removing exited containers..."
     echo "============================="
@@ -224,6 +219,14 @@ git-bk() {
   git branch -c "$br" "backup/$br"
 }
 
+git-wt-add() {
+    git worktree add -b $1 ../$1
+}
+
+git-rsh() {
+  git reset --soft HEAD^
+}
+
 docker_clean() {
     docker rmi $(docker images --format '{{.Repository}}:{{.Tag}}' | grep $1)
 }
@@ -234,10 +237,6 @@ ar() {
 
 xattr-cfw() {
   sudo xattr -d com.apple.quarantine /Applications/Clash\ for\ Windows.app
-}
-
-git-rsh() {
-  git reset --soft HEAD^
 }
 
 bk() {
@@ -258,6 +257,7 @@ export PATH="/usr/local/sbin:$PATH"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 
 source $HOME/.config/broot/launcher/bash/br
