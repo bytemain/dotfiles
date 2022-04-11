@@ -19,6 +19,10 @@ brew "pkg-config"
 brew "broot"
 # Powerful, enterprise-ready, open source web server with automatic HTTPS
 brew "caddy"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.9"
+# Core application library for C
+brew "glib"
 # Vector graphics library with cross-device output support
 brew "cairo"
 # Create and view interactive cheat sheets for *nix commands
@@ -37,10 +41,18 @@ brew "dnsmasq"
 brew "exa"
 # GNU compiler collection
 brew "gcc"
+# Toolkit for image loading and pixel buffer manipulation
+brew "gdk-pixbuf"
 # Distributed revision control system
 brew "git"
+# GNU Transport Layer Security (TLS) Library
+brew "gnutls"
+# Generate introspection data for GObject libraries
+brew "gobject-introspection"
 # Go version management
 brew "goenv", args: ["HEAD"]
+# OpenType text shaping engine
+brew "harfbuzz"
 # Framework for layout and rendering of i18n text
 brew "pango"
 # Library to render SVG files using Cairo
@@ -49,6 +61,8 @@ brew "librsvg"
 brew "graphviz"
 # User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
+# Next-gen compiler infrastructure
+brew "llvm"
 # NCurses Disk Usage
 brew "ncdu"
 # Ambitious Vim-fork focused on extensibility and agility
@@ -57,6 +71,8 @@ brew "neovim"
 brew "node"
 # Python version management
 brew "pyenv"
+# Emulator for x86 and PowerPC
+brew "qemu"
 # Powerful, clean, object-oriented scripting language
 brew "ruby"
 # Rust toolchain installer

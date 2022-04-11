@@ -16,6 +16,8 @@ export PATH=$HOME/depot_tools:$PATH
 export CPLUS_INCLUDE_PATH=/opt/homebrew/include
 export GEM_HOME=$HOME/.gem
 export PATH=$GEM_HOME/ruby/3.0.0/bin:$PATH
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 
 # alias
 alias ls="exa"
@@ -227,6 +229,14 @@ git-rsh() {
   git reset --soft HEAD^
 }
 
+git-rhh() {
+  git reset --hard HEAD^
+}
+
+git-prm() {
+  git pull origin main --rebase
+}
+
 docker_clean() {
     docker rmi $(docker images --format '{{.Repository}}:{{.Tag}}' | grep $1)
 }
@@ -271,7 +281,6 @@ eval "$(mcfly init zsh)"
 # Bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-
 export PATH="$HOME/.bin:$PATH"
 
 function zshaddhistory() {
