@@ -61,8 +61,8 @@ brew "librsvg"
 brew "graphviz"
 # User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
-# Next-gen compiler infrastructure
-brew "llvm"
+# Command-line pager for JSON data
+brew "jless"
 # NCurses Disk Usage
 brew "ncdu"
 # Ambitious Vim-fork focused on extensibility and agility

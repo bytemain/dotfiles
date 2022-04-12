@@ -16,8 +16,6 @@ export PATH=$HOME/depot_tools:$PATH
 export CPLUS_INCLUDE_PATH=/opt/homebrew/include
 export GEM_HOME=$HOME/.gem
 export PATH=$GEM_HOME/ruby/3.0.0/bin:$PATH
-export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 
 # alias
 alias ls="exa"
@@ -59,6 +57,7 @@ alias gcid="git log | head -1 | awk '{print substr(\$2,1,7)}'"
 alias src="source ~/.zshrc"
 alias cpwd="pwd | pbcopy"
 alias bru="bun run"
+alias yless="jless --yaml"
 
 alias tl="tmux list-sessions"
 alias tks="tmux kill-session -t"
@@ -73,6 +72,32 @@ alias -g o='open'
 alias -g ow='open -a'
 
 alias gl="git log --pretty=format:\"%C(auto)%h %C(magenta)<%ad> %C(green)[%an] %C(blue normal bold)| %Creset%s%C(auto)%d\" --graph --date=short"
+
+bindkey -s '\eo'   'cd ..\n'    # 按下ALT+O 就执行 cd .. 命令
+bindkey -s '\e;'   'ls -l\n'    # 按下 ALT+; 就执行 ls -l 命令
+bindkey '\e[1;3D' backward-word       # ALT+左键：向后跳一个单词
+bindkey '\e[1;3C' forward-word        # ALT+右键：前跳一个单词
+bindkey '\e[1;3A' beginning-of-line   # ALT+上键：跳到行首
+bindkey '\e[1;3B' end-of-line         # ALT+下键：调到行尾
+
+# completion detail
+zstyle ':completion:*:complete:-command-:*:*' ignored-patterns '*.pdf|*.exe|*.dll'
+zstyle ':completion:*:*sh:*:' tag-order files
+
+# case-insensitive (uppercase from lowercase) completion
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+# process completion
+zstyle ':completion:*:processes' command 'ps -au$USER'
+zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=36=31"
+
+zstyle ':completion:*' completer _expand _complete _ignored _approximate
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' menu select=2
+zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %p%s'
+zstyle ':completion:*:descriptions' format '%U%F{yellow}%d%f%u'
+zstyle ':completion:*:*:git:*' script ~/.git-completion.sh
+
 
 gig() { curl -L -s https://www.gitignore.io/api/$@;}
 
@@ -284,7 +309,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="$HOME/.bin:$PATH"
 
 function zshaddhistory() {
-	echo "${1%%$'\n'}⋮${PWD}   " >> ~/.zsh_history_ext
+    echo "${1%%$'\n'}⋮${PWD}   " >> ~/.zsh_history_ext
 }
 
 ### Added by Zinit's installer
@@ -315,10 +340,28 @@ zinit snippet OMZP::sudo
 zinit snippet OMZP::extract
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
-zinit light zsh-users/zsh-syntax-highlighting
+zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light agkozak/zsh-z
 zinit light paulirish/git-open
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# options
+unsetopt share_history
+unsetopt inc_append_history
+
+setopt prompt_subst
+unsetopt prompt_cr prompt_sp
+
+# Switching directories for lazy people
+setopt autocd
+# See: http://zsh.sourceforge.net/Intro/intro_6.html
+setopt autopushd pushdminus pushdsilent pushdtohome pushdignoredups
+
+# Disable correction
+unsetopt correct_all
+unsetopt correct
+DISABLE_CORRECTION="true"
