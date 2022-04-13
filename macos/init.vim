@@ -33,7 +33,7 @@ set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 set copyindent
 set autoindent
 set cursorline
-set cursorcolumn
+" set cursorcolumn
 set shortmess+=cfilmnrxoOtT
 set showmatch
 set showmode
@@ -90,12 +90,13 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'Chiel92/vim-autoformat'
-Plug 'dracula/vim', { 'as': 'dracula' }
+" Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'Raimondi/delimitMate'
 Plug 'wakatime/vim-wakatime'
 Plug 'jackguo380/vim-lsp-cxx-highlight'
+Plug 'projekt0n/github-nvim-theme'
 call plug#end()
 let g:NERDSpaceDelims=1
 let g:UltiSnipsExpandTrigger="<c-u><c-n>"
@@ -106,7 +107,8 @@ let g:UltiSnipsEditSplit="vertical"
 map <C-b> :NERDTreeToggle<CR>
 
 set termguicolors
-colorscheme dracula
+" colorscheme dracula
+colorscheme github_light
 
 map  <silent> <S-Insert> "+p
 imap <silent> <S-Insert> <Esc>"+pa
@@ -115,12 +117,6 @@ imap <silent> <S-Insert> <Esc>"+pa
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
-if has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :

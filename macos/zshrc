@@ -279,8 +279,8 @@ bk() {
     cp ~/.config/nvim/init.vim ~/dotfiles/macos/init.vim
     brew bundle dump --describe --force --no-upgrade --file="~/dotfiles/macos/Brewfile"
 }
-
-eval "$(pyenv init -)"
+eval "$(pyenv init --path)"
+# eval "$(pyenv init -)"
 eval "$(goenv init -)"
 
 autoload -U compinit && compinit
