@@ -335,16 +335,23 @@ zinit light-mode for \
 
 ### End of Zinit's installer chunk
 
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+
 zinit snippet OMZ::lib/history.zsh
 zinit snippet OMZP::sudo
 zinit snippet OMZP::extract
+zinit snippet OMZP::npm
+zinit snippet OMZP::yarn
+zinit load zdharma-continuum/history-search-multi-word
+
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light agkozak/zsh-z
 zinit light paulirish/git-open
-zinit ice depth=1; zinit light romkatv/powerlevel10k
 
+zinit ice as"program" pick"$ZPFX/bin/git-*" src"etc/git-extras-completion.zsh" make"PREFIX=$ZPFX"
+zinit light tj/git-extras
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

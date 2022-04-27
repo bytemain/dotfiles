@@ -31,12 +31,14 @@ brew "cheat"
 brew "cloc"
 # Cross-platform make
 brew "cmake"
+# Powerful, clean, object-oriented scripting language
+brew "ruby"
+# Dependency manager for Cocoa projects
+brew "cocoapods"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
 # Secure runtime for JavaScript and TypeScript
 brew "deno"
-# Lightweight DNS forwarder and DHCP server
-brew "dnsmasq"
 # Modern replacement for 'ls'
 brew "exa"
 # GNU compiler collection
@@ -73,8 +75,6 @@ brew "node"
 brew "pyenv"
 # Emulator for x86 and PowerPC
 brew "qemu"
-# Powerful, clean, object-oriented scripting language
-brew "ruby"
 # Rust toolchain installer
 brew "rustup-init"
 # Simplified and community-driven man pages
@@ -93,6 +93,10 @@ cask "android-platform-tools"
 cask "chromium"
 # Free and open-source media player
 cask "iina"
+# Utility to set up global mouse gestures
+cask "macgesture"
+# Configurable global mouse gestures
+cask "macstroke"
 # QuickLook plug-in that renders source code with syntax highlighting
 cask "qlcolorcode"
 # QuickLook generator for Markdown files
