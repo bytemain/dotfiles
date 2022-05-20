@@ -240,27 +240,27 @@ git-config() {
     git config --global alias.wt "worktree"
     git config --global alias.gt "describe --abbrev=0"
 }
-
 git-bk() {
   br=$(git symbolic-ref --short -q HEAD)
   git branch -c "$br" "backup/$br"
 }
-
 git-wt-add() {
     git worktree add -b $1 ../$1
 }
-
 git-rsh() {
   git reset --soft HEAD^
 }
-
 git-rhh() {
   git reset --hard HEAD^
 }
-
 git-prm() {
   git pull origin main --rebase
 }
+git-cl() {
+  branch = $(git ls-remote --symref $1 HEAD | awk '/^ref:/ {sub(/refs\/heads\//, "", $2); print $2}')
+  echo $br
+}
+
 
 docker_clean() {
     docker rmi $(docker images --format '{{.Repository}}:{{.Tag}}' | grep $1)
@@ -278,6 +278,7 @@ bk() {
     cp ~/.zshrc ~/dotfiles/macos/zshrc
     cp ~/.config/nvim/init.vim ~/dotfiles/macos/init.vim
     brew bundle dump --describe --force --no-upgrade --file="~/dotfiles/macos/Brewfile"
+    code --list-extensions > ~/dotfiles/_rc/exts.txt
 }
 eval "$(pyenv init --path)"
 # eval "$(pyenv init -)"
@@ -369,3 +370,5 @@ unsetopt correct
 DISABLE_CORRECTION="true"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+source /Users/artin/.config/broot/launcher/bash/br
