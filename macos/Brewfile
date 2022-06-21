@@ -45,6 +45,8 @@ brew "exa"
 brew "gcc"
 # Toolkit for image loading and pixel buffer manipulation
 brew "gdk-pixbuf"
+# GitHub command-line tool
+brew "gh"
 # Distributed revision control system
 brew "git"
 # GNU Transport Layer Security (TLS) Library
@@ -89,6 +91,8 @@ brew "clojure/tools/clojure"
 cask "adoptopenjdk"
 # Android SDK component
 cask "android-platform-tools"
+# Desktop password and login vault
+cask "bitwarden"
 # Free and open-source web browser
 cask "chromium"
 cask "font-fira-code"
@@ -104,9 +108,5 @@ cask "qlcolorcode"
 # QuickLook generator for Markdown files
 cask "qlmarkdown"
 cask "qlstephen"
-# View Spaces / Virtual Desktops in the menu bar
-cask "spaceman"
 # JDK from the Eclipse Foundation (Adoptium)
 cask "temurin"
-# Open-source version of the X.Org X Window System
-cask "xquartz"

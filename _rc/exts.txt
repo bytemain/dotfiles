@@ -7,6 +7,7 @@ bungcip.better-toml
 ChakrounAnas.turbo-console-log
 codezombiech.gitignore
 cschleiden.vscode-github-actions
+cschlosser.doxdocgen
 dakara.transformer
 DavidAnson.vscode-markdownlint
 dbaeumer.vscode-eslint
@@ -14,6 +15,7 @@ devdoge1.node-snippets
 donjayamanne.githistory
 DotJoshJohnson.xml
 douglaszaltron.nunjucks-vscode-extensionpack
+dzgmelody.vscode-changelog-snippets
 eamodio.gitlens
 EditorConfig.EditorConfig
 eg2.vscode-npm-script
@@ -32,6 +34,8 @@ golang.go
 GrapeCity.gc-excelviewer
 Hyzeta.vscode-theme-github-light
 idered.npm
+jeff-hykin.better-cpp-syntax
+josetr.cmake-language-support-vscode
 mattlott.copy-github-url
 mattpocock.ts-error-translator
 mhutchie.git-graph
@@ -39,6 +43,7 @@ mikestead.dotenv
 mkxml.vscode-filesize
 ms-azuretools.vscode-docker
 MS-CEINTL.vscode-language-pack-zh-hans
+ms-dotnettools.vscode-dotnet-runtime
 ms-python.python
 ms-python.vscode-pylance
 ms-toolsai.jupyter
@@ -47,7 +52,10 @@ ms-vscode-remote.remote-containers
 ms-vscode-remote.remote-ssh
 ms-vscode-remote.remote-ssh-edit
 ms-vscode-remote.vscode-remote-extensionpack
+ms-vscode.cmake-tools
 ms-vscode.cpptools
+ms-vscode.cpptools-extension-pack
+ms-vscode.cpptools-themes
 ms-vscode.remote-repositories
 ms-vscode.vscode-typescript-tslint-plugin
 nickdemayo.vscode-json-editor
@@ -59,7 +67,7 @@ redhat.vscode-yaml
 refactor11.completeline
 richie5um2.vscode-sort-json
 ritwickdey.LiveServer
-rust-lang.rust
+rust-lang.rust-analyzer
 saber2pr.ts-ast-viewer
 samuelcolvin.jinjahtml
 sburg.vscode-javascript-booster
@@ -68,10 +76,11 @@ serayuzgur.crates
 shd101wyy.markdown-preview-enhanced
 streetsidesoftware.code-spell-checker
 sullenor.vscode-transform-case
-svelte.svelte-vscode
 tombonnike.vscode-status-bar-format-toggle
 tomoki1207.pdf
+twxs.cmake
 usernamehw.errorlens
+VisualStudioExptTeam.intellicode-api-usage-examples
 VisualStudioExptTeam.vscodeintellicode
 vivaxy.vscode-conventional-commits
 vscode-icons-team.vscode-icons
