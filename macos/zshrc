@@ -73,6 +73,8 @@ alias -g ow='open -a'
 
 alias gl="git log --pretty=format:\"%C(auto)%h %C(magenta)<%ad> %C(green)[%an] %C(blue normal bold)| %Creset%s%C(auto)%d\" --graph --date=short"
 
+alias get_idf='. $HOME/esp2/esp-idf/export.sh'
+
 bindkey -s '\eo'   'cd ..\n'    # 按下ALT+O 就执行 cd .. 命令
 bindkey -s '\e;'   'ls -l\n'    # 按下 ALT+; 就执行 ls -l 命令
 bindkey '\e[1;3D' backward-word       # ALT+左键：向后跳一个单词

@@ -23,6 +23,7 @@ emilast.LogFileHighlighter
 EQuimper.react-native-react-redux
 esbenp.prettier-vscode
 eseom.nunjucks-template
+espressif.esp-idf-extension
 fabiospampinato.vscode-open-in-github
 felipe.nasc-touchbar
 formulahendry.code-runner
@@ -31,7 +32,6 @@ GitHub.copilot
 GitHub.remotehub
 GitHub.vscode-pull-request-github
 golang.go
-GrapeCity.gc-excelviewer
 Hyzeta.vscode-theme-github-light
 idered.npm
 jeff-hykin.better-cpp-syntax
@@ -42,7 +42,6 @@ mhutchie.git-graph
 mikestead.dotenv
 mkxml.vscode-filesize
 ms-azuretools.vscode-docker
-MS-CEINTL.vscode-language-pack-zh-hans
 ms-dotnettools.vscode-dotnet-runtime
 ms-python.python
 ms-python.vscode-pylance
@@ -58,10 +57,12 @@ ms-vscode.cpptools-extension-pack
 ms-vscode.cpptools-themes
 ms-vscode.remote-repositories
 ms-vscode.vscode-typescript-tslint-plugin
+mutantdino.resourcemonitor
 nickdemayo.vscode-json-editor
 njpwerner.autodocstring
 octref.vetur
 ramyaraoa.show-offset
+rbuckton.tsserver-live-reload
 redhat.java
 redhat.vscode-yaml
 refactor11.completeline
@@ -74,6 +75,7 @@ sburg.vscode-javascript-booster
 sdras.vue-vscode-snippets
 serayuzgur.crates
 shd101wyy.markdown-preview-enhanced
+stkb.rewrap
 streetsidesoftware.code-spell-checker
 sullenor.vscode-transform-case
 tombonnike.vscode-status-bar-format-toggle

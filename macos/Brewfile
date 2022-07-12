@@ -5,6 +5,10 @@ tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/core"
 tap "homebrew/services"
+tap "mergestat/mergestat"
+tap "proxmark/proxmark3"
+# Run your GitHub Actions locally 🚀
+brew "act"
 # Library and utilities for processing GIFs
 brew "giflib"
 # Image manipulation library
@@ -13,18 +17,24 @@ brew "jpeg"
 brew "libpng"
 # Tool for generating GNU Standards-compliant Makefiles
 brew "automake"
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
 # Manage compile and link flags for libraries
 brew "pkg-config"
 # New way to see and navigate directory trees
 brew "broot"
 # Powerful, enterprise-ready, open source web server with automatic HTTPS
 brew "caddy"
+# Library for command-line editing
+brew "readline"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.9"
 # Core application library for C
 brew "glib"
 # Vector graphics library with cross-device output support
 brew "cairo"
+# Object-file caching compiler wrapper
+brew "ccache"
 # Create and view interactive cheat sheets for *nix commands
 brew "cheat"
 # Statistics utility to count lines of code
@@ -39,6 +49,10 @@ brew "cocoapods"
 brew "coreutils"
 # Secure runtime for JavaScript and TypeScript
 brew "deno"
+# Library for USB device access
+brew "libusb"
+# USB programmer
+brew "dfu-util"
 # Modern replacement for 'ls'
 brew "exa"
 # GNU compiler collection
@@ -49,6 +63,8 @@ brew "gdk-pixbuf"
 brew "gh"
 # Distributed revision control system
 brew "git"
+# Simple and efficient way to access statistics in git
+brew "git-quick-stats"
 # GNU Transport Layer Security (TLS) Library
 brew "gnutls"
 # Generate introspection data for GObject libraries
@@ -63,20 +79,30 @@ brew "pango"
 brew "librsvg"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.10"
 # User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
 # Command-line pager for JSON data
 brew "jless"
+# Library for USB device access
+brew "libusb-compat"
 # NCurses Disk Usage
 brew "ncdu"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
+# Small build system for use with gyp or CMake
+brew "ninja"
 # Platform built on V8 to build network applications
 brew "node"
+# 7-Zip (high compression file archiver) implementation
+brew "p7zip"
 # Python version management
 brew "pyenv"
 # Emulator for x86 and PowerPC
 brew "qemu"
+# Cross-platform application and UI framework
+brew "qt@5"
 # Rust toolchain installer
 brew "rustup-init"
 # Simplified and community-driven man pages
@@ -87,6 +113,8 @@ brew "wget"
 brew "cantino/mcfly/mcfly"
 # The Clojure Programming Language
 brew "clojure/tools/clojure"
+# GCC for embedded ARM processors
+brew "proxmark/proxmark3/arm-none-eabi-gcc"
 # JDK from the Java User Group (JUG)
 cask "adoptopenjdk"
 # Android SDK component
@@ -108,5 +136,7 @@ cask "qlcolorcode"
 # QuickLook generator for Markdown files
 cask "qlmarkdown"
 cask "qlstephen"
+# Graphical client for Git version control
+cask "sourcetree"
 # JDK from the Eclipse Foundation (Adoptium)
 cask "temurin"
