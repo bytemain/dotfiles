@@ -1,6 +1,6 @@
 mkdir -p .tmp
 TMPFILE=$(mktemp .tmp/git-commit-status-message.XXX);
-echo "Backup" > $TMPFILE;
+echo "Backup\n" > $TMPFILE;
 git status --porcelain \
     | grep '^[MARCDT]' \
     | sort \
@@ -13,7 +13,7 @@ git status --porcelain \
     | sed -re 's/^C:$/Copied: /' \
     | sed -re 's/^D:$/Deleted: /' \
     | sed -re 's/^T:$/File Type Changed: /' \
-    | tr '\n' ' ' | xargs \
+    | xargs \
     >> $TMPFILE; \
 git commit -F $TMPFILE; \
 rm -f $TMPFILE \
