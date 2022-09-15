@@ -7,12 +7,13 @@ tap "homebrew/core"
 tap "homebrew/services"
 tap "mergestat/mergestat"
 tap "proxmark/proxmark3"
+tap "weihanglo/sfz", "https://github.com/weihanglo/sfz.git"
 # Run your GitHub Actions locally 🚀
 brew "act"
 # Library and utilities for processing GIFs
 brew "giflib"
 # Image manipulation library
-brew "jpeg"
+brew "jpeg", link: true
 # Library for manipulating PNG images
 brew "libpng"
 # Tool for generating GNU Standards-compliant Makefiles
@@ -25,12 +26,12 @@ brew "pkg-config"
 brew "broot"
 # Powerful, enterprise-ready, open source web server with automatic HTTPS
 brew "caddy"
+# Core application library for C
+brew "glib"
 # Library for command-line editing
 brew "readline"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.9"
-# Core application library for C
-brew "glib"
 # Vector graphics library with cross-device output support
 brew "cairo"
 # Object-file caching compiler wrapper
@@ -55,6 +56,14 @@ brew "libusb"
 brew "dfu-util"
 # Modern replacement for 'ls'
 brew "exa"
+# GNU Transport Layer Security (TLS) Library
+brew "gnutls"
+# OpenType text shaping engine
+brew "harfbuzz"
+# Play, record, convert, and stream audio and video
+brew "ffmpeg"
+# Command-line fuzzy finder written in Go
+brew "fzf"
 # GNU compiler collection
 brew "gcc"
 # Toolkit for image loading and pixel buffer manipulation
@@ -65,22 +74,16 @@ brew "gh"
 brew "git"
 # Simple and efficient way to access statistics in git
 brew "git-quick-stats"
-# GNU Transport Layer Security (TLS) Library
-brew "gnutls"
 # Generate introspection data for GObject libraries
 brew "gobject-introspection"
 # Go version management
 brew "goenv", args: ["HEAD"]
-# OpenType text shaping engine
-brew "harfbuzz"
 # Framework for layout and rendering of i18n text
 brew "pango"
 # Library to render SVG files using Cairo
 brew "librsvg"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.10"
 # User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
 # Command-line pager for JSON data
@@ -95,8 +98,14 @@ brew "neovim"
 brew "ninja"
 # Platform built on V8 to build network applications
 brew "node"
+# Classic snake game with textual interface
+brew "nsnake"
+# Ncurses based sudoku game
+brew "nudoku"
 # 7-Zip (high compression file archiver) implementation
 brew "p7zip"
+# Python 3 bindings for the Cairo graphics library
+brew "py3cairo"
 # Python version management
 brew "pyenv"
 # Emulator for x86 and PowerPC
@@ -105,6 +114,10 @@ brew "qemu"
 brew "qt@5"
 # Rust toolchain installer
 brew "rustup-init"
+# Software for mathematics, science, and engineering
+brew "scipy"
+# SOcket CAT: netcat on steroids
+brew "socat"
 # Simplified and community-driven man pages
 brew "tldr"
 # Internet file retriever
@@ -112,31 +125,46 @@ brew "wget"
 # McFly
 brew "cantino/mcfly/mcfly"
 # The Clojure Programming Language
-brew "clojure/tools/clojure"
+brew "clojure/tools/clojure", link: false
 # GCC for embedded ARM processors
 brew "proxmark/proxmark3/arm-none-eabi-gcc"
+# A simple static file serving command-line tool.
+brew "weihanglo/sfz/sfz"
 # JDK from the Java User Group (JUG)
 cask "adoptopenjdk"
+# Enable Windows-like alt-tab
+cask "alt-tab"
 # Android SDK component
 cask "android-platform-tools"
+# Inspect application bundles
+cask "apparency"
 # Desktop password and login vault
 cask "bitwarden"
 # Free and open-source web browser
 cask "chromium"
 cask "font-fira-code"
+# Developer targeted fonts with a high number of glyphs
 cask "font-hack-nerd-font"
 # Typeface made for developers
 cask "font-jetbrains-mono"
 cask "font-meslo-lg"
+# Developer targeted fonts with a high number of glyphs
 cask "font-meslo-lg-nerd-font"
 # Free and open-source media player
 cask "iina"
-# QuickLook plug-in that renders source code with syntax highlighting
-cask "qlcolorcode"
+# Extensible two-pane file manager
+cask "marta"
+# Display image info and preview unsupported formats in QuickLook
+cask "qlimagesize"
 # QuickLook generator for Markdown files
 cask "qlmarkdown"
 cask "qlstephen"
+cask "qlvideo"
+# QuickLook generator for Adobe Swatch Exchange files
+cask "quicklookase"
 # Graphical client for Git version control
 cask "sourcetree"
+# Application for inspecting installer packages
+cask "suspicious-package"
 # JDK from the Eclipse Foundation (Adoptium)
 cask "temurin"
