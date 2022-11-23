@@ -1,4 +1,12 @@
 *.swp
 .tmp
 
-node_modules
+yarn.lock
+node_modules/**/test
+node_modules/**/README.md
+node_modules/**/LICENSE
+node_modules/**/.jshintrc
+node_modules/**/.npmignore
+node_modules/**/.travis.yml
+node_modules/**/Gruntfile.js
+node_modules/.yarn-integrity

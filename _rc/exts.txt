@@ -33,7 +33,6 @@ GitHub.copilot
 GitHub.remotehub
 GitHub.vscode-pull-request-github
 golang.go
-HookyQR.beautify
 Hyzeta.vscode-theme-github-light
 idered.npm
 jeff-hykin.better-cpp-syntax
@@ -47,10 +46,13 @@ mkxml.vscode-filesize
 ms-azuretools.vscode-docker
 MS-CEINTL.vscode-language-pack-zh-hans
 ms-dotnettools.vscode-dotnet-runtime
+ms-python.isort
 ms-python.python
 ms-python.vscode-pylance
 ms-toolsai.jupyter
 ms-toolsai.jupyter-keymap
+ms-toolsai.vscode-jupyter-cell-tags
+ms-toolsai.vscode-jupyter-slideshow
 ms-vscode-remote.remote-containers
 ms-vscode-remote.remote-ssh
 ms-vscode-remote.remote-ssh-edit
@@ -60,6 +62,7 @@ ms-vscode.cpptools
 ms-vscode.cpptools-extension-pack
 ms-vscode.cpptools-themes
 ms-vscode.hexeditor
+ms-vscode.remote-explorer
 ms-vscode.remote-repositories
 ms-vscode.vscode-typescript-tslint-plugin
 mutantdino.resourcemonitor
@@ -86,10 +89,12 @@ shd101wyy.markdown-preview-enhanced
 stkb.rewrap
 streetsidesoftware.code-spell-checker
 sullenor.vscode-transform-case
+svelte.svelte-vscode
 tombonnike.vscode-status-bar-format-toggle
 tomoki1207.pdf
 twxs.cmake
 usernamehw.errorlens
+vinliao.fast-arrow
 VisualStudioExptTeam.intellicode-api-usage-examples
 VisualStudioExptTeam.vscodeintellicode
 vivaxy.vscode-conventional-commits

@@ -4,5 +4,8 @@
     "scripts": {
         "update": "sh ./_scripts/commit.sh",
         "postupdate": "git push"
+    },
+    "dependencies": {
+        "git-config": "^0.0.7"
     }
 }

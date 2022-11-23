@@ -30,6 +30,9 @@ alias -- -='cd -'
 
 alias o=open
 alias md='mkdir -p'
+alias mv="mv -iv"
+alias cp="cp -iv"
+alias mkdir="mkdir -v"
 alias b=brew
 alias nv="nvim"
 alias y=yarn
@@ -62,6 +65,7 @@ alias src="source ~/.zshrc"
 alias cpwd="pwd | pbcopy"
 alias bru="bun run"
 alias yless="jless --yaml"
+alias myip="echo Your ip is; dig +short myip.opendns.com @resolver1.opendns.com;"
 
 alias tl="tmux list-sessions"
 alias tks="tmux kill-session -t"
@@ -71,9 +75,16 @@ alias ts="tmux new-session -s"
 alias ct=cheat
 alias _='sudo '
 
+alias sv='caddy file-server --listen :2000 --browse'
+
 alias -g dps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}"'
 alias -g o='open'
 alias -g ow='open -a'
+
+
+alias -g chrome-no-sec="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome   --disable-web-security  --user-data-dir=~/.chromeTemp"
+
+alias dfimage="docker run -v /var/run/docker.sock:/var/run/docker.sock --rm alpine/dfimage"
 
 alias gl="git log --pretty=format:\"%C(auto)%h %C(magenta)<%ad> %C(green)[%an] %C(blue normal bold)| %Creset%s%C(auto)%d\" --graph --date=short"
 
@@ -144,7 +155,13 @@ mvp() {
     source="$1"
     target="$2"
     target_dir="$(dirname "$target")"
-    mkdir --parents $target_dir; mv $source $target
+    mkdir -p $target_dir; mv $source $target
+}
+
+touchp() {
+    target="$1"
+    target_dir="$(dirname "$target")"
+    mkdir -p $target_dir; touch $target
 }
 
 cleantmp() {
@@ -217,63 +234,36 @@ docker_deep_clean() {
     echo ""
     echo "Done."
 }
-
-git-config() {
-    git config --global pull.rebase true
-    git config --global alias.s status
-    git config --global alias.sb "status -sb"
-    git config --global alias.d diff
-    git config --global alias.co checkout
-    git config --global alias.br branch
-    git config --global alias.last "log -1 HEAD"
-    git config --global alias.cane "commit --amend --no-edit"
-    git config --global alias.pr "pull --rebase"
-    git config --global alias.lo "log --oneline -n 10"
-    git config --global alias.a "add ."
-    git config --global alias.cm "commit -m"
-    git config --global alias.rh "reset --hard"
-    git config --global alias.f "fetch"
-    git config --global alias.up "upstream"
-    git config --global alias.upstream "!git push -u origin HEAD"
-    git config --global alias.wt "worktree"
-    git config --global alias.gt "describe --abbrev=0"
-}
+# 备份当前分支到 backup/xxx
 git-bk() {
   br=$(git symbolic-ref --short -q HEAD)
   git branch -c "$br" "backup/$br"
 }
+# 快速添加一颗 worktree
 git-wt-add() {
     git worktree add -b $1 ../$1
 }
+# 软重置
 git-rsh() {
   git reset --soft HEAD^
 }
+# 硬重置
 git-rhh() {
   git reset --hard HEAD^
 }
-git-prm() {
-  git pull origin main --rebase
-}
+# 拿到指定 remote 当前分支的名字
 git-cl() {
-  branch = $(git ls-remote --symref $1 HEAD | awk '/^ref:/ {sub(/refs\/heads\//, "", $2); print $2}')
-  echo $br
+  branch=$(git ls-remote --symref $1 HEAD | awk '/^ref:/ {sub(/refs\/heads\//, "", $2); print $2}')
+  echo $branch
 }
-
-kill-noti() {
-  pid=$(ps -ax | grep UserNotificationCenter | awk '{print $1}'| head -1)
-  sudo kill -9 $pid
-}
-
 docker_clean() {
     docker rmi $(docker images --format '{{.Repository}}:{{.Tag}}' | grep $1)
 }
-
 ar() {
     mv -i "$@" "$HOME/0Archive/"
 }
-
-xattr-cfw() {
-  sudo xattr -d com.apple.quarantine /Applications/Clash\ for\ Windows.app
+xattr() {
+  sudo xattr -d com.apple.quarantine /Applications/$@
 }
 
 bk() {
@@ -282,6 +272,14 @@ bk() {
     brew bundle dump --describe --force --no-upgrade --file="~/dotfiles/macos/Brewfile"
     code --list-extensions > ~/dotfiles/_rc/exts.txt
 }
+
+function f() {
+  find . -name "$1"
+}
+function grepf() {
+  ll | grep $1
+}
+
 eval "$(pyenv init --path)"
 eval "$(goenv init -)"
 
@@ -377,3 +375,5 @@ fi
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+export PATH="/Users/artin/.detaspace/bin:$PATH"

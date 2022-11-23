@@ -12,8 +12,6 @@ tap "weihanglo/sfz", "https://github.com/weihanglo/sfz.git"
 brew "act"
 # Library and utilities for processing GIFs
 brew "giflib"
-# Image manipulation library
-brew "jpeg", link: true
 # Library for manipulating PNG images
 brew "libpng"
 # Tool for generating GNU Standards-compliant Makefiles
@@ -54,6 +52,8 @@ brew "deno"
 brew "libusb"
 # USB programmer
 brew "dfu-util"
+# Select default apps for documents and URL schemes on macOS
+brew "duti"
 # Modern replacement for 'ls'
 brew "exa"
 # GNU Transport Layer Security (TLS) Library
@@ -78,6 +78,8 @@ brew "git-quick-stats"
 brew "gobject-introspection"
 # Go version management
 brew "goenv", args: ["HEAD"]
+# Image manipulation library
+brew "jpeg", link: true
 # Framework for layout and rendering of i18n text
 brew "pango"
 # Library to render SVG files using Cairo
@@ -88,6 +90,8 @@ brew "graphviz"
 brew "httpie"
 # Command-line pager for JSON data
 brew "jless"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
 # Library for USB device access
 brew "libusb-compat"
 # NCurses Disk Usage
@@ -125,21 +129,21 @@ brew "wget"
 # McFly
 brew "cantino/mcfly/mcfly"
 # The Clojure Programming Language
-brew "clojure/tools/clojure", link: false
+brew "clojure/tools/clojure"
 # GCC for embedded ARM processors
 brew "proxmark/proxmark3/arm-none-eabi-gcc"
 # A simple static file serving command-line tool.
 brew "weihanglo/sfz/sfz"
 # JDK from the Java User Group (JUG)
 cask "adoptopenjdk"
-# Enable Windows-like alt-tab
-cask "alt-tab"
 # Android SDK component
 cask "android-platform-tools"
 # Inspect application bundles
 cask "apparency"
 # Desktop password and login vault
 cask "bitwarden"
+# Lock/unlock Apple computers using the proximity of a bluetooth low energy device
+cask "bleunlock"
 # Free and open-source web browser
 cask "chromium"
 cask "font-fira-code"
@@ -152,13 +156,19 @@ cask "font-meslo-lg"
 cask "font-meslo-lg-nerd-font"
 # Free and open-source media player
 cask "iina"
+# File archiver
+cask "keka"
 # Extensible two-pane file manager
 cask "marta"
+# Knowledge base that works on top of a local folder of plain text Markdown files
+cask "obsidian"
 # Display image info and preview unsupported formats in QuickLook
 cask "qlimagesize"
 # QuickLook generator for Markdown files
 cask "qlmarkdown"
+# QuickLook plugin for plaintext files without an extension
 cask "qlstephen"
+# QuickLook generator for video files
 cask "qlvideo"
 # QuickLook generator for Adobe Swatch Exchange files
 cask "quicklookase"
