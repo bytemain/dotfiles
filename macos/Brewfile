@@ -1,10 +1,12 @@
 tap "cantino/mcfly"
 tap "clojure/tools"
+tap "damenly/virt-manager"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/core"
 tap "homebrew/services"
+tap "jeffreywildman/virt-manager"
 tap "mergestat/mergestat"
 tap "proxmark/proxmark3"
 tap "weihanglo/sfz", "https://github.com/weihanglo/sfz.git"
@@ -14,6 +16,8 @@ brew "act"
 brew "giflib"
 # Library for manipulating PNG images
 brew "libpng"
+# Core application library for C
+brew "glib"
 # Tool for generating GNU Standards-compliant Makefiles
 brew "automake"
 # Clone of cat(1) with syntax highlighting and Git integration
@@ -24,8 +28,6 @@ brew "pkg-config"
 brew "broot"
 # Powerful, enterprise-ready, open source web server with automatic HTTPS
 brew "caddy"
-# Core application library for C
-brew "glib"
 # Library for command-line editing
 brew "readline"
 # Interpreted, interactive, object-oriented programming language
@@ -94,12 +96,12 @@ brew "jless"
 brew "jq"
 # Library for USB device access
 brew "libusb-compat"
+# Small build system for use with gyp or CMake
+brew "ninja"
 # NCurses Disk Usage
 brew "ncdu"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
-# Small build system for use with gyp or CMake
-brew "ninja"
 # Platform built on V8 to build network applications
 brew "node"
 # Classic snake game with textual interface
@@ -130,12 +132,16 @@ brew "wget"
 brew "cantino/mcfly/mcfly"
 # The Clojure Programming Language
 brew "clojure/tools/clojure"
+# App for virtualized guest interaction
+brew "damenly/virt-manager/virt-viewer"
 # GCC for embedded ARM processors
 brew "proxmark/proxmark3/arm-none-eabi-gcc"
 # A simple static file serving command-line tool.
 brew "weihanglo/sfz/sfz"
 # JDK from the Java User Group (JUG)
 cask "adoptopenjdk"
+# Apple TV Aerial screensaver
+cask "aerial"
 # Android SDK component
 cask "android-platform-tools"
 # Inspect application bundles
@@ -146,6 +152,7 @@ cask "bitwarden"
 cask "bleunlock"
 # Free and open-source web browser
 cask "chromium"
+# Free monospaced font with programming ligatures
 cask "font-fira-code"
 # Developer targeted fonts with a high number of glyphs
 cask "font-hack-nerd-font"
