@@ -15,6 +15,6 @@ git status --porcelain \
     | sed -re 's/^D:$/Deleted: /' \
     | sed -re 's/^T:$/File Type Changed: /' \
     | xargs \
-    >> $TMPFILE; \
-git commit -F $TMPFILE; \
-rm -f $TMPFILE \
+    >> $TMPFILE;
+git commit -F $TMPFILE;
+rm -f $TMPFILE
