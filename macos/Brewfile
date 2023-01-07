@@ -1,6 +1,7 @@
 tap "cantino/mcfly"
 tap "clojure/tools"
 tap "damenly/virt-manager"
+tap "he3-app/he3"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
@@ -74,6 +75,8 @@ brew "gdk-pixbuf"
 brew "gh"
 # Distributed revision control system
 brew "git"
+# Git extension for versioning large files
+brew "git-lfs"
 # Simple and efficient way to access statistics in git
 brew "git-quick-stats"
 # Generate introspection data for GObject libraries
@@ -175,7 +178,7 @@ cask "qlimagesize"
 cask "qlmarkdown"
 # QuickLook plugin for plaintext files without an extension
 cask "qlstephen"
-# QuickLook generator for video files
+# Thumbnails, static previews, cover art and metadata for video files
 cask "qlvideo"
 # QuickLook generator for Adobe Swatch Exchange files
 cask "quicklookase"

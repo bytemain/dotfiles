@@ -4,7 +4,7 @@ export TIME_STYLE=iso
 export CHEAT_CONFIG_PATH="~/dotfiles/cheat/conf.yml"
 export CHEAT_USE_FZF=true
 
-export PATH="$(pwd)/node_modules/.bin:$PATH"
+#export PATH="$(pwd)/node_modules/.bin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH=$NPM_CONFIG_PREFIX/bin:$PATH
 export PATH="$HOME/.poetry/bin:$PATH"
@@ -30,8 +30,8 @@ alias -- -='cd -'
 
 alias o=open
 alias md='mkdir -p'
-alias mv="mv -iv"
-alias cp="cp -iv"
+alias mv="mv -v"
+alias cp="cp -v"
 alias mkdir="mkdir -v"
 alias b=brew
 alias nv="nvim"
@@ -273,6 +273,13 @@ bk() {
     code --list-extensions > ~/dotfiles/_rc/exts.txt
 }
 
+serv_sfz() {
+  sfz . --cors -b 0.0.0.0 -p 3002
+}
+serv() {
+  live-server . --port=8080 --host=0.0.0.0
+}
+
 function f() {
   find . -name "$1"
 }
@@ -280,7 +287,7 @@ function grepf() {
   ll | grep $1
 }
 
-eval "$(pyenv init --path)"
+# eval "$(pyenv init --path)"
 eval "$(goenv init -)"
 
 autoload -U compinit && compinit
@@ -290,7 +297,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 source $HOME/.config/broot/launcher/bash/br
-# eval "$(mcfly init zsh)"
+eval "$(mcfly init zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

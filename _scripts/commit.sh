@@ -1,3 +1,4 @@
+git add .
 mkdir -p .tmp
 TMPFILE=$(mktemp .tmp/git-commit-status-message.XXX);
 echo "Backup\n" > $TMPFILE;
