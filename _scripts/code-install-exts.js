@@ -1,5 +1,5 @@
 const fs = require("fs");
-const { serial } = require("../utils/promises");
+const { serial } = require("./utils/promises");
 const childProcess = require("child_process");
 const { promisify } = require("util");
 const path = require("path");

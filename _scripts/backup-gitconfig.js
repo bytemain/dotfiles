@@ -1,11 +1,7 @@
 const fs = require("fs");
 const os = require("os");
 const gitconfig = require("git-config");
-const { serial } = require("../utils/promises");
-const childProcess = require("child_process");
-const { promisify } = require("util");
 const path = require("path");
-const exec = promisify(childProcess.exec);
 
 const exts = fs.readFileSync(path.join(os.homedir(), ".gitconfig"));
 console.log(`🚀 ~ file: backup-gitconfig.js ~ line 10 ~ exts`, exts.toString());
