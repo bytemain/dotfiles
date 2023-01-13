@@ -99,6 +99,8 @@ brew "jless"
 brew "jq"
 # Library for USB device access
 brew "libusb-compat"
+# Swiss Army Knife for macOS
+brew "m-cli"
 # Small build system for use with gyp or CMake
 brew "ninja"
 # NCurses Disk Usage
@@ -131,6 +133,8 @@ brew "socat"
 brew "tldr"
 # Internet file retriever
 brew "wget"
+# Programming language designed for robustness, optimality, and clarity
+brew "zig"
 # McFly
 brew "cantino/mcfly/mcfly"
 # The Clojure Programming Language
@@ -155,6 +159,8 @@ cask "bitwarden"
 cask "bleunlock"
 # Free and open-source web browser
 cask "chromium"
+# Utilities designed to make common development tasks easier
+cask "devtoys"
 # Free monospaced font with programming ligatures
 cask "font-fira-code"
 # Developer targeted fonts with a high number of glyphs
@@ -164,6 +170,8 @@ cask "font-jetbrains-mono"
 cask "font-meslo-lg"
 # Developer targeted fonts with a high number of glyphs
 cask "font-meslo-lg-nerd-font"
+# Utility to provide quick look previews for files that aren't natively supported
+cask "glance-chamburr"
 # Free and open-source media player
 cask "iina"
 # File archiver
