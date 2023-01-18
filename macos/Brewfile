@@ -63,6 +63,8 @@ brew "exa"
 brew "gnutls"
 # OpenType text shaping engine
 brew "harfbuzz"
+# Framework for layout and rendering of i18n text
+brew "pango"
 # Play, record, convert, and stream audio and video
 brew "ffmpeg"
 # Command-line fuzzy finder written in Go
@@ -85,8 +87,6 @@ brew "gobject-introspection"
 brew "goenv", args: ["HEAD"]
 # Image manipulation library
 brew "jpeg", link: true
-# Framework for layout and rendering of i18n text
-brew "pango"
 # Library to render SVG files using Cairo
 brew "librsvg"
 # Graph visualization software from AT&T and Bell Labs
@@ -135,6 +135,8 @@ brew "tldr"
 brew "wget"
 # Programming language designed for robustness, optimality, and clarity
 brew "zig"
+# Shell extension to navigate your filesystem faster
+brew "zoxide"
 # McFly
 brew "cantino/mcfly/mcfly"
 # The Clojure Programming Language

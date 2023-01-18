@@ -46,6 +46,7 @@ alias cdtmp='mkdir -p ~/0CodeRunner/tmp && cd `mktemp -d ~/0CodeRunner/tmp/artin
 alias ws="cd ~/0Workspace"
 alias an="cd ~/0Ant"
 alias cr="cd ~/0CodeRunner"
+alias crt="cd ~/0CodeRunner/tmp"
 alias cls=clear
 alias rmrf="rm -rf"
 alias rmt="trash"
@@ -336,7 +337,7 @@ zinit light-mode for \
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 # zinit light zdharma-continuum/fast-syntax-highlighting
-zinit light agkozak/zsh-z
+# zinit light agkozak/zsh-z
 
 # Load pure theme
 zinit ice pick"async.zsh" src"pure.zsh" # with zsh-async library that's bundled with it.
@@ -387,4 +388,5 @@ fi
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-export PATH="/Users/artin/.detaspace/bin:$PATH"
+
+eval "$(zoxide init zsh)"
