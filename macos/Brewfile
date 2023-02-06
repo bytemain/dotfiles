@@ -105,8 +105,6 @@ brew "m-cli"
 brew "ninja"
 # NCurses Disk Usage
 brew "ncdu"
-# Ambitious Vim-fork focused on extensibility and agility
-brew "neovim"
 # Platform built on V8 to build network applications
 brew "node"
 # Classic snake game with textual interface

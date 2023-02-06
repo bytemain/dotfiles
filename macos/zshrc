@@ -34,13 +34,14 @@ alias mv="mv -v"
 alias cp="cp -v"
 alias mkdir="mkdir -v"
 alias b=brew
-alias nv="nvim"
 alias y=yarn
 alias t=tnpm
+alias pn=pnpm
 alias p=projj
 alias py="python3"
 alias ipy="ipython"
-alias vizsh="nv ~/.zshrc"
+alias vizsh="vim ~/.zshrc"
+alias vimrc="vim ~/.vimrc"
 alias c="code"
 alias cdtmp='mkdir -p ~/0CodeRunner/tmp && cd `mktemp -d ~/0CodeRunner/tmp/artin-XXXXXX`'
 alias ws="cd ~/0Workspace"
@@ -50,7 +51,6 @@ alias crt="cd ~/0CodeRunner/tmp"
 alias cls=clear
 alias rmrf="rm -rf"
 alias rmt="trash"
-alias vimrc="nv ~/.config/nvim/init.vim"
 alias d=docker
 alias dco="docker-compose"
 alias ping="nali-ping"
@@ -83,6 +83,7 @@ alias -g dps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Nam
 alias -g o='open'
 alias -g ow='open -a'
 
+alias cobi='code "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Craft"'
 
 alias -g chrome-no-sec="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome   --disable-web-security  --user-data-dir=~/.chromeTemp"
 
@@ -270,7 +271,7 @@ xattr() {
 
 bk() {
     cp ~/.zshrc ~/dotfiles/macos/zshrc
-    cp ~/.config/nvim/init.vim ~/dotfiles/macos/init.vim
+    cp ~/.vimrc ~/dotfiles/macos/vimrc
     brew bundle dump --describe --force --no-upgrade --file="~/dotfiles/macos/Brewfile"
     code --list-extensions > ~/dotfiles/_rc/exts.txt
 }
@@ -390,3 +391,8 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 
 eval "$(zoxide init zsh)"
+
+# pnpm
+export PNPM_HOME="/Users/artin/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end

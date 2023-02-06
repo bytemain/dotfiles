@@ -2,6 +2,7 @@ aaron-bond.better-comments
 AhadCove.python-quick-print
 alefragnani.Bookmarks
 alefragnani.project-manager
+alipay.minicode
 anteprimorac.html-end-tag-labels
 bierner.lit-html
 bungcip.better-toml
