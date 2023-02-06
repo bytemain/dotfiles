@@ -1,6 +1,5 @@
 {
     "name": "dotfiles",
-    "private": "true",
     "scripts": {
         "update": "sh ./_scripts/commit.sh",
         "postupdate": "git push"
