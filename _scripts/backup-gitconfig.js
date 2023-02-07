@@ -18,8 +18,8 @@ Object.keys(data).forEach((k) => {
 });
 
 fs.writeFileSync(
-  path.join(os.homedir(), "dotfiles/_rc/gitconfig"),
-  JSON.stringify(data)
+  path.join(os.homedir(), "dotfiles/_rc/gitconfig.json"),
+  JSON.stringify(data, null, 2)
 );
 
 fs.copyFileSync(
