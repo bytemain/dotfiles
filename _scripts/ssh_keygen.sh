@@ -1,5 +1,5 @@
 if [ ! -f  ~/.ssh/id_rsa.pub ]; then
-	ssh-keygen -t rsa -C "lengthmin@gmail.com";
+	ssh-keygen -t rsa -C "$1";
 fi
 
 if [ -f  ~/.ssh/id_rsa.pub ]; then
