@@ -1,0 +1,55 @@
+#!/bin/bash
+
+# 定义需要忽略的文件和文件夹列表
+ignore_list=".git
+.gitignore
+node_modules
+*.love
+.DS_Store
+Thumbs.db
+.github
+.gitattributes
+.gitmodules
+exclude-list.txt
+license.txt
+legals.md
+readme.md
+"
+
+# 读取 .gitignore 文件中的内容，并将其添加到 ignore_list 中
+if [ -e .gitignore ]; then
+  while read line; do
+    ignore_list="$ignore_list"$'\n'"$line"
+  done < .gitignore
+fi
+
+# 生成排除文件的列表
+echo "$ignore_list" > exclude-list.txt
+
+# 创建一个临时文件夹，用于存放需要压缩的文件
+tmp_dir=$(mktemp -d)
+echo "创建临时文件夹 $tmp_dir"
+
+# 复制所有未被忽略的文件到临时文件夹
+echo "复制所有文件到临时目录..."
+rsync -a --exclude-from=exclude-list.txt ./ $tmp_dir
+
+# 进入临时文件夹，执行 zip 命令将所有文件打包
+cd $tmp_dir
+echo "压缩临时目录..."
+zip -rq ../archive.zip .
+
+# 返回原始目录
+cd -
+
+# 将生成的 zip 文件重命名为 love 文件，并移动到工作目录
+mv "$tmp_dir/../archive.zip" "$(pwd)/archive.love"
+echo "已创建压缩文件"
+echo "$(ls -lah $(pwd)/archive.love)"
+
+# 删除临时文件夹和排除文件列表
+echo "删除临时目录..."
+rm -rf $tmp_dir
+rm exclude-list.txt
+
+echo "脚本执行完毕。"
