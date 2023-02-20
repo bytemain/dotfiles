@@ -43,9 +43,9 @@ zip -rq ../archive.zip .
 cd -
 
 # 将生成的 zip 文件重命名为 love 文件，并移动到工作目录
-mv "$tmp_dir/../archive.zip" "$(pwd)/archive.love"
+mv "$tmp_dir/../archive.zip" "$(pwd)/../archive.love"
 echo "已创建压缩文件"
-echo "$(ls -lah $(pwd)/archive.love)"
+echo "$(ls -lah $(pwd)/../archive.love)"
 
 # 删除临时文件夹和排除文件列表
 echo "删除临时目录..."
