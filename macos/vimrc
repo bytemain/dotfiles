@@ -83,7 +83,7 @@ augroup END
 " https://github.com/junegunn/vim-plug
 call plug#begin()
 Plug 'junegunn/vim-easy-align'
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'preservim/nerdcommenter'
@@ -92,21 +92,20 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'Chiel92/vim-autoformat'
 " Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
 Plug 'Raimondi/delimitMate'
 Plug 'wakatime/vim-wakatime'
-Plug 'jackguo380/vim-lsp-cxx-highlight'
-Plug 'projekt0n/github-nvim-theme'
 call plug#end()
 
 let g:NERDSpaceDelims=1
-let g:UltiSnipsExpandTrigger="<c-u><c-n>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:UltiSnipsEditSplit="vertical"
-
 map <C-b> :NERDTreeToggle<CR>
+
+" let g:UltiSnipsExpandTrigger=\"<c-u><c-n>\"
+" let g:UltiSnipsJumpForwardTrigger=\"<c-b>\"
+" let g:UltiSnipsJumpBackwardTrigger=\"<c-z>\"
+" let g:UltiSnipsEditSplit=\"vertical\"
+
 
 set termguicolors
 

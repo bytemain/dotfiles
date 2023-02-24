@@ -1,10 +1,9 @@
 export GOENV_ROOT="$HOME/.goenv"
 export GOPATH="$HOME/go"
 export TIME_STYLE=iso
-export CHEAT_CONFIG_PATH="~/dotfiles/cheat/conf.yml"
-export CHEAT_USE_FZF=true
 
 #export PATH="$(pwd)/node_modules/.bin:$PATH"
+export PATH="$HOME/dotfiles/bin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH=$NPM_CONFIG_PREFIX/bin:$PATH
 export PATH="$HOME/.poetry/bin:$PATH"
@@ -43,7 +42,8 @@ alias ipy="ipython"
 alias vizsh="vim ~/.zshrc"
 alias vimrc="vim ~/.vimrc"
 alias c="code"
-alias cdtmp='mkdir -p ~/0CodeRunner/tmp && cd `mktemp -d ~/0CodeRunner/tmp/artin-XXXXXX`'
+alias cdtmp='mkdir -p ~/0CodeRunner/tmp/$(date +"%Y%m%d_%H%M%S") && cd `mktemp -d ~/0CodeRunner/tmp/$(date +"%Y%m%d_%H%M%S")/artin-XXXXXX`'
+alias cdtt='mkdir -p ~/0CodeRunner/tmp/ && cd `mktemp -d ~/0CodeRunner/tmp/$(gdate +"%Y%m%d_%H%M%S_%3N")`'
 alias ws="cd ~/0Workspace"
 alias an="cd ~/0Ant"
 alias cr="cd ~/0CodeRunner"
@@ -69,12 +69,13 @@ alias bru="bun run"
 alias yless="jless --yaml"
 alias myip="echo Your ip is; dig +short myip.opendns.com @resolver1.opendns.com;"
 
+alias emenv='source "$HOME/0Workspace/emsdk/emsdk_env.sh"'
+
 alias tl="tmux list-sessions"
 alias tks="tmux kill-session -t"
 alias ta="tmux attach -t"
 alias ts="tmux new-session -s"
 
-alias ct=cheat
 alias _='sudo '
 
 alias sv='caddy file-server --listen :2000 --browse'
@@ -393,6 +394,8 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 eval "$(zoxide init zsh)"
 
 # pnpm
-export PNPM_HOME="/Users/artin/Library/pnpm"
+export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
+
+source $HOME/.config/broot/launcher/bash/br

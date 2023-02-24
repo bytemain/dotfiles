@@ -1,13 +1,10 @@
 tap "cantino/mcfly"
 tap "clojure/tools"
-tap "damenly/virt-manager"
-tap "he3-app/he3"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/core"
 tap "homebrew/services"
-tap "jeffreywildman/virt-manager"
 tap "mergestat/mergestat"
 tap "proxmark/proxmark3"
 tap "weihanglo/sfz", "https://github.com/weihanglo/sfz.git"
@@ -17,20 +14,26 @@ brew "act"
 brew "giflib"
 # Library for manipulating PNG images
 brew "libpng"
+# General-purpose data compression with high compression ratio
+brew "xz"
 # Core application library for C
 brew "glib"
 # Tool for generating GNU Standards-compliant Makefiles
 brew "automake"
+# Bourne-Again SHell, a UNIX command interpreter
+brew "bash"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
-# Manage compile and link flags for libraries
-brew "pkg-config"
 # New way to see and navigate directory trees
 brew "broot"
 # Powerful, enterprise-ready, open source web server with automatic HTTPS
 brew "caddy"
+# Manage compile and link flags for libraries
+brew "pkg-config"
 # Library for command-line editing
 brew "readline"
+# Command-line interface for SQLite
+brew "sqlite"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.9"
 # Vector graphics library with cross-device output support
@@ -49,6 +52,8 @@ brew "ruby"
 brew "cocoapods"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
+# Get a file from an HTTP, HTTPS or FTP server
+brew "curl"
 # Secure runtime for JavaScript and TypeScript
 brew "deno"
 # Library for USB device access
@@ -99,6 +104,8 @@ brew "jless"
 brew "jq"
 # Library for USB device access
 brew "libusb-compat"
+# Powerful, lightweight programming language
+brew "lua"
 # Swiss Army Knife for macOS
 brew "m-cli"
 # Small build system for use with gyp or CMake
@@ -111,6 +118,8 @@ brew "node"
 brew "nsnake"
 # Ncurses based sudoku game
 brew "nudoku"
+# Cryptography and SSL/TLS Toolkit
+brew "openssl@3"
 # 7-Zip (high compression file archiver) implementation
 brew "p7zip"
 # Python 3 bindings for the Cairo graphics library
@@ -133,14 +142,14 @@ brew "tldr"
 brew "wget"
 # Programming language designed for robustness, optimality, and clarity
 brew "zig"
+# General-purpose lossless data-compression library
+brew "zlib"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
 # McFly
 brew "cantino/mcfly/mcfly"
 # The Clojure Programming Language
 brew "clojure/tools/clojure"
-# App for virtualized guest interaction
-brew "damenly/virt-manager/virt-viewer"
 # GCC for embedded ARM processors
 brew "proxmark/proxmark3/arm-none-eabi-gcc"
 # A simple static file serving command-line tool.
@@ -157,10 +166,10 @@ cask "apparency"
 cask "bitwarden"
 # Lock/unlock Apple computers using the proximity of a bluetooth low energy device
 cask "bleunlock"
+# GUI app for Homebrew
+cask "cakebrew"
 # Free and open-source web browser
 cask "chromium"
-# Utilities designed to make common development tasks easier
-cask "devtoys"
 # Free monospaced font with programming ligatures
 cask "font-fira-code"
 # Developer targeted fonts with a high number of glyphs
@@ -176,6 +185,8 @@ cask "glance-chamburr"
 cask "iina"
 # File archiver
 cask "keka"
+# 2D game framework for Lua
+cask "love"
 # Extensible two-pane file manager
 cask "marta"
 # Knowledge base that works on top of a local folder of plain text Markdown files
@@ -190,6 +201,8 @@ cask "qlstephen"
 cask "qlvideo"
 # QuickLook generator for Adobe Swatch Exchange files
 cask "quicklookase"
+# Displays all open files and sockets in use by all running processes
+cask "sloth"
 # Graphical client for Git version control
 cask "sourcetree"
 # Application for inspecting installer packages
