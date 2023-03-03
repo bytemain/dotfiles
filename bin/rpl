@@ -1,0 +1,18 @@
+#!/bin/bash
+
+search_str=$HOME
+echo $search_str
+replace_str="\$HOME"
+
+filename=$1
+
+# 检查文件是否存在
+if [ ! -f "$filename" ]; then
+  echo "文件 $filename 不存在！"
+  exit 1
+fi
+
+# 替换文件中的内容
+sed -i "s/$search_str/$replace_str/g" "$filename"
+
+echo "替换完成！"
