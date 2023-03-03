@@ -27,6 +27,7 @@ espressif.esp-idf-extension
 fabiospampinato.vscode-open-in-github
 firsttris.vscode-jest-runner
 formulahendry.code-runner
+foxundermoon.shell-format
 GitHub.copilot
 GitHub.remotehub
 GitHub.vscode-pull-request-github

@@ -32,8 +32,6 @@ brew "caddy"
 brew "pkg-config"
 # Library for command-line editing
 brew "readline"
-# Command-line interface for SQLite
-brew "sqlite"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.9"
 # Vector graphics library with cross-device output support
@@ -60,6 +58,10 @@ brew "deno"
 brew "libusb"
 # USB programmer
 brew "dfu-util"
+# Secure communications between a client and a DNS resolver
+brew "dnscrypt-proxy", restart_service: true
+# Lightweight DNS forwarder and DHCP server
+brew "dnsmasq", restart_service: true
 # Select default apps for documents and URL schemes on macOS
 brew "duti"
 # Modern replacement for 'ls'
@@ -86,6 +88,8 @@ brew "git"
 brew "git-lfs"
 # Simple and efficient way to access statistics in git
 brew "git-quick-stats"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.10"
 # Generate introspection data for GObject libraries
 brew "gobject-introspection"
 # Go version management
@@ -110,6 +114,10 @@ brew "lua"
 brew "m-cli"
 # Small build system for use with gyp or CMake
 brew "ninja"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.11"
+# Fast and user friendly build system
+brew "meson"
 # NCurses Disk Usage
 brew "ncdu"
 # Platform built on V8 to build network applications
