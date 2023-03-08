@@ -37,13 +37,13 @@ alias y=yarn
 alias t=tnpm
 alias pn=pnpm
 alias p=projj
+alias pf="projj find"
 alias py="python3"
 alias ipy="ipython"
 alias vizsh="vim ~/.zshrc"
+alias cozsh="code ~/.zshrc"
 alias vimrc="vim ~/.vimrc"
 alias c="code"
-alias cdtmp='mkdir -p ~/0CodeRunner/tmp/$(date +"%Y%m%d_%H%M%S") && cd `mktemp -d ~/0CodeRunner/tmp/$(date +"%Y%m%d_%H%M%S")/artin-XXXXXX`'
-alias cdtt='mkdir -p ~/0CodeRunner/tmp/ && cd `mktemp -d ~/0CodeRunner/tmp/$(gdate +"%Y%m%d_%H%M%S_%3N")`'
 alias ws="cd ~/0Workspace"
 alias an="cd ~/0Ant"
 alias cr="cd ~/0CodeRunner"
@@ -286,6 +286,18 @@ serv_sfz() {
 }
 serv() {
   live-server . --port=8080 --host=0.0.0.0
+}
+
+cdtmp() {
+  mkdir -p ~/0CodeRunner/tmp/$(date +"%Y%m%d_%H%M%S") && cd `mktemp -d ~/0CodeRunner/tmp/$(date +"%Y%m%d_%H%M%S")/artin-XXXXXX`
+}
+
+cdtt() {
+  mkdir -p ~/0CodeRunner/tmp/ && cd `mktemp -d ~/0CodeRunner/tmp/$(gdate +"%Y%m%d_%H%M%S_%3N")`
+}
+
+cdt() {
+  take "~/0CodeRunner/tmp/$1"
 }
 
 function f() {

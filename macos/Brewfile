@@ -58,10 +58,6 @@ brew "deno"
 brew "libusb"
 # USB programmer
 brew "dfu-util"
-# Secure communications between a client and a DNS resolver
-brew "dnscrypt-proxy", restart_service: true
-# Lightweight DNS forwarder and DHCP server
-brew "dnsmasq", restart_service: true
 # Select default apps for documents and URL schemes on macOS
 brew "duti"
 # Modern replacement for 'ls'
