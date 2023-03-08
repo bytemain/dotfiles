@@ -1,6 +1,6 @@
 const fs = require("fs");
 const os = require("os");
-const gitconfig = require("git-config");
+const gitconfig = require("./utils/git-config");
 const path = require("path");
 
 const exts = fs.readFileSync(path.join(os.homedir(), ".gitconfig"));
