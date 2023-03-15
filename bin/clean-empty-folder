@@ -1,0 +1,33 @@
+#!/usr/bin/env node
+
+const { readdirSync, rmdirSync, statSync } = require("node:fs");
+const { basename, join } = require("node:path");
+
+const cleanupEmptyFolders = (
+  folder,
+  exclude = ["node_modules"]
+) => {
+  if (!statSync(folder).isDirectory()) return;
+
+  const folderName = basename(folder);
+  if (exclude && exclude.includes(folderName)) {
+    console.log(`skipping: ${folder}`);
+    return;
+  }
+
+  let files = readdirSync(folder);
+
+  if (files.length > 0) {
+    files.forEach((file) => cleanupEmptyFolders(join(folder, file), exclude));
+    // Re-evaluate files; after deleting subfolders we may have an empty parent
+    // folder now.
+    files = readdirSync(folder);
+  }
+
+  if (files.length == 0) {
+    console.log(`removing: ${folder}`);
+    rmdirSync(folder);
+  }
+};
+
+cleanupEmptyFolders(process.cwd());
