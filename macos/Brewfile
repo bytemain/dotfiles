@@ -52,12 +52,16 @@ brew "cocoapods"
 brew "coreutils"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
+# Power of curl, ease of use of httpie
+brew "curlie"
 # Secure runtime for JavaScript and TypeScript
 brew "deno"
 # Library for USB device access
 brew "libusb"
 # USB programmer
 brew "dfu-util"
+# Command-line DNS client
+brew "dog"
 # Select default apps for documents and URL schemes on macOS
 brew "duti"
 # Modern replacement for 'ls'
@@ -180,6 +184,8 @@ cask "font-fira-code"
 cask "font-hack-nerd-font"
 # Typeface made for developers
 cask "font-jetbrains-mono"
+# Open-source Chinese font derived from Fontworks' Klee One
+cask "font-lxgw-wenkai"
 cask "font-meslo-lg"
 # Developer targeted fonts with a high number of glyphs
 cask "font-meslo-lg-nerd-font"
@@ -213,3 +219,5 @@ cask "sourcetree"
 cask "suspicious-package"
 # JDK from the Eclipse Foundation (Adoptium)
 cask "temurin"
+# Install and switch between multiple versions of Xcode
+cask "xcodes"

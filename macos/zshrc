@@ -78,6 +78,8 @@ alias ts="tmux new-session -s"
 
 alias _='sudo '
 
+alias doh='dog -H @https://dns.google/dns-query'
+
 alias sv='caddy file-server --listen :2000 --browse'
 
 alias -g dps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}"'
@@ -93,13 +95,6 @@ alias dfimage="docker run -v /var/run/docker.sock:/var/run/docker.sock --rm alpi
 alias gl="git log --pretty=format:\"%C(auto)%h %C(magenta)<%ad> %C(green)[%an] %C(blue normal bold)| %Creset%s%C(auto)%d\" --graph --date=short"
 
 alias get_idf='. $HOME/esp2/esp-idf/export.sh'
-
-bindkey -s '\eo'   'cd ..\n'    # 按下ALT+O 就执行 cd .. 命令
-bindkey -s '\e;'   'ls -l\n'    # 按下 ALT+; 就执行 ls -l 命令
-bindkey '\e[1;3D' backward-word       # ALT+左键：向后跳一个单词
-bindkey '\e[1;3C' forward-word        # ALT+右键：前跳一个单词
-bindkey '\e[1;3A' beginning-of-line   # ALT+上键：跳到行首
-bindkey '\e[1;3B' end-of-line         # ALT+下键：调到行尾
 
 # completion detail
 zstyle ':completion:*:complete:-command-:*:*' ignored-patterns '*.pdf|*.exe|*.dll'
@@ -413,10 +408,10 @@ export PATH="$PNPM_HOME:$PATH"
 
 source $HOME/.config/broot/launcher/bash/br
 
-export PATH="/Users/artin/.detaspace/bin:$PATH"
+export PATH="$HOME/.detaspace/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/artin/0Common/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/artin/0Common/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '$HOME/0Common/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/0Common/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/artin/0Common/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/artin/0Common/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '$HOME/0Common/google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/0Common/google-cloud-sdk/completion.zsh.inc'; fi

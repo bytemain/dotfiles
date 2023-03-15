@@ -78,6 +78,7 @@ redhat.vscode-yaml
 refactor11.completeline
 richie5um2.vscode-sort-json
 ritwickdey.LiveServer
+ryu1kn.text-marker
 samuelcolvin.jinjahtml
 sburg.vscode-javascript-booster
 sdras.vue-vscode-snippets
