@@ -3,11 +3,13 @@
 const { readdirSync, rmdirSync, statSync } = require("node:fs");
 const { basename, join } = require("node:path");
 
-const cleanupEmptyFolders = (
-  folder,
-  exclude = ["node_modules"]
-) => {
-  if (!statSync(folder).isDirectory()) return;
+const cleanupEmptyFolders = (folder, exclude = ["node_modules"]) => {
+  try {
+    if (!statSync(folder).isDirectory()) return;
+  } catch (error) {
+    console.error(`cleanupEmptyFolders ~ stat - error:`, error);
+    return;
+  }
 
   const folderName = basename(folder);
   if (exclude && exclude.includes(folderName)) {
@@ -25,8 +27,12 @@ const cleanupEmptyFolders = (
   }
 
   if (files.length == 0) {
-    console.log(`removing: ${folder}`);
-    rmdirSync(folder);
+    try {
+      console.log(`removing: ${folder}`);
+      rmdirSync(folder);
+    } catch (error) {
+      console.log(`cleanupEmptyFolders ~ error:`, error);
+    }
   }
 };
 
