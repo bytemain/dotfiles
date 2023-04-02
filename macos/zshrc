@@ -8,6 +8,8 @@ export PATH="/opt/homebrew/bin:$PATH"
 export PATH=$NPM_CONFIG_PREFIX/bin:$PATH
 export PATH="$HOME/.poetry/bin:$PATH"
 export PATH=$PATH:/opt/local/bin
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="/usr/local/sbin:$PATH"
 export PATH=$PATH:$GOPATH/bin
 export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
 export PATH=$JAVA_HOME/bin:$PATH
@@ -15,7 +17,6 @@ export PATH=$HOME/depot_tools:$PATH
 export CPLUS_INCLUDE_PATH=/opt/homebrew/include
 export GEM_HOME=$HOME/.gem
 export PATH=$GEM_HOME/ruby/3.0.0/bin:$PATH
-export PATH="/usr/local/sbin:$PATH"
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH="$HOME/.bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
@@ -32,6 +33,7 @@ alias md='mkdir -p'
 alias mv="mv -v"
 alias cp="cp -v"
 alias mkdir="mkdir -v"
+alias rmcdir="source delete-current-dir.sh"
 alias b=brew
 alias y=yarn
 alias t=tnpm
@@ -86,7 +88,7 @@ alias -g dps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Nam
 alias -g o='open'
 alias -g ow='open -a'
 
-alias cobi='code "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Craft"'
+alias cobi='cd "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Craft"'
 
 alias -g chrome-no-sec="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome   --disable-web-security  --user-data-dir=~/.chromeTemp"
 
@@ -163,8 +165,34 @@ touchp() {
     mkdir -p $target_dir; touch $target
 }
 
+function confirm() {
+  local message="$1"
+  local prompt="Are you sure you want to continue? (y/n)"
+  if [ -n "$message" ]; then
+    prompt="$message $prompt"
+  fi
+
+  echo "$prompt"
+  read confirm
+
+  if [ "$confirm" = "y" ]; then
+    echo "Continuing..."
+    return 0
+  else
+    echo "Operation canceled."
+    return 1
+  fi
+}
+
+
 cleantmp() {
-    sudo find /tmp -type f -atime +10 -delete
+  confirm || return
+  sudo find /tmp -type f -atime +10 -delete
+}
+
+cleanoutdate() {
+  confirm || return
+  sudo find . -type d -mtime +7d -ls -delete -print
 }
 
 # Proxy configuration
@@ -295,6 +323,11 @@ cdt() {
   take "~/0CodeRunner/tmp/$1"
 }
 
+sync-zsh() {
+    cp ~/.zshrc ~/.zshrc.bak
+    cp ~/dotfiles/macos/zshrc ~/.zshrc
+}
+
 function f() {
   find . -name "$1"
 }
@@ -315,6 +348,8 @@ export NVM_DIR="$HOME/.nvm"
 
 source $HOME/.config/broot/launcher/bash/br
 eval "$(mcfly init zsh)"
+
+eval "$(github-copilot-cli alias -- "$0")"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

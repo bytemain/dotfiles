@@ -89,7 +89,7 @@ brew "git-lfs"
 # Simple and efficient way to access statistics in git
 brew "git-quick-stats"
 # Interpreted, interactive, object-oriented programming language
-brew "python@3.10"
+brew "python@3.11"
 # Generate introspection data for GObject libraries
 brew "gobject-introspection"
 # Go version management
@@ -100,6 +100,8 @@ brew "jpeg", link: true
 brew "librsvg"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.10"
 # User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
 # Command-line pager for JSON data
@@ -114,8 +116,6 @@ brew "lua"
 brew "m-cli"
 # Small build system for use with gyp or CMake
 brew "ninja"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.11"
 # Fast and user friendly build system
 brew "meson"
 # NCurses Disk Usage
@@ -164,18 +164,14 @@ brew "proxmark/proxmark3/arm-none-eabi-gcc"
 brew "weihanglo/sfz/sfz"
 # JDK from the Java User Group (JUG)
 cask "adoptopenjdk"
-# Apple TV Aerial screensaver
-cask "aerial"
+# Enable Windows-like alt-tab
+cask "alt-tab"
 # Android SDK component
 cask "android-platform-tools"
 # Inspect application bundles
 cask "apparency"
-# Desktop password and login vault
-cask "bitwarden"
 # Lock/unlock Apple computers using the proximity of a bluetooth low energy device
 cask "bleunlock"
-# GUI app for Homebrew
-cask "cakebrew"
 # Free and open-source web browser
 cask "chromium"
 # Free monospaced font with programming ligatures
@@ -197,14 +193,10 @@ cask "iina"
 cask "keka"
 # 2D game framework for Lua
 cask "love"
-# Extensible two-pane file manager
-cask "marta"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
 # Display image info and preview unsupported formats in QuickLook
 cask "qlimagesize"
-# QuickLook generator for Markdown files
-cask "qlmarkdown"
 # QuickLook plugin for plaintext files without an extension
 cask "qlstephen"
 # Thumbnails, static previews, cover art and metadata for video files
