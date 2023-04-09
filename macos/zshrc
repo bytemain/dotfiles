@@ -126,8 +126,7 @@ add_path() {
 }
 
 init_npm() {
-    npm install --registry=https://registry.npm.alibaba-inc.com -g tnpm
-    tnpm install -g nali-cli trash-cli zx yarn
+    npm install -g nali-cli trash-cli zx yarn
 }
 
 zsh_history_fix() {

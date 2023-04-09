@@ -184,6 +184,8 @@ cask "font-meslo-lg"
 cask "font-meslo-lg-nerd-font"
 # Utility to provide quick look previews for files that aren't natively supported
 cask "glance-chamburr"
+# Desktop automation application
+cask "hammerspoon"
 # Free and open-source media player
 cask "iina"
 # File archiver
