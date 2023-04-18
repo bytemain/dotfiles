@@ -1,0 +1,26 @@
+#!/usr/bin/env node
+
+const { exec } = require("child_process");
+const util = require("util");
+
+const execa = util.promisify(exec);
+
+async function main() {
+  const client = process.argv[2] || "npm";
+  const name = process.argv[3];
+
+  if (!name) {
+    throw new Error("请输入账号");
+  }
+
+  console.log("Add owner", name);
+
+  const { stdout } = await execa("lerna ls --json --no-private");
+  const pkgs = JSON.parse(stdout);
+  for (const pkg of pkgs) {
+    console.log("Add owner for", pkg.name);
+    await execa(`${client} owner add ${name} ${pkg.name}`);
+  }
+}
+
+main();
