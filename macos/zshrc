@@ -127,6 +127,8 @@ add_path() {
 
 init_npm() {
     npm install -g nali-cli trash-cli zx yarn
+    npm install -g @githubnext/github-copilot-cli
+    npm install -g projj
 }
 
 zsh_history_fix() {
@@ -296,7 +298,6 @@ bk() {
     cp ~/.zshrc ~/dotfiles/macos/zshrc
     cp ~/.vimrc ~/dotfiles/macos/vimrc
     brew bundle dump --describe --force --no-upgrade --file="~/dotfiles/macos/Brewfile"
-    code --list-extensions > ~/dotfiles/_rc/exts.txt
 }
 upg() {
   zinit self-update
@@ -465,4 +466,3 @@ if [ -f '$HOME/0Common/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/0Common/g
 
 # The next line enables shell command completion for gcloud.
 if [ -f '$HOME/0Common/google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/0Common/google-cloud-sdk/completion.zsh.inc'; fi
-

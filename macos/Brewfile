@@ -15,6 +15,8 @@ brew "giflib"
 brew "libpng"
 # General-purpose data compression with high compression ratio
 brew "xz"
+# Core application library for C
+brew "glib"
 # Tool for generating GNU Standards-compliant Makefiles
 brew "automake"
 # Bourne-Again SHell, a UNIX command interpreter
@@ -25,8 +27,12 @@ brew "bat"
 brew "broot"
 # Powerful, enterprise-ready, open source web server with automatic HTTPS
 brew "caddy"
-# Core application library for C
-brew "glib"
+# Manage compile and link flags for libraries
+brew "pkg-config"
+# Library for command-line editing
+brew "readline"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.9"
 # Vector graphics library with cross-device output support
 brew "cairo"
 # Object-file caching compiler wrapper
@@ -37,8 +43,6 @@ brew "cheat"
 brew "cloc"
 # Cross-platform make
 brew "cmake"
-# Library for command-line editing
-brew "readline"
 # Powerful, clean, object-oriented scripting language
 brew "ruby"
 # Dependency manager for Cocoa projects
@@ -61,8 +65,6 @@ brew "dog"
 brew "duti"
 # Modern replacement for 'ls'
 brew "exa"
-# Simple, fast and user-friendly alternative to find
-brew "fd"
 # GNU Transport Layer Security (TLS) Library
 brew "gnutls"
 # OpenType text shaping engine
@@ -85,24 +87,26 @@ brew "git"
 brew "git-lfs"
 # Simple and efficient way to access statistics in git
 brew "git-quick-stats"
-# Manage compile and link flags for libraries
-brew "pkg-config"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.11"
 # Generate introspection data for GObject libraries
 brew "gobject-introspection"
 # Go version management
 brew "goenv", args: ["HEAD"]
+# Image manipulation library
+brew "jpeg", link: true
 # Library to render SVG files using Cairo
 brew "librsvg"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
+# Improved top (interactive process viewer)
+brew "htop"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.10"
 # User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
 # Command-line pager for JSON data
 brew "jless"
-# Image manipulation library
-brew "jpeg"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # Library for USB device access
@@ -123,6 +127,8 @@ brew "node"
 brew "nsnake"
 # Ncurses based sudoku game
 brew "nudoku"
+# Optimized BLAS library
+brew "openblas"
 # Cryptography and SSL/TLS Toolkit
 brew "openssl@3"
 # 7-Zip (high compression file archiver) implementation
@@ -131,10 +137,6 @@ brew "p7zip"
 brew "py3cairo"
 # Python version management
 brew "pyenv"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.10"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.9"
 # Emulator for x86 and PowerPC
 brew "qemu"
 # Cross-platform application and UI framework
@@ -143,6 +145,8 @@ brew "qt@5"
 brew "rustup-init"
 # Software for mathematics, science, and engineering
 brew "scipy"
+# Display and control your Android device
+brew "scrcpy"
 # SOcket CAT: netcat on steroids
 brew "socat"
 # Simplified and community-driven man pages
@@ -161,6 +165,8 @@ brew "clojure/tools/clojure"
 brew "proxmark/proxmark3/arm-none-eabi-gcc"
 # A simple static file serving command-line tool.
 brew "weihanglo/sfz/sfz"
+# JDK from the Java User Group (JUG)
+cask "adoptopenjdk"
 # Enable Windows-like alt-tab
 cask "alt-tab"
 # Android SDK component
@@ -184,14 +190,16 @@ cask "font-meslo-lg"
 cask "font-meslo-lg-nerd-font"
 # Utility to provide quick look previews for files that aren't natively supported
 cask "glance-chamburr"
-# Desktop automation application
-cask "hammerspoon"
 # Free and open-source media player
 cask "iina"
+# Hex editor for reverse engineers
+cask "imhex"
 # File archiver
 cask "keka"
 # 2D game framework for Lua
 cask "love"
+# Knowledge base that works on top of a local folder of plain text Markdown files
+cask "obsidian"
 # Display image info and preview unsupported formats in QuickLook
 cask "qlimagesize"
 # QuickLook plugin for plaintext files without an extension
