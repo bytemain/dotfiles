@@ -277,11 +277,10 @@ ar() {
 xattr() {
   sudo xattr -d com.apple.quarantine /Applications/$@
 }
-
 bk() {
     cp ~/.zshrc ~/dotfiles/macos/zshrc
     cp ~/.vimrc ~/dotfiles/macos/vimrc
-    brew bundle dump --describe --force --no-upgrade --file="~/dotfiles/macos/Brewfile"
+    brew bundle dump --describe --force --brews --casks --taps --mas --no-upgrade --file="~/dotfiles/macos/Brewfile"
 }
 upg() {
   zinit self-update
