@@ -21,10 +21,14 @@
     "upstream": "!git push -u origin HEAD",
     "wt": "worktree",
     "gt": "describe --abbrev=0",
-    "psuh": "push"
+    "psuh": "push",
+    "rhh": "reset --hard HEAD^",
+    "rsh": "reset --soft HEAD^"
   },
   "core": {
-    "excludesfile": "~/.gitignore_global"
+    "excludesfile": "~/.gitignore_global",
+    "autocrlf": "false",
+    "filemode": "false"
   },
   "color": {
     "ui": "true"

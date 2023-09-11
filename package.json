@@ -2,7 +2,8 @@
   "name": "dotfiles",
   "scripts": {
     "update": "sh ./_scripts/commit.sh",
-    "postupdate": "git push"
+    "postupdate": "git push",
+    "backup": "node ./_scripts/backup-gitconfig.js"
   },
   "dependencies": {}
 }
