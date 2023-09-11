@@ -13,7 +13,7 @@ export PATH="/usr/local/sbin:$PATH"
 export PATH=$PATH:$GOPATH/bin
 export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
 export PATH=$JAVA_HOME/bin:$PATH
-export PATH=$HOME/depot_tools:$PATH
+# export PATH=$HOME/depot_tools:$PATH
 export CPLUS_INCLUDE_PATH=/opt/homebrew/include
 export GEM_HOME=$HOME/.gem
 export PATH=$GEM_HOME/ruby/3.0.0/bin:$PATH
@@ -25,6 +25,7 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 alias ls="exa"
 alias ll='ls -lh'
 alias la='ls -lah'
+alias tree='exa --tree'
 
 alias -- -='cd -'
 
@@ -166,6 +167,10 @@ touchp() {
     mkdir -p $target_dir; touch $target
 }
 
+function depot_tools_mirror() {
+  export PATH=$HOME/depot_tools_mirror:$PATH
+}
+
 function confirm() {
   local message="$1"
   local prompt="Are you sure you want to continue? (y/n)"
@@ -262,28 +267,6 @@ docker_deep_clean() {
     echo ""
     echo "Done."
 }
-# 备份当前分支到 backup/xxx
-git-bk() {
-  br=$(git symbolic-ref --short -q HEAD)
-  git branch -c "$br" "backup/$br"
-}
-# 快速添加一颗 worktree
-git-wt-add() {
-    git worktree add -b $1 ../$1
-}
-# 软重置
-git-rsh() {
-  git reset --soft HEAD^
-}
-# 硬重置
-git-rhh() {
-  git reset --hard HEAD^
-}
-# 拿到指定 remote 当前分支的名字
-git-cl() {
-  branch=$(git ls-remote --symref $1 HEAD | awk '/^ref:/ {sub(/refs\/heads\//, "", $2); print $2}')
-  echo $branch
-}
 docker_clean() {
     docker rmi $(docker images --format '{{.Repository}}:{{.Tag}}' | grep $1)
 }
@@ -340,6 +323,7 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(goenv init -)"
 
+
 autoload -U compinit && compinit
 
 export NVM_DIR="$HOME/.nvm"
@@ -351,6 +335,8 @@ zstyle ':omz:plugins:nvm' autoload yes
 source $HOME/.config/broot/launcher/bash/br
 
 eval "$(github-copilot-cli alias -- "$0")"
+
+which projj >/dev/null 2>&1 && eval "$(projj completion)"
 
 # Preview file content using bat (https://github.com/sharkdp/bat)
 export FZF_CTRL_T_OPTS="
@@ -466,3 +452,5 @@ if [ -f '$HOME/0Common/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/0Common/g
 
 # The next line enables shell command completion for gcloud.
 if [ -f '$HOME/0Common/google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/0Common/google-cloud-sdk/completion.zsh.inc'; fi
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"

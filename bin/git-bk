@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# 备份当前分支到 backup/xxx
+
+br=$(git symbolic-ref --short -q HEAD)
+git branch -c "$br" "backup/$br"

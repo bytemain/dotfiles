@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# 拿到指定 remote 当前分支的名字
+
+branch=$(git ls-remote --symref $1 HEAD | awk '/^ref:/ {sub(/refs\/heads\//, "", $2); print $2}')
+echo $branch

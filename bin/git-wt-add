@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# 快速添加一颗 worktree
+
+git worktree add -b $1 ../$1
