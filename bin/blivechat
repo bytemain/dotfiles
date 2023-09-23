@@ -1,0 +1,5 @@
+#!/bin/bash
+
+docker run --name blivechat -d -p 12450:12450 \
+  --mount source=blivechat-data,target=/mnt/data \
+  xfgryujk/blivechat:latest
