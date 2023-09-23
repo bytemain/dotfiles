@@ -27,6 +27,7 @@ alias ls="exa"
 alias ll='ls -lh'
 alias la='ls -lah'
 alias tree='exa --tree'
+alias cat='bat'
 
 alias -- -='cd -'
 
@@ -49,7 +50,6 @@ alias cozsh="code ~/.zshrc"
 alias vimrc="vim ~/.vimrc"
 alias c="code"
 alias ws="cd ~/0Workspace"
-alias an="cd ~/0Ant"
 alias cr="cd ~/0CodeRunner"
 alias crt="cd ~/0CodeRunner/tmp"
 alias cls=clear
@@ -82,7 +82,7 @@ alias ts="tmux new-session -s"
 
 alias _='sudo '
 
-alias doh='dog -H @https://dns.google/dns-query'
+alias doh='dog -H @https://dns.alidns.com/dns-query'
 
 alias sv='caddy file-server --listen :2000 --browse'
 
