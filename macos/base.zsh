@@ -274,7 +274,7 @@ docker_clean() {
 ar() {
     mv -i "$@" "$HOME/0Archive/"
 }
-xattr() {
+sxattr() {
   sudo xattr -d com.apple.quarantine /Applications/$@
 }
 
@@ -283,6 +283,7 @@ upg() {
   zinit update
   brew upgrade
 }
+
 serv_sfz() {
   sfz . --cors -b 0.0.0.0 -p 3002
 }
