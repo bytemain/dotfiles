@@ -3,7 +3,8 @@
   "scripts": {
     "update": "sh ./_scripts/commit.sh",
     "postupdate": "git push",
-    "backup": "node ./_scripts/backup-gitconfig.js"
+    "backup": "node ./_scripts/backup-gitconfig.js",
+    "restore": "node ./_scripts/restore-gitconfig.js"
   },
   "dependencies": {}
 }
