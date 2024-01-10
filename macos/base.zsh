@@ -351,10 +351,6 @@ export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
 # /opt/homebrew/opt/fzf/install install first
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-function zshaddhistory() {
-    echo "${1%%$'\n'}⋮${PWD}   " >> ~/.zsh_history_ext
-}
-
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
     print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
