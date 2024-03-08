@@ -86,6 +86,8 @@ alias _='sudo '
 
 alias doh='dog -H @https://dns.alidns.com/dns-query'
 
+alias vf=vfox
+
 alias sv='caddy file-server --listen :2000 --browse'
 
 alias -g dps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}"'
@@ -312,19 +314,8 @@ function grepf() {
   ll | grep $1
 }
 
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(goenv init -)"
-
 
 autoload -U compinit && compinit
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-zstyle ':omz:plugins:nvm' autoload yes
 
 source $HOME/.config/broot/launcher/bash/br
 
@@ -394,7 +385,6 @@ omz_plugins=(
     yarn
     sudo
     extract
-    nvm
 )
 for plugin in ${omz_plugins[@]}; do
     zinit snippet OMZP::$plugin

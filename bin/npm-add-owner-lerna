@@ -19,7 +19,9 @@ async function main() {
   const pkgs = JSON.parse(stdout);
   for (const pkg of pkgs) {
     console.log("Add owner for", pkg.name);
-    await execa(`${client} owner add ${name} ${pkg.name}`);
+    execa(`${client} owner add ${name} ${pkg.name}`).catch((v) => {
+      console.log(`add owner failed for ${name} ${pkg.name}`);
+    });
   }
 }
 
