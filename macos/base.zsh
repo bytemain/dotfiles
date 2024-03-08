@@ -1,4 +1,3 @@
-export GOENV_ROOT="$HOME/.goenv"
 export GOPATH="$HOME/go"
 export TIME_STYLE=iso
 
@@ -21,6 +20,7 @@ export PATH=$GEM_HOME/ruby/3.0.0/bin:$PATH
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH="$HOME/.bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$HOME/.moon/bin:$PATH"
 
 # alias
 alias ls="exa"
@@ -319,10 +319,7 @@ function grepf() {
   ll | grep $1
 }
 
-
 autoload -U compinit && compinit
-
-source $HOME/.config/broot/launcher/bash/br
 
 eval "$(vfox activate zsh)"
 
@@ -396,8 +393,6 @@ for plugin in ${omz_plugins[@]}; do
     zinit snippet OMZP::$plugin
 done
 
-
-
 # Switching directories for lazy people
 setopt autocd
 # See: http://zsh.sourceforge.net/Intro/intro_6.html
@@ -407,7 +402,6 @@ setopt autopushd pushdminus pushdsilent pushdtohome pushdignoredups
 unsetopt correct_all
 unsetopt correct
 DISABLE_CORRECTION="true"
-
 
 if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
 ##### WHAT YOU WANT TO DISABLE FOR WARP - BELOW
@@ -420,7 +414,6 @@ fi
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-
 
 eval "$(zoxide init zsh)"
 
