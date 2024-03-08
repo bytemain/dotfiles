@@ -137,6 +137,11 @@ init_npm() {
     npm install -g projj
 }
 
+init_vfox() {
+  brew tap version-fox/tap
+  brew install vfox
+}
+
 zsh_history_fix() {
     mv ~/.zsh_history ~/.zsh_history_bad
     strings ~/.zsh_history_bad > ~/.zsh_history
@@ -319,8 +324,9 @@ autoload -U compinit && compinit
 
 source $HOME/.config/broot/launcher/bash/br
 
-eval "$(github-copilot-cli alias -- "$0")"
+eval "$(vfox activate zsh)"
 
+eval "$(github-copilot-cli alias -- "$0")"
 which projj >/dev/null 2>&1 && eval "$(projj completion)"
 
 # Preview file content using bat (https://github.com/sharkdp/bat)
