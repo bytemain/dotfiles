@@ -426,6 +426,10 @@ source $HOME/.config/broot/launcher/bash/br
 
 export PATH="$HOME/.detaspace/bin:$PATH"
 
+# CN mirror start
+export ELECTRON_MIRROR="https://npmmirror.com/mirrors/electron/"
+# CN mirror end
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '$HOME/0Common/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/0Common/google-cloud-sdk/path.zsh.inc'; fi
 

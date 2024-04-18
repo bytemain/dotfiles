@@ -7,4 +7,9 @@ bk() {
     cp ~/.zshrc ~/dotfiles/macos/zshrc
     cp ~/.vimrc ~/dotfiles/macos/vimrc
     brew bundle dump --describe --force --brews --casks --taps --mas --no-upgrade --file="~/dotfiles/macos/Brewfile"
+    cp ~/.aerospace.toml ~/dotfiles/_rc/aerospace.toml
 }
+
+eval "$(vfox activate zsh)"
+
+[ -f ~/.private.zshrc ] && source ~/.private.zshrc
