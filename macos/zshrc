@@ -1,7 +1,6 @@
 source $HOME/dotfiles/macos/base.zsh
 
 alias an="cd ~/0Ant"
-alias mc="minicode"
 
 bk() {
     cp ~/.zshrc ~/dotfiles/macos/zshrc

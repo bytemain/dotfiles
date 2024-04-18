@@ -13,7 +13,6 @@ export PATH="/usr/local/sbin:$PATH"
 export PATH=$PATH:$GOPATH/bin
 export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
 export PATH=$JAVA_HOME/bin:$PATH
-# export PATH=$HOME/depot_tools:$PATH
 export CPLUS_INCLUDE_PATH=/opt/homebrew/include
 export GEM_HOME=$HOME/.gem
 export PATH=$GEM_HOME/ruby/3.0.0/bin:$PATH
@@ -21,8 +20,8 @@ export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH="$HOME/.bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$HOME/.moon/bin:$PATH"
+export PATH="$HOME/.detaspace/bin:$PATH"
 
-# alias
 alias ls="exa"
 alias ll='ls -lh'
 alias la='ls -lah'
@@ -40,35 +39,43 @@ alias rmcdir="source delete-current-dir.sh"
 alias b=brew
 alias y=yarn
 alias t=tnpm
-alias pn=pnpm
+alias pn=pnp
+m
 alias p=projj
 alias pf="projj find"
+
 alias py="python3"
 alias ipy="ipython"
+
 alias vizsh="vim ~/.zshrc"
 alias cozsh="code ~/.zshrc"
 alias vibzsh="vim ~/dotfiles/macos/base.zsh"
 alias cobzsh="code ~/dotfiles/macos/base.zsh"
 alias vimrc="vim ~/.vimrc"
+
 alias c="code"
 alias ws="cd ~/0Workspace"
 alias cr="cd ~/0CodeRunner"
 alias crt="cd ~/0CodeRunner/tmp"
+
 alias cls=clear
 alias rmrf="rm -rf"
 alias rmt="trash"
-alias d=docker
-alias dco="docker-compose"
+
 alias ping="nali-ping"
 alias dig="nali-dig"
 alias traceroute="nali-traceroute"
 alias tracepath="nali-tracepath"
 alias nslookup="nali-nslookup"
+
 alias top=htop
-alias g=git
 alias tk=take
 alias cg=cargo
+
+alias g=git
 alias gcid="git log | head -1 | awk '{print substr(\$2,1,7)}'"
+alias gl="git log --pretty=format:\"%C(auto)%h %C(magenta)<%ad> %C(green)[%an] %C(blue normal bold)| %Creset%s%C(auto)%d\" --graph --date=short"
+
 alias src="source ~/.zshrc"
 alias cpwd="pwd | pbcopy"
 alias bru="bun run"
@@ -90,19 +97,19 @@ alias vf=vfox
 
 alias sv='caddy file-server --listen :2000 --browse'
 
-alias -g dps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}"'
-alias -g o='open'
-alias -g ow='open -a'
+alias o='open'
+alias ow='open -a'
 
 alias cobi='cd "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Craft"'
 
-alias -g chrome-no-sec="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome   --disable-web-security  --user-data-dir=~/.chromeTemp"
+alias chrome-no-sec="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome   --disable-web-security  --user-data-dir=~/.chromeTemp"
 
+alias d=docker
+alias dco="docker-compose"
+alias dps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}"'
 alias dfimage="docker run -v /var/run/docker.sock:/var/run/docker.sock --rm alpine/dfimage"
 
-alias gl="git log --pretty=format:\"%C(auto)%h %C(magenta)<%ad> %C(green)[%an] %C(blue normal bold)| %Creset%s%C(auto)%d\" --graph --date=short"
-
-alias get_idf='. $HOME/esp2/esp-idf/export.sh'
+alias -g G='| grep'
 
 # completion detail
 zstyle ':completion:*:complete:-command-:*:*' ignored-patterns '*.pdf|*.exe|*.dll'
@@ -129,6 +136,10 @@ ding() {
 
 add_path() {
     export PATH=$1:$PATH
+}
+
+use_npm_mirror() {
+    export NPM_CONFIG_REGISTRY=https://registry.npmmirror.com
 }
 
 init_npm() {
@@ -177,10 +188,6 @@ touchp() {
     mkdir -p $target_dir; touch $target
 }
 
-function depot_tools_mirror() {
-  export PATH=$HOME/depot_tools_mirror:$PATH
-}
-
 function confirm() {
   local message="$1"
   local prompt="Are you sure you want to continue? (y/n)"
@@ -199,7 +206,6 @@ function confirm() {
     return 1
   fi
 }
-
 
 cleantmp() {
   confirm || return
@@ -289,7 +295,7 @@ sxattr() {
 
 upg() {
   zinit self-update
-  zinit update
+  zinit update --parallel 5
   brew upgrade
 }
 
@@ -318,13 +324,16 @@ function f() {
 function grepf() {
   ll | grep $1
 }
+function _cmd_exists() {
+  command -v "$1" >/dev/null 2>&1
+}
 
 autoload -U compinit && compinit
 
 eval "$(vfox activate zsh)"
 
-eval "$(github-copilot-cli alias -- "$0")"
-which projj >/dev/null 2>&1 && eval "$(projj completion)"
+_cmd_exists github-copilot-cli && eval "$(github-copilot-cli alias -- "$0")"
+_cmd_exists projj && eval "$(projj completion)"
 
 # Preview file content using bat (https://github.com/sharkdp/bat)
 export FZF_CTRL_T_OPTS="
@@ -346,46 +355,37 @@ export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 ### Added by Zinit's installer
-if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
-    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
-    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
-        print -P "%F{33} %F{34}Installation successful.%f%b" || \
-        print -P "%F{160} The clone has failed.%f%b"
-fi
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
 
-source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
-
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit light-mode for \
-    zdharma-continuum/zinit-annex-as-monitor \
-    zdharma-continuum/zinit-annex-bin-gem-node \
-    zdharma-continuum/zinit-annex-patch-dl \
-    zdharma-continuum/zinit-annex-rust
-
 ### End of Zinit's installer chunk
+
+zinit light "paulirish/git-open"
 
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
-zinit load "paulirish/git-open"
+zinit light zdharma-continuum/fast-syntax-highlighting
 
 # Load pure theme
-zinit ice pick"async.zsh" src"pure.zsh" # with zsh-async library that's bundled with it.
+zinit ice pick"async.zsh" src"pure.zsh"
 zinit light sindresorhus/pure
 
-zinit snippet OMZ::lib/history.zsh
-zinit snippet OMZ::lib/git.zsh
-zinit snippet OMZ::lib/clipboard.zsh
-# zinit snippet OMZ::lib/termsupport.zsh
-
+omz_libs=(
+    history.zsh
+    git.zsh
+    clipboard.zsh
+)
+for lib in ${omz_libs[@]}; do
+    zinit snippet OMZL::$lib
+done
 
 omz_plugins=(
     git
     npm
-    yarn
     sudo
     extract
 )
@@ -423,8 +423,6 @@ export PATH="$PNPM_HOME:$PATH"
 # pnpm end
 
 source $HOME/.config/broot/launcher/bash/br
-
-export PATH="$HOME/.detaspace/bin:$PATH"
 
 # CN mirror start
 export ELECTRON_MIRROR="https://npmmirror.com/mirrors/electron/"
