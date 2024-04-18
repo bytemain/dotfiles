@@ -22,10 +22,10 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$HOME/.moon/bin:$PATH"
 export PATH="$HOME/.detaspace/bin:$PATH"
 
-alias ls="exa"
+alias ls="eza"
 alias ll='ls -lh'
 alias la='ls -lah'
-alias tree='exa --tree'
+alias tree='eza --tree'
 alias cat='bat'
 
 alias -- -='cd -'

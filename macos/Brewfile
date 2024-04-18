@@ -6,7 +6,10 @@ tap "homebrew/services"
 tap "mergestat/mergestat"
 tap "nikitabobko/tap"
 tap "proxmark/proxmark3"
+tap "railwayapp/tap"
+tap "version-fox/tap"
 tap "weihanglo/sfz", "https://github.com/weihanglo/sfz.git"
+tap "withgraphite/tap"
 # Run your GitHub Actions locally
 brew "act"
 # Library and utilities for processing GIFs
@@ -17,6 +20,8 @@ brew "libpng"
 brew "xz"
 # Core application library for C
 brew "glib"
+# Protocol definitions and daemon for D-Bus at-spi
+brew "at-spi2-core"
 # Tool for generating GNU Standards-compliant Makefiles
 brew "automake"
 # Bourne-Again SHell, a UNIX command interpreter
@@ -29,8 +34,6 @@ brew "broot"
 brew "cabextract"
 # Powerful, enterprise-ready, open source web server with automatic HTTPS
 brew "caddy"
-# Manage compile and link flags for libraries
-brew "pkg-config"
 # Vector graphics library with cross-device output support
 brew "cairo"
 # Object-file caching compiler wrapper
@@ -41,8 +44,6 @@ brew "cheat"
 brew "cloc"
 # Cross-platform make
 brew "cmake"
-# Library for command-line editing
-brew "readline"
 # Powerful, clean, object-oriented scripting language
 brew "ruby"
 # Dependency manager for Cocoa projects
@@ -61,28 +62,30 @@ brew "libusb"
 brew "dfu-util"
 # Synchronize your DNS to multiple providers from a simple DSL
 brew "dnscontrol"
-# Command-line DNS client
-brew "dog"
 # Select default apps for documents and URL schemes on macOS
 brew "duti"
-# Modern replacement for 'ls'
-brew "exa"
+# Modern, maintained replacement for ls
+brew "eza"
+# GNU compiler collection
+brew "gcc"
 # Validating, recursive, caching DNS resolver
 brew "unbound"
 # GNU Transport Layer Security (TLS) Library
 brew "gnutls"
+# C/C++ and Java libraries for Unicode and globalization
+brew "icu4c"
 # OpenType text shaping engine
 brew "harfbuzz"
+# Subtitle renderer for the ASS/SSA subtitle format
+brew "libass"
 # Framework for layout and rendering of i18n text
 brew "pango"
+# OCR (Optical Character Recognition) engine
+brew "tesseract"
 # Play, record, convert, and stream audio and video
 brew "ffmpeg"
-# User-friendly command-line shell for UNIX-like operating systems
-brew "fish"
 # Command-line fuzzy finder written in Go
 brew "fzf"
-# GNU compiler collection
-brew "gcc"
 # Toolkit for image loading and pixel buffer manipulation
 brew "gdk-pixbuf"
 # GitHub command-line tool
@@ -97,6 +100,8 @@ brew "git-quick-stats"
 brew "gitui"
 # Network related modules for glib
 brew "glib-networking"
+# Manage compile and link flags for libraries
+brew "pkg-config"
 # Generate introspection data for GObject libraries
 brew "gobject-introspection"
 # Go version management
@@ -105,12 +110,18 @@ brew "goenv", args: ["HEAD"]
 brew "librsvg"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
+# Toolkit for creating graphical user interfaces
+brew "gtk+3"
+# Toolkit for creating graphical user interfaces
+brew "gtk4"
 # Python 3 bindings for the Cairo graphics library
 brew "py3cairo"
 # GNOME Python bindings (based on GObject Introspection)
 brew "pygobject3"
 # Development framework for multimedia applications
 brew "gstreamer"
+# VNC viewer widget for GTK
+brew "gtk-vnc"
 # Improved top (interactive process viewer)
 brew "htop"
 # User-friendly cURL replacement (command-line HTTP client)
@@ -118,7 +129,7 @@ brew "httpie"
 # Command-line pager for JSON data
 brew "jless"
 # Image manipulation library
-brew "jpeg", link: true
+brew "jpeg"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # Interpreted, interactive, object-oriented programming language
@@ -127,8 +138,6 @@ brew "python@3.9"
 brew "libusb-compat"
 # Powerful, lightweight programming language
 brew "lua"
-# Swiss Army Knife for macOS
-brew "m-cli"
 # Small build system for use with gyp or CMake
 brew "ninja"
 # Fast and user friendly build system
@@ -143,10 +152,10 @@ brew "node"
 brew "nsnake"
 # Ncurses based sudoku game
 brew "nudoku"
-# Optimized BLAS library
-brew "openblas"
 # 7-Zip (high compression file archiver) implementation
 brew "p7zip"
+# Fast, disk space efficient package manager
+brew "pnpm"
 # Python version management
 brew "pyenv"
 # Interpreted, interactive, object-oriented programming language
@@ -165,12 +174,12 @@ brew "scipy"
 brew "scrcpy"
 # SOcket CAT: netcat on steroids
 brew "socat"
+# GTK client/libraries for SPICE
+brew "spice-gtk"
 # Log file highlighter
 brew "tailspin"
 # Simplified and community-driven man pages
 brew "tldr"
-# Terminal multiplexer
-brew "tmux"
 # Internet file retriever
 brew "wget"
 # Best command-line tool to install and switch between multiple versions of Xcode
@@ -185,24 +194,22 @@ brew "zoxide"
 brew "clojure/tools/clojure"
 # GCC for embedded ARM processors
 brew "proxmark/proxmark3/arm-none-eabi-gcc"
+# App source + Nix packages + Docker = Image
+brew "railwayapp/tap/nixpacks"
+# A cross-platform SDK version manager with a simple cli.
+brew "version-fox/tap/vfox"
 # A simple static file serving command-line tool.
 brew "weihanglo/sfz/sfz"
-# JDK from the Java User Group (JUG)
-cask "adoptopenjdk"
-# AeroSpace is an i3-like tiling window manager for macOS
-cask "aerospace"
+# Allows you to manage your stacked changes and submit them for review on GitHub
+brew "withgraphite/tap/graphite"
 # Enable Windows-like alt-tab
 cask "alt-tab"
 # Android SDK component
 cask "android-platform-tools"
 # Inspect application bundles
 cask "apparency"
-# Lock/unlock Apple computers using the proximity of a bluetooth low energy device
-cask "bleunlock"
 # Free and open-source web browser
 cask "chromium"
-# Utility to support moving and resizing using a modifier key and mouse drag
-cask "easy-move-plus-resize"
 # Free monospaced font with programming ligatures
 cask "font-fira-code"
 # Developer targeted fonts with a high number of glyphs
@@ -222,7 +229,7 @@ cask "iina"
 cask "imhex"
 # File archiver
 cask "keka"
-# Customize mouse behavior
+# Customise mouse behavior
 cask "linearmouse"
 # 2D game framework for Lua
 cask "love"
@@ -232,11 +239,11 @@ cask "obsidian"
 cask "orbstack"
 # Display image info and preview unsupported formats in QuickLook
 cask "qlimagesize"
-# QuickLook plugin for plaintext files without an extension
+# Quick Look plugin for plaintext files without an extension
 cask "qlstephen"
 # Thumbnails, static previews, cover art and metadata for video files
 cask "qlvideo"
-# QuickLook generator for Adobe Swatch Exchange files
+# Quick Look generator for Adobe Swatch Exchange files
 cask "quicklookase"
 # Displays all open files and sockets in use by all running processes
 cask "sloth"
@@ -246,7 +253,5 @@ cask "sourcetree"
 cask "suspicious-package"
 # JDK from the Eclipse Foundation (Adoptium)
 cask "temurin"
-# Compatibility layer to run Windows applications
-cask "wine-stable"
 # Install and switch between multiple versions of Xcode
 cask "xcodes"
