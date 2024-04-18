@@ -304,6 +304,10 @@ cdt() {
   take "~/0CodeRunner/tmp/$1"
 }
 
+git-setup() {
+  git config --global url."git@github.com:".insteadOf "https://github.com/"
+}
+
 function f() {
   find . -name "$1"
 }
