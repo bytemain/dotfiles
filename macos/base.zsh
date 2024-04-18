@@ -40,7 +40,7 @@ alias b=brew
 alias y=yarn
 alias t=tnpm
 alias pn=pnp
-m
+
 alias p=projj
 alias pf="projj find"
 
@@ -74,7 +74,6 @@ alias cg=cargo
 
 alias g=git
 alias gcid="git log | head -1 | awk '{print substr(\$2,1,7)}'"
-alias gl="git log --pretty=format:\"%C(auto)%h %C(magenta)<%ad> %C(green)[%an] %C(blue normal bold)| %Creset%s%C(auto)%d\" --graph --date=short"
 
 alias src="source ~/.zshrc"
 alias cpwd="pwd | pbcopy"
@@ -102,25 +101,12 @@ alias ow='open -a'
 
 alias cobi='cd "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Craft"'
 
-alias chrome-no-sec="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome   --disable-web-security  --user-data-dir=~/.chromeTemp"
+alias chrome-no-sec="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --disable-web-security  --user-data-dir=~/.chrome-temp"
 
 alias d=docker
 alias dco="docker-compose"
 alias dps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}"'
 alias dfimage="docker run -v /var/run/docker.sock:/var/run/docker.sock --rm alpine/dfimage"
-
-alias -g G='| grep'
-
-# completion detail
-zstyle ':completion:*:complete:-command-:*:*' ignored-patterns '*.pdf|*.exe|*.dll'
-zstyle ':completion:*:*sh:*:' tag-order files
-
-# case-insensitive (uppercase from lowercase) completion
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-
-# process completion
-zstyle ':completion:*:processes' command 'ps -au$USER'
-zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=36=31"
 
 gig() { curl -L -s https://www.gitignore.io/api/$@;}
 
