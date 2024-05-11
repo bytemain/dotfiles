@@ -21,6 +21,7 @@ export PATH="$HOME/.bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$HOME/.moon/bin:$PATH"
 export PATH="$HOME/.detaspace/bin:$PATH"
+export PATH="$HOME/0Workspace/github.com/ax/apk.sh:$PATH"
 
 alias ls="eza"
 alias ll='ls -lh'
