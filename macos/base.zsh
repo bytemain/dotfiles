@@ -417,6 +417,7 @@ source $HOME/.config/broot/launcher/bash/br
 
 # CN mirror start
 export ELECTRON_MIRROR="https://npmmirror.com/mirrors/electron/"
+export VFOX_PYTHON_MIRROR=https://mirrors.huaweicloud.com/python/
 # CN mirror end
 
 # The next line updates PATH for the Google Cloud SDK.
