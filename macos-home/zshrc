@@ -7,6 +7,7 @@ getIp() {
 }
 
 bk() {
+    cp ~/.zshrc ~/dotfiles/macos-home/zshrc
     cp ~/.vimrc ~/dotfiles/macos/vimrc
     brew bundle dump --describe --force --brews --casks --taps --mas --no-upgrade --file="~/dotfiles/macos-home/Brewfile"
 }
@@ -15,4 +16,5 @@ sync-zsh() {
     cp ~/.zshrc ~/.zshrc.bak
     cp ~/dotfiles/macos-home/zshrc ~/.zshrc
 }
-export PATH="$HOME/.moon/bin:$PATH"
+
+alias luamake="~/0Workspace/github.com/actboy168/luamake/luamake"

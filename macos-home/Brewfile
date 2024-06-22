@@ -3,9 +3,12 @@ tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/services"
+tap "lihaoyun6/tap"
 tap "mergestat/mergestat"
 tap "minacle/chntpw"
 tap "proxmark/proxmark3"
+tap "railwayapp/tap"
+tap "version-fox/tap"
 tap "weihanglo/sfz", "https://github.com/weihanglo/sfz.git"
 # Run your GitHub Actions locally
 brew "act"
@@ -19,12 +22,24 @@ brew "xz"
 brew "openssl@3"
 # Library for command-line editing
 brew "readline"
+# Core application library for C
+brew "glib"
+# Vector graphics library with cross-device output support
+brew "cairo"
+# C/C++ and Java libraries for Unicode and globalization
+brew "icu4c"
+# OpenType text shaping engine
+brew "harfbuzz"
+# Tool for reverse engineering 3rd party, closed, binary Android apps
+brew "apktool"
 # Download with resuming and segmented downloading
 brew "aria2"
 # Tool for generating GNU Standards-compliant Makefiles
 brew "automake"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
+# C library of Git core methods that is re-entrant and linkable
+brew "libgit2"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # New way to see and navigate directory trees
@@ -33,10 +48,6 @@ brew "broot"
 brew "cabextract"
 # Powerful, enterprise-ready, open source web server with automatic HTTPS
 brew "caddy"
-# Core application library for C
-brew "glib"
-# Vector graphics library with cross-device output support
-brew "cairo"
 # Object-file caching compiler wrapper
 brew "ccache"
 # CD/DVD/Blu-ray premastering and recording software
@@ -65,20 +76,20 @@ brew "libusb"
 brew "dfu-util"
 # Command-line DNS client
 brew "dog"
+# Pluggable and configurable code formatting platform written in Rust
+brew "dprint"
 # Select default apps for documents and URL schemes on macOS
 brew "duti"
-# C library of Git core methods that is re-entrant and linkable
-brew "libgit2"
-# Modern replacement for 'ls'
-brew "exa"
+# Modern, maintained replacement for ls
+brew "eza"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
+# GNU compiler collection
+brew "gcc"
 # GNU Transport Layer Security (TLS) Library
 brew "gnutls"
-# C/C++ and Java libraries for Unicode and globalization
-brew "icu4c"
-# OpenType text shaping engine
-brew "harfbuzz"
+# C library SSHv1/SSHv2 client and server protocols
+brew "libssh"
 # Framework for layout and rendering of i18n text
 brew "pango"
 # OCR (Optical Character Recognition) engine
@@ -87,8 +98,6 @@ brew "tesseract"
 brew "ffmpeg"
 # Command-line fuzzy finder written in Go
 brew "fzf"
-# GNU compiler collection
-brew "gcc"
 # Toolkit for image loading and pixel buffer manipulation
 brew "gdk-pixbuf"
 # GitHub command-line tool
@@ -107,22 +116,20 @@ brew "git-quick-stats"
 brew "pkg-config"
 # Generate introspection data for GObject libraries
 brew "gobject-introspection"
-# Go version management
-brew "goenv", args: ["HEAD"]
 # Library to render SVG files using Cairo
 brew "librsvg"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
-# User-friendly cURL replacement (command-line HTTP client)
-brew "httpie"
+# GNU grep, egrep and fgrep
+brew "grep"
+# Dex to Java decompiler
+brew "jadx"
 # Command-line pager for JSON data
 brew "jless"
 # Image manipulation library
 brew "jpeg"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
-# C library SSHv1/SSHv2 client and server protocols
-brew "libssh"
 # Library for USB device access
 brew "libusb-compat"
 # Powerful, lightweight programming language
@@ -143,13 +150,11 @@ brew "nudoku"
 brew "p7zip"
 # Python 3 bindings for the Cairo graphics library
 brew "py3cairo"
-# Python version management
-brew "pyenv"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.10"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.9"
-# Emulator for x86 and PowerPC
+# Generic machine emulator and virtualizer
 brew "qemu"
 # Cross-platform application and UI framework
 brew "qt@5"
@@ -157,6 +162,8 @@ brew "qt@5"
 brew "rustup-init"
 # Software for mathematics, science, and engineering
 brew "scipy"
+# 7-Zip is a file archiver with a high compression ratio
+brew "sevenzip"
 # SOcket CAT: netcat on steroids
 brew "socat"
 # Open source continuous file synchronization application
@@ -167,6 +174,8 @@ brew "tldr"
 brew "wget"
 # Library to create, extract, and modify Windows Imaging files
 brew "wimlib"
+# Cross-platform build utility based on Lua
+brew "xmake"
 # Programming language designed for robustness, optimality, and clarity
 brew "zig"
 # General-purpose lossless data-compression library
@@ -179,6 +188,10 @@ brew "clojure/tools/clojure"
 brew "minacle/chntpw/chntpw"
 # GCC for embedded ARM processors
 brew "proxmark/proxmark3/arm-none-eabi-gcc"
+# App source + Nix packages + Docker = Image
+brew "railwayapp/tap/nixpacks"
+# A cross-platform SDK version manager with a simple cli.
+brew "version-fox/tap/vfox"
 # A simple static file serving command-line tool.
 brew "weihanglo/sfz/sfz"
 # Enable Windows-like alt-tab
@@ -189,41 +202,42 @@ cask "android-platform-tools"
 cask "apparency"
 # Audio utility
 cask "background-music"
-# Lock/unlock Apple computers using the proximity of a bluetooth low energy device
-cask "bleunlock"
 # Free and open-source web browser
 cask "chromium"
-# Free monospaced font with programming ligatures
 cask "font-fira-code"
-# Developer targeted fonts with a high number of glyphs
 cask "font-hack-nerd-font"
-# Typeface made for developers
 cask "font-jetbrains-mono"
-# Open-source Chinese font derived from Fontworks' Klee One
 cask "font-lxgw-wenkai"
 cask "font-meslo-lg"
-# Developer targeted fonts with a high number of glyphs
 cask "font-meslo-lg-nerd-font"
 # Utility to provide quick look previews for files that aren't natively supported
 cask "glance-chamburr"
+# Open Source Multimedia Framework
+cask "gstreamer-runtime"
 # Free and open-source media player
 cask "iina"
 # File archiver
 cask "keka"
-# Open-source keystroke visualizer
+# Open-source keystroke visualiser
 cask "keycastr"
+# Find shortcuts for any installed application
+cask "keyclu"
+# Customise mouse behavior
+cask "linearmouse"
 # 2D game framework for Lua
 cask "love"
 # Open-source download manager
 cask "motrix"
 # Display image info and preview unsupported formats in QuickLook
 cask "qlimagesize"
-# QuickLook plugin for plaintext files without an extension
+# Quick Look plugin for plaintext files without an extension
 cask "qlstephen"
 # Thumbnails, static previews, cover art and metadata for video files
 cask "qlvideo"
-# QuickLook generator for Adobe Swatch Exchange files
+# Quick Look generator for Adobe Swatch Exchange files
 cask "quicklookase"
+# A lightweight and high-performance screen recorder for macOS.
+cask "quickrecorder"
 # Displays all open files and sockets in use by all running processes
 cask "sloth"
 # Graphical client for Git version control

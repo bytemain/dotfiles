@@ -1,3 +1,6 @@
+const fs = require("fs");
+const os = require("os");
+const path = require("path");
 const configJson = require("../_rc/gitconfig.json");
 const { exec } = require("./utils/exec");
 const { serial } = require("./utils/promises");
@@ -22,4 +25,9 @@ serial(
       () =>
         exec(`git config --global ${k} "${v}"`)
   )
+);
+
+fs.copyFileSync(
+  path.join(os.homedir(), "dotfiles/_rc/gitignore_global"),
+  path.join(os.homedir(), ".gitignore_global")
 );

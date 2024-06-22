@@ -11,7 +11,7 @@
     "br": "branch",
     "last": "log -1 HEAD",
     "cane": "commit --amend --no-edit",
-    "plr": "pull --rebase",
+    "pr": "pull --rebase",
     "lo": "log --oneline -n 10",
     "a": "add .",
     "cm": "commit -m",
