@@ -359,7 +359,6 @@ zinit light "paulirish/git-open"
 
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
-zinit light zdharma-continuum/fast-syntax-highlighting
 
 # Load pure theme
 zinit ice pick"async.zsh" src"pure.zsh"
