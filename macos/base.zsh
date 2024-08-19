@@ -212,7 +212,7 @@ getIp() {
 
 ip_() {
     getIp
-    https --follow -b https://api.ip.sb/geoip/$1
+    curl -s "https://api.ip.sb/geoip/$1" -A Mozilla | jq .
 }
 
 proxy_npm() {
