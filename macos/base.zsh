@@ -115,6 +115,14 @@ take() {
   mkdir -p $@ && cd ${@:$#}
 }
 
+p-save() {
+  lporg save -c $HOME/dotfiles/macos/lporg.yaml
+}
+
+p-load() {
+  lporg load -c $HOME/dotfiles/macos/lporg.yaml
+}
+
 ding() {
     DING_PATH="$HOME/0Workspace/pierced/mac_64"
     command="$DING_PATH/ding -config=$DING_PATH/ding.cfg -subdomain=artin $1"

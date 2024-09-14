@@ -1,0 +1,273 @@
+apps:
+  pages:
+    - number: 1
+      items:
+        - folder: Productivity
+          pages:
+            - number: 1
+              items:
+                - Keynote
+                - iMovie
+                - Preview
+                - Music
+                - Pages
+                - Stocks
+                - Home
+                - GarageBand
+                - Videos
+                - Maps
+                - Reminders
+                - Siri
+                - Find My
+                - Books
+                - Dictionary
+                - Messages
+                - FaceTime
+                - Notes
+                - Calendar
+                - Contacts
+                - Mail
+                - Safari
+                - App Store
+                - Photo Booth
+                - Photos
+                - Podcasts
+                - Voice Memos
+                - Weather
+                - Calculator
+                - Freeform
+                - Clock
+                - System Settings
+                - Tips
+        - iPhone Mirroring
+        - Passwords
+        - folder: Other
+          pages:
+            - number: 1
+              items:
+                - Shortcuts
+                - QuickTime Player
+                - TextEdit
+                - Font Book
+                - Screen Sharing
+                - Mission Control
+                - Time Machine
+                - Screenshot
+                - Image Capture
+                - Digital Color Meter
+                - ColorSync Utility
+                - Stickies
+                - Grapher
+                - VoiceOver Utility
+                - Print Center
+                - Automator
+                - Script Editor
+                - Audio MIDI Setup
+                - Bluetooth File Exchange
+                - Disk Utility
+                - System Information
+                - Activity Monitor
+                - Console
+                - Terminal
+                - AirPort Utility
+                - Migration Assistant
+                - Feedback Assistant
+        - folder: Games
+          pages:
+            - number: 1
+              items:
+                - Chess
+                - love
+                - Steam
+                - Techmino
+                - 2048 Game
+                - 五林五子棋
+                - League of Legends
+                - Minesweeper
+                - 潜水员戴夫 DAVE THE DIVER
+                - DiRT Rally
+                - LoveChoice 拣爱
+                - Cities Skylines
+                - 骰子闯魔城
+                - 棋弈无限：围棋
+                - 棋弈无限：中国象棋
+                - Stardew Valley
+                - Riot用戶端
+                - PlayCover
+                - UU Booster
+        - folder: Utilities
+          pages:
+            - number: 1
+              items:
+                - Ethernet Status
+                - PasteNow
+                - uTools
+                - iRightMouse Pro
+                - MacGesture
+                - TinkerTool
+                - Tencent Lemon
+                - Rectangle
+                - Bartender 5
+                - KeyboardCleanTool
+                - KeyClu
+                - Actions
+                - Keka
+                - KeyCastr
+                - AutoSwitchInput Pro
+                - LinearMouse
+                - BobHelper
+                - Logi Options+
+        - folder: QuickLook
+          pages:
+            - number: 1
+              items:
+                - QuickLook Video
+                - Apparency
+                - Glance
+                - iPreview
+                - Suspicious Package
+        - folder: Social Networking
+          pages:
+            - number: 1
+              items:
+                - WeChat
+                - QQ
+        - folder: Create Music
+          pages:
+            - number: 1
+              items:
+                - Focusrite Control
+                - Ableton Live 11 Lite
+        - folder: Boot
+          pages:
+            - number: 1
+              items:
+                - Boot Camp ISO Converter
+                - balenaEtcher
+        - folder: Remote
+          pages:
+            - number: 1
+              items:
+                - SunloginClient
+                - Alibaba Cloud Client
+                - Microsoft Remote Desktop Beta
+                - ToDesk
+        - folder: CrossOver (Other)
+          pages:
+            - number: 1
+              items:
+                - Steam
+                - Steam Support Center
+                - ANIMAL WELL
+        - folder: Unity
+          pages:
+            - number: 1
+              items:
+                - Unity
+                - Unity Bug Reporter
+                - Unity Hub
+        - TestFlight
+        - WPS Office
+        - 剪映专业版
+        - folder: Adobe Creative Cloud
+          pages:
+            - number: 1
+              items:
+                - Adobe Creative Cloud Diagnostics
+                - Creative Cloud
+        - Adobe Bridge 2024
+        - DingTalk
+        - Bob
+        - Sketch
+        - Arc
+        - GIMP
+        - 高德地图
+        - Monodraw
+        - QuickRecorder
+        - Insomnia
+        - Parallels Desktop
+        - MuMu模拟器Pro
+        - RustRover
+        - Discord
+        - CrossOver
+        - ToDesk Cloud Computer
+        - Feishu
+    - number: 2
+      items:
+        - Bitwarden
+        - AnyKit
+        - Google Chrome
+        - Chromium
+        - TickTick
+        - Obsidian
+        - Eudic
+        - Gifski
+        - Shottr
+        - IINA
+        - Sloth
+        - Numi
+        - OBS
+        - WonderPen
+        - Telegram
+        - NetEaseMusic
+        - QQ音乐
+        - Boom 3D
+        - Blender
+        - Navicat Premium Lite
+        - Alibaba Cloud Workspace
+        - START
+        - 抖音
+        - 哔哩哔哩
+        - 迅雷
+        - BetterDisplay
+        - aDrive
+    - number: 3
+      items:
+        - Sourcetree
+        - Xcodes
+        - Warp
+        - Visual Studio Code
+        - Folx
+        - Eagle
+        - ClashX Pro
+        - Helium
+        - AirServer
+        - Microsoft Edge
+        - Hex Fiend
+        - Bit Fiddle
+        - OmniDiskSweeper
+        - JetBrains Toolbox
+        - IntelliJ IDEA Community Edition
+        - Cursor
+        - Xcode-16.0.0-Beta.5
+        - OrbStack
+        - Docker
+widgets:
+  pages: []
+dock_items:
+  apps:
+    - /System/Applications/Launchpad.app
+    - /System/Applications/Calendar.app
+    - /Applications/Arc.app
+    - /System/Applications/Notes.app
+    - /Applications/TickTick.app
+    - /Applications/Bitwarden.app
+    - /Applications/Obsidian.app
+    - /Applications/Warp.app
+    - /Applications/Visual Studio Code.app
+    - /Users/artin/Applications/IntelliJ IDEA Community Edition.app
+    - /Applications/DingTalk.app
+    - /Applications/Discord.app
+  others:
+    - path: ~/Downloads
+      view: 1
+      sort: 2
+  settings:
+    autohide: false
+    largesize: null
+    magnification: false
+    minimize-to-application: true
+    mru-spaces: false
+    show-recents: false
+    tilesize: 40
+desktop: {}
