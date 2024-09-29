@@ -23,6 +23,10 @@ export PATH="$HOME/.moon/bin:$PATH"
 export PATH="$HOME/.detaspace/bin:$PATH"
 export PATH="$HOME/0Workspace/github.com/ax/apk.sh:$PATH"
 
+export DYLD_FALLBACK_LIBRARY_PATH="$(xcode-select --print-path)/Toolchains/XcodeDefault.xctoolchain/usr/lib/"
+export LDFLAGS=-L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib
+
 alias ls="eza"
 alias ll='ls -lh'
 alias la='ls -lah'
