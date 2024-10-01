@@ -141,15 +141,16 @@ use_npm_mirror() {
     export NPM_CONFIG_REGISTRY=https://registry.npmmirror.com
 }
 
-init_npm() {
+init_shell() {
+    setopt -x;
     npm install -g nali-cli trash-cli zx yarn
     npm install -g @githubnext/github-copilot-cli
-    npm install -g projj
-}
+    npm install -g projj live-server
 
-init_vfox() {
-  brew tap version-fox/tap
-  brew install vfox
+    brew tap version-fox/tap
+    brew install vfox
+
+    setopt +x;
 }
 
 zsh_history_fix() {
@@ -298,9 +299,6 @@ upg() {
   brew upgrade
 }
 
-serv_sfz() {
-  sfz . --cors -b 0.0.0.0 -p 3002
-}
 serv() {
   live-server . --port=8080 --host=0.0.0.0
 }
@@ -330,6 +328,9 @@ function grepf() {
 function _cmd_exists() {
   command -v "$1" >/dev/null 2>&1
 }
+
+eval "$(zoxide init zsh)"
+eval "$(vfox activate zsh)"
 
 autoload -U compinit && compinit
 
@@ -456,8 +457,6 @@ fi
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-eval "$(zoxide init zsh)"
-eval "$(vfox activate zsh)"
 
 # pnpm
 export PNPM_HOME="$HOME/Library/pnpm"

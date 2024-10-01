@@ -1,7 +1,6 @@
+tap "blacktop/tap"
 tap "clojure/tools"
 tap "homebrew/bundle"
-tap "homebrew/cask-fonts"
-tap "homebrew/cask-versions"
 tap "homebrew/services"
 tap "lihaoyun6/tap"
 tap "mergestat/mergestat"
@@ -9,7 +8,6 @@ tap "minacle/chntpw"
 tap "proxmark/proxmark3"
 tap "railwayapp/tap"
 tap "version-fox/tap"
-tap "weihanglo/sfz", "https://github.com/weihanglo/sfz.git"
 # Run your GitHub Actions locally
 brew "act"
 # Library and utilities for processing GIFs
@@ -38,8 +36,6 @@ brew "aria2"
 brew "automake"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
-# C library of Git core methods that is re-entrant and linkable
-brew "libgit2"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # New way to see and navigate directory trees
@@ -52,6 +48,8 @@ brew "caddy"
 brew "ccache"
 # CD/DVD/Blu-ray premastering and recording software
 brew "cdrtools"
+# GNU compiler collection
+brew "gcc"
 # Create and view interactive cheat sheets for *nix commands
 brew "cheat"
 # Statistics utility to count lines of code
@@ -66,26 +64,22 @@ brew "cocoapods"
 brew "coreutils"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
-# Power of curl, ease of use of httpie
-brew "curlie"
 # Secure runtime for JavaScript and TypeScript
 brew "deno"
 # Library for USB device access
 brew "libusb"
 # USB programmer
 brew "dfu-util"
-# Command-line DNS client
-brew "dog"
 # Pluggable and configurable code formatting platform written in Rust
 brew "dprint"
 # Select default apps for documents and URL schemes on macOS
 brew "duti"
+# C library of Git core methods that is re-entrant and linkable
+brew "libgit2"
 # Modern, maintained replacement for ls
 brew "eza"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
-# GNU compiler collection
-brew "gcc"
 # GNU Transport Layer Security (TLS) Library
 brew "gnutls"
 # C library SSHv1/SSHv2 client and server protocols
@@ -104,8 +98,8 @@ brew "gdk-pixbuf"
 brew "gh"
 # Distributed revision control system
 brew "git"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.11"
+# Small git utilities
+brew "git-extras"
 # Quickly rewrite git repository history
 brew "git-filter-repo"
 # Git extension for versioning large files
@@ -142,10 +136,8 @@ brew "ninja"
 brew "meson"
 # NCurses Disk Usage
 brew "ncdu"
-# Classic snake game with textual interface
-brew "nsnake"
-# Ncurses based sudoku game
-brew "nudoku"
+# Open source computer vision library
+brew "opencv"
 # 7-Zip (high compression file archiver) implementation
 brew "p7zip"
 # Python 3 bindings for the Cairo graphics library
@@ -153,13 +145,15 @@ brew "py3cairo"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.10"
 # Interpreted, interactive, object-oriented programming language
+brew "python@3.11"
+# Interpreted, interactive, object-oriented programming language
 brew "python@3.9"
 # Generic machine emulator and virtualizer
 brew "qemu"
 # Cross-platform application and UI framework
 brew "qt@5"
 # Rust toolchain installer
-brew "rustup-init"
+brew "rustup"
 # Software for mathematics, science, and engineering
 brew "scipy"
 # 7-Zip is a file archiver with a high compression ratio
@@ -170,6 +164,8 @@ brew "socat"
 brew "syncthing"
 # Simplified and community-driven man pages
 brew "tldr"
+# Version manager with support for Java, Node.js, Flutter, .NET & more
+brew "vfox"
 # Internet file retriever
 brew "wget"
 # Library to create, extract, and modify Windows Imaging files
@@ -182,6 +178,8 @@ brew "zig"
 brew "zlib"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
+# Organize Your macOS Launchpad Apps
+brew "blacktop/tap/lporg"
 # The Clojure Programming Language
 brew "clojure/tools/clojure"
 # The Offline NT Password Editor
@@ -190,18 +188,12 @@ brew "minacle/chntpw/chntpw"
 brew "proxmark/proxmark3/arm-none-eabi-gcc"
 # App source + Nix packages + Docker = Image
 brew "railwayapp/tap/nixpacks"
-# A cross-platform SDK version manager with a simple cli.
-brew "version-fox/tap/vfox"
-# A simple static file serving command-line tool.
-brew "weihanglo/sfz/sfz"
 # Enable Windows-like alt-tab
 cask "alt-tab"
 # Android SDK component
 cask "android-platform-tools"
 # Inspect application bundles
 cask "apparency"
-# Audio utility
-cask "background-music"
 # Free and open-source web browser
 cask "chromium"
 cask "font-fira-code"
@@ -240,13 +232,9 @@ cask "quicklookase"
 cask "quickrecorder"
 # Displays all open files and sockets in use by all running processes
 cask "sloth"
-# Graphical client for Git version control
-cask "sourcetree"
 # Application for inspecting installer packages
 cask "suspicious-package"
 # JDK from the Eclipse Foundation (Adoptium)
 cask "temurin"
-# Compatibility layer to run Windows applications
-cask "wine-stable"
 # Install and switch between multiple versions of Xcode
 cask "xcodes"
