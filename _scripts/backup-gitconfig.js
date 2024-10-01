@@ -17,12 +17,37 @@ Object.keys(data).forEach((k) => {
   }
 });
 
+// generate git command from sectionAllowed
+// git config --global url.ssh://git@github.com/.insteadOf https://github.com/
+// `git config` --[scope] [section].[key] [value]
+function getKeyValues(obj, prefix = "", keyValues = []) {
+  for (let key in obj) {
+    const fullKey = prefix + key;
+    if (typeof obj[key] === "object") {
+      getKeyValues(obj[key], fullKey + ".", keyValues);
+    } else {
+      keyValues.push([fullKey, obj[key]]);
+    }
+  }
+  return keyValues;
+}
+
+function generateGitCommand(data) {
+  const keyValues = getKeyValues(data);
+  let cmd = "";
+  keyValues.forEach(([k, v]) => {
+    cmd += `git config --global ${k} "${v}"\n`;
+  });
+  return cmd;
+}
+
+const command = generateGitCommand(data);
 fs.writeFileSync(
-  path.join(os.homedir(), "dotfiles/_rc/gitconfig.json"),
-  JSON.stringify(data, null, 2)
+  path.join(os.homedir(), "dotfiles/_scripts/setup-gitconfig.generated.sh"),
+  command,
 );
 
 fs.copyFileSync(
   path.join(os.homedir(), ".gitignore_global"),
-  path.join(os.homedir(), "dotfiles/_rc/gitignore_global")
+  path.join(os.homedir(), "dotfiles/_rc/gitignore_global"),
 );
