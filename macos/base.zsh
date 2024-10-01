@@ -144,7 +144,7 @@ use_npm_mirror() {
 init_shell() {
     setopt -x;
     npm install -g nali-cli trash-cli zx yarn
-    npm install -g @githubnext/github-copilot-cli
+    npm install -g @builder.io/ai-shell
     npm install -g projj live-server
 
     brew tap version-fox/tap
@@ -346,7 +346,7 @@ DISABLE_CORRECTION="true"
 HIST_STAMPS="yyyy-mm-dd"
 
 
-_cmd_exists github-copilot-cli && eval "$(github-copilot-cli alias -- "$0")"
+_cmd_exists gh && eval "$(gh copilot alias -- zsh)"
 _cmd_exists projj && eval "$(projj completion zsh)"
 
 # Preview file content using bat (https://github.com/sharkdp/bat)
