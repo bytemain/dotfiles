@@ -1,13 +1,7 @@
 source $HOME/dotfiles/macos/base.zsh
 
-alias an="cd ~/0Ant"
-
 bk() {
     cp ~/.vimrc ~/dotfiles/macos/vimrc
     brew bundle dump --describe --force --brews --casks --taps --mas --no-upgrade --file="~/dotfiles/macos/Brewfile"
     cp ~/.aerospace.toml ~/dotfiles/_rc/aerospace.toml
 }
-
-eval "$(vfox activate zsh)"
-
-[ -f ~/.private.zshrc ] && source ~/.private.zshrc

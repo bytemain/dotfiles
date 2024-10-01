@@ -333,10 +333,20 @@ function _cmd_exists() {
 
 autoload -U compinit && compinit
 
-eval "$(vfox activate zsh)"
+# Switching directories for lazy people
+setopt autocd
+# See: http://zsh.sourceforge.net/Intro/intro_6.html
+setopt autopushd pushdminus pushdsilent pushdtohome pushdignoredups
+
+# Disable correction
+unsetopt correct_all
+unsetopt correct
+DISABLE_CORRECTION="true"
+HIST_STAMPS="yyyy-mm-dd"
+
 
 _cmd_exists github-copilot-cli && eval "$(github-copilot-cli alias -- "$0")"
-_cmd_exists projj && eval "$(projj completion)"
+_cmd_exists projj && eval "$(projj completion zsh)"
 
 # Preview file content using bat (https://github.com/sharkdp/bat)
 export FZF_CTRL_T_OPTS="
@@ -368,42 +378,71 @@ autoload -Uz _zinit
 ### End of Zinit's installer chunk
 
 zinit light "paulirish/git-open"
-
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
+zinit light "mfaerevaag/wd"
 
 # Load pure theme
 zinit ice pick"async.zsh" src"pure.zsh"
 zinit light sindresorhus/pure
 
 omz_libs=(
-    history.zsh
-    git.zsh
-    clipboard.zsh
+    lib/history.zsh
+    lib/git.zsh
+    lib/clipboard.zsh
+    lib/grep.zsh
+    plugins/npm
+    plugins/git
+    plugins/sudo
+    plugins/extract
+    plugins/yarn
 )
 for lib in ${omz_libs[@]}; do
-    zinit snippet OMZL::$lib
+    zinit snippet OMZ::$lib
 done
 
-omz_plugins=(
-    git
-    npm
-    sudo
-    extract
+omz_completions=(
+    extract/_extract
+    yarn/_yarn
 )
-for plugin in ${omz_plugins[@]}; do
-    zinit snippet OMZP::$plugin
+
+for comp in ${omz_completions[@]}; do
+    zi ice as"completion"
+    zi snippet OMZP::$comp
 done
 
-# Switching directories for lazy people
-setopt autocd
-# See: http://zsh.sourceforge.net/Intro/intro_6.html
-setopt autopushd pushdminus pushdsilent pushdtohome pushdignoredups
 
-# Disable correction
-unsetopt correct_all
-unsetopt correct
-DISABLE_CORRECTION="true"
+setopt RE_MATCH_PCRE   # _fix-omz-plugin function uses this regex style
+
+# Workaround for zinit issue#504: remove subversion dependency. Function clones all files in plugin
+# directory (on github) that might be useful to zinit snippet directory. Should only be invoked
+# via zinit atclone"_fix-omz-plugin"
+_fix-omz-plugin() {
+  if [[ ! -f ._zinit/teleid ]] then return 0; fi
+  if [[ ! $(cat ._zinit/teleid) =~ "^OMZP::.*" ]] then return 0; fi
+  local OMZP_NAME=$(cat ._zinit/teleid | sed -n 's/OMZP:://p')
+  git clone --quiet --no-checkout --depth=1 --filter=tree:0 https://github.com/ohmyzsh/ohmyzsh
+  cd ohmyzsh
+  git sparse-checkout set --no-cone plugins/$OMZP_NAME
+  git checkout --quiet
+  cd ..
+  local OMZP_PATH="ohmyzsh/plugins/$OMZP_NAME"
+  local file
+  for file in ohmyzsh/plugins/$OMZP_NAME/*~(.gitignore|*.plugin.zsh)(D); do
+    local filename="${file:t}"
+    echo "Copying $file to $(pwd)/$filename..."
+    cp $file $filename
+  done
+  rm -rf ohmyzsh
+}
+
+zinit wait lucid for \
+  atpull"%atclone" atclone"_fix-omz-plugin" \
+    OMZP::colored-man-pages \
+  atpull"%atclone" atclone"_fix-omz-plugin" \
+    OMZP::aliases \
+  light-mode \
+    zsh-users/zsh-completions \
+  atload"!_zsh_autosuggest_start" \
+    zsh-users/zsh-autosuggestions
 
 if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
 ##### WHAT YOU WANT TO DISABLE FOR WARP - BELOW
@@ -418,13 +457,14 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 eval "$(zoxide init zsh)"
+eval "$(vfox activate zsh)"
 
 # pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
 
-source $HOME/.config/broot/launcher/bash/br
+[ -f $HOME/.config/broot/launcher/bash/br ] && source $HOME/.config/broot/launcher/bash/br
 
 # CN mirror start
 export ELECTRON_MIRROR="https://npmmirror.com/mirrors/electron/"
@@ -436,3 +476,7 @@ if [ -f '$HOME/0Common/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/0Common/g
 
 # The next line enables shell command completion for gcloud.
 if [ -f '$HOME/0Common/google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/0Common/google-cloud-sdk/completion.zsh.inc'; fi
+
+
+
+[ -f ~/.private.zshrc ] && source ~/.private.zshrc
