@@ -31,7 +31,6 @@ alias ls="eza"
 alias ll='ls -lh'
 alias la='ls -lah'
 alias tree='eza --tree'
-alias cat='bat'
 
 alias -- -='cd -'
 
@@ -435,15 +434,18 @@ _fix-omz-plugin() {
   rm -rf ohmyzsh
 }
 
+
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-completions
+zinit light zdharma-continuum/fast-syntax-highlighting
+
 zinit wait lucid for \
   atpull"%atclone" atclone"_fix-omz-plugin" \
     OMZP::colored-man-pages \
   atpull"%atclone" atclone"_fix-omz-plugin" \
     OMZP::aliases \
-  light-mode \
-    zsh-users/zsh-completions \
-  atload"!_zsh_autosuggest_start" \
-    zsh-users/zsh-autosuggestions
+
+unsetopt RE_MATCH_PCRE
 
 if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
 ##### WHAT YOU WANT TO DISABLE FOR WARP - BELOW
