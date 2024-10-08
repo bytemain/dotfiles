@@ -479,3 +479,6 @@ if [ -f '$HOME/0Common/google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/0Co
 
 
 [ -f ~/.private.zshrc ] && source ~/.private.zshrc
+
+# bun completions
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
