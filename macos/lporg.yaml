@@ -1,0 +1,162 @@
+apps:
+  pages:
+    - number: 1
+      items:
+        - App Store
+        - Safari
+        - Mail
+        - Contacts
+        - Calendar
+        - Reminders
+        - Notes
+        - FaceTime
+        - Messages
+        - Maps
+        - Find My
+        - Photo Booth
+        - Photos
+        - Preview
+        - Music
+        - Podcasts
+        - Videos
+        - Voice Memos
+        - Keynote
+        - Weather
+        - Stocks
+        - Books
+        - Dictionary
+        - Calculator
+        - Freeform
+        - Home
+        - Clock
+        - Siri
+        - System Settings
+        - folder: Other
+          pages:
+            - number: 1
+              items:
+                - Shortcuts
+                - QuickTime Player
+                - TextEdit
+                - Grapher
+                - Time Machine
+                - Font Book
+                - Mission Control
+                - Stickies
+                - Image Capture
+                - VoiceOver Utility
+                - AirPort Utility
+                - Migration Assistant
+                - Terminal
+                - Activity Monitor
+                - Console
+                - Keychain Access
+                - System Information
+                - Automator
+                - Script Editor
+                - Disk Utility
+                - Digital Color Meter
+                - ColorSync Utility
+                - Screenshot
+                - Bluetooth File Exchange
+                - Audio MIDI Setup
+                - Feedback Assistant
+                - Screen Sharing
+                - Print Center
+                - Chromium
+        - Xcode-15.1.0-Beta
+        - QQ音乐
+        - folder: Games
+          pages:
+            - number: 1
+              items:
+                - Chess
+                - love
+    - number: 2
+      items:
+        - iPreview
+        - Visual Studio Code
+        - Finda
+        - Alibaba Cloud Workspace
+        - Apparency
+        - CleanShot X
+        - Ethernet Status
+        - ImHex
+        - Keka
+        - BetterDisplay
+        - Rectangle
+        - DingTalk
+        - Google Chrome
+        - Bartender 5
+        - IINA
+        - TestFlight
+        - LinearMouse
+        - Bob
+        - Cursor
+        - AutoSwitchInput Pro
+        - StarPoint
+        - Zed
+        - Follow
+        - Suspicious Package
+        - MacGesture
+        - TickTick
+        - Arc
+        - TinkerTool
+    - number: 3
+      items:
+        - uTools
+        - Microsoft Excel
+        - OrbStack
+        - Glance
+        - Wireshark
+        - RapidAPI
+        - Bitwarden
+        - QuickLook Video
+        - Xcodes
+        - Logi Options+
+        - UGit
+        - Microsoft Remote Desktop Beta
+        - Proxyman
+        - iRightMouse Pro
+        - Sloth
+        - iTerm
+        - Surge
+        - Developer
+        - Eudic
+        - JetBrains Toolbox
+        - PasteNow
+        - Tencent Lemon
+        - Sketch
+        - OmniDiskSweeper
+        - Install macOS Sequoia Beta
+        - IntelliJ IDEA Ultimate
+        - RustRover
+        - DataGrip
+widgets:
+  pages: []
+dock_items:
+  apps:
+    - /System/Applications/Launchpad.app
+    - /Applications/Arc.app
+    - /Applications/TickTick.app
+    - /System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app
+    - /Applications/iTerm.app
+    - /Applications/Visual Studio Code.app
+    - /Applications/RapidAPI.app
+    - /Applications/Eudic.app
+    - /Applications/Bitwarden.app
+    - /Users/artin/Applications/RustRover.app
+    - /Applications/Follow.app
+  others:
+    - path: ~/Downloads
+      view: 1
+      sort: 2
+  settings:
+    autohide: false
+    largesize: 41
+    magnification: true
+    minimize-to-application: true
+    mru-spaces: false
+    show-recents: true
+    tilesize: 32
+desktop: {}
