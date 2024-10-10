@@ -12,6 +12,15 @@ bk() {
     brew bundle dump --describe --force --brews --casks --taps --mas --no-upgrade --file="~/dotfiles/macos-home/Brewfile"
 }
 
+p-save() {
+  lporg save -c $HOME/dotfiles/macos-home/lporg.yaml
+}
+
+p-load() {
+  lporg load -c $HOME/dotfiles/macos-home/lporg.yaml
+}
+
+
 sync-zsh() {
     cp ~/.zshrc ~/.zshrc.bak
     cp ~/dotfiles/macos-home/zshrc ~/.zshrc

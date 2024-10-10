@@ -1,14 +1,16 @@
+tap "blacktop/tap"
 tap "clojure/tools"
 tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/services"
+tap "kcl-lang/tap"
+tap "lihaoyun6/tap"
 tap "mergestat/mergestat"
 tap "nikitabobko/tap"
 tap "proxmark/proxmark3"
 tap "railwayapp/tap"
 tap "version-fox/tap"
-tap "weihanglo/sfz", "https://github.com/weihanglo/sfz.git"
 tap "withgraphite/tap"
 # Run your GitHub Actions locally
 brew "act"
@@ -18,6 +20,12 @@ brew "giflib"
 brew "libpng"
 # General-purpose data compression with high compression ratio
 brew "xz"
+# TIFF library and utilities
+brew "libtiff"
+# New file format for still image compression
+brew "jpeg-xl"
+# Perl compatible regular expressions library with a new API
+brew "pcre2"
 # Core application library for C
 brew "glib"
 # Protocol definitions and daemon for D-Bus at-spi
@@ -62,20 +70,20 @@ brew "libusb"
 brew "dfu-util"
 # Synchronize your DNS to multiple providers from a simple DSL
 brew "dnscontrol"
+# Pluggable and configurable code formatting platform written in Rust
+brew "dprint"
 # Select default apps for documents and URL schemes on macOS
 brew "duti"
 # Modern, maintained replacement for ls
 brew "eza"
-# GNU compiler collection
-brew "gcc"
 # Validating, recursive, caching DNS resolver
 brew "unbound"
 # GNU Transport Layer Security (TLS) Library
 brew "gnutls"
-# C/C++ and Java libraries for Unicode and globalization
-brew "icu4c"
 # OpenType text shaping engine
 brew "harfbuzz"
+# C/C++ and Java libraries for Unicode and globalization
+brew "icu4c"
 # Subtitle renderer for the ASS/SSA subtitle format
 brew "libass"
 # Framework for layout and rendering of i18n text
@@ -84,14 +92,18 @@ brew "pango"
 brew "tesseract"
 # Play, record, convert, and stream audio and video
 brew "ffmpeg"
+# Play, record, convert, and stream audio and video
+brew "ffmpeg@6"
 # Command-line fuzzy finder written in Go
 brew "fzf"
+# GNU compiler collection
+brew "gcc"
 # Toolkit for image loading and pixel buffer manipulation
 brew "gdk-pixbuf"
-# GitHub command-line tool
-brew "gh"
 # Distributed revision control system
 brew "git"
+# Small git utilities
+brew "git-extras"
 # Git extension for versioning large files
 brew "git-lfs"
 # Simple and efficient way to access statistics in git
@@ -132,8 +144,6 @@ brew "jless"
 brew "jpeg"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.9"
 # Library for USB device access
 brew "libusb-compat"
 # Powerful, lightweight programming language
@@ -142,6 +152,8 @@ brew "lua"
 brew "ninja"
 # Fast and user friendly build system
 brew "meson"
+# Minimalist GNU for Windows and GCC cross-compilers
+brew "mingw-w64"
 # NCurses Disk Usage
 brew "ncdu"
 # Port scanning utility for large networks
@@ -150,10 +162,10 @@ brew "nmap"
 brew "node"
 # Classic snake game with textual interface
 brew "nsnake"
-# Ncurses based sudoku game
-brew "nudoku"
 # 7-Zip (high compression file archiver) implementation
 brew "p7zip"
+# Perl compatible regular expressions library
+brew "pcre"
 # Fast, disk space efficient package manager
 brew "pnpm"
 # Python version management
@@ -162,12 +174,14 @@ brew "pyenv"
 brew "python@3.10"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.11"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.9"
 # Generic machine emulator and virtualizer
 brew "qemu"
 # Cross-platform application and UI framework
 brew "qt@5"
 # Rust toolchain installer
-brew "rustup-init"
+brew "rustup"
 # Software for mathematics, science, and engineering
 brew "scipy"
 # Display and control your Android device
@@ -190,36 +204,34 @@ brew "zig"
 brew "zlib"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
+# UNIX shell (command interpreter)
+brew "zsh"
+# Organize Your macOS Launchpad Apps
+brew "blacktop/tap/lporg"
 # The Clojure Programming Language
 brew "clojure/tools/clojure"
+# A constraint-based record & functional language mainly used in configuration and policy scenarios.
+brew "kcl-lang/tap/kcl-lsp"
+# KCL Command Line Interface
+brew "kcl-lang/tap/kcl"
 # GCC for embedded ARM processors
 brew "proxmark/proxmark3/arm-none-eabi-gcc"
 # App source + Nix packages + Docker = Image
 brew "railwayapp/tap/nixpacks"
 # A cross-platform SDK version manager with a simple cli.
 brew "version-fox/tap/vfox"
-# A simple static file serving command-line tool.
-brew "weihanglo/sfz/sfz"
-# Allows you to manage your stacked changes and submit them for review on GitHub
-brew "withgraphite/tap/graphite"
-# Enable Windows-like alt-tab
-cask "alt-tab"
 # Android SDK component
 cask "android-platform-tools"
 # Inspect application bundles
 cask "apparency"
 # Free and open-source web browser
 cask "chromium"
-# Free monospaced font with programming ligatures
+cask "font-cascadia-code"
 cask "font-fira-code"
-# Developer targeted fonts with a high number of glyphs
 cask "font-hack-nerd-font"
-# Typeface made for developers
 cask "font-jetbrains-mono"
-# Open-source Chinese font derived from Fontworks' Klee One
 cask "font-lxgw-wenkai"
 cask "font-meslo-lg"
-# Developer targeted fonts with a high number of glyphs
 cask "font-meslo-lg-nerd-font"
 # Utility to provide quick look previews for files that aren't natively supported
 cask "glance-chamburr"
@@ -231,8 +243,6 @@ cask "imhex"
 cask "keka"
 # Customise mouse behavior
 cask "linearmouse"
-# 2D game framework for Lua
-cask "love"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
 # Replacement for Docker Desktop
