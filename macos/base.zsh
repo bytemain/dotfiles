@@ -96,16 +96,12 @@ alias ts="tmux new-session -s"
 
 alias _='sudo '
 
-alias doh='dog -H @https://dns.alidns.com/dns-query'
-
 alias vf=vfox
 
-alias sv='caddy file-server --listen :2000 --browse'
+alias sv='echo http://0.0.0.0:2000 && caddy file-server --listen :2000 --browse'
 
 alias o='open'
 alias ow='open -a'
-
-alias cobi='cd "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Craft"'
 
 alias chrome-no-sec="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --disable-web-security  --user-data-dir=~/.chrome-temp"
 
@@ -118,12 +114,6 @@ gig() { curl -L -s https://www.gitignore.io/api/$@;}
 
 take() {
   mkdir -p $@ && cd ${@:$#}
-}
-
-ding() {
-    DING_PATH="$HOME/0Workspace/pierced/mac_64"
-    command="$DING_PATH/ding -config=$DING_PATH/ding.cfg -subdomain=artin $1"
-    eval "$command"
 }
 
 add_path() {
@@ -339,8 +329,8 @@ function _cmd_exists() {
   command -v "$1" >/dev/null 2>&1
 }
 
-eval "$(zoxide init zsh)"
-eval "$(vfox activate zsh)"
+_cmd_exists zoxide && eval "$(zoxide init zsh)"
+_cmd_exists vfox && eval "$(vfox activate zsh)"
 
 autoload -U compinit && compinit
 
@@ -470,6 +460,8 @@ fi
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+# bun completions
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
@@ -483,15 +475,4 @@ export ELECTRON_MIRROR="https://npmmirror.com/mirrors/electron/"
 export VFOX_PYTHON_MIRROR=https://mirrors.huaweicloud.com/python/
 # CN mirror end
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '$HOME/0Common/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/0Common/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '$HOME/0Common/google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/0Common/google-cloud-sdk/completion.zsh.inc'; fi
-
-
-
 [ -f ~/.private.zshrc ] && source ~/.private.zshrc
-
-# bun completions
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
