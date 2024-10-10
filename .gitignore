@@ -1,7 +1,6 @@
 *.swp
 .tmp
 
-yarn.lock
 node_modules
 
 # General
