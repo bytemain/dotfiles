@@ -331,6 +331,7 @@ function _cmd_exists() {
 
 _cmd_exists zoxide && eval "$(zoxide init zsh)"
 _cmd_exists vfox && eval "$(vfox activate zsh)"
+_cmd_exists direnv && eval "$(direnv hook zsh)"
 
 autoload -U compinit && compinit
 
