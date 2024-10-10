@@ -1,29 +1,10 @@
+export DOTFILE_NAME=macos-home
+
 source $HOME/dotfiles/macos/base.zsh
 
-# Proxy configuration
 getIp() {
     export PROXY_SOCKS5="socks5://127.0.0.1:7891"
     export PROXY_HTTP="http://127.0.0.1:7891"
-}
-
-bk() {
-    cp ~/.zshrc ~/dotfiles/macos-home/zshrc
-    cp ~/.vimrc ~/dotfiles/macos/vimrc
-    brew bundle dump --describe --force --brews --casks --taps --mas --no-upgrade --file="~/dotfiles/macos-home/Brewfile"
-}
-
-p-save() {
-  lporg save -c $HOME/dotfiles/macos-home/lporg.yaml
-}
-
-p-load() {
-  lporg load -c $HOME/dotfiles/macos-home/lporg.yaml
-}
-
-
-sync-zsh() {
-    cp ~/.zshrc ~/.zshrc.bak
-    cp ~/dotfiles/macos-home/zshrc ~/.zshrc
 }
 
 alias luamake="~/0Workspace/github.com/actboy168/luamake/luamake"

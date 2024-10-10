@@ -27,6 +27,8 @@ export DYLD_FALLBACK_LIBRARY_PATH="$(xcode-select --print-path)/Toolchains/Xcode
 export LDFLAGS=-L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib
 
+export DOTFILE_CONFIG_PATH=$HOME/dotfiles/$DOTFILE_NAME
+
 alias ls="eza"
 alias ll='ls -lh'
 alias la='ls -lah'
@@ -308,6 +310,27 @@ cdt() {
 
 git-setup() {
   git config --global url."git@github.com:".insteadOf "https://github.com/"
+}
+
+p-save() {
+  lporg save -c $DOTFILE_CONFIG_PATH/lporg.yaml
+}
+
+p-load() {
+  lporg load -c $DOTFILE_CONFIG_PATH/lporg.yaml
+}
+
+bk() {
+    cp ~/.zshrc $DOTFILE_CONFIG_PATH/zshrc
+    brew bundle dump --describe --force --brews --casks --taps --mas --no-upgrade --file="$DOTFILE_CONFIG_PATH/Brewfile"
+
+    cp ~/.vimrc ~/dotfiles/_rc/vimrc
+    cp ~/.aerospace.toml ~/dotfiles/_rc/aerospace.toml
+}
+
+sync-zsh() {
+    cp ~/.zshrc ~/.zshrc.bak
+    cp $DOTFILE_CONFIG_PATH/zshrc ~/.zshrc
 }
 
 function f() {

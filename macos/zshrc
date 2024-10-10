@@ -1,15 +1,3 @@
+export DOTFILE_NAME=macos
+
 source $HOME/dotfiles/macos/base.zsh
-
-bk() {
-    cp ~/.vimrc ~/dotfiles/macos/vimrc
-    brew bundle dump --describe --force --brews --casks --taps --mas --no-upgrade --file="~/dotfiles/macos/Brewfile"
-    cp ~/.aerospace.toml ~/dotfiles/_rc/aerospace.toml
-}
-
-p-save() {
-  lporg save -c $HOME/dotfiles/macos/lporg.yaml
-}
-
-p-load() {
-  lporg load -c $HOME/dotfiles/macos/lporg.yaml
-}
