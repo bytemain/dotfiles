@@ -1,4 +1,4 @@
-export DOTFILE_NAME=macos-home
+export DOTFILE_NAME=macosh
 
 source $HOME/dotfiles/macos/base.zsh
 
