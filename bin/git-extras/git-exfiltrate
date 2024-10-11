@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+
+usage() {
+  cat <<EOF
+Usage: $(basename "${BASH_SOURCE[0]}") [-h] [-b] <against> <new-branch> <pathspec> (<base>)
+   <against> The branch you will merge changes into
+   <new-branch> The branch you want to create
+   <pathspec> the path you wish to split ("some/path/*")
+   <base> (optional) The tool will attempt to auto-detect the common ancestor
+	  between your branch and the against target. If your branch histories
+          are complicated you can manually provide the original ancestor commit.
+
+Break a big feature branch into a smaller specific branch with the changes from
+one specific folder. Also, preserve your commit history.
+
+EOF
+  exit
+}
+
+AGAINST=${1:-}
+NEW_BRANCH=${2:-}
+PATHSPEC=${3:-}
+if [ "$#" -lt 3 ]; then
+  usage  
+fi
+
+BASE=${4:-$(git merge-base "$AGAINST" HEAD)}
+
+git checkout -b "$NEW_BRANCH" || exit
+
+FILTER_BRANCH_SQUELCH_WARNING=1 git filter-branch --force --prune-empty --index-filter \
+  "git ls-files | grep -Ev $PATHSPEC | xargs git rm --cached" "$BASE..HEAD"
+
+
+cat <<EOF
+--------------------------------------------------------------------------------
+Your new branch is created and checked out.
+
+You should be able to merge the branch as you normally would. In some
+situations git may not permit merges due to the "history" being "unrelated"
+(for example, if you introduce a new folder in your branch it has no common
+ancestor in the branch you wish to merge into. In this situation you must tell
+git to merge a branch with unrelated history: the unrelated history:
+
+    git checkout $AGAINST
+    git merge $NEW_BRANCH --no-edit --allow-unrelated-histories
+
+A regular git merge is usually all you need. You only need to do this if it
+complains.
+--------------------------------------------------------------------------------
+EOF
