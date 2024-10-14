@@ -79,6 +79,7 @@ alias cg=cargo
 
 alias g=git
 alias gcid="git log | head -1 | awk '{print substr(\$2,1,7)}'"
+alias lg=lazygit
 
 alias src="source ~/.zshrc"
 alias cpwd="pwd | pbcopy"
