@@ -128,7 +128,7 @@ init_shell() {
     setopt -x;
     npm install -g nali-cli trash-cli zx yarn
     npm install -g @builder.io/ai-shell
-    npm install -g projj live-server
+    npm install -g live-server
 
     brew tap version-fox/tap
     brew install vfox
@@ -348,7 +348,7 @@ HIST_STAMPS="yyyy-mm-dd"
 
 
 _cmd_exists gh && eval "$(gh copilot alias -- zsh)"
-_cmd_exists projj && eval "$(projj completion zsh)"
+_cmd_exists prog && eval "$(prog completion zsh)"
 
 # Preview file content using bat (https://github.com/sharkdp/bat)
 export FZF_CTRL_T_OPTS="
