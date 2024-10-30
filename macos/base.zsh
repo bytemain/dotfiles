@@ -130,7 +130,6 @@ init_shell() {
     npm install -g @builder.io/ai-shell
     npm install -g live-server
 
-    brew tap version-fox/tap
     brew install vfox
 
     setopt +x;

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 __file__=$(basename $0)
-__dirname = $(dirname $0)
+__dirname=$(dirname $0)
 
 git config --global url."git@github.com:".insteadOf "https://github.com/"
 
