@@ -126,7 +126,7 @@ use_npm_mirror() {
 
 init_shell() {
     setopt -x;
-    npm install -g nali-cli trash-cli zx yarn
+    npm install -g nali-cli trash-cli zx yarn stream.pipeline-shim
     npm install -g @builder.io/ai-shell
     npm install -g live-server
 
