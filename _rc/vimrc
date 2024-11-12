@@ -95,7 +95,6 @@ Plug 'Chiel92/vim-autoformat'
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
 Plug 'Raimondi/delimitMate'
-Plug 'wakatime/vim-wakatime'
 call plug#end()
 
 let g:NERDSpaceDelims=1

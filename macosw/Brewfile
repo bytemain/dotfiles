@@ -243,8 +243,6 @@ cask "imhex"
 cask "keka"
 # Customise mouse behavior
 cask "linearmouse"
-# Knowledge base that works on top of a local folder of plain text Markdown files
-cask "obsidian"
 # Replacement for Docker Desktop
 cask "orbstack"
 # Display image info and preview unsupported formats in QuickLook
@@ -257,8 +255,6 @@ cask "qlvideo"
 cask "quicklookase"
 # Displays all open files and sockets in use by all running processes
 cask "sloth"
-# Graphical client for Git version control
-cask "sourcetree"
 # Application for inspecting installer packages
 cask "suspicious-package"
 # JDK from the Eclipse Foundation (Adoptium)

@@ -6,7 +6,7 @@ export PATH="$HOME/dotfiles/bin:$PATH"
 export PATH="$HOME/dotfiles/bin/git-extras:$PATH"
 export PATH=$NPM_CONFIG_PREFIX/bin:$PATH
 export PATH="$HOME/.poetry/bin:$PATH"
-export PATH="$PATH:$HOME/.local/bin"
+export PATH="$HOME/.local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH=$PATH:$GOPATH/bin
 export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
@@ -347,7 +347,7 @@ HIST_STAMPS="yyyy-mm-dd"
 
 
 _cmd_exists gh && eval "$(gh copilot alias -- zsh)"
-_cmd_exists prog && eval "$(prog completion zsh)"
+_cmd_exists prog && eval "$(prog shell zsh)"
 
 # Preview file content using bat (https://github.com/sharkdp/bat)
 export FZF_CTRL_T_OPTS="
@@ -435,6 +435,7 @@ _fix-omz-plugin() {
   rm -rf ohmyzsh
 }
 
+zle_highlight=('paste:none')
 
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
