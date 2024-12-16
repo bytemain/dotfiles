@@ -487,3 +487,11 @@ export VFOX_PYTHON_MIRROR=https://mirrors.huaweicloud.com/python/
 # CN mirror end
 
 [ -f ~/.private.zshrc ] && source ~/.private.zshrc
+
+load-nvmrc() {
+   local nvmrc_path="$(nvm_find_nvmrc)"
+   if [ -n "$nvmrc_path" ]; then
+     nvm use #
+   fi
+}
+load-nvmrc
