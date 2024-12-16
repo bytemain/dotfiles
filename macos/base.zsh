@@ -318,6 +318,11 @@ sync-zsh() {
     cp $DOTFILE_CONFIG_PATH/zshrc ~/.zshrc
 }
 
+function rlp() {
+   sudo rm -rf /Library/Caches/com.apple.iconservices.store/
+   killall Dock
+}
+
 function f() {
   find . -name "$1"
 }
