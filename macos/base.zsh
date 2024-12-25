@@ -46,7 +46,6 @@ alias y=yarn
 alias t=tnpm
 alias pn=pnp
 
-alias p=prog
 alias pf="prog find"
 
 alias py="python3"
