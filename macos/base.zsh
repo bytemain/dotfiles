@@ -458,6 +458,8 @@ zinit wait lucid for \
 
 unsetopt RE_MATCH_PCRE
 
+unalias zi;
+
 if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
 ##### WHAT YOU WANT TO DISABLE FOR WARP - BELOW
 
