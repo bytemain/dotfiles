@@ -46,8 +46,6 @@ alias y=yarn
 alias t=tnpm
 alias pn=pnp
 
-alias pf="prog find"
-
 alias py="python3"
 alias ipy="ipython"
 
@@ -419,6 +417,7 @@ for comp in ${omz_completions[@]}; do
     zi snippet OMZP::$comp
 done
 
+unalias zi
 
 setopt RE_MATCH_PCRE   # _fix-omz-plugin function uses this regex style
 
