@@ -371,10 +371,6 @@ export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
 # /opt/homebrew/opt/fzf/install install first
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 ### Added by Zinit's installer
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
@@ -487,11 +483,3 @@ export VFOX_PYTHON_MIRROR=https://mirrors.huaweicloud.com/python/
 # CN mirror end
 
 [ -f ~/.private.zshrc ] && source ~/.private.zshrc
-
-load-nvmrc() {
-   local nvmrc_path="$(nvm_find_nvmrc)"
-   if [ -n "$nvmrc_path" ]; then
-     nvm use #
-   fi
-}
-load-nvmrc
