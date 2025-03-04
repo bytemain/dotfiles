@@ -6,16 +6,8 @@ const path = require("path");
 const exts = fs.readFileSync(path.join(os.homedir(), ".gitconfig"));
 console.log(`🚀 ~ file: backup-gitconfig.js ~ line 10 ~ exts`, exts.toString());
 
-const sectionAllowed = ["pull", "core", "alias", "color"];
-
 const data = gitconfig.sync();
 console.log(`🚀 ~ file: backup-gitconfig.js ~ line 16 ~ data`, data);
-
-Object.keys(data).forEach((k) => {
-  if (!sectionAllowed.includes(k)) {
-    delete data[k];
-  }
-});
 
 // generate git command from sectionAllowed
 // git config --global url.ssh://git@github.com/.insteadOf https://github.com/
@@ -41,13 +33,19 @@ function generateGitCommand(data) {
   return cmd;
 }
 
+const dotfileDir = path.resolve(__dirname, '..');
+
 const command = generateGitCommand(data);
 fs.writeFileSync(
-  path.join(os.homedir(), "dotfiles/_scripts/setup-gitconfig.generated.sh"),
+  path.join(dotfileDir, "_scripts/setup-gitconfig.generated.sh"),
   command,
 );
 
-fs.copyFileSync(
-  path.join(os.homedir(), ".gitignore_global"),
-  path.join(os.homedir(), "dotfiles/_rc/gitignore_global"),
-);
+const globalIgnoreFile = path.join(os.homedir(), ".gitignore_global");
+
+if (fs.existsSync(globalIgnoreFile)) {
+  fs.copyFileSync(
+    globalIgnoreFile,
+    path.join(dotfileDir, "_rc/gitignore_global"),
+  );
+}
