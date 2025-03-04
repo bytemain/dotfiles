@@ -480,6 +480,7 @@ export PATH="$PNPM_HOME:$PATH"
 # CN mirror start
 export ELECTRON_MIRROR="https://npmmirror.com/mirrors/electron/"
 export VFOX_PYTHON_MIRROR=https://mirrors.huaweicloud.com/python/
+export VFOX_NODEJS_MIRROR=https://cdn.npmmirror.com/binaries/node
 # CN mirror end
 
 [ -f ~/.private.zshrc ] && source ~/.private.zshrc
