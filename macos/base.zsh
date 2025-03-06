@@ -413,8 +413,6 @@ for comp in ${omz_completions[@]}; do
     zi snippet OMZP::$comp
 done
 
-unalias zi
-
 setopt RE_MATCH_PCRE   # _fix-omz-plugin function uses this regex style
 
 # Workaround for zinit issue#504: remove subversion dependency. Function clones all files in plugin
@@ -453,7 +451,7 @@ zinit wait lucid for \
 
 unsetopt RE_MATCH_PCRE
 
-unalias zi;
+unalias zi > /dev/null  2>&1 || true
 
 if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
 ##### WHAT YOU WANT TO DISABLE FOR WARP - BELOW
