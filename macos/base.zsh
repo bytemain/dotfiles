@@ -22,6 +22,10 @@ export PATH="$HOME/.detaspace/bin:$PATH"
 export PATH="$HOME/0Workspace/github.com/ax/apk.sh:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 
+export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export NDK_HOME="$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk)"
+
 export DYLD_FALLBACK_LIBRARY_PATH="$(xcode-select --print-path)/Toolchains/XcodeDefault.xctoolchain/usr/lib/"
 export LDFLAGS=-L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib
@@ -43,7 +47,7 @@ alias mkdir="mkdir -v"
 alias rmcdir="source delete-current-dir.sh"
 alias b=brew
 alias y=yarn
-alias t=tnpm
+alias t=trae
 alias pn=pnp
 
 alias py="python3"
