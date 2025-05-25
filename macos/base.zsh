@@ -31,6 +31,7 @@ export LDFLAGS=-L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib
 
 export DOTFILE_CONFIG_PATH=$HOME/dotfiles/$DOTFILE_NAME
+export RUSH_PNPM_STORE_PATH=$HOME/.cache/rush-pnpm-store
 
 alias ls="eza"
 alias ll='ls -lh'
@@ -272,8 +273,9 @@ docker_clean() {
 ar() {
     mv -i "$@" "$HOME/0Archive/"
 }
+
 sxattr() {
-  sudo xattr -d com.apple.quarantine /Applications/$@
+  sudo xattr -d com.apple.quarantine $@
 }
 
 upg() {

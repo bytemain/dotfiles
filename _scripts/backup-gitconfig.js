@@ -24,11 +24,38 @@ function getKeyValues(obj, prefix = "", keyValues = []) {
   return keyValues;
 }
 
+function escapeValueForShell(value) {
+  if (typeof value !== 'string') {
+    return value;
+  }
+
+  // 检查值是否已经被双引号包围
+  const isQuoted = value.startsWith('"') && value.endsWith('"');
+  // 如果已经被引号包围，移除外层引号以便处理内容
+  if (isQuoted) {
+    // 移除外层引号
+    value = value.substring(1, value.length - 1);
+  }
+
+    // 对于普通值，转义所有特殊字符
+    value = value
+      .replace(/\\/g, '\\\\')
+      .replace(/"/g, '\\"')
+      .replace(/\$/g, '\\$')
+      .replace(/`/g, '\\`')
+      .replace(/!/g, '\\!')
+      .replace(/\[/g, '\\[')
+      .replace(/\]/g, '\\]');
+  // 返回处理后的值，并标记它是否原本就被引号包围
+  return { value, isQuoted };
+}
+
 function generateGitCommand(data) {
   const keyValues = getKeyValues(data);
   let cmd = "";
   keyValues.forEach(([k, v]) => {
-    cmd += `git config --global ${k} "${v}"\n`;
+    const result = escapeValueForShell(v);
+    cmd += `git config --global ${k} "${result.value}"\n`;
   });
   return cmd;
 }
