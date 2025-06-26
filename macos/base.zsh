@@ -336,6 +336,16 @@ function _cmd_exists() {
   command -v "$1" >/dev/null 2>&1
 }
 
+() {
+  emulate -L zsh
+  local -r cache_dir=${XDG_CACHE_HOME:-$HOME/.cache}/zsh
+  autoload -Uz _store_cache compinit
+  zstyle ':completion:*' use-cache true
+  zstyle ':completion:*' cache-path $cache_dir/.zcompcache
+  [[ -f $cache_dir/.zcompcache/.make-cache-dir ]] || _store_cache .make-cache-dir
+  compinit -C -d $cache_dir/.zcompdump
+}
+
 _cmd_exists zoxide && eval "$(zoxide init zsh)"
 _cmd_exists vfox && eval "$(vfox activate zsh)"
 _cmd_exists direnv && eval "$(direnv hook zsh)"
