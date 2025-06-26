@@ -4,11 +4,12 @@ export TIME_STYLE=iso
 #export PATH="$(pwd)/node_modules/.bin:$PATH"
 export PATH="$HOME/dotfiles/bin:$PATH"
 export PATH="$HOME/dotfiles/bin/git-extras:$PATH"
-export PATH=$NPM_CONFIG_PREFIX/bin:$PATH
 export PATH="$HOME/.poetry/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH=$PATH:$GOPATH/bin
+
+export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
 export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
 export PATH=$JAVA_HOME/bin:$PATH
 export CPLUS_INCLUDE_PATH=/opt/homebrew/include
@@ -18,11 +19,9 @@ export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH="$HOME/.bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$HOME/.moon/bin:$PATH"
-export PATH="$HOME/.detaspace/bin:$PATH"
 export PATH="$HOME/0Workspace/github.com/ax/apk.sh:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 
-export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export NDK_HOME="$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk)"
 
