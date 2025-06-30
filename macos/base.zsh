@@ -287,8 +287,12 @@ serv() {
   live-server . --port=8080 --host=0.0.0.0
 }
 
+cdat() {
+  mkdir -p ~/0CodeRunner/tmp && cd `mktemp -d ~/0CodeRunner/tmp/artin-XXXXXX`
+}
+
 cdtmp() {
-  mkdir -p ~/0CodeRunner/tmp/$(date +"%Y%m%d_%H%M%S") && cd `mktemp -d ~/0CodeRunner/tmp/$(date +"%Y%m%d_%H%M%S")/artin-XXXXXX`
+  cd `mkdir -p ~/0CodeRunner/tmp/$(date +"%Y%m%d_%H%M%S")`
 }
 
 cdtt() {
