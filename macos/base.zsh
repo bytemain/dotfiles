@@ -295,20 +295,8 @@ cdtmp() {
   cd `mkdir -p ~/0CodeRunner/tmp/$(date +"%Y%m%d_%H%M%S")`
 }
 
-cdtt() {
-  mkdir -p ~/0CodeRunner/tmp/ && cd `mktemp -d ~/0CodeRunner/tmp/$(gdate +"%Y%m%d_%H%M%S_%3N")`
-}
-
 cdt() {
   take "~/0CodeRunner/tmp/$1"
-}
-
-p-save() {
-  lporg save -c $DOTFILE_CONFIG_PATH/lporg.yaml
-}
-
-p-load() {
-  lporg load -c $DOTFILE_CONFIG_PATH/lporg.yaml
 }
 
 bk() {
