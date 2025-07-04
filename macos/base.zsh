@@ -8,6 +8,9 @@ export PATH="$HOME/.poetry/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH=$PATH:$GOPATH/bin
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export PATH="$HOME/Library/Android/sdk/cmdline-tools/latest/bin:$PATH"
+export PATH="$HOME/Library/Android/sdk/emulator:$PATH"
 
 export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
 export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
@@ -304,7 +307,6 @@ bk() {
     brew bundle dump --describe --force --brews --casks --taps --mas --no-upgrade --file="$DOTFILE_CONFIG_PATH/Brewfile"
 
     cp ~/.vimrc ~/dotfiles/_rc/vimrc
-    cp ~/.aerospace.toml ~/dotfiles/_rc/aerospace.toml
 }
 
 sync-zsh() {

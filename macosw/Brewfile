@@ -1,240 +1,84 @@
-tap "blacktop/tap"
-tap "clojure/tools"
 tap "homebrew/bundle"
-tap "homebrew/cask-fonts"
-tap "homebrew/cask-versions"
-tap "homebrew/services"
-tap "kcl-lang/tap"
-tap "lihaoyun6/tap"
-tap "mergestat/mergestat"
-tap "nikitabobko/tap"
-tap "proxmark/proxmark3"
-tap "railwayapp/tap"
-tap "version-fox/tap"
-tap "withgraphite/tap"
-# Run your GitHub Actions locally
-brew "act"
-# Library and utilities for processing GIFs
-brew "giflib"
-# Library for manipulating PNG images
-brew "libpng"
-# General-purpose data compression with high compression ratio
-brew "xz"
-# TIFF library and utilities
-brew "libtiff"
-# New file format for still image compression
-brew "jpeg-xl"
-# Perl compatible regular expressions library with a new API
-brew "pcre2"
-# Core application library for C
-brew "glib"
-# Protocol definitions and daemon for D-Bus at-spi
-brew "at-spi2-core"
-# Tool for generating GNU Standards-compliant Makefiles
-brew "automake"
+# Development kit for the Java programming language
+brew "openjdk"
+# Tool for reverse engineering 3rd party, closed, binary Android apps
+brew "apktool"
+# Standalone version of arguments parsing functions from GLIBC
+brew "argp-standalone"
+# Download with resuming and segmented downloading
+brew "aria2"
+# Terminal bandwidth utilization tool
+brew "bandwhich"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
-# Clone of cat(1) with syntax highlighting and Git integration
-brew "bat"
-# New way to see and navigate directory trees
-brew "broot"
-# Extract files from Microsoft cabinet files
-brew "cabextract"
 # Powerful, enterprise-ready, open source web server with automatic HTTPS
 brew "caddy"
-# Vector graphics library with cross-device output support
-brew "cairo"
-# Object-file caching compiler wrapper
-brew "ccache"
-# Create and view interactive cheat sheets for *nix commands
-brew "cheat"
-# Statistics utility to count lines of code
-brew "cloc"
 # Cross-platform make
 brew "cmake"
-# Powerful, clean, object-oriented scripting language
-brew "ruby"
-# Dependency manager for Cocoa projects
-brew "cocoapods"
-# GNU File, Shell, and Text utilities
-brew "coreutils"
-# Get a file from an HTTP, HTTPS or FTP server
-brew "curl"
-# Power of curl, ease of use of httpie
-brew "curlie"
-# Secure runtime for JavaScript and TypeScript
-brew "deno"
-# Library for USB device access
-brew "libusb"
-# USB programmer
-brew "dfu-util"
-# Synchronize your DNS to multiple providers from a simple DSL
-brew "dnscontrol"
-# Pluggable and configurable code formatting platform written in Rust
-brew "dprint"
-# Select default apps for documents and URL schemes on macOS
-brew "duti"
 # Modern, maintained replacement for ls
 brew "eza"
-# Validating, recursive, caching DNS resolver
-brew "unbound"
-# GNU Transport Layer Security (TLS) Library
-brew "gnutls"
-# OpenType text shaping engine
-brew "harfbuzz"
-# C/C++ and Java libraries for Unicode and globalization
-brew "icu4c"
-# Subtitle renderer for the ASS/SSA subtitle format
-brew "libass"
-# Framework for layout and rendering of i18n text
-brew "pango"
-# OCR (Optical Character Recognition) engine
-brew "tesseract"
-# Play, record, convert, and stream audio and video
-brew "ffmpeg"
-# Play, record, convert, and stream audio and video
-brew "ffmpeg@6"
-# Command-line fuzzy finder written in Go
-brew "fzf"
-# GNU compiler collection
-brew "gcc"
-# Toolkit for image loading and pixel buffer manipulation
-brew "gdk-pixbuf"
-# Distributed revision control system
-brew "git"
+# Low-level access to audio, keyboard, mouse, joystick, and graphics
+brew "sdl2"
 # Small git utilities
 brew "git-extras"
 # Git extension for versioning large files
 brew "git-lfs"
-# Simple and efficient way to access statistics in git
-brew "git-quick-stats"
-# Blazing fast terminal-ui for git written in rust
-brew "gitui"
-# Network related modules for glib
-brew "glib-networking"
-# Manage compile and link flags for libraries
-brew "pkg-config"
-# Generate introspection data for GObject libraries
-brew "gobject-introspection"
-# Go version management
-brew "goenv", args: ["HEAD"]
-# Library to render SVG files using Cairo
-brew "librsvg"
-# Graph visualization software from AT&T and Bell Labs
-brew "graphviz"
-# Toolkit for creating graphical user interfaces
-brew "gtk+3"
-# Toolkit for creating graphical user interfaces
-brew "gtk4"
-# Python 3 bindings for the Cairo graphics library
-brew "py3cairo"
-# GNOME Python bindings (based on GObject Introspection)
-brew "pygobject3"
-# Development framework for multimedia applications
-brew "gstreamer"
-# VNC viewer widget for GTK
-brew "gtk-vnc"
 # Improved top (interactive process viewer)
 brew "htop"
-# User-friendly cURL replacement (command-line HTTP client)
-brew "httpie"
-# Command-line pager for JSON data
-brew "jless"
-# Image manipulation library
-brew "jpeg"
+# Tools and libraries to manipulate images in many formats
+brew "imagemagick"
+# Dex to Java decompiler
+brew "jadx"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
-# Library for USB device access
-brew "libusb-compat"
-# Powerful, lightweight programming language
-brew "lua"
-# Small build system for use with gyp or CMake
-brew "ninja"
-# Fast and user friendly build system
-brew "meson"
-# Minimalist GNU for Windows and GCC cross-compilers
-brew "mingw-w64"
+# Next-gen compiler infrastructure
+brew "llvm"
 # NCurses Disk Usage
 brew "ncdu"
-# Port scanning utility for large networks
-brew "nmap"
-# Platform built on V8 to build network applications
-brew "node"
-# Classic snake game with textual interface
-brew "nsnake"
-# 7-Zip (high compression file archiver) implementation
-brew "p7zip"
-# Perl compatible regular expressions library
-brew "pcre"
-# Fast, disk space efficient package manager
-brew "pnpm"
-# Python version management
-brew "pyenv"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.10"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.11"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.9"
-# Generic machine emulator and virtualizer
-brew "qemu"
-# Cross-platform application and UI framework
-brew "qt@5"
-# Rust toolchain installer
-brew "rustup"
-# Software for mathematics, science, and engineering
-brew "scipy"
+# Small build system for use with gyp or CMake
+brew "ninja"
+# Package compiler and linker metadata toolkit
+brew "pkgconf"
+# Modern replacement for ps written in Rust
+brew "procs"
+# Easily download, build, install, upgrade, and uninstall Python packages
+brew "python-setuptools"
 # Display and control your Android device
 brew "scrcpy"
-# SOcket CAT: netcat on steroids
-brew "socat"
-# GTK client/libraries for SPICE
-brew "spice-gtk"
-# Log file highlighter
-brew "tailspin"
-# Simplified and community-driven man pages
-brew "tldr"
+# Library for loading images as SDL surfaces and textures
+brew "sdl2_image"
+# Sample multi-channel audio mixer library
+brew "sdl2_mixer"
+# Library for using TrueType fonts in SDL applications
+brew "sdl2_ttf"
+# Prometheus SLO generator
+brew "sloth-cli", link: false
+# Program that allows you to count code, quickly
+brew "tokei"
+# Version manager with support for Java, Node.js, Flutter, .NET & more
+brew "vfox"
 # Internet file retriever
 brew "wget"
 # Best command-line tool to install and switch between multiple versions of Xcode
 brew "xcodes", link: false
-# Programming language designed for robustness, optimality, and clarity
-brew "zig"
-# General-purpose lossless data-compression library
-brew "zlib"
+# Feature-rich command-line audio/video downloader
+brew "yt-dlp"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
-# UNIX shell (command interpreter)
-brew "zsh"
-# Organize Your macOS Launchpad Apps
-brew "blacktop/tap/lporg"
-# The Clojure Programming Language
-brew "clojure/tools/clojure"
-# A constraint-based record & functional language mainly used in configuration and policy scenarios.
-brew "kcl-lang/tap/kcl-lsp"
-# KCL Command Line Interface
-brew "kcl-lang/tap/kcl"
-# GCC for embedded ARM processors
-brew "proxmark/proxmark3/arm-none-eabi-gcc"
-# App source + Nix packages + Docker = Image
-brew "railwayapp/tap/nixpacks"
-# A cross-platform SDK version manager with a simple cli.
-brew "version-fox/tap/vfox"
 # Android SDK component
 cask "android-platform-tools"
 # Inspect application bundles
 cask "apparency"
-# Free and open-source web browser
-cask "chromium"
+# Display management tool
+cask "betterdisplay"
 cask "font-cascadia-code"
 cask "font-fira-code"
 cask "font-hack-nerd-font"
 cask "font-jetbrains-mono"
-cask "font-lxgw-wenkai"
+cask "font-maple-mono"
+cask "font-maple-mono-nf-cn"
 cask "font-meslo-lg"
 cask "font-meslo-lg-nerd-font"
-# Utility to provide quick look previews for files that aren't natively supported
-cask "glance-chamburr"
 # Free and open-source media player
 cask "iina"
 # Hex editor for reverse engineers
@@ -243,21 +87,13 @@ cask "imhex"
 cask "keka"
 # Customise mouse behavior
 cask "linearmouse"
+# System and utility switches
+cask "only-switch"
 # Replacement for Docker Desktop
 cask "orbstack"
-# Display image info and preview unsupported formats in QuickLook
-cask "qlimagesize"
-# Quick Look plugin for plaintext files without an extension
-cask "qlstephen"
-# Thumbnails, static previews, cover art and metadata for video files
-cask "qlvideo"
-# Quick Look generator for Adobe Swatch Exchange files
-cask "quicklookase"
+# Toolbox companion for QMK Firmware
+cask "qmk-toolbox"
 # Displays all open files and sockets in use by all running processes
 cask "sloth"
-# Application for inspecting installer packages
-cask "suspicious-package"
-# JDK from the Eclipse Foundation (Adoptium)
-cask "temurin"
 # Install and switch between multiple versions of Xcode
-cask "xcodes"
+cask "xcodes-app"
