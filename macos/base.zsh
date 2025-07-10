@@ -11,6 +11,7 @@ export PATH=$PATH:$GOPATH/bin
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export PATH="$HOME/Library/Android/sdk/cmdline-tools/latest/bin:$PATH"
 export PATH="$HOME/Library/Android/sdk/emulator:$PATH"
+export PATH="~/Library/Application Support/JetBrains/Toolbox/scripts":$PATH
 
 export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
 export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
@@ -468,6 +469,13 @@ if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 ##### WHAT YOU WANT TO DISABLE FOR WARP - ABOVE
+fi
+
+if [[ $TERM_PRODUCT != "Trae" ]]; then
+##### WHAT YOU WANT TO DISABLE FOR Trae - BELOW
+
+
+##### WHAT YOU WANT TO DISABLE FOR Trae - ABOVE
 fi
 
 # bun
