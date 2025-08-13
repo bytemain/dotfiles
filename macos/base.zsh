@@ -346,9 +346,6 @@ _cmd_exists vfox && eval "$(vfox activate zsh)"
 _cmd_exists direnv && eval "$(direnv hook zsh)"
 _cmd_exists fx && source <(fx --comp zsh)
 
-unalias x > /dev/null  2>&1 || true
-[ ! -f "$HOME/.x-cmd.root/X" ] || . "$HOME/.x-cmd.root/X" # boot up x-cmd.
-
 autoload -U compinit && compinit
 
 setopt interactivecomments
@@ -496,6 +493,9 @@ export PATH="$PNPM_HOME:$PATH"
 # pnpm end
 
 [ -f $HOME/.config/broot/launcher/bash/br ] && source $HOME/.config/broot/launcher/bash/br
+
+unalias x > /dev/null  2>&1 || true
+[ ! -f "$HOME/.x-cmd.root/X" ] || . "$HOME/.x-cmd.root/X" # boot up x-cmd.
 
 # CN mirror start
 export ELECTRON_MIRROR="https://npmmirror.com/mirrors/electron/"
