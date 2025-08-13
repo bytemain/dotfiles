@@ -91,7 +91,6 @@ alias src="source ~/.zshrc"
 alias cpwd="pwd | pbcopy"
 alias bru="bun run"
 alias yless="jless --yaml"
-alias myip="echo Your ip is; dig +short myip.opendns.com @resolver1.opendns.com;"
 
 alias emenv='source "$HOME/0Workspace/emsdk/emsdk_env.sh"'
 
@@ -331,7 +330,7 @@ function _cmd_exists() {
   command -v "$1" >/dev/null 2>&1
 }
 
-() {
+function _cache() {
   emulate -L zsh
   local -r cache_dir=${XDG_CACHE_HOME:-$HOME/.cache}/zsh
   autoload -Uz _store_cache compinit
@@ -340,11 +339,14 @@ function _cmd_exists() {
   [[ -f $cache_dir/.zcompcache/.make-cache-dir ]] || _store_cache .make-cache-dir
   compinit -C -d $cache_dir/.zcompdump
 }
+_cache
 
 _cmd_exists zoxide && eval "$(zoxide init zsh)"
 _cmd_exists vfox && eval "$(vfox activate zsh)"
 _cmd_exists direnv && eval "$(direnv hook zsh)"
 _cmd_exists fx && source <(fx --comp zsh)
+
+unalias x > /dev/null  2>&1 || true
 [ ! -f "$HOME/.x-cmd.root/X" ] || . "$HOME/.x-cmd.root/X" # boot up x-cmd.
 
 autoload -U compinit && compinit
