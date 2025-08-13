@@ -25,6 +25,7 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$HOME/.moon/bin:$PATH"
 export PATH="$HOME/0Workspace/github.com/ax/apk.sh:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export NDK_HOME="$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk)"
@@ -343,6 +344,8 @@ function _cmd_exists() {
 _cmd_exists zoxide && eval "$(zoxide init zsh)"
 _cmd_exists vfox && eval "$(vfox activate zsh)"
 _cmd_exists direnv && eval "$(direnv hook zsh)"
+_cmd_exists fx && source <(fx --comp zsh)
+[ ! -f "$HOME/.x-cmd.root/X" ] || . "$HOME/.x-cmd.root/X" # boot up x-cmd.
 
 autoload -U compinit && compinit
 
@@ -496,6 +499,8 @@ export PATH="$PNPM_HOME:$PATH"
 export ELECTRON_MIRROR="https://npmmirror.com/mirrors/electron/"
 export VFOX_PYTHON_MIRROR=https://mirrors.huaweicloud.com/python/
 export VFOX_NODEJS_MIRROR=https://cdn.npmmirror.com/binaries/node
+export RUSTUP_DIST_SERVER="https://rsproxy.cn"
+export RUSTUP_UPDATE_ROOT="https://rsproxy.cn/rustup"
 # CN mirror end
 
 [ -f ~/.private.zshrc ] && source ~/.private.zshrc
