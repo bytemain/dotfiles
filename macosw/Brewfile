@@ -1,4 +1,6 @@
 tap "homebrew/bundle"
+tap "microsoft/sysinternalstap"
+tap "viarotel-org/escrcpy"
 # Development kit for the Java programming language
 brew "openjdk"
 # Tool for reverse engineering 3rd party, closed, binary Android apps
@@ -11,6 +13,8 @@ brew "aria2"
 brew "bandwhich"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
+# Toolchain of the web
+brew "biome"
 # Powerful, enterprise-ready, open source web server with automatic HTTPS
 brew "caddy"
 # Cross-platform make
@@ -19,28 +23,46 @@ brew "cmake"
 brew "eza"
 # Low-level access to audio, keyboard, mouse, joystick, and graphics
 brew "sdl2"
+# User-friendly command-line shell for UNIX-like operating systems
+brew "fish"
+# Fast and simple Node.js version manager
+brew "fnm"
+# Terminal JSON viewer
+brew "fx"
+# Distributed revision control system
+brew "git"
 # Small git utilities
 brew "git-extras"
 # Git extension for versioning large files
 brew "git-lfs"
+# Log analysis TUI
+brew "gonzo"
 # Improved top (interactive process viewer)
 brew "htop"
 # Tools and libraries to manipulate images in many formats
 brew "imagemagick"
+# Tool to unpack installers created by Inno Setup
+brew "innoextract"
 # Dex to Java decompiler
 brew "jadx"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # Next-gen compiler infrastructure
 brew "llvm"
+# Powerful, lightweight programming language
+brew "lua"
 # NCurses Disk Usage
 brew "ncdu"
 # Small build system for use with gyp or CMake
 brew "ninja"
+# 7-Zip (high compression file archiver) implementation
+brew "p7zip"
 # Package compiler and linker metadata toolkit
 brew "pkgconf"
 # Modern replacement for ps written in Rust
 brew "procs"
+# Protocol buffers (Google's data interchange format)
+brew "protobuf"
 # Easily download, build, install, upgrade, and uninstall Python packages
 brew "python-setuptools"
 # Display and control your Android device
@@ -52,7 +74,11 @@ brew "sdl2_mixer"
 # Library for using TrueType fonts in SDL applications
 brew "sdl2_ttf"
 # Prometheus SLO generator
-brew "sloth-cli", link: false
+brew "sloth-cli"
+# Framework for scalable cross-language services development
+brew "thrift"
+# Domain Availability Research Tool
+brew "tldx"
 # Program that allows you to count code, quickly
 brew "tokei"
 # Version manager with support for Java, Node.js, Flutter, .NET & more
@@ -65,12 +91,16 @@ brew "xcodes", link: false
 brew "yt-dlp"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
+# ProcDump for Mac provides a convenient way for developers to create core dumps of their application based on performance triggers. ProcDump for Mac is part of Sysinternals.
+brew "microsoft/sysinternalstap/procdump"
 # Android SDK component
 cask "android-platform-tools"
 # Inspect application bundles
 cask "apparency"
 # Display management tool
 cask "betterdisplay"
+# Graphical Scrcpy to display and control Android, devices powered by Electron
+cask "escrcpy"
 cask "font-cascadia-code"
 cask "font-fira-code"
 cask "font-hack-nerd-font"
@@ -87,6 +117,10 @@ cask "imhex"
 cask "keka"
 # Customise mouse behavior
 cask "linearmouse"
+# Clipboard manager
+cask "maccy"
+# Visual diff and merge tool
+cask "meld"
 # System and utility switches
 cask "only-switch"
 # Replacement for Docker Desktop

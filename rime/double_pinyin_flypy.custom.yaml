@@ -2,18 +2,41 @@
 # encoding: utf-8
 
 patch:
-  # 小鹤音形配置
-  axu_code:
-    # 激活码
-    trigger_word: ";"
-    # 展示辅码的模式
-    # always:   总是展示(默认)
-    # trigger:  输入激活码后激活辅码
-    # none:     始终不展示辅码
-    show_aux_notice: "always"
-  "menu/page_size": 6
-  speller/delimiter: " '"
-  speller/alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA;
+  app_options:
+    # gett app bundle id: osascript -e 'id of app "MacVim"'
+    org.vim.MacVim:
+      no_inline: true
+      vim_mode: true
+    uk.foon.Neovim:
+      no_inline: true
+      vim_mode: true
+    com.qvacua.VimR:
+      no_inline: true
+      vim_mode: true
+    com.ident.goneovim:
+      no_inline: true
+      vim_mode: true
+    com.googlecode.iterm2:
+      no_inline: true
+      vim_mode: false
+    com.apple.Terminal:
+      no_inline: true
+      vim_mode: false
+    #com.apple.iWork.Numbers:
+    #no_inline: true
+    com.alfredapp.Alfred:
+      ascii_mode: true
+    com.jetbrains.intellij:
+      vim_mode: true
+    com.jetbrains.datagrip:
+      vim_mode: true
+    com.jetbrains.WebStorm:
+      vim_mode: true
+    # Obsidian
+    md.obsidian:
+      vim_mode: true
+    net.kovidgoyal.kitty:
+      vim_mode: true
   key_binder:
     bindings:
       - { accept: "Control+Shift+E", toggle: emoji_suggestion, when: always }

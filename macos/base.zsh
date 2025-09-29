@@ -308,6 +308,8 @@ bk() {
     brew bundle dump --describe --force --brews --casks --taps --mas --no-upgrade --file="$DOTFILE_CONFIG_PATH/Brewfile"
 
     cp ~/.vimrc ~/dotfiles/_rc/vimrc
+    cp $HOME/Library/Rime/default.custom.yaml ~/dotfiles/rime/default.custom.yaml
+    cp $HOME/Library/Rime/double_pinyin_flypy.custom.yaml ~/dotfiles/rime/double_pinyin_flypy.custom.yaml
 }
 
 sync-zsh() {
