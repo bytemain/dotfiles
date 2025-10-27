@@ -46,9 +46,9 @@ alias -- -='cd -'
 
 alias o=open
 alias md='mkdir -p'
-alias mv="mv -v"
-alias cp="cp -v"
-alias mkdir="mkdir -v"
+alias mv="mv -iv"
+alias cp="cp -riv"
+alias mkdir="mkdir -vp"
 alias rmcdir="source delete-current-dir.sh"
 alias b=brew
 alias y=yarn
@@ -363,7 +363,6 @@ DISABLE_CORRECTION="true"
 HIST_STAMPS="yyyy-mm-dd"
 
 
-_cmd_exists gh && eval "$(gh copilot alias -- zsh)"
 _cmd_exists prog && eval "$(prog shell zsh)"
 
 # Preview file content using bat (https://github.com/sharkdp/bat)
