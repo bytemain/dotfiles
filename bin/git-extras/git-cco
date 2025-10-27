@@ -1,0 +1,37 @@
+#!/usr/bin/env sh
+
+set -e
+
+# Check if there are staged changes
+if [ -z "$(git diff --cached --name-only)" ]; then
+  echo "No staged changes found. Use 'git add' to stage files first."
+  exit 1
+fi
+
+# Use CLAUDE_CMD env var (defaults to 'claude'). Supports multi-word commands.
+CLAUDE_CMD="${CLAUDE_CMD:-claude}"
+PROMPT='Look at the staged git changes and create a concise commit message that describes what was changed. Return only the commit message, nothing else.'
+
+# Split CLAUDE_CMD into positional params: first word used to check existence
+set -- $CLAUDE_CMD "$PROMPT"
+cmd_name=$1
+
+if ! command -v "$cmd_name" >/dev/null 2>&1; then
+  if [ "$cmd_name" = "claude" ]; then
+    npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 || true
+  fi
+
+  if ! command -v "$cmd_name" >/dev/null 2>&1; then
+    echo "Error: Failed to find or install '$cmd_name' command. Set CLAUDE_CMD to a valid command."
+    exit 1
+  fi
+fi
+
+commit_message="$("$@")"
+
+if [ -z "$commit_message" ]; then
+  echo "Error: Failed to generate commit message"
+  exit 1
+fi
+
+git commit -m "$commit_message" --edit
