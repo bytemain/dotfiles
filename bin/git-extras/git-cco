@@ -12,9 +12,11 @@ fi
 CLAUDE_CMD="${CLAUDE_CMD:-claude}"
 PROMPT='Look at the staged git changes and create a concise commit message that describes what was changed. Return only the commit message, nothing else.'
 
-# Split CLAUDE_CMD into positional params: first word used to check existence
+# Extract first word from CLAUDE_CMD for command existence check
+cmd_name=$(echo "$CLAUDE_CMD" | awk '{print $1}')
+
+# Split CLAUDE_CMD into positional params for execution
 set -- $CLAUDE_CMD "$PROMPT"
-cmd_name=$1
 
 if ! command -v "$cmd_name" >/dev/null 2>&1; then
   if [ "$cmd_name" = "claude" ]; then
