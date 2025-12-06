@@ -30,6 +30,9 @@ export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export NDK_HOME="$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk)"
 
+export PATH="$ANDROID_HOME/cmdline-tools/latest/bin":$PATH
+export PATH="$ANDROID_HOME/emulator":$PATH
+
 export DYLD_FALLBACK_LIBRARY_PATH="$(xcode-select --print-path)/Toolchains/XcodeDefault.xctoolchain/usr/lib/"
 export LDFLAGS=-L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib
@@ -41,6 +44,7 @@ alias ls="eza"
 alias ll='ls -lh'
 alias la='ls -lah'
 alias tree='eza --tree'
+alias nr="npm run"
 
 alias -- -='cd -'
 
@@ -296,6 +300,7 @@ cdat() {
 }
 
 cdtmp() {
+  mkdir -p ~/0CodeRunner/tmp/
   cd `mkdir -p ~/0CodeRunner/tmp/$(date +"%Y%m%d_%H%M%S")`
 }
 
@@ -362,11 +367,6 @@ function _cache() {
 }
 _cache
 
-_cmd_exists zoxide && eval "$(zoxide init zsh)"
-_cmd_exists vfox && eval "$(vfox activate zsh)"
-_cmd_exists direnv && eval "$(direnv hook zsh)"
-_cmd_exists fx && source <(fx --comp zsh)
-
 autoload -U compinit && compinit
 
 setopt interactivecomments
@@ -374,6 +374,7 @@ setopt interactivecomments
 setopt autocd
 # See: http://zsh.sourceforge.net/Intro/intro_6.html
 setopt autopushd pushdminus pushdsilent pushdtohome pushdignoredups
+setopt no_share_history
 
 # Disable correction
 unsetopt correct_all
@@ -381,8 +382,6 @@ unsetopt correct
 DISABLE_CORRECTION="true"
 HIST_STAMPS="yyyy-mm-dd"
 
-
-_cmd_exists prog && eval "$(prog shell zsh)"
 
 # Preview file content using bat (https://github.com/sharkdp/bat)
 export FZF_CTRL_T_OPTS="
@@ -526,3 +525,9 @@ export RUSTUP_UPDATE_ROOT="https://rsproxy.cn/rustup"
 # CN mirror end
 
 [ -f ~/.private.zshrc ] && source ~/.private.zshrc
+
+_cmd_exists zoxide && eval "$(zoxide init zsh)"
+_cmd_exists vfox && eval "$(vfox activate zsh)"
+_cmd_exists direnv && eval "$(direnv hook zsh)"
+_cmd_exists fx && source <(fx --comp zsh)
+_cmd_exists prog && eval "$(prog shell zsh)"
