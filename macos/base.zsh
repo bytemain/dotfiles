@@ -303,6 +303,25 @@ cdt() {
   take "~/0CodeRunner/tmp/$1"
 }
 
+setup_file_associations() {
+    _cmd_exists duti || brew install duti
+
+    duti -s com.trae.ide .js all
+    duti -s com.trae.ide .ts all
+    duti -s com.trae.ide .json all
+    duti -s com.trae.ide .html all
+    duti -s com.trae.ide .css all
+    duti -s com.trae.ide .md all
+    duti -s com.trae.ide .yaml all
+    duti -s com.trae.ide .yml all
+    duti -s com.trae.ide .py all
+    duti -s com.trae.ide .sh all
+    duti -s com.trae.ide .zsh all
+    duti -s com.trae.ide .rs all
+    duti -s com.trae.ide .go all
+    duti -s com.trae.ide .java all
+}
+
 bk() {
     cp ~/.zshrc $DOTFILE_CONFIG_PATH/zshrc
     brew bundle dump --describe --force --brews --casks --taps --mas --no-upgrade --file="$DOTFILE_CONFIG_PATH/Brewfile"
