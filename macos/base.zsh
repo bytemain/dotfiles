@@ -9,11 +9,7 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH=$PATH:$GOPATH/bin
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-export PATH="$HOME/Library/Android/sdk/cmdline-tools/latest/bin:$PATH"
-export PATH="$HOME/Library/Android/sdk/emulator:$PATH"
-export PATH="~/Library/Application Support/JetBrains/Toolbox/scripts":$PATH
-
-export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
+export PATH="$HOME/Library/Application Support/JetBrains/Toolbox/scripts":$PATH
 export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
 export PATH=$JAVA_HOME/bin:$PATH
 export CPLUS_INCLUDE_PATH=/opt/homebrew/include
@@ -25,10 +21,11 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$HOME/.moon/bin:$PATH"
 export PATH="$HOME/0Workspace/github.com/ax/apk.sh:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
-export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 
 export ANDROID_HOME="$HOME/Library/Android/sdk"
-export NDK_HOME="$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk)"
+if [[ -d "$ANDROID_HOME/ndk" ]]; then
+  export NDK_HOME="$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk | tail -1)"
+fi
 
 export PATH="$ANDROID_HOME/cmdline-tools/latest/bin":$PATH
 export PATH="$ANDROID_HOME/emulator":$PATH
@@ -40,6 +37,9 @@ export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib
 export DOTFILE_CONFIG_PATH=$HOME/dotfiles/$DOTFILE_NAME
 export RUSH_PNPM_STORE_PATH=$HOME/.cache/rush-pnpm-store
 
+# Remove duplicate PATH entries
+typeset -U path
+
 alias ls="eza"
 alias ll='ls -lh'
 alias la='ls -lah'
@@ -48,7 +48,6 @@ alias nr="npm run"
 
 alias -- -='cd -'
 
-alias o=open
 alias md='mkdir -p'
 alias mv="mv -iv"
 alias cp="cp -riv"
@@ -136,7 +135,6 @@ use_npm_mirror() {
 init_shell() {
     setopt -x;
     npm install -g nali-cli trash-cli zx yarn stream.pipeline-shim
-    npm install -g @builder.io/ai-shell
     npm install -g live-server
 
     brew install vfox
@@ -354,6 +352,129 @@ function grepf() {
 }
 function _cmd_exists() {
   command -v "$1" >/dev/null 2>&1
+}
+
+# Quick backup with timestamp
+bak() {
+  for file in "$@"; do
+    cp -r "$file" "${file}.bak.$(date +%Y%m%d_%H%M%S)"
+  done
+}
+
+# Quick note taking
+note() {
+  local note_file="$HOME/.notes/$(date +%Y%m%d).md"
+  mkdir -p "$(dirname "$note_file")"
+  if [ $# -eq 0 ]; then
+    ${EDITOR:-vim} "$note_file"
+  else
+    echo "$(date +%H:%M:%S) - $*" >> "$note_file"
+  fi
+}
+
+# Find largest files/directories
+largest() {
+  du -ah ${1:-.} | sort -rh | head -n ${2:-20}
+}
+
+# Git commit with timestamp
+gitcp() {
+  git add -A && git commit -m "${1:-Update: $(date +%Y-%m-%d\ %H:%M:%S)}" && git push
+}
+
+# Search running processes
+psgrep() {
+  ps aux | grep -v grep | grep -i -e VSZ -e "$@"
+}
+
+# Create directory and cd into it (enhanced)
+mkcd() {
+  mkdir -p "$@" && cd "${@: -1}"
+}
+
+# Quick file search (case-insensitive)
+ff() {
+  find . -iname "*$1*"
+}
+
+# Colored man pages
+man() {
+  LESS_TERMCAP_md=$'\e[01;31m' \
+  LESS_TERMCAP_me=$'\e[0m' \
+  LESS_TERMCAP_se=$'\e[0m' \
+  LESS_TERMCAP_so=$'\e[01;44;33m' \
+  LESS_TERMCAP_ue=$'\e[0m' \
+  LESS_TERMCAP_us=$'\e[01;32m' \
+  command man "$@"
+}
+
+# Show PATH in readable format
+path() {
+  echo $PATH | tr ':' '\n' | nl
+}
+
+# Quick Git status for multiple repos
+gstatus() {
+  for dir in */; do
+    if [ -d "$dir/.git" ]; then
+      echo "\n📁 $dir"
+      (cd "$dir" && git status -s)
+    fi
+  done
+}
+
+# Countdown timer
+countdown() {
+  local seconds=${1:-10}
+  while [ $seconds -gt 0 ]; do
+    echo -ne "⏱  $seconds\033[0K\r"
+    sleep 1
+    : $((seconds--))
+  done
+  echo "✅ Time's up!"
+}
+
+# Show disk usage of current directory
+duf() {
+  du -sh ${1:-.}/* | sort -rh | head -n ${2:-20}
+}
+
+# URL encode/decode
+urlencode() {
+  node -e "console.log(encodeURIComponent(process.argv[1]))" "$1"
+}
+
+urldecode() {
+  node -e "console.log(decodeURIComponent(process.argv[1]))" "$1"
+}
+
+# JSON pretty print from clipboard
+jsonpp() {
+  pbpaste | jq '.' | pbcopy && echo "✅ JSON formatted and copied to clipboard"
+}
+
+# Quick benchmark command
+bench() {
+  time ( for i in {1..10}; do "$@" > /dev/null 2>&1; done )
+}
+
+# Search command history
+h() {
+  if [ $# -eq 0 ]; then
+    history 50
+  else
+    history | grep -i "$@"
+  fi
+}
+
+# Calculate math expressions
+calc() {
+  node -e "console.log($*)"
+}
+
+# Remove PATH duplicates
+dedupe_path() {
+  export PATH=$(echo -n $PATH | awk -v RS=: -v ORS=: '!x[$0]++' | sed 's/:$//')
 }
 
 function _cache() {
