@@ -508,14 +508,6 @@ HIST_STAMPS="yyyy-mm-dd"
 export FZF_CTRL_T_OPTS="
   --preview 'bat -n --color=always {}'
   --bind 'ctrl-/:change-preview-window(down|hidden|)'"
-# CTRL-/ to toggle small preview window to see the full command
-# CTRL-Y to copy the command into clipboard using pbcopy
-export FZF_CTRL_R_OPTS="
-  --preview 'echo {}' --preview-window up:3:hidden:wrap
-  --bind 'ctrl-/:toggle-preview'
-  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
-  --color header:italic
-  --header 'Press CTRL-Y to copy command into clipboard'"
 
 # Print tree structure in the preview window
 export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
@@ -620,6 +612,13 @@ if [[ $TERM_PRODUCT != "Trae" ]]; then
 ##### WHAT YOU WANT TO DISABLE FOR Trae - ABOVE
 fi
 
+# iTerm2-specific settings
+if [[ "$__CFBundleIdentifier" == "com.googlecode.iterm2" ]]; then
+  export MCFLY_LIGHT=TRUE
+fi
+export MCFLY_INTERFACE_VIEW=BOTTOM
+export MCFLY_KEY_SCHEME=vim
+
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
@@ -652,3 +651,4 @@ _cmd_exists vfox && eval "$(vfox activate zsh)"
 _cmd_exists direnv && eval "$(direnv hook zsh)"
 _cmd_exists fx && source <(fx --comp zsh)
 _cmd_exists prog && eval "$(prog shell zsh)"
+_cmd_exists mcfly && eval "$(mcfly init zsh)"
