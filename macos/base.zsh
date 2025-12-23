@@ -46,7 +46,6 @@ alias ls="eza"
 alias ll='ls -lh'
 alias la='ls -lah'
 alias tree='eza --tree'
-alias nr="npm run"
 
 alias -- -='cd -'
 
