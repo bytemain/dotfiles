@@ -653,3 +653,11 @@ _cmd_exists direnv && eval "$(direnv hook zsh)"
 _cmd_exists fx && source <(fx --comp zsh)
 _cmd_exists prog && eval "$(prog shell zsh)"
 _cmd_exists mcfly && eval "$(mcfly init zsh)"
+
+source /opt/homebrew/share/zsh-abbr/zsh-abbr.zsh
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-abbr:$FPATH
+
+  autoload -Uz compinit
+  compinit
+fi
