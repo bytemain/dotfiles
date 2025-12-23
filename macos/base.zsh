@@ -22,6 +22,8 @@ export PATH="$HOME/.moon/bin:$PATH"
 export PATH="$HOME/0Workspace/github.com/ax/apk.sh:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 
+export ABBR_USER_ABBREVIATIONS_FILE="$HOME/dotfiles/_rc/zsh-abbr/user-abbreviations"
+
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 if [[ -d "$ANDROID_HOME/ndk" ]]; then
   export NDK_HOME="$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk | tail -1)"
