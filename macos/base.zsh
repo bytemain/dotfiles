@@ -645,8 +645,6 @@ export RUSTUP_DIST_SERVER="https://rsproxy.cn"
 export RUSTUP_UPDATE_ROOT="https://rsproxy.cn/rustup"
 # CN mirror end
 
-[ -f ~/.private.zshrc ] && source ~/.private.zshrc
-
 _cmd_exists zoxide && eval "$(zoxide init zsh)"
 _cmd_exists vfox && eval "$(vfox activate zsh)"
 _cmd_exists direnv && eval "$(direnv hook zsh)"
@@ -661,3 +659,5 @@ if type brew &>/dev/null; then
   autoload -Uz compinit
   compinit
 fi
+
+[ -f ~/.private.zshrc ] && source ~/.private.zshrc
