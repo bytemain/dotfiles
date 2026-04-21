@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 
 const SY_PLUGINS_DIR_DEFAULT = '$HOME/SiYuan/data/plugins';
-const SY_BACKUP_DIR_DEFAULT = '$HOME/dotfiles/var/siyuan-plugin-backups';
+const SY_BACKUP_DIR_DEFAULT = '$HOME/.sy-plugins/var/siyuan-plugin-backups';
 
 function die(msg) {
   process.stderr.write(`sy: ${msg}\n`);
