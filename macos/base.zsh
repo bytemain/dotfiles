@@ -56,16 +56,14 @@ alias mkdir="mkdir -vp"
 alias rmcdir="source delete-current-dir.sh"
 alias b=brew
 alias y=yarn
-alias t=trae
+alias t=trae-cn
 alias pn=pnp
 
 alias py="python3"
 alias ipy="ipython"
 
 alias vizsh="vim ~/.zshrc"
-alias cozsh="code ~/.zshrc"
 alias vibzsh="vim ~/dotfiles/macos/base.zsh"
-alias cobzsh="code ~/dotfiles/macos/base.zsh"
 alias vimrc="vim ~/.vimrc"
 
 alias c="code"
@@ -89,12 +87,8 @@ alias cg=cargo
 
 alias g=git
 alias gcid="git log | head -1 | awk '{print substr(\$2,1,7)}'"
-alias lg=lazygit
 
-alias src="source ~/.zshrc"
 alias cpwd="pwd | pbcopy"
-alias bru="bun run"
-alias yless="jless --yaml"
 
 alias emenv='source "$HOME/0Workspace/emsdk/emsdk_env.sh"'
 
@@ -102,10 +96,6 @@ alias tl="tmux list-sessions"
 alias tks="tmux kill-session -t"
 alias ta="tmux attach -t"
 alias ts="tmux new-session -s"
-
-alias _='sudo '
-
-alias vf=vfox
 
 alias sv='echo http://0.0.0.0:2000 && caddy file-server --listen :2000 --browse'
 
@@ -288,10 +278,6 @@ upg() {
   zinit self-update
   zinit update --parallel 5
   brew upgrade
-}
-
-serv() {
-  live-server . --port=8080 --host=0.0.0.0
 }
 
 cdat() {
@@ -528,6 +514,9 @@ autoload -Uz _zinit
 
 zinit light "paulirish/git-open"
 zinit light "mfaerevaag/wd"
+zinit light olets/zsh-abbr
+zinit light cohml/zsh-abbr-preview
+
 
 # Load pure theme
 zinit ice pick"async.zsh" src"pure.zsh"
