@@ -1,0 +1,311 @@
+#!/usr/bin/env node
+'use strict';
+
+const fs = require('fs');
+const path = require('path');
+
+const SY_PLUGINS_DIR_DEFAULT = '$HOME/SiYuan/data/plugins';
+const SY_BACKUP_DIR_DEFAULT = '$HOME/dotfiles/var/siyuan-plugin-backups';
+
+function die(msg) {
+  process.stderr.write(`sy: ${msg}\n`);
+  process.exit(1);
+}
+
+function usage() {
+  process.stdout.write(`
+Usage:
+  sy link [--repo <path>] [--dist <path>] [--plugins <path>] [--backup <path>]
+  sy restore [--name <pluginName>] [--plugins <path>] [--backup <path>]
+  sy status [--name <pluginName>] [--plugins <path>]
+
+Examples:
+  cd /path/to/plugin-repo && sy link
+  sy status --name siyuan-plugin-settings-sync
+  sy restore                   # auto
+  sy restore --name siyuan-plugin-settings-sync
+
+Env overrides:
+  SY_PLUGINS_DIR  default: ${SY_PLUGINS_DIR_DEFAULT}
+  SY_BACKUP_DIR   default: ${SY_BACKUP_DIR_DEFAULT}
+`.trim() + '\n');
+}
+
+function nowTs() {
+  const d = new Date();
+  const pad = (n) => String(n).padStart(2, '0');
+  return [
+    d.getFullYear(),
+    pad(d.getMonth() + 1),
+    pad(d.getDate()),
+  ].join('') + '-' + [
+    pad(d.getHours()),
+    pad(d.getMinutes()),
+    pad(d.getSeconds()),
+  ].join('');
+}
+
+function getArgMap(argv) {
+  const args = {};
+  for (let i = 0; i < argv.length; i++) {
+    const a = argv[i];
+    if (!a.startsWith('--')) continue;
+    const k = a.slice(2);
+    const v = argv[i + 1];
+    if (!v || v.startsWith('--')) die(`missing value for --${k}`);
+    args[k] = v;
+    i++;
+  }
+  return args;
+}
+
+function pluginsDir(args) {
+  return args.plugins || process.env.SY_PLUGINS_DIR || SY_PLUGINS_DIR_DEFAULT;
+}
+
+function backupDir(args) {
+  return args.backup || process.env.SY_BACKUP_DIR || SY_BACKUP_DIR_DEFAULT;
+}
+
+function ensureDir(p) {
+  fs.mkdirSync(p, { recursive: true });
+}
+
+function exists(p) {
+  try {
+    fs.lstatSync(p);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function statType(p) {
+  const st = fs.lstatSync(p);
+  if (st.isSymbolicLink()) return 'symlink';
+  if (st.isDirectory()) return 'directory';
+  return 'file';
+}
+
+function readlinkSafe(p) {
+  try {
+    return fs.readlinkSync(p);
+  } catch {
+    return '';
+  }
+}
+
+function resolveRepoRoot(repoArg) {
+  return repoArg ? path.resolve(repoArg) : process.cwd();
+}
+
+function findPluginJson(repo, dist) {
+  // Prefer dist/plugin.json (also try Plugin.json for case-sensitive FS)
+  const candidates = [
+    path.join(dist, 'plugin.json'),
+    path.join(dist, 'Plugin.json'),
+    path.join(repo, 'plugin.json'),
+    path.join(repo, 'Plugin.json'),
+  ];
+  for (const p of candidates) {
+    if (exists(p)) return p;
+  }
+  return '';
+}
+
+function readPluginName(jsonPath) {
+  const raw = fs.readFileSync(jsonPath, 'utf8');
+  const obj = JSON.parse(raw);
+  const name = obj && obj.name;
+  if (!name || typeof name !== 'string') die(`invalid plugin name in ${jsonPath}`);
+  return name;
+}
+
+function escapeRegExp(s) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function statusOne(name, pdir) {
+  const target = path.join(pdir, name);
+  process.stdout.write(`plugin: ${name}\npath:   ${target}\n`);
+  if (!exists(target)) {
+    process.stdout.write('type:   missing\n');
+    return;
+  }
+  const t = statType(target);
+  process.stdout.write(`type:   ${t}\n`);
+  if (t === 'symlink') process.stdout.write(`to:     ${readlinkSafe(target)}\n`);
+}
+
+function moveAsideIfExists(target, bdir, name) {
+  if (!exists(target)) return '';
+  const backupPath = path.join(bdir, `${name}.${nowTs()}`);
+  process.stdout.write(`backup: ${target} -> ${backupPath}\n`);
+  fs.renameSync(target, backupPath);
+  return backupPath;
+}
+
+function syStatePath(bdir) {
+  return path.join(bdir, '.sy-state.json');
+}
+
+function writeState(bdir, state) {
+  ensureDir(bdir);
+  const p = syStatePath(bdir);
+  fs.writeFileSync(p, JSON.stringify(state, null, 2) + '\n', 'utf8');
+}
+
+function readState(bdir) {
+  const p = syStatePath(bdir);
+  if (!exists(p)) return null;
+  try {
+    return JSON.parse(fs.readFileSync(p, 'utf8'));
+  } catch {
+    return null;
+  }
+}
+
+function listBackups(bdir) {
+  if (!exists(bdir)) return [];
+  // match: <name>.YYYYmmdd-HHMMSS
+  const re = /^(.+)\.(\d{8}-\d{6})$/;
+  const items = fs.readdirSync(bdir, { withFileTypes: true })
+    .filter((d) => d.name !== '.sy-state.json')
+    .map((d) => d.name)
+    .map((n) => {
+      const m = n.match(re);
+      if (!m) return null;
+      return { file: n, name: m[1], ts: m[2] };
+    })
+    .filter(Boolean)
+    .sort((a, b) => (a.ts < b.ts ? -1 : a.ts > b.ts ? 1 : 0));
+  return items;
+}
+
+function latestBackupForName(bdir, name) {
+  const all = listBackups(bdir).filter((x) => x.name === name);
+  if (all.length === 0) return '';
+  return path.join(bdir, all[all.length - 1].file);
+}
+
+function latestBackupAny(bdir) {
+  const all = listBackups(bdir);
+  if (all.length === 0) return null;
+  const last = all[all.length - 1];
+  return { name: last.name, fullpath: path.join(bdir, last.file) };
+}
+
+function inferRestoreTargetName(args, bdir) {
+  // Priority:
+  // 1) explicit --name
+  // 2) last sy link state
+  // 3) infer from latest backup (any)
+  if (args.name) return args.name;
+
+  const st = readState(bdir);
+  if (st && typeof st.lastLinkedName === 'string' && st.lastLinkedName) return st.lastLinkedName;
+
+  const any = latestBackupAny(bdir);
+  if (any) return any.name;
+
+  return '';
+}
+
+function cmdLink(args) {
+  const repo = resolveRepoRoot(args.repo);
+  const dist = path.resolve(args.dist || path.join(repo, 'dist'));
+  const pdir = pluginsDir(args);
+  const bdir = backupDir(args);
+
+  if (!exists(pdir)) die(`SiYuan plugins dir not found: ${pdir}`);
+  ensureDir(bdir);
+  if (!exists(dist) || !fs.lstatSync(dist).isDirectory()) die(`dist dir not found: ${dist} (build first)`);
+
+  const jsonPath = findPluginJson(repo, dist);
+  if (!jsonPath) die(`cannot find plugin.json in dist or repo: dist=${dist}, repo=${repo}`);
+
+  const name = readPluginName(jsonPath);
+  const target = path.join(pdir, name);
+
+  moveAsideIfExists(target, bdir, name);
+
+  process.stdout.write(`link:   ${target} -> ${dist}\n`);
+  fs.symlinkSync(dist, target);
+
+  writeState(bdir, {
+    lastLinkedName: name,
+    lastLinkedRepo: repo,
+    lastLinkedDist: dist,
+    lastLinkedAt: new Date().toISOString(),
+  });
+
+  process.stdout.write('\n');
+  statusOne(name, pdir);
+  process.stdout.write(`backup dir: ${bdir}\n`);
+}
+
+function cmdRestore(args) {
+  const pdir = pluginsDir(args);
+  const bdir = backupDir(args);
+
+  if (!exists(pdir)) die(`SiYuan plugins dir not found: ${pdir}`);
+  if (!exists(bdir)) die(`backup dir not found: ${bdir}`);
+
+  const name = inferRestoreTargetName(args, bdir);
+  if (!name) die(`cannot infer plugin name to restore (no --name, no state, no backups in ${bdir})`);
+
+  const target = path.join(pdir, name);
+  const latest = latestBackupForName(bdir, name);
+  if (!latest) die(`no backup found for ${name} in ${bdir}`);
+
+  if (exists(target)) {
+    const curBackup = path.join(bdir, `${name}.before-restore.${nowTs()}`);
+    process.stdout.write(`backup current: ${target} -> ${curBackup}\n`);
+    fs.renameSync(target, curBackup);
+  }
+
+  process.stdout.write(`restore: ${latest} -> ${target}\n`);
+  fs.renameSync(latest, target);
+
+  process.stdout.write('\n');
+  statusOne(name, pdir);
+}
+
+function cmdStatus(args) {
+  const pdir = pluginsDir(args);
+  if (!exists(pdir)) die(`SiYuan plugins dir not found: ${pdir}`);
+
+  if (args.name) {
+    statusOne(args.name, pdir);
+    return;
+  }
+
+  // Auto status: show last linked name if exists
+  const bdir = backupDir(args);
+  const st = readState(bdir);
+  if (st && st.lastLinkedName) {
+    statusOne(st.lastLinkedName, pdir);
+    return;
+  }
+
+  die('missing --name <pluginName> (no state found for auto status)');
+}
+
+function main() {
+  const argv = process.argv.slice(2);
+  const cmd = argv[0] || '';
+  const args = getArgMap(argv.slice(1));
+
+  if (!cmd || cmd === '--help' || cmd === '-h') {
+    usage();
+    process.exit(0);
+  }
+
+  if (cmd === 'link') return cmdLink(args);
+  if (cmd === 'restore') return cmdRestore(args);
+  if (cmd === 'status') return cmdStatus(args);
+
+  die(`unknown command: ${cmd}`);
+}
+
+main();
