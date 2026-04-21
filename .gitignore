@@ -1,5 +1,6 @@
 *.swp
 .tmp
+.vfox
 
 node_modules
 
