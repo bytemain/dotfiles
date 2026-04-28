@@ -19,12 +19,20 @@ patch:
     com.googlecode.iterm2:
       no_inline: true
       vim_mode: false
+      ascii_mode: true
+    com.mitchellh.ghostty:
+      no_inline: true
+      vim_mode: false
+      ascii_mode: true
     com.apple.Terminal:
       no_inline: true
       vim_mode: false
-    #com.apple.iWork.Numbers:
-    #no_inline: true
+      ascii_mode: true
+    com.apple.iWork.Numbers:
+      no_inline: true
     com.alfredapp.Alfred:
+      ascii_mode: true
+    com.raycast.macos:
       ascii_mode: true
     com.jetbrains.intellij:
       vim_mode: true
@@ -37,6 +45,18 @@ patch:
       vim_mode: true
     net.kovidgoyal.kitty:
       vim_mode: true
+
+  # 小鹤音形配置
+  # axu_code:
+  #   # 激活码
+  #   trigger_word: ";"
+  #   # 展示辅码的模式
+  #   # always:   总是展示(默认)
+  #   # trigger:  输入激活码后激活辅码
+  #   # none:     始终不展示辅码
+  #   show_aux_notice: "always"
+  # speller/delimiter: " '"
+  # speller/alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA;
   key_binder:
     bindings:
       - { accept: "Control+Shift+E", toggle: emoji_suggestion, when: always }
