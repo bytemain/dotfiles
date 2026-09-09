@@ -1,0 +1,6 @@
+# Ghostty 配置
+# 主字体：等宽（终端对齐需要）
+font-family = Hack
+# 缺字 fallback：优先用 MiSans（否则会走 Noto Sans Mono CJK SC）
+font-family = MiSans
+font-size = 12

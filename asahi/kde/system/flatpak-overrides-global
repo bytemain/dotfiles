@@ -1,0 +1,7 @@
+[Environment]
+MOZ_ENABLE_WAYLAND=1
+ELECTRON_OZONE_PLATFORM_HINT=auto
+GDK_BACKEND=
+
+[Context]
+unset-environment=GDK_BACKEND;

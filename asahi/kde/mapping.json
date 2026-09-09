@@ -1,0 +1,19 @@
+{
+  "profile": "asahi-kde",
+  "description": "KDE / Wayland / 字体配置（Fedora Asahi Remix, aarch64, KDE Plasma 6.7, 150% 缩放）",
+  "files": [
+    { "src": "~/.config/fontconfig/fonts.conf",             "dest": "config/fontconfig/fonts.conf" },
+    { "src": "~/.config/kdeglobals",                        "dest": "config/kdeglobals" },
+    { "src": "~/.config/fcitx5/conf/classicui.conf",        "dest": "config/fcitx5/classicui.conf" },
+    { "src": "~/.config/fcitx5/config",                     "dest": "config/fcitx5/config" },
+    { "src": "~/.config/fcitx5/profile",                    "dest": "config/fcitx5/profile" },
+    { "src": "~/.config/environment.d/99-wayland.conf",     "dest": "config/environment.d/99-wayland.conf" },
+    { "src": "~/.config/plasma-workspace/env/10-wayland.sh", "dest": "config/plasma-workspace/env/10-wayland.sh" },
+    { "src": "~/.config/ghostty/config.ghostty",            "dest": "config/ghostty/config.ghostty" },
+    { "src": "~/.local/share/applications/dida.desktop",    "dest": "config/applications/dida.desktop" }
+  ],
+  "system": [
+    { "src": "/etc/environment.d/99-wayland.conf", "dest": "system/etc/environment.d/99-wayland.conf" },
+    { "src": "/var/lib/flatpak/overrides/global",  "dest": "system/flatpak-overrides-global" }
+  ]
+}

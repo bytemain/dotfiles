@@ -1,0 +1,6 @@
+# dnf packages installed for this profile
+rsms-inter-fonts          # Inter (SF Pro 近似) —— 现已被 MiSans 取代，可保留
+rsms-inter-vf-fonts
+python3-fonttools         # 修正 MiSans 字重元数据
+xlsclients                # 检查哪些应用还在走 XWayland
+xwininfo
