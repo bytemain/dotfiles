@@ -33,7 +33,14 @@ KDE / Wayland / 字体配置快照 — **Fedora Asahi Remix** (aarch64, KDE Plas
 
 ## Fonts
 
-字体本体**不在仓库里**（约 90 MB）。需要单独安装到 `~/.local/share/fonts/`：
+字体本体**不在仓库里**（约 90 MB），需要自行下载后安装到 `~/.local/share/fonts/`。
+
+官方下载入口（链接可能变动，失效就搜索字体名）：
+
+- **MiSans**（小米）: <https://hyperos.mi.com/font/>
+- **HarmonyOS Sans**（华为）: <https://developer.harmonyos.com/cn/design/harmonyos-fonts/>
+
+下面的命令假设 zip 放在 `~/Downloads/`，放别处改路径即可。
 
 ### MiSans（默认字体）
 
