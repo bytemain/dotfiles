@@ -12,8 +12,24 @@
 # and shared_preferences.json may contain subscription URLs in clear text.
 set -euo pipefail
 
+PROFILE_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+
 STAMP="$(date +%Y%m%d-%H%M%S)"
 OUT="${1:-$HOME/asahi-backup-$STAMP}"
+
+# Safety: never write a backup inside the git repo. It contains secrets
+# (tailscale node key, FlClash subscriptions) and the repo is public.
+REPO_ROOT="$(git -C "$PROFILE_DIR" rev-parse --show-toplevel 2>/dev/null || true)"
+if [ -n "$REPO_ROOT" ]; then
+    case "$(realpath -m -- "$OUT")" in
+        "$REPO_ROOT"/*)
+            echo "refusing to write a backup inside the git repo: $OUT" >&2
+            echo "pick a path outside $REPO_ROOT" >&2
+            exit 1
+            ;;
+    esac
+fi
+
 mkdir -p "$OUT"/{flatpak,tailscale,flclash}
 
 echo ">> flatpak"

@@ -31,3 +31,6 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# asahi backups contain secrets (never commit)
+asahi-backup*/
