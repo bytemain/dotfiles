@@ -18,6 +18,9 @@ asahi/
 │   └── kbdlight                    # keyboard backlight (/sys/class/leds/kbd_backlight)
 ├── udev/
 │   └── 60-kbd-backlight.rules      # makes the keyboard LED writable without sudo
+├── systemd/
+│   ├── kbd-backlight.service       # sets the keyboard backlight at every boot
+│   └── kbd-backlight-set           # helper used by the unit
 └── scripts/
     ├── install-flatpak.sh          # remotes + apps from flatpak-apps.txt
     ├── install-tailscale.sh        # repo + package + service (+ state restore)
@@ -47,6 +50,33 @@ light 40               # both to 40%
 light off / on         # screen -> 1%, keyboard off / restore
 kbd set 80             # keyboard only
 screen up              # screen only
+```
+
+## Keyboard backlight at boot
+
+`install.sh` installs and enables `kbd-backlight.service`, which sets the
+keyboard backlight to **49%** on every boot (after systemd has restored the
+previously saved value, so it always wins).
+
+Change the level in `asahi/systemd/kbd-backlight.service`:
+
+```ini
+Environment=KBD_BACKLIGHT_PERCENT=49
+```
+
+then re-apply:
+
+```bash
+~/dotfiles/asahi/install.sh
+# or just:
+sudo systemctl daemon-reload && sudo systemctl restart kbd-backlight
+```
+
+Check it:
+
+```bash
+systemctl status kbd-backlight      # enabled + last run
+kbd pct                             # should print 49 after a reboot
 ```
 
 ## Back up before a reinstall

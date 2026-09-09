@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# kbd-backlight-set <percent>
+#
+# Set the Apple Silicon keyboard backlight to a percentage of
+# max_brightness. Called by kbd-backlight.service at boot (and usable
+# manually). Silently does nothing on machines without the LED.
+set -euo pipefail
+
+pct="${1:-49}"
+led="${KBDLIGHT_LED:-/sys/class/leds/kbd_backlight/brightness}"
+
+[ -e "$led" ] || exit 0
+[ -w "$led" ] || exit 0
+
+max="$(cat "${led%/*}/max_brightness")"
+(( pct < 0 )) && pct=0
+(( pct > 100 )) && pct=100
+printf '%s\n' "$(( pct * max / 100 ))" >"$led"

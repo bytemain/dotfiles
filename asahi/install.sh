@@ -13,6 +13,10 @@ BIN_DIR="$HOME/.local/bin"
 RC_DIR="$HOME/.bashrc.d"
 UDEV_SRC="$PROFILE_DIR/udev/60-kbd-backlight.rules"
 UDEV_DST="/etc/udev/rules.d/60-kbd-backlight.rules"
+SYSTEMD_SRC="$PROFILE_DIR/systemd/kbd-backlight.service"
+SYSTEMD_DST="/etc/systemd/system/kbd-backlight.service"
+HELPER_SRC="$PROFILE_DIR/systemd/kbd-backlight-set"
+HELPER_DST="/usr/local/bin/kbd-backlight-set"
 
 link() { # link <src> <dst>
     local src="$1" dst="$2"
@@ -56,6 +60,21 @@ if ! cmp -s "$UDEV_SRC" "$UDEV_DST" 2>/dev/null; then
 else
     echo "$UDEV_DST already up to date"
 fi
+
+# helper used by the unit (systemd cannot do shell parameter expansion)
+if ! cmp -s "$HELPER_SRC" "$HELPER_DST" 2>/dev/null; then
+    sudo install -Dm755 -- "$HELPER_SRC" "$HELPER_DST"
+    echo "installed $HELPER_DST"
+fi
+
+# systemd unit: set the keyboard backlight to a fixed level on every boot
+if ! cmp -s "$SYSTEMD_SRC" "$SYSTEMD_DST" 2>/dev/null; then
+    sudo install -m 644 -- "$SYSTEMD_SRC" "$SYSTEMD_DST"
+    sudo systemctl daemon-reload
+    echo "installed $SYSTEMD_DST"
+fi
+sudo systemctl enable kbd-backlight.service >/dev/null 2>&1 || true
+sudo systemctl restart kbd-backlight.service
 
 echo
 echo "done. open a new shell (or 'source ~/.bashrc'), then try:  light get"

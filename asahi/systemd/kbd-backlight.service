@@ -1,0 +1,17 @@
+[Unit]
+Description=Set keyboard backlight to a fixed level
+Documentation=https://github.com/bytemain/dotfiles/tree/main/asahi
+# run after the kernel/systemd-backlight has restored the saved value,
+# so this always wins at boot
+After=systemd-backlight@leds:kbd_backlight.service
+After=local-fs.target
+
+[Service]
+Type=oneshot
+# change the level here (percent of max_brightness), then:
+#   sudo systemctl daemon-reload && sudo systemctl restart kbd-backlight
+Environment=KBD_BACKLIGHT_PERCENT=49
+ExecStart=/usr/local/bin/kbd-backlight-set ${KBD_BACKLIGHT_PERCENT}
+
+[Install]
+WantedBy=multi-user.target
