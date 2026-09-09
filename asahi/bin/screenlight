@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+# screenlight - control the internal display brightness on Apple Silicon (Asahi + KDE)
+#
+# On Apple Silicon there is NO /sys/class/backlight device, so brightnessctl
+# does not work for the panel. KWin/KScreen drives the backlight through a
+# DRM property, so we go through kscreen-doctor instead.
+set -euo pipefail
+
+OUTPUT="${SCREENLIGHT_OUTPUT:-1}"   # kscreen output id (internal panel = 1)
+STEP="${SCREENLIGHT_STEP:-5}"       # percent per up/down
+MIN="${SCREENLIGHT_MIN:-1}"         # never go fully black by accident
+MAX="${SCREENLIGHT_MAX:-100}"
+
+usage() {
+  cat <<EOF
+Usage: ${0##*/} <command>
+
+Commands:
+  up [n]     increase brightness by n%   (default: $STEP)
+  down [n]   decrease brightness by n%   (default: $STEP)
+  set <n>    set brightness to n% ($MIN-$MAX)
+  get        print current brightness in %
+  on         set to $MAX%
+  min        set to $MIN%
+  toggle     toggle between current and $MIN%
+
+Environment:
+  SCREENLIGHT_OUTPUT=$OUTPUT   output id (kscreen-doctor -o)
+  SCREENLIGHT_STEP=$STEP
+EOF
+}
+
+current() {
+  kscreen-doctor -o 2>/dev/null \
+    | sed 's/\x1b\[[0-9;]*m//g' \
+    | grep -m1 -oP 'Brightness control: supported, set to \K[0-9]+'
+}
+
+apply() {
+  local v=$1
+  (( v < MIN )) && v=$MIN
+  (( v > MAX )) && v=$MAX
+  kscreen-doctor "output.${OUTPUT}.brightness.${v}" >/dev/null
+  printf '%s\n' "$v"
+}
+
+cur=$(current) || true
+if [ -z "${cur:-}" ]; then
+  echo "${0##*/}: no controllable panel found (is the KDE session running?)" >&2
+  exit 1
+fi
+
+cmd=${1:-get}
+shift || true
+case "$cmd" in
+  up)          apply $(( cur + ${1:-$STEP} ));;
+  down)        apply $(( cur - ${1:-$STEP} ));;
+  set)         [ $# -ge 1 ] || { usage; exit 2; }; apply "$1";;
+  get|status)  echo "$cur";;
+  on)          apply "$MAX";;
+  min)         apply "$MIN";;
+  toggle)
+    state="${XDG_RUNTIME_DIR:-/tmp}/screenlight.prev"
+    if [ "$cur" -gt "$MIN" ]; then
+      echo "$cur" > "$state"
+      apply "$MIN"
+    else
+      apply "$(cat "$state" 2>/dev/null || echo "$MAX")"
+    fi;;
+  -h|--help|help) usage;;
+  *)           usage; exit 2;;
+esac

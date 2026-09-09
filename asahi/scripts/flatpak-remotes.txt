@@ -1,0 +1,4 @@
+appcenter	https://flatpak.elementaryos.org/repo
+fedora	oci+https://registry.fedoraproject.org
+flathub	https://dl.flathub.org/repo
+flathub-beta	https://dl.flathub.org/beta-repo/

@@ -1,0 +1,2 @@
+# Allow the local user to control the MacBook keyboard backlight without sudo
+SUBSYSTEM=="leds", KERNEL=="kbd_backlight", RUN+="/usr/bin/chmod 0666 /sys/class/leds/kbd_backlight/brightness"

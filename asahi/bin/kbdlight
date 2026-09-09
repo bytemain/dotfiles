@@ -1,0 +1,86 @@
+#!/usr/bin/env bash
+# kbdlight - control the MacBook keyboard backlight (Apple Silicon / Asahi)
+#
+# The LED is exposed at /sys/class/leds/kbd_backlight (0..255).
+# No dedicated keyboard-backlight keys exist on the M2/M3 MacBook Air,
+# so bind these commands to whatever keys you like.
+set -euo pipefail
+
+LED="${KBDLIGHT_LED:-/sys/class/leds/kbd_backlight/brightness}"
+STEP="${KBDLIGHT_STEP:-25}"     # out of max_brightness (~10%)
+STATE="${XDG_RUNTIME_DIR:-/tmp}/kbdlight.last"
+
+max()  { cat "${LED%/*}/max_brightness"; }
+current() { cat "$LED"; }
+
+write_led() {
+  local v=$1 m
+  m=$(max)
+  (( v < 0 )) && v=0
+  (( v > m )) && v=$m
+  if [ -w "$LED" ]; then
+    printf '%s\n' "$v" > "$LED"
+  else
+    printf '%s\n' "$v" | sudo tee "$LED" >/dev/null
+  fi
+  printf '%s\n' "$v"
+}
+
+pct() {  # percent -> raw
+  local p=$1 m; m=$(max)
+  (( p < 0 )) && p=0
+  (( p > 100 )) && p=100
+  echo $(( p * m / 100 ))
+}
+
+usage() {
+  cat <<EOF
+Usage: ${0##*/} <command>
+
+Commands:
+  up [n]      increase by n (raw, default: $STEP)
+  down [n]    decrease by n (raw, default: $STEP)
+  set <n>     set to n% (0-100)
+  raw <n>     set raw value (0-$(max))
+  get         print raw value
+  pct         print value in %
+  on          turn on (last used level, or max)
+  off         turn off
+  max         set to max
+  toggle      toggle on/off
+
+Environment:
+  KBDLIGHT_LED=$LED
+  KBDLIGHT_STEP=$STEP
+EOF
+}
+
+cur=$(current)
+cmd=${1:-get}
+shift || true
+case "$cmd" in
+  up)      write_led $(( cur + ${1:-$STEP} ));;
+  down)    write_led $(( cur - ${1:-$STEP} ));;
+  set)     [ $# -ge 1 ] || { usage; exit 2; }; write_led "$(pct "$1")";;
+  raw)     [ $# -ge 1 ] || { usage; exit 2; }; write_led "$1";;
+  get|status) echo "$cur";;
+  pct)     echo $(( cur * 100 / $(max) ));;
+  on)
+    if [ "$cur" -eq 0 ]; then
+      write_led "$(cat "$STATE" 2>/dev/null || max)"
+    else
+      echo "$cur"
+    fi;;
+  # (write_led prints the resulting raw value)
+  off)     [ "$cur" -gt 0 ] && echo "$cur" > "$STATE" || true; write_led 0;;
+  max)     write_led "$(max)";;
+  toggle)
+    if [ "$cur" -gt 0 ]; then
+      echo "$cur" > "$STATE"
+      write_led 0
+    else
+      write_led "$(cat "$STATE" 2>/dev/null || max)"
+    fi;;
+  -h|--help|help) usage;;
+  *)       usage; exit 2;;
+esac

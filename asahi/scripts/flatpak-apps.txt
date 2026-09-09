@@ -1,0 +1,10 @@
+com.bitwarden.desktop	flathub	stable
+com.getmailspring.Mailspring	flathub	stable
+com.google.Chrome	flathub	stable
+com.visualstudio.code	flathub	stable
+io.github.DenysMb.Kontainer	flathub	stable
+io.github.brunofin.Cohesion	flathub	stable
+io.github.flattool.Warehouse	flathub	stable
+io.missioncenter.MissionCenter	flathub	stable
+org.fkoehler.KTailctl	flathub	stable
+so.onekey.Wallet	flathub	stable

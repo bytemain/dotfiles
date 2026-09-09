@@ -1,0 +1,66 @@
+# ─────────────────────────────────────────────────────────────
+# Asahi profile — Fedora Asahi Remix on Apple Silicon
+#
+# Installed as ~/.bashrc.d/asahi.sh by asahi/install.sh.
+# ─────────────────────────────────────────────────────────────
+
+export DOTFILE_NAME=asahi
+export DOTFILE_CONFIG_PATH="$HOME/dotfiles/$DOTFILE_NAME"
+
+# keep the profile's own bin on PATH (screenlight / kbdlight live there)
+case ":$PATH:" in
+    *":$DOTFILE_CONFIG_PATH/bin:"*) ;;
+    *) export PATH="$DOTFILE_CONFIG_PATH/bin:$PATH" ;;
+esac
+
+# ── brightness helpers ───────────────────────────────────────
+#   screen up|down|set N|get|on|min|toggle   internal display
+#   kbd    up|down|set N|raw N|get|pct|on|off|max|toggle   keyboard backlight
+#   light  get|up|down|set N|on|off|min|max|toggle|N    both at once
+#
+# Apple Silicon has no /sys/class/backlight, so the display is driven
+# through KWin/KScreen (kscreen-doctor); the keyboard is a plain LED.
+
+screen() { screenlight "$@"; }
+kbd()    { kbdlight   "$@"; }
+
+light() {
+    local cmd="${1:-get}" step pct
+    case "$cmd" in
+        get|status)
+            printf 'screen: %3s%%   kbd: %3s%%\n' "$(screenlight get)" "$(kbdlight pct)"
+            ;;
+        up|down)
+            step="${2:-5}"
+            pct=$(kbdlight pct)
+            if [ "$cmd" = up ]; then
+                screenlight up   "$step" >/dev/null
+                kbdlight   set $(( pct + step )) >/dev/null
+            else
+                screenlight down "$step" >/dev/null
+                kbdlight   set $(( pct - step )) >/dev/null
+            fi
+            light get
+            ;;
+        set)
+            [ -n "${2:-}" ] || { echo "usage: light set <0-100>" >&2; return 2; }
+            screenlight set "$2" >/dev/null
+            kbdlight   set "$2" >/dev/null
+            light get
+            ;;
+        on)     screenlight on     >/dev/null; kbdlight on     >/dev/null; light get ;;
+        off)    screenlight min    >/dev/null; kbdlight off    >/dev/null; light get ;;
+        min)    screenlight min    >/dev/null; kbdlight off    >/dev/null; light get ;;
+        max)    screenlight on     >/dev/null; kbdlight max    >/dev/null; light get ;;
+        toggle) screenlight toggle >/dev/null; kbdlight toggle >/dev/null; light get ;;
+        [0-9]*) screenlight set "$cmd" >/dev/null
+                kbdlight   set "$cmd" >/dev/null
+                light get ;;
+        *)      echo "usage: light [get|up|down [n]|set N|on|off|min|max|toggle|N]" >&2
+                return 2 ;;
+    esac
+}
+
+complete -W "up down set get on min toggle"             screen screenlight
+complete -W "up down set raw get pct on off max toggle" kbd    kbdlight
+complete -W "get up down set on off min max toggle"     light
